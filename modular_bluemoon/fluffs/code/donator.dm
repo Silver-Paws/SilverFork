@@ -1088,14 +1088,14 @@
     name = "Panties"
     slot = ITEM_SLOT_OCLOTHING
     path = /obj/item/clothing/underwear/briefs/kladmen_panties
-    ckeywhitelist = list("kladmenuwu")
+    ckeywhitelist = list("kladmenuwu", "scramblescream")
     subcategory = LOADOUT_SUBCATEGORIES_DON02
 
 /datum/gear/donator/bm/kladmen_bra
     name = "Bra - A bra"
     slot = ITEM_SLOT_OCLOTHING
     path = /obj/item/clothing/underwear/shirt/bra/kladmen_bra
-    ckeywhitelist = list("kladmenuwu")
+    ckeywhitelist = list("kladmenuwu", "scramblescream")
     subcategory = LOADOUT_SUBCATEGORIES_DON02
 
 /datum/gear/donator/bm/f_haori

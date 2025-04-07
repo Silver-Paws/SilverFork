@@ -2,7 +2,7 @@
 
 /obj/item/gun/ballistic/automatic/m16a4
 	name = "\improper M16A4 rifle"
-	desc = "An american automatic rifle chambered for the 5.56 round, designed for use by SWAT."
+	desc = "A Solar Federation automatic rifle chambered for the 5.56 round, designed for use by SWAT."
 	icon = 'modular_bluemoon/phenyamomota/icon/obj/guns/rifles.dmi'
 	icon_state = "m16"
 	lefthand_file = 'modular_bluemoon/phenyamomota/icon/mob/inhand/guns_lefthand.dmi'
@@ -51,7 +51,7 @@
 
 /obj/item/gun/ballistic/automatic/m16a4/tactical
 	name = "\improper tactical M16A4 rifle"
-	desc = "An american automatic rifle chambered for the 5.56 round, designed for use by Special Ops."
+	desc = "A Solar Federation automatic rifle chambered for the 5.56 round, designed for use by Special Ops."
 	icon_state = "m16_tactical"
 	burst_size = 3 // BLUEMOON EDIT - was "burst_size = 5"
 	fire_delay = 2 // BLUEMOON EDIT - was "fire_delay = 3"
@@ -64,7 +64,7 @@
 
 /obj/item/gun/ballistic/automatic/m16a4/stock
 	name = "\improper stock M16A4 rifle"
-	desc = "An american automatic rifle chambered for the 5.56 round, just bought from nearest gun-shop."
+	desc = "A Solar Federation automatic rifle chambered for the 5.56 round, just bought from nearest gun-shop."
 	icon_state = "m16_stock"
 	burst_size = 3
 	fire_delay = 4

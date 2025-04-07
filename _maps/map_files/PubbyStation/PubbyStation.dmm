@@ -54161,6 +54161,14 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
+/mob/living/simple_animal/bot/secbot{
+	arrest_type = 1;
+	health = 45;
+	icon_state = "secbot1";
+	idcheck = 1;
+	name = "Sergeant-at-Armsky";
+	weaponscheck = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "ijF" = (
@@ -62788,14 +62796,37 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "uhG" = (
-/mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
-	health = 45;
-	icon_state = "secbot1";
-	idcheck = 1;
-	name = "Sergeant-at-Armsky";
-	weaponscheck = 1
+/obj/structure/safe/floor/syndi/armory{
+	pixel_y = 2;
+	dir = 2
 	},
+/obj/item/gun/ballistic/automatic/acr5m30,
+/obj/item/gun/ballistic/automatic/acr5m30{
+	pixel_y = -5
+	},
+/obj/item/gun/ballistic/automatic/acr5m30{
+	pixel_y = -10
+	},
+/obj/item/ammo_box/magazine/acr5m30,
+/obj/item/ammo_box/magazine/acr5m30,
+/obj/item/ammo_box/magazine/acr5m30,
+/obj/item/ammo_box/magazine/acr5m30,
+/obj/item/ammo_box/magazine/acr5m30,
+/obj/item/ammo_box/magazine/acr5m30,
+/obj/item/ammo_box/magazine/acr5m30,
+/obj/item/ammo_box/magazine/acr5m30,
+/obj/item/ammo_box/magazine/acr5m30,
+/obj/item/ammo_box/magazine/acr5m30/ap,
+/obj/item/ammo_box/magazine/acr5m30/ap,
+/obj/item/ammo_box/magazine/acr5m30/ap,
+/obj/item/ammo_box/magazine/acr5m30/ap,
+/obj/item/ammo_box/magazine/acr5m30/ap,
+/obj/item/ammo_box/magazine/acr5m30/ap,
+/obj/item/ammo_box/magazine/acr5m30/hp,
+/obj/item/ammo_box/magazine/acr5m30/hp,
+/obj/item/ammo_box/magazine/acr5m30/hp,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/red/full,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "uhI" = (
@@ -87326,8 +87357,8 @@ aaa
 aaa
 afI
 abI
-jXF
-jXF
+aow
+aow
 cnJ
 cnJ
 aow
@@ -87583,7 +87614,7 @@ aaa
 aaa
 aby
 aaa
-jXF
+aow
 gGp
 sdk
 ahK
@@ -88611,7 +88642,7 @@ aaa
 aaa
 aby
 abI
-jXF
+aow
 ajG
 sdk
 alN
@@ -89639,7 +89670,7 @@ aaa
 aaa
 aby
 aaa
-jXF
+aow
 agP
 dBC
 mGz
@@ -89896,11 +89927,11 @@ aaa
 aaa
 aby
 abI
-jXF
+aow
 cnJ
 cnJ
 cnJ
-jXF
+aow
 jXF
 jXF
 ajU

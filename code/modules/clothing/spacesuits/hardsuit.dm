@@ -313,6 +313,7 @@
 	actions_types = list(/datum/action/item_action/toggle_helmet_mode)
 	visor_flags_inv = HIDEMASK|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	visor_flags = STOPSPRESSUREDAMAGE
+	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR // BLUEMOON ADD enabling visibility of snouts, faces and beards in combat mode
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/update_icon_state()
 	icon_state = "hardsuit[on]-[hardsuit_type]"
