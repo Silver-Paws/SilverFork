@@ -333,75 +333,75 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 ///////////	forgottenship areas
 
 //InteQ, Forgotten Ship
-/area/ruin/space/has_grav/inteq
+/area/ruin/space/has_grav/bluemoon/inteq
 	name = "InteQ"
 	icon_state = "spacecontent1"
 	ambientsounds = list('sound/ambience/ambidanger.ogg', 'sound/ambience/ambidanger2.ogg', 'sound/ambience/ambigen9.ogg', 'sound/ambience/ambigen10.ogg')
 
-/area/ruin/space/has_grav/inteq_forgotten_ship
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_ship
 	name = "InteQ Forgotten Ship"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambidanger.ogg', 'sound/ambience/ambidanger2.ogg', 'sound/ambience/ambigen9.ogg', 'sound/ambience/ambigen10.ogg')
 
-/area/ruin/space/has_grav/inteq_forgotten_outpost
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_outpost
 	name = "InteQ Forgotten Outpost"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambigen4.ogg', 'sound/ambience/signal.ogg')
-	sub_areas = list(/area/ruin/space/has_grav/inteq_forgotten_outpost/shower)
+	sub_areas = list(/area/ruin/space/has_grav/bluemoon/inteq_forgotten_outpost/shower)
 
-/area/ruin/space/has_grav/inteq_forgotten_outpost/shower
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_outpost/shower
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "shower"
 	name = "InteQ Forgotten Outpost Shower"
 	valid_to_shower = TRUE
 
-/area/ruin/space/has_grav/inteq_forgotten_cargopod
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_cargopod
 	name = "InteQ Forgotten Cargo pod"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambigen4.ogg', 'sound/ambience/signal.ogg')
 
-/area/ruin/space/has_grav/inteq_forgotten_vault
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_vault
 	name = "InteQ Forgotten Vault"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
-/area/ruin/space/has_grav/inteq_forgotten_bar
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_bar
 	name = "InteQ Forgotten Bar"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
 
-/area/ruin/space/has_grav/inteq_forgotten_bridge
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_bridge
 	name = "InteQ Forgotten Bridge"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
 
-/area/ruin/space/has_grav/inteq_forgotten_medbay
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_medbay
 	name = "InteQ Forgotten Medical Bay"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
 
-/area/ruin/space/has_grav/inteq_forgotten_atmos
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_atmos
 	name = "InteQ Forgotten Turbine Control"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
 
-/area/ruin/space/has_grav/inteq_forgotten_rnd
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_rnd
 	name = "InteQ Forgotten Research and Development"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
 
-/area/ruin/space/has_grav/inteq_forgotten_permabrig
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_permabrig
 	name = "InteQ Forgotten Permanent Brig"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
-	sub_areas = list(/area/ruin/space/has_grav/inteq_forgotten_permabrig/shower)
+	sub_areas = list(/area/ruin/space/has_grav/bluemoon/inteq_forgotten_permabrig/shower)
 
-/area/ruin/space/has_grav/inteq_forgotten_permabrig/shower
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_permabrig/shower
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "shower"
 	name = "InteQ Forgotten Permanent Brig Shower"
 	valid_to_shower = TRUE
 
-/area/ruin/space/has_grav/inteq_forgotten_inspection
+/area/ruin/space/has_grav/bluemoon/inteq_forgotten_inspection
 	name = "InteQ Forgotten Inspection room"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')

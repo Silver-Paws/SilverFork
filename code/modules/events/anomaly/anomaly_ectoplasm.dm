@@ -35,6 +35,8 @@
 	created_anomaly.intensity_update()
 
 /datum/round_event/anomaly/anomaly_ectoplasm/announce(fake)
+	if(isnull(impact_area))
+		impact_area = placer.findValidArea()
 	priority_announce("Паранормальная эктоплазменная вспышка зафиксирована на [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "ВНИМАНИЕ: АНОМАЛИЯ", 'sound/announcer/classic/anomaly/anomaly_ectoplasm.ogg')
 
 /datum/event_admin_setup/anomaly_ectoplasm

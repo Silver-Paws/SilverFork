@@ -12,7 +12,7 @@
 	desc = "Contains 10 additional .45-70 GOVT rounds. Caliber is exceedingly rare, and thus, comes at a premium."
 	item = /obj/item/ammo_box/g4570
 	cost = 5
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/pistol
 	name = "10mm Handgun Magazine"
@@ -85,7 +85,7 @@
 
 /datum/uplink_item/ammo/shotgun
 	cost = 2
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/shotgun/bag
 	name = "12g Ammo Duffel Bag"
@@ -150,25 +150,25 @@
 			Your teammates will ask you to not shoot these down small hallways."
 	item = /obj/item/ammo_casing/a40mm
 	cost = 2
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/smg/bag
 	name = ".45 Ammo Duffel Bag"
 	desc = "A duffel bag filled with enough .45 ammo to supply an entire team, at a discounted price."
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	cost = 20 //instead of 27 TC
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/smg
 	name = ".45 SMG Magazine"
 	desc = "An additional 24-round .45 magazine suitable for use with the C-20r submachine gun."
 	item = /obj/item/ammo_box/magazine/smgm45
 	cost = 3
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/sniper
 	cost = 4
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/sniper/basic
 	name = ".50 Magazine"
@@ -194,7 +194,7 @@
 			These bullets pack less punch than 7.12x82mm rounds, but they still offer more power than .45 ammo."
 	item = /obj/item/ammo_box/magazine/m556
 	cost = 4
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/machinegun/match
 	name = "7.12x82mm (Match) Box Magazine"
@@ -206,7 +206,7 @@
 /datum/uplink_item/ammo/machinegun
 	cost = 6
 	surplus = 0
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/machinegun/basic
 	name = "7.12x82mm Box Magazine"
@@ -234,7 +234,7 @@
 	item = /obj/item/ammo_box/magazine/mm712x82/incen
 
 /datum/uplink_item/ammo/rocket
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/rocket/basic
 	name = "84mm HE Rocket"
@@ -268,7 +268,7 @@
 			Loaded with armor piercing flechettes that very nearly ignore armor, but are not very effective against flesh."
 	item = /obj/item/ammo_box/magazine/flechette
 	cost = 2
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/flechettes
 	name = "Serrated Flechette Magazine"
@@ -277,7 +277,7 @@
 			These flechettes are highly likely to sever arteries, and even limbs."
 	item = /obj/item/ammo_box/magazine/flechette/s
 	cost = 2
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/toydarts
 	name = "Box of Riot Darts"
@@ -300,14 +300,14 @@
 	desc = "A stripper clip used to quickly load bolt action rifles. Contains 5 rounds."
 	item = /obj/item/ammo_box/a762
 	cost = 1
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/bolt_action_bulk
 	name = "Surplus Rifle Clip Box"
 	desc = "An ammo box we found in a warehouse, holding 7 clips of 5 rounds for bolt-action rifles. Yes, the cheap ones."
 	item = /obj/item/storage/toolbox/ammo
 	cost = 4
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/ammo/dark_gygax/bag
 	name = "Dark Gygax Ammo Bag"

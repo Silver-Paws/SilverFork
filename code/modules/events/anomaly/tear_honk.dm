@@ -10,6 +10,8 @@
 	var/obj/effect/tear/honk/HE //i could just inherit but its being finicky.
 
 /datum/round_event/anomaly/tear/honk/announce()
+	if(isnull(impact_area))
+		impact_area = placer.findValidArea()
 	priority_announce("На борту станции зафиксирована Хонканомалия. Предполагаемая локация: [impact_area.name].", "ВНИМАНИЕ: ХОНК-АНОМАЛИЯ.", 'sound/items/AirHorn.ogg')
 
 /datum/round_event/anomaly/tear/honk/start()

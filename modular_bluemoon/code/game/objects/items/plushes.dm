@@ -294,3 +294,9 @@
 		var/mob/living/carbon/M = user
 		if(M.client && M.client.ckey == "krashly")
 			say("Свои! Свои!")
+
+/obj/item/toy/plush/bm/tiamat/sierra_iris_plushie
+	name = "I.R.I.S. plushie"
+	desc = "От неё исходит характерный металлический запах.."
+	icon_state = "iris"
+	can_you_fuck_plush = FALSE

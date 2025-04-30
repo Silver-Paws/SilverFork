@@ -341,12 +341,9 @@
 	if(internal)
 		if(internal.loc != src && !istype(internal.loc, /obj/structure/table/optable)) // BLUEMOON ADD - добавлено проверка на хирургический стол, чтобы можно было пользоваться баллоном из него
 			internal = null
-			update_internals_hud_icon(0)
 		else if (!internals && !getorganslot(ORGAN_SLOT_BREATHING_TUBE))
 			internal = null
-			update_internals_hud_icon(0)
 		else
-			update_internals_hud_icon(1)
 			. = internal.remove_air_volume(volume_needed)
 			if(!.)
 				return FALSE //to differentiate between no internals and active, but empty internals

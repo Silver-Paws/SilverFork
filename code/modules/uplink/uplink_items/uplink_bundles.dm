@@ -13,7 +13,7 @@
 			box of syringes, Donksoft assault rifle, and some riot darts. Remember: Seal suit and equip internals before use."
 	item = /obj/item/storage/backpack/duffelbag/syndie/med/bioterrorbundle
 	cost = 30 // normally 42
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/bundles_tc/bulldog
 	name = "Bulldog bundle"
@@ -21,14 +21,14 @@
 			Bulldog shotgun, a 12g buckshot drum, a 12g taser slug drum and a pair of Thermal imaging goggles."
 	item = /obj/item/storage/backpack/duffelbag/syndie/bulldogbundle
 	cost = 13 // normally 16
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/bundles_tc/c20r
 	name = "C-20r bundle"
 	desc = "Old Faithful: The classic C-20r, bundled with two magazines, and a (surplus) suppressor at discount price."
 	item = /obj/item/storage/backpack/duffelbag/syndie/c20rbundle
 	cost = 14 // normally 16
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/bundles_tc/contract_kit
 	name = "Contract Kit"
@@ -76,7 +76,7 @@
 	desc = "A random selection of cybernetic implants. Guaranteed 5 high quality implants. Comes with an autosurgeon."
 	item = /obj/item/storage/box/cyber_implants
 	cost = 40
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/bundles_tc/medical
 	name = "Medical bundle"
@@ -84,7 +84,7 @@
 			a Donksoft LMG, a box of riot darts and a pair of magboots to rescue your friends in no-gravity environments."
 	item = /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
 	cost = 15 // normally 20
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/bundles_tc/modular
 	name = "Modular Pistol Kit"
@@ -99,7 +99,7 @@
 			You'll get two of them with this. And spare ammo to boot. And we'll throw in an extra elite hardsuit and chest rig to hold them all!"
 	item = /obj/item/storage/backpack/duffelbag/syndie/shredderbundle
 	cost = 30 // normally 41
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/bundles_tc/sniper
 	name = "Sniper bundle"
@@ -108,7 +108,7 @@
 			We'll throw in a free red tie if you order NOW."
 	item = /obj/item/storage/briefcase/sniperbundle
 	cost = 20 // normally 26
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/bundles_tc/firestarter
 	name = "Spetsnaz Pyro bundle"
@@ -117,7 +117,7 @@
 			Order NOW and comrade Boris will throw in an extra tracksuit."
 	item = /obj/item/storage/backpack/duffelbag/syndie/firestarter
 	cost = 30
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/bundles_tc/bundle
 	name = "Operative Bundle"

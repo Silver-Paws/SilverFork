@@ -79,7 +79,6 @@
 					accessory_msg += mentioned_accessory.get_examine_string(user)
 				// BLUEMOON EDIT END
 			. += "[t_on] одет[t_a] в [w_uniform.get_examine_string(user)][accessory_msg]."
-
 	//head
 	if(head && !(head.obj_flags & EXAMINE_SKIP))
 		. += "[t_on] одет[t_a] в [head.get_examine_string(user)]."
@@ -103,12 +102,20 @@
 
 	//gloves
 	if(gloves && !(ITEM_SLOT_GLOVES in obscured))
-		var/gloves_accessory_msg
-		var/obj/item/clothing/gloves/G = gloves
-		if(istype(G))
-			if(G.attached_accessories.len == 1)
-				gloves_accessory_msg = " c [G.attached_accessories[1].get_examine_string(user)]"
-		. += "[t_on] одет[t_a] в [gloves.get_examine_string(user)][gloves_accessory_msg]."
+		//accessory
+		var/accessory_msg
+		if(istype(gloves, /obj/item/clothing/gloves))
+			var/obj/item/clothing/gloves/worn_thing = gloves
+			if(!CHECK_BITFIELD(worn_thing.flags_inv, HIDEACCESSORY))
+				var/list/accessory_preparation
+				for(var/obj/item/clothing/accessory/ring/attached_accessory as anything in worn_thing.attached_accessories)
+					if(CHECK_BITFIELD(attached_accessory.flags_inv, HIDEACCESSORY))
+						continue
+					LAZYADD(accessory_preparation, "[icon2html(attached_accessory, user)] [attached_accessory]")
+				if(length(accessory_preparation))
+					accessory_msg = " c [english_list(accessory_preparation)] на кончиках пальцев"
+
+		. += "[t_on] одет[t_a] в [gloves.get_examine_string(user)][accessory_msg]."
 	else if(length(blood_DNA))
 		var/hand_number = get_num_arms(FALSE)
 		if(hand_number)

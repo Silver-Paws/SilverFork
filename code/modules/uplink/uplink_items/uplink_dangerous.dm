@@ -47,7 +47,7 @@
 	item = /obj/item/gun/ballistic/rocketlauncher
 	cost = 8
 	surplus = 30
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/antitank
 	name = "Anti Tank Pistol"
@@ -58,7 +58,7 @@
 	item = /obj/item/gun/ballistic/automatic/pistol/antitank/syndicate
 	cost = 14
 	surplus = 25
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/pie_cannon
 	name = "Banana Cream Pie Cannon"
@@ -95,7 +95,7 @@
 	item = /obj/item/reagent_containers/spray/chemsprayer/bioterror
 	cost = 20
 	surplus = 0
-	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/dangerous/throwingweapons
 	name = "Box of Throwing Weapons"
@@ -111,7 +111,7 @@
 	item = /obj/item/gun/ballistic/automatic/shotgun/bulldog
 	cost = 8
 	surplus = 40
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/smg
 	name = "C-20r Submachine Gun"
@@ -120,7 +120,7 @@
 	item = /obj/item/gun/ballistic/automatic/c20r
 	cost = 10
 	surplus = 40
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/doublesword
 	name = "Double-Bladed Energy Sword"
@@ -215,7 +215,7 @@
 	item = /obj/item/flamethrower/full/tank
 	cost = 4
 	surplus = 40
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/flechettegun
 	name = "Flechette Launcher"
@@ -225,7 +225,7 @@
 	item = /obj/item/gun/ballistic/automatic/flechette
 	cost = 12
 	surplus = 30
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/rapid
 	name = "Bands of the North Star"
@@ -234,7 +234,7 @@
 			Combines with all martial arts, but the user will be unable to bring themselves to use guns, nor remove the armbands."
 	item = /obj/item/clothing/gloves/fingerless/pugilist/rapid
 	cost = 30
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/guardian
 	name = "Holoparasites"
@@ -260,7 +260,7 @@
 	refundable = TRUE
 	surplus = 50
 	refund_path = /obj/item/guardiancreator/tech/choose/nukie
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/machinegun
 	name = "L6 Squad Automatic Weapon"
@@ -269,7 +269,7 @@
 	item = /obj/item/gun/ballistic/automatic/l6_saw
 	cost = 18
 	surplus = 0
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/carbine
 	name = "M-90gl Carbine"
@@ -278,7 +278,7 @@
 	item = /obj/item/gun/ballistic/automatic/m90
 	cost = 18
 	surplus = 50
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/maulergauntlets
 	name = "Mauler Gauntlets"
@@ -310,14 +310,14 @@
 	item = /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
 	cost = 16
 	surplus = 25
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/bolt_action
 	name = "Surplus Rifle"
 	desc = "A horribly outdated bolt action weapon. You've got to be desperate to use this."
 	item = /obj/item/gun/ballistic/shotgun/boltaction
 	cost = 2
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/dangerous/foamsmg
 	name = "Toy Submachine Gun"

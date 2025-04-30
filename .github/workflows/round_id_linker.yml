@@ -5,7 +5,7 @@ on:
 
 jobs:
   link_rounds:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: SPLURT-Station/round_linker@master #notice: fork the round linkies from tg!!
       with:

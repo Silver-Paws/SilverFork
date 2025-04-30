@@ -102,8 +102,12 @@
 /atom/movable/screen/alert/status_effect/wound
 	name = "Ранен"
 	desc = "Ваше тело серьезно пострадало. Нажмите сюда, чтобы осмотреть себя."
+	clickable_glow = TRUE
 
 /atom/movable/screen/alert/status_effect/wound/Click()
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/C = usr
 	C.check_self_for_injuries()
 

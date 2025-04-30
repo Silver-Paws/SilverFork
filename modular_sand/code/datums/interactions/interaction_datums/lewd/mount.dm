@@ -5,6 +5,9 @@
 	required_from_target_exposed = INTERACTION_REQUIRE_PENIS
 	p13user_emote = PLUG13_EMOTE_VAGINA
 	p13target_emote = PLUG13_EMOTE_PENIS
+	additional_details = list(
+		INTERACTION_MAY_CAUSE_PREGNANCY
+	)
 
 /datum/interaction/lewd/mount/display_interaction(mob/living/user, mob/living/partner)
 	var/message

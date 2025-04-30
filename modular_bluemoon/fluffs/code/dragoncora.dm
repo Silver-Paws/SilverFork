@@ -50,12 +50,21 @@
 /datum/gear/donator/bm/dc_suit2
 	name = "FTU Security Armor"
 	slot = ITEM_SLOT_OCLOTHING
-	path = /obj/item/clothing/suit/armor/vest/ftu/dragoncora
+	path = /obj/item/clothing/suit/armor/vest/dragoncora
 	ckeywhitelist = list("dragoncora")
 	subcategory = LOADOUT_SUBCATEGORIES_DON02
 
-/obj/item/clothing/suit/armor/vest/ftu/dragoncora
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0, WOUND = 0)
+/obj/item/clothing/suit/armor/vest/dragoncora
+	name = "FTU Security Armor"
+	desc = "Стандартный бронежилет охраны свободных торговцев без бронепластин. Обеспечивает оптимальную защиту жизненно важных органов в тесных коридорах кораблей и трюмов."
+	icon_state = "epic_bp_armor"
+	item_state = "epic_bp_armor"
+	mob_overlay_icon = 'modular_bluemoon/Ren/Icons/Mob/clothing.dmi'
+	icon = 'modular_bluemoon/Ren/Icons/Obj/cloth.dmi'
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	heat_protection = CHEST|GROIN|ARMS
+	armor = list(MELEE = 20, BULLET = 20, LASER = 25, ENERGY = 20, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
 
 // // // // // // // //
 
@@ -106,9 +115,13 @@
 /datum/gear/donator/bm/dc_backpack
 	name = "Tactical Backpack"
 	slot = ITEM_SLOT_BACK
-	path = /obj/item/storage/backpack/ert_commander/ert_engineering
+	path = /obj/item/storage/backpack/dragoncora
 	ckeywhitelist = list("dragoncora")
 	subcategory = LOADOUT_SUBCATEGORIES_DON02
+
+/obj/item/storage/backpack/dragoncora
+	name = "Tactical Backpack"
+	icon_state = "ert_engineering"
 
 // // // // // // // //
 
@@ -137,7 +150,6 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "abductor_headset"
 	item_state = "abductor_headset"
-	bowman = TRUE
 
 // // // // // // // //
 

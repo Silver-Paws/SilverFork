@@ -251,3 +251,13 @@
 	icon_state = "hahununiform"
 	item_state = "hahununiform"
 	can_adjust = TRUE
+
+/obj/item/clothing/under/donator/bm/srt_suit
+	name = "SRT combat uniform"
+	desc = "The Special reaction team forces’ uniforms characterized by a subdued and minimalist design, prioritizing functionality over flashy aesthetics. This approach allows the wearer to blend seamlessly into their surroundings and maintain a low profile during covert operations. SRTs uniform reflects the meticulous attention to detail and unwavering commitment that define this formidable force."
+	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/under.dmi'
+	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/under.dmi'
+	anthro_mob_worn_overlay = 'modular_bluemoon/fluffs/icons/mob/clothing/under_digi.dmi'
+	icon_state = "srt_suit"
+	item_state = "srt_suit"
+	can_adjust = FALSE

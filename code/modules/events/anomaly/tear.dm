@@ -13,6 +13,8 @@
 	var/obj/effect/tear/TE
 
 /datum/round_event/anomaly/tear/announce()
+	if(isnull(impact_area))
+		impact_area = placer.findValidArea()
 	priority_announce("На борту станции зафиксирован пространственно-временной разрыв. Предполагаемая локация: [impact_area.name].", "ВНИМАНИЕ: ОБНАРУЖЕНА АНОМАЛИЯ")
 
 /datum/round_event/anomaly/tear/start()

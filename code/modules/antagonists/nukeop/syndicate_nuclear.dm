@@ -180,8 +180,8 @@
 	to_chat(owner, "<B>If you feel you are not up to this task, give your ID to another operative.</B>")
 	to_chat(owner, "<B>In your hand you will find a special item capable of triggering a greater challenge for your team. Examine it carefully and consult with your fellow operatives before activating it.</B>")
 	owner.announce_objectives()
+	priority_announce("Внимание экипажу станции, боевым крейсером триглава была перехвачена входящая передача, свидетельствующая о враждебной деятельности, направленной на ядерный саботаж. Командованием флота было принято решение выслать на ваш объект специальный отряд противодействия ядерным угрозам, состоящий из подготовленных оперативников отделения [title].", "Крейсер [title] ССО Синдиката", 'sound/misc/announce_syndi.ogg')
 	addtimer(CALLBACK(src, PROC_REF(nuketeam_name_assign)), 1)
-
 
 /datum/antagonist/syndicate_op/leader/proc/nuketeam_name_assign()
 	if(!nuke_team)
@@ -229,15 +229,9 @@
 	syndicate_name = syndicate_name()
 
 /datum/team/syndicate_nuclear/proc/update_objectives()
-	if(GLOB.master_mode == "Extended")
-		var/datum/objective/O = new revert_objective
-		O.team = src
-		objectives += O
-	else
-		if(core_objective)
-			var/datum/objective/O = new core_objective
-			O.team = src
-			objectives += O
+	var/datum/objective/O = new revert_objective
+	O.team = src
+	objectives += O
 
 /datum/team/syndicate_nuclear/proc/disk_rescued()
 	for(var/obj/item/disk/nuclear/D in GLOB.poi_list)
@@ -380,8 +374,8 @@
 	return SSticker.mode.name == "nuclear emergency"
 
 /obj/item/paper/fluff/syndicate_dropship
-	default_raw_text = "Обойдётесь."
 	name = "Пояснение по поводу Дроп-Пода"
+	default_raw_text = "Обойдётесь."
 
 /datum/outfit/syndicate
 	name = "Syndicate Operative - Basic"
@@ -397,7 +391,7 @@
 	backpack_contents = list(/obj/item/storage/box/survival/syndie=1,\
 		/obj/item/kitchen/knife/combat/survival)
 
-	var/tc = 25
+	var/tc = 75
 	var/command_radio = FALSE
 	var/uplink_type = /obj/item/syndicate_uplink_high/nuclear
 

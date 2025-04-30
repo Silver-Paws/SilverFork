@@ -15,7 +15,7 @@
 	burnt_states = null
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null
-	digResult = /obj/item/stack/ore/glass/basalt
+	dig_result = /obj/item/stack/ore/glass/basalt
 	floor_variance = 50 //This means 50% chance of variating from the default tile.
 	//light_range = 2
 	//light_power = 0.15

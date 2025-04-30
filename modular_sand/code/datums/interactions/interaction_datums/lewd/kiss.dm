@@ -9,6 +9,13 @@
 	p13target_emote = PLUG13_EMOTE_BASIC
 	p13user_strength = PLUG13_STRENGTH_LOW
 	p13target_strength = PLUG13_STRENGTH_LOW
+	additional_details = list(
+		list(
+			"info" = "Приносит удовольствие, если у вас есть соответственный квирк",
+			"icon" = "heart",
+			"color" = "red"
+		)
+	)
 
 /datum/interaction/lewd/kiss/display_interaction(mob/living/user, mob/living/partner)
 	if(user.a_intent == INTENT_HELP)

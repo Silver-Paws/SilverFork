@@ -43,6 +43,7 @@
 	var/icon_icon = 'icons/mob/actions.dmi'
 	/// This is the icon state for the icon that appears on the button
 	var/button_icon_state = "default"
+	var/button_overlay_state
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -97,7 +98,7 @@
 		if(!hud.mymob)
 			continue
 		HideFrom(hud.mymob)
-	LAZYREMOVE(remove_from?.actions, src) // We aren't always properly inserted into the viewers list, gotta make sure that action's cleared //BLUEMOON EDIT: TODO:runtime
+	LAZYREMOVE(remove_from?.actions, src) // We aren't always properly inserted into the viewers list, gotta make sure that action's cleared
 	viewers = list()
 
 	if(isnull(owner))
@@ -183,6 +184,17 @@
 
 		ApplyIcon(button, force)
 		update_button_status(button)
+
+	if(button_overlay_state)
+		button.cut_overlay(button.button_overlay)
+		button.button_overlay = mutable_appearance(icon = 'icons/mob/actions.dmi', icon_state = button_overlay_state)
+		button.add_overlay(button.button_overlay)
+
+	if(!IsAvailable(TRUE))
+		button.color = transparent_when_unavailable ? rgb(128,0,0,128) : rgb(128,0,0)
+	else
+		button.color = rgb(255,255,255,255)
+		return TRUE
 
 /datum/action/proc/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force = FALSE)
 	if(icon_icon && button_icon_state && ((current_button.button_icon_state != button_icon_state) || force))
@@ -370,6 +382,8 @@
 
 /datum/action/item_action/set_internals
 	name = "Set Internals"
+	default_button_position = SCRN_OBJ_INSERT_FIRST
+	button_overlay_state = "ab_goldborder"
 
 /datum/action/item_action/set_internals/UpdateButton(atom/movable/screen/movable/action_button/button, status_only = FALSE, force)
 	if(!..()) // no button available
@@ -953,20 +967,6 @@
 	desc = "Activates the jump boot's internal propulsion system, allowing the user to dash over 4-wide gaps."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
-
-/datum/action/language_menu
-	name = "Language Menu"
-	desc = "Open the language menu to review your languages, their keys, and select your default language."
-	button_icon_state = "language_menu"
-	check_flags = 0
-
-/datum/action/language_menu/Trigger()
-	if(!..())
-		return FALSE
-	if(ismob(owner))
-		var/mob/M = owner
-		var/datum/language_holder/H = M.get_language_holder()
-		H.open_language_menu(usr)
 
 /datum/action/item_action/wheelys
 	name = "Toggle Wheely-Heel's Wheels"

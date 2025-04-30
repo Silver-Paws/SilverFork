@@ -92,8 +92,7 @@
 /obj/effect/mob_spawn/human/wandering_hermit/special(mob/living/carbon/human/new_spawn)
 	. = ..()
 	ADD_TRAIT(new_spawn,TRAIT_EXEMPT_HEALTH_EVENTS,GHOSTROLE_TRAIT)
-	new_spawn.language_holder.understood_languages += /datum/language/draconic
-	new_spawn.language_holder.spoken_languages += /datum/language/draconic
+	new_spawn.grant_language(/datum/language/draconic)
 
 //Splurt-Specific Space Hotel Staff
 /obj/effect/mob_spawn/human/hotel_staff/splurt
@@ -207,13 +206,6 @@
 	important_info = "Установите полную власть над локальным сектором, защитите корабль и секретные документы в рюкзаке ценой своей жизни."
 	can_load_appearance = TRUE
 	outfit = /datum/outfit/inteqspace/inteq_engineer
-
-// BLUEMOON ADD wires trait system
-/obj/effect/mob_spawn/human/inteqspace/engineer/special(mob/living/carbon/human/new_spawn)
-	. = ..()
-	ADD_TRAIT(new_spawn.mind, TRAIT_KNOW_ENGI_WIRES, GHOSTROLE_TRAIT)
-	ADD_TRAIT(new_spawn.mind, TRAIT_KNOW_CYBORG_WIRES, GHOSTROLE_TRAIT)
-	new_spawn.mind.add_skill_modifier(list(/datum/skill_modifier/job/level/wiring/expert, /datum/skill_modifier/job/affinity/wiring))
 
 /datum/outfit/inteqspace/inteq_crew/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_INTEQ
@@ -393,5 +385,5 @@
 
 /datum/outfit/ghostcafeVR/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
 	H.internal = H.get_item_for_held_index(1)
-	H.update_internals_hud_icon(1)
+	H.update_action_buttons_icon(1)
 

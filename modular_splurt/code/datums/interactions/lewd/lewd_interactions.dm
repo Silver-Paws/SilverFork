@@ -9,7 +9,7 @@
 	var/require_target_legs
 	var/require_target_num_legs
 
-/datum/interaction/lewd/evaluate_user(mob/living/user, silent = TRUE, action_check = TRUE)
+/datum/interaction/lewd/evaluate_user(mob/living/user, silent = TRUE, apply_cooldown = TRUE)
 
 	var/user_require_belly_exposed = !!(required_from_user_exposed & INTERACTION_REQUIRE_BELLY)
 	var/user_require_belly_unexposed = !!(required_from_user_unexposed & INTERACTION_REQUIRE_BELLY)

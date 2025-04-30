@@ -1,5 +1,5 @@
 /obj/item/sign/moniq
-	name = "Muz-tv"
+	name = "Muz-TV"
 	desc = "Самые топовые хиты этого сезона."
 	icon = 'modular_bluemoon/icons/obj/machines/moniq.dmi'
 	righthand_file = 'modular_bluemoon/icons/mob/inhands/items/items_righthand.dmi'

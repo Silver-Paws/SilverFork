@@ -69,7 +69,7 @@
 	name = "Antique Derringer"
 	desc = "An easy to conceal, yet extremely deadly handgun, capable of firing .45-70 Govt rounds. Comes in a unique pack of cigarettes with additional munitions."
 	item = /obj/item/storage/fancy/cigarettes/derringer/midworld
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)
 	cost = 10
 	surplus = 2
 

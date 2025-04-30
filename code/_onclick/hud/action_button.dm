@@ -5,10 +5,11 @@
 	var/datum/hud/our_hud
 	var/actiontooltipstyle = ""
 	screen_loc = null
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 	var/button_icon_state
 	var/appearance_cache
-
+	var/mutable_appearance/button_overlay
 	/// Where we are currently placed on the hud. SCRN_OBJ_DEFAULT asks the linked action what it thinks
 	var/location = SCRN_OBJ_DEFAULT
 	/// A unique bitflag, combined with the name of our linked action this lets us persistently remember any user changes to our position
@@ -211,6 +212,7 @@
 	icon = 'icons/hud/64x16_actions.dmi'
 	icon_state = "screen_gen_palette"
 	screen_loc = ui_action_palette
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	var/datum/hud/our_hud
 	var/expanded = FALSE
 	/// Id of any currently running timers that set our color matrix
@@ -223,7 +225,7 @@
 		our_hud = null
 	return ..()
 
-/atom/movable/screen/button_palette/Initialize(mapload)
+/atom/movable/screen/button_palette/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	update_appearance()
 
@@ -245,11 +247,12 @@
 
 	var/list/settings = our_hud.get_action_buttons_icons()
 	var/ui_icon = "[settings["bg_icon"]]"
-	var/list/ui_segments = splittext(ui_icon, ".")
-	var/list/ui_paths = splittext(ui_segments[1], "/")
-	var/ui_name = ui_paths[length(ui_paths)]
+	var/static/regex/R
+	if(!R)
+		R = new(@"(screen_.+?)[\./]")
+	R.Find(ui_icon)
 
-	icon_state = "[ui_name]_palette"
+	icon_state = "[R.group[1]]_palette"
 
 /atom/movable/screen/button_palette/MouseEntered(location, control, params)
 	. = ..()
@@ -336,6 +339,7 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 /atom/movable/screen/palette_scroll
 	icon = 'icons/mob/screen_gen.dmi'
 	screen_loc = ui_palette_scroll
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	/// How should we move the palette's actions?
 	/// Positive scrolls down the list, negative scrolls back
 	var/scroll_direction = 0

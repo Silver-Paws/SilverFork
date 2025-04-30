@@ -755,7 +755,21 @@
 	name = "Alta's dogtag"
 	slot = ITEM_SLOT_NECK
 	path = /obj/item/clothing/neck/tie/dogtag
-	ckeywhitelist = list("oni3288", "ghos7ik", "discord980", "mihana964", "romontesque", "enigma418", "smol42", "notlikeluls",  "kladmenuwu", "alexsandoor", "scramblescream", "nai1ten", "devildeadspace", "zetneskov", "hazzi", "definitelynotnesuby", "silverfoxpaws", "pr1zrak", "earthphobia", "wafflemeow", "trora", "kosep", "urfdrf", "mikolaostavkin", "xaeshkavd", "deltarayx", "korinfellori", "troubleneko17th", "dimofon", "lichfail", "gisya", "dimakr")
+	ckeywhitelist = list("oni3288", "ghos7ik", "discord980", "mihana964", "romontesque", "enigma418", "smol42", "notlikeluls",  "kladmenuwu", "alexsandoor", "scramblescream", "nai1ten", "devildeadspace", "zetneskov", "hazzi", "definitelynotnesuby", "silverfoxpaws", "pr1zrak", "earthphobia", "wafflemeow", "trora", "kosep", "urfdrf", "mikolaostavkin", "xaeshkavd", "deltarayx", "korinfellori", "troubleneko17th", "dimofon", "lichfail", "gisya", "dimakr", "cupteazee", "nopeingeneer")
+	subcategory = LOADOUT_SUBCATEGORIES_DON02
+
+/datum/gear/donator/bm/pedantcape
+	name = "Corvus Pendant"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/clothing/neck/tie/pendantcape
+	ckeywhitelist = list("smol42", "weirdbutton", "sage4or")
+	subcategory = LOADOUT_SUBCATEGORIES_DON02
+
+/datum/gear/donator/bm/tricorne
+	name = "Tricorne"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/clothing/head/tricorne
+	ckeywhitelist = list("smol42", "weirdbutton", "sage4or")
 	subcategory = LOADOUT_SUBCATEGORIES_DON02
 
 /datum/gear/donator/bm/oftok
@@ -1398,20 +1412,27 @@
 	name = "MI13 infiltrator mask"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/clothing/mask/gas/syndicate/hahun_mask
-	ckeywhitelist = list("dolbajob", "enigma418")
+	ckeywhitelist = list("dolbajob", "enigma418", "silverfoxpaws")
 	subcategory = LOADOUT_SUBCATEGORIES_DON02
 
 /datum/gear/donator/bm/hahun_mask_2
 	name = "EIDOVOX Type-3 mask"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/clothing/mask/gas/syndicate/hahun_mask/eidovox
-	ckeywhitelist = list("dolbajob", "enigma418", "silverfoxpaws")
+	ckeywhitelist = list("dolbajob", "enigma418")
 	subcategory = LOADOUT_SUBCATEGORIES_DON02
 
 /datum/gear/donator/bm/hahun_cape
 	name = "MI13 cape"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/clothing/neck/tie/hahun_cape
+	ckeywhitelist = list("dolbajob", "enigma418")
+	subcategory = LOADOUT_SUBCATEGORIES_DON02
+
+/datum/gear/donator/bm/hahun_jukebox
+	name = "Irrelian Jukebox"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/modkit/hahun_jukebox
 	ckeywhitelist = list("dolbajob", "enigma418")
 	subcategory = LOADOUT_SUBCATEGORIES_DON02
 
@@ -1440,3 +1461,42 @@
 	ckeywhitelist = list("earthphobia")
 	restricted_roles = list("Head of Security")
 	subcategory = LOADOUT_SUBCATEGORIES_DON02
+
+/datum/gear/donator/bm/sierra_iris_plushie
+	name = "I.R.I.S. plushie"
+	slot = ITEM_SLOT_POCKETS
+	path = /obj/item/toy/plush/bm/tiamat/sierra_iris_plushie
+	ckeywhitelist = list("sierraiv", "oroshimuraiori")
+	subcategory = LOADOUT_SUBCATEGORIES_DON02
+
+/datum/gear/donator/bm/srt_chestrig
+	name = "SRT Bluerock chest-rig"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/storage/belt/military/srt_chesrig
+	ckeywhitelist = list("hellsinggc")
+	subcategory = LOADOUT_SUBCATEGORIES_DON02
+	restricted_desc = "Head of Security, Warden, Detective, Security Officer, Brig Physician, Peacekeeper, Blueshield."
+	restricted_roles = list("Head of Security", "Warden", "Detective", "Security Officer", "Brig Physician", "Peacekeeper", "Blueshield")
+	cost = 2
+
+/datum/gear/donator/bm/srt_suit
+	name = "SRT combat uniform"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/clothing/under/donator/bm/srt_suit
+	ckeywhitelist = list("hellsinggc")
+	subcategory = LOADOUT_SUBCATEGORIES_DON02
+
+/datum/gear/donator/bm/srt_
+	name = "SRT Balaclava with Eye patch"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/clothing/mask/gas/srt_mask
+	ckeywhitelist = list("hellsinggc")
+	subcategory = LOADOUT_SUBCATEGORIES_DON02
+
+/datum/gear/donator/bm/echoes_jacket
+    name = "Technical Jacket"
+    slot = ITEM_SLOT_BACKPACK
+    path = /obj/item/clothing/suit/donator/bm/echoes_jacket
+    ckeywhitelist = list("xaeshkavd")
+    subcategory = LOADOUT_SUBCATEGORIES_DON02
+

@@ -1,19 +1,20 @@
-/datum/hud/var/atom/movable/screen/staminas/staminas
-/datum/hud/var/atom/movable/screen/staminabuffer/staminabuffer
+/datum/hud
+	var/atom/movable/screen/staminas/staminas
+	var/atom/movable/screen/staminabuffer/staminabuffer
 
 /atom/movable/screen/staminas
 	icon = 'modular_citadel/icons/ui/screen_gen.dmi'
 	name = "stamina"
 	icon_state = "stamina0"
 	screen_loc = ui_stamina
-	mouse_opacity = 1
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/staminas/Click(location,control,params)
 	if(isliving(usr))
 		var/mob/living/L = usr
 		CONFIG_CACHE_ENTRY_AND_FETCH_VALUE(number/stamina_combat/buffer_max, buffer_max)
-		to_chat(L, "<span class='notice'>Усталость: <b>[L.getStaminaLoss()]</b>.<br>\
-		<br>Ваш запас выносливости составляет <b>[round((L.stamina_buffer / buffer_max) * 100, 0.1)]%</b>.</span>")
+		to_chat(L, examine_block(span_notice("Усталость: <b>[L.getStaminaLoss()]</b>.<br>\
+		<br>Ваш запас выносливости составляет <b>[round((L.stamina_buffer / buffer_max) * 100, 0.1)]%</b>.")))
 
 /atom/movable/screen/staminas/update_icon_state()
 	var/mob/living/carbon/user = hud?.mymob

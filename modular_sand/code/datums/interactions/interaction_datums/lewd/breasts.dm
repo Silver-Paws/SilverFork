@@ -7,6 +7,13 @@
 	interaction_sound = null
 	p13user_emote = PLUG13_EMOTE_BREASTS
 	p13target_strength = PLUG13_STRENGTH_LOW
+	additional_details = list(
+		list(
+			"info" = "Накормить цель реагентами из вашей груди, если таковые имеются",
+			"icon" = "cow",
+			"color" = "white"
+		)
+	)
 
 /datum/interaction/lewd/do_breastfeed/display_interaction(mob/living/user, mob/living/target)
 	var/message

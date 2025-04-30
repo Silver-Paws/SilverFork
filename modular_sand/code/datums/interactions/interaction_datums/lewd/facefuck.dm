@@ -120,6 +120,14 @@
 	p13user_strength = PLUG13_STRENGTH_DEFAULT_PLUS
 	p13target_strength = PLUG13_STRENGTH_DEFAULT_PLUS
 
+	additional_details = list(
+		list(
+			"info" = "Вызывает кислородную недостаточность",
+			"icon" = "lungs",
+			"color" = "blue"
+		)
+	)
+
 	interaction_flags = INTERACTION_FLAG_ADJACENT | INTERACTION_FLAG_OOC_CONSENT | INTERACTION_FLAG_EXTREME_CONTENT //What I a person doesn't want to get killed? - Gardelin0
 
 /datum/interaction/lewd/throatfuck/display_interaction(mob/living/user, mob/living/partner)

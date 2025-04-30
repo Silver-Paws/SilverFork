@@ -15,7 +15,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Clockwork" = 'icons/mob/screen_clockwork.dmi',
 	"Trasen-Knox" = 'icons/mob/screen_trasenknox.dmi',
 	"Detective" = 'icons/mob/screen_detective.dmi',
-	"Liteweb" = 'modular_sand/icons/mob/screen_liteweb.dmi'
+	"Liteweb" = 'modular_sand/icons/hud/screen_liteweb/base.dmi',
+	"Corru" = 'modular_sand/icons/hud/screen_corru/base.dmi'
 ))
 
 /proc/ui_style2icon(ui_style)
@@ -44,7 +45,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/synth/coolant_counter/coolant_display
 
 	var/atom/movable/screen/action_intent
-	var/atom/movable/screen/zone_select
+	var/atom/movable/screen/zone_sel/zone_select
 	var/atom/movable/screen/pull_icon
 	var/atom/movable/screen/rest_icon
 	var/atom/movable/screen/throw_icon
@@ -88,7 +89,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	var/atom/movable/screen/healths
 	var/atom/movable/screen/healthdoll
-	var/atom/movable/screen/internals
 
 	var/atom/movable/screen/wanted/wanted_lvl
 	// subtypes can override this to force a specific UI style
@@ -111,14 +111,14 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	hand_slots = list()
 
 	for(var/mytype in subtypesof(/atom/movable/screen/plane_master))
-		var/atom/movable/screen/plane_master/instance = new mytype()
+		var/atom/movable/screen/plane_master/instance = new mytype(null, src)
 		plane_masters["[instance.plane]"] = instance
 		instance.backdrop(mymob)
 
 	owner.overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/special/see_through_darkness)
 
 	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
-		var/atom/movable/plane_master_controller/controller_instance = new mytype(src)
+		var/atom/movable/plane_master_controller/controller_instance = new mytype(null, src)
 		plane_master_controllers[controller_instance.name] = controller_instance
 
 	screentip_text = new(null, src)
@@ -154,7 +154,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	healths = null
 	healthdoll = null
 	wanted_lvl = null
-	internals = null
 
 	hunger = null
 	thirst = null
@@ -344,14 +343,13 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	hand_slots = list()
 	var/atom/movable/screen/inventory/hand/hand_box
 	for(var/i in 1 to mymob.held_items.len)
-		hand_box = new /atom/movable/screen/inventory/hand()
+		hand_box = new /atom/movable/screen/inventory/hand(null, src)
 		hand_box.name = mymob.get_held_index_name(i)
 		hand_box.icon = ui_style
 		hand_box.icon_state = "hand_[mymob.held_index_to_dir(i)]"
 		hand_box.screen_loc = ui_hand_position(i)
 		hand_box.held_index = i
 		hand_slots["[i]"] = hand_box
-		hand_box.hud = src
 		static_inventory += hand_box
 		hand_box.update_icon()
 
@@ -385,6 +383,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 			listed_actions.insert_action(button)
 		if(SCRN_OBJ_IN_PALETTE)
 			palette_actions.insert_action(button)
+		if(SCRN_OBJ_INSERT_FIRST)
+			listed_actions.insert_action(button, index = 1)
+			position = SCRN_OBJ_IN_LIST
 		else // If we don't have it as a define, this is a screen_loc, and we should be floating
 			floating_actions += button
 			button.screen_loc = position

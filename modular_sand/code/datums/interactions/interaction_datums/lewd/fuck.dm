@@ -7,6 +7,9 @@
 	interaction_sound = null
 	p13user_emote = PLUG13_EMOTE_PENIS
 	p13target_emote = PLUG13_EMOTE_VAGINA
+	additional_details = list(
+		INTERACTION_MAY_CAUSE_PREGNANCY
+	)
 
 /datum/interaction/lewd/fuck/display_interaction(mob/living/user, mob/living/partner)
 	var/message
@@ -37,6 +40,7 @@
 	p13user_emote = "front"
 	p13target_emote = "back"
 	p13target_emote = PLUG13_EMOTE_ANUS
+	additional_details = null // no pregnancy
 
 /datum/interaction/lewd/fuck/anal/display_interaction(mob/living/user, mob/living/partner)
 	var/message

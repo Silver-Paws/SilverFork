@@ -133,7 +133,6 @@
 	src.avoid = avoid
 
 /datum/pathfind/Destroy(force, ...)
-	caller = null
 	id = null
 	return ..()
 

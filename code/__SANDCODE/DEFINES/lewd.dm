@@ -34,6 +34,17 @@ GLOBAL_LIST_INIT(lewd_kiss_sounds, list(
 	'modular_sand/sound/interactions/kiss4.ogg',
 	'modular_sand/sound/interactions/kiss5.ogg'
 ))
+GLOBAL_LIST_INIT(interaction_speeds, list(
+	4 SECONDS,
+	2 SECONDS,
+	1 SECONDS,
+	0.8 SECONDS,
+	0.5 SECONDS, // lowest value must always be over or equal to the subsystem wait/cooldown for interaction
+))
+
+#define INTERACTION_NORMAL 0
+#define INTERACTION_LEWD 1
+#define INTERACTION_EXTREME 2
 
 #define CUM_TARGET_MOUTH "mouth"
 #define CUM_TARGET_THROAT "throat"
@@ -91,8 +102,21 @@ GLOBAL_LIST_INIT(lewd_kiss_sounds, list(
 #define INTERACTION_FLAG_USER_NOT_TIRED (1<<5)
 
 /// Copy-paste prevention for additional details
+/// Fills containers
 #define INTERACTION_FILLS_CONTAINERS list( \
-	"info" = "You can fill a container if you have it in your active hand or are pulling it", \
+	"info" = "Вы можете наполнить контейнер, если держите его в активной руке или тянете за собой", \
 	"icon" = "flask", \
-	"color" = "transparent" \
+	"color" = "white" \
 	)
+/// Can drink from
+#define INTERACTION_MAY_CONTAIN_DRINK list( \
+	"info" = "Может содержать реагенты", \
+	"icon" = "cow", \
+	"color" = "white" \
+)
+/// Causes pregnancies
+#define INTERACTION_MAY_CAUSE_PREGNANCY list( \
+	"info" = "Может вызвать беременность", \
+	"icon" = "person-pregnant", \
+	"color" = "white" \
+)

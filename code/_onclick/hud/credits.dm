@@ -39,7 +39,7 @@
 	var/client/parent
 	var/matrix/target
 
-/atom/movable/screen/credit/Initialize(mapload, credited, client/P, icon/I)
+/atom/movable/screen/credit/Initialize(mapload, datum/hud/hud_owner, credited, client/P, icon/I)
 	. = ..()
 	icon = I
 	parent = P

@@ -31,13 +31,13 @@
 			var/tail_under_suit = tail_suit_worn_overlay || 'modular_bluemoon/SmiLeY/icons/mob/clothing/tails_digi.dmi'
 			. += mutable_appearance(tail_under_suit, tail_state)
 		var/obj/item/clothing/under/U = M.w_uniform
-			//SANDSTORM EDIT
-		if(ishuman(M) && M.w_uniform)
-			if(istype(U) && length(U.attached_accessories))
-				for(var/obj/item/clothing/accessory/attached in U.attached_accessories)
-					if(attached.above_suit)
-						. += U.accessory_overlays
-			//SANDSTORM EDIT END
+		//SANDSTORM EDIT
+		if(istype(U) && !CHECK_BITFIELD(U.flags_inv, HIDEACCESSORY))
+			for(var/obj/item/clothing/accessory/attached as anything in U.attached_accessories)
+				if(CHECK_BITFIELD(attached.flags_inv, HIDEACCESSORY) || !attached.above_suit)
+					continue
+				. += attached.build_worn_icon()
+		//SANDSTORM EDIT END
 
 /obj/item/clothing/suit/update_clothes_damaged_state()
 	..()

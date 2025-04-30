@@ -118,4 +118,4 @@
 	desc = "A pair of highly reinforced armwraps allowing the user to parry almost anything. Fully reflects projectiles, no downsides to failing, but is very hard to parry melee with."
 	cost = 6
 	item = /obj/item/clothing/gloves/fingerless/ablative
-	purchasable_from = UPLINK_NUKE_OPS
+	purchasable_from = (UPLINK_NUKE_OPS | UPLINK_SYNDICATE)

@@ -96,6 +96,26 @@
 
 ////////////////////////
 
+/obj/item/clothing/neck/tie/pendantcape
+	name = "Corvus Pendant"
+	desc = "Ravens in black with eyes so keen, steal pendants bright with silver sheen."
+	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/neck.dmi'
+	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/neck.dmi'
+	icon_state = "cp" //Сделано специально, человек попросил защиту от хамелионки.
+	item_state = "cp"
+	unique_reskin = list(
+		"Corvus Pendant" = list(
+			RESKIN_ICON_STATE = "pendant",
+			RESKIN_ITEM_STATE = "pendant"
+		),
+		"Corvus Cape" = list(
+			RESKIN_ICON_STATE = "cape",
+			RESKIN_ITEM_STATE = "cape"
+		)
+	)
+
+////////////////////////
+
 /obj/item/clothing/neck/tie/f_haori
 	name = "Flaming Haori"
 	desc = "A white haori with a flaming pattern on the end. It seems to radiate heat and energy."
@@ -239,5 +259,15 @@
 	righthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/clothing_right.dmi'
 	icon_state = "hahun_gloves"
 	item_state = "hahun_gloves"
+
+////////////////////////
+
+/obj/item/storage/belt/military/srt_chesrig
+	name = "SRT Bluerock chest-rig"
+	desc = "A custom-made chest rig for wearing on top of body armor in CQC operations. Sturdy and versatile, it features both MOLLE and ALICE attachment systems. Seems like it already has old-fashioned holster attached to it."
+	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/accessories.dmi'
+	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/accessories.dmi'
+	icon_state = "srt_chestrig"
+	item_state = "srt_chestrig"
 
 ////////////////////////

@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(splurt_ui_styles, list(
 	'icons/mob/screen_slimecore.dmi' = 'modular_splurt/icons/hud/screen_slimecore.dmi',
 	'icons/mob/screen_operative.dmi' = 'modular_splurt/icons/hud/screen_operative.dmi',
 	'icons/mob/screen_clockwork.dmi' = 'modular_splurt/icons/hud/screen_clockwork.dmi',
-	'modular_sand/icons/mob/screen_liteweb.dmi' = 'modular_splurt/icons/hud/screen_midnight.dmi'
+	'modular_sand/icons/hud/screen_liteweb/base.dmi' = 'modular_splurt/icons/hud/screen_midnight.dmi'
 ))
 
 /proc/ui_style_splurt(ui_style)

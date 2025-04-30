@@ -3,7 +3,7 @@
 	p13user_emote = PLUG13_EMOTE_BASIC
 	p13user_strength = PLUG13_STRENGTH_NORMAL
 
-/datum/interaction/lewd/tentacle/evaluate_user(mob/living/user, silent = TRUE, action_check = TRUE)
+/datum/interaction/lewd/tentacle/evaluate_user(mob/living/user, silent = TRUE, action_check = TRUE, apply_cooldown = TRUE)
 	. = ..()
 	if(!.)
 		return FALSE

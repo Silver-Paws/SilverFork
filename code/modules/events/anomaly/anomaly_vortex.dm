@@ -13,4 +13,6 @@
 	anomaly_path = /obj/effect/anomaly/bhole
 
 /datum/round_event/anomaly/anomaly_vortex/announce(fake)
+	if(isnull(impact_area))
+		impact_area = placer.findValidArea()
 	priority_announce("Обнаружена высокоинтенсивная вихревая аномалия на [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]", "ВНИМАНИЕ: АНОМАЛИЯ", 'sound/announcer/classic/anomaly/anomaly_vortex.ogg')

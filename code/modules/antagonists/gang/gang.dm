@@ -113,13 +113,12 @@
 		package_spawner.my_gang_datum = src
 	var/mob/living/M = mob_override || owner.current
 	add_antag_hud(antag_hud_type, antag_hud_name, M)
-//	if(M.hud_used)
-//		var/datum/hud/H = M.hud_used
-//		var/atom/movable/screen/wanted/giving_wanted_lvl = new /atom/movable/screen/wanted()
-//		H.wanted_lvl = giving_wanted_lvl
-//		giving_wanted_lvl.hud = H
-//		H.infodisplay += giving_wanted_lvl
-//		H.mymob.client.screen += giving_wanted_lvl
+	// if(M.hud_used)
+	// 	var/datum/hud/H = M.hud_used
+	// 	var/atom/movable/screen/wanted/giving_wanted_lvl = new /atom/movable/screen/wanted(null, H)
+	// 	H.wanted_lvl = giving_wanted_lvl
+	// 	H.infodisplay += giving_wanted_lvl
+	// 	H.mymob.client.screen += giving_wanted_lvl
 
 /datum/antagonist/gang/remove_innate_effects(mob/living/mob_override)
 	if(starter_gangster)

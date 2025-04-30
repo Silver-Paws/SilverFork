@@ -53,7 +53,7 @@
 	purchasable_from = ~(UPLINK_CLOWN_OPS | UPLINK_SYNDICATE)
 
 /datum/uplink_item/suits/quet
-	name = "Quet kid kit"
+	name = "Quiet kid kit"
 	desc = "Тебя выгоняют из дома на самоубийственную миссию, а менять толстовку с кепкой на каску с бронежилетом не хочется? Наборы из гибких пластин помогут с этим и будут отлично сидеть под любой одеждой."
 	item = /obj/item/storage/box/inteq_kit/quetkid
 	cost = 3

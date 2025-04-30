@@ -75,6 +75,9 @@
 	write_log_user = "sucked their own nips"
 	write_log_target = null
 	p13user_emote = PLUG13_EMOTE_BREASTS
+	additional_details = list(
+		INTERACTION_MAY_CONTAIN_DRINK
+	)
 
 /datum/interaction/lewd/self_nipsuck/display_interaction(mob/living/user, mob/living/target)
 	var/message
