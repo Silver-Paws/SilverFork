@@ -138,16 +138,16 @@ const Help = (properties, context) => {
   return (
     <Section
       className="Safe__help"
-      title="Safe opening instructions (because you all keep forgetting)">
+      title="Инструкция по открытию сейфа (ввиду вашей неизлечимой забывчивости)">
       <Box>
-        1. Turn the dial left to the first number.<br />
-        2. Turn the dial right to the second number.<br />
-        3. Continue repeating this process for each number,
-        switching between left and right each time.<br />
-        4. Open the safe.
+        1. Проверните циферблат влево к первому числу.<br />
+        2. Проверните циферблат вправо ко второму числу.<br />
+        3. Повторите процедуру со всеми числами, каждый
+        раз меняя проворот влево и вправо.<br />
+        4. Откройте сейф.
       </Box>
       <Box bold>
-        To lock fully, turn the dial to the left after closing the safe.
+        Чтобы закрыть: проверните циферблат закрытого сейфа налево.
       </Box>
     </Section>
   );
