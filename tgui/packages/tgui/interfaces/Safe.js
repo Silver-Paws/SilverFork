@@ -2,7 +2,7 @@ import { Fragment } from 'inferno';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Button, Icon, Section } from '../components';
+import { Box, Button, Icon, Section, Flex } from '../components';
 import { Window } from "../layouts";
 
 export const Safe = (properties, context) => {
@@ -10,12 +10,13 @@ export const Safe = (properties, context) => {
   const {
     dial,
     open,
+    theme = "ntos",
   } = data;
   return (
     <Window
       width={625}
       height={800}
-      theme="ntos">
+      theme={theme}>
       <Window.Content>
         <Box className="Safe__engraving">
           <Dialer />
@@ -100,32 +101,35 @@ const Dialer = (properties, context) => {
 
 const Contents = (properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    contents,
-  } = data;
+  const { contents } = data;
   return (
     <Box
       className="Safe__contents"
       scrollable>
-      {contents.map((item, index) => (
-        <Fragment key={item}>
-          <Button
-            mb="0.5rem"
-            onClick={() => act("retrieve", {
-              index: index + 1,
-            })}>
-            <Box
-              as="img"
-              src={item.sprite + ".png"}
-              verticalAlign="middle"
-              ml="-6px"
-              mr="0.5rem"
-            />
-            {item.name}
-          </Button>
-          <br />
-        </Fragment>
-      ))}
+      <Flex wrap="wrap" spacing={1}>
+        {contents.map((item, index) => (
+          <Flex.Item key={item} basis="50%">
+            <Button
+              fluid
+              title={item.name}
+              style={{
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+              onClick={() => act("retrieve", { index: index + 1 })}>
+              <Box
+                as="img"
+                src={item.sprite + ".png"}
+                verticalAlign="middle"
+                ml="-6px"
+                mr="0.5rem"
+              />
+              {item.name}
+            </Button>
+          </Flex.Item>
+        ))}
+      </Flex>
     </Box>
   );
 };
