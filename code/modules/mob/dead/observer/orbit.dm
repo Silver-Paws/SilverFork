@@ -116,9 +116,14 @@
 					if(card)
 						assignment = "[ckey(card.get_job_name())]"
 
-				else if(issilicon(M)) // Для отображения иконок силиконов в orbit
-					if(iscyborg(M) || ispAI(M))
+				else if(isalien(M))
+					assignment = "alien"
+
+				else if(issilicon(M) || isdrone(M)) // Для отображения иконок силиконов в orbit
+					if(iscyborg(M) || isdrone(M))
 						assignment = "cyborg"
+					else if(ispAI(M))
+						assignment = "pai"
 					else if(isAI(M))
 						assignment = "ai"
 
