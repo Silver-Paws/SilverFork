@@ -150,9 +150,13 @@
 #define SECHUD_DS2_ADMIRAL "hudds2admiral"
 #define SECHUD_DS2_MASTERATARMS "hudds2masteratarms"
 #define SECHUD_DS2_BRIGOFFICER "hudds2brigofficer"
-#define SECHUD_DS2_MININGOFFICER "hudds2miningofficer"
 #define SECHUD_DS2_GENSTAFF "hudds2generalstaff"
 #define SECHUD_DS2_PRISONER "hudds2hostage"
 
 //SR DS 1
-#define SECHUD_DS1_NUKETECH "hudds1nuketech"
+#define SECHUD_DS1_COMMUNICATIONSOFFICER "hudds1communicationsofficer"
+#define SECHUD_DS1_SECURITYAGENT "hudds1securityagent"
+#define SECHUD_DS1_VIROLOGIST "hudds1bioweaponresearcher"
+#define SECHUD_DS1_NUCLEARSPECIALIST "hudds1nuclearspecialist"
+#define SECHUD_DS1_SCIENTIST "hudds1scientist"
+#define SECHUD_DS1_MIME "hudds1mime"

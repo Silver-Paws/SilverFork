@@ -1680,7 +1680,7 @@
 /datum/id_trim/syndicom/ds2/miner
 	assignment = "DS-2 Mining Officer"
 	trim_state = "idds2miningofficer"
-	sechud_icon_state = SECHUD_DS2_MININGOFFICER
+	sechud_icon_state = SECHUD_DS1_SECURITYAGENT
 
 /datum/id_trim/syndicom/ds2/syndicatestaff
 	assignment = "DS-2 General Staff"
@@ -1736,25 +1736,57 @@
 //Затычка до Id_Trim.
 
 /obj/item/card/id/syndicate/advanced/prisoner
-	name = "Prisoner"
+	name = "Prisoner ID"
 	assignment = "DS-2 Hostage"
 	icon_state = "card_ds2prisoner"
 	access = list()
 
+/obj/item/card/id/syndicate/advanced/black
+	name = "Agent Card"
+	icon_state = "card_black"
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
+
 /obj/item/card/id/syndicate/advanced/ds/prisoner // Карта выше - объект для новых заключённых, эта - для заключённых-ролей
-	name = "Prisoner"
+	name = "Prisoner ID"
 	assignment = "DS-2 Hostage"
 	access = list()
 
 /obj/item/card/id/syndicate/advanced/ds
-	name = "Deep Space Card"
+	name = "'Blessed' ID Card"
 	icon_state = "id_ds"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
 
 /obj/item/card/id/syndicate/advanced/ds/gold
-	name = "Deep Space Gold Card"
+	name = "'Blessed' Gold ID Card"
 	icon_state = "id_dsgold"
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
+
+// DS-1 карты
+/obj/item/card/id/syndicate/advanced/ds/lavaland
+	name = "'Dune' ID Card"
+	assignment = "DS-1 Agent"
+
+/obj/item/card/id/syndicate/advanced/ds/lavaland/researcher
+	assignment = "DS-1 Scientist"
+
+/obj/item/card/id/syndicate/advanced/ds/lavaland/virologist
+	assignment = "DS-1 Bioweapon Researcher"
+
+/obj/item/card/id/syndicate/advanced/ds/lavaland/nucleartech
+	icon_state = "id_dsblack"
+	assignment = "DS-1 Nuclear Specialist"
+
+/obj/item/card/id/syndicate/advanced/ds/lavaland/security
+	icon_state = "id_dsblack"
+	assignment = "DS-1 Security Agent"
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
+
+/obj/item/card/id/syndicate/advanced/ds/lavaland/mime
+	icon_state = "id_dsmime"
+	assignment = "DS-1 Mime"
+
+/obj/item/card/id/syndicate/advanced/ds/gold/offcomm
+	assignment = "DS-1 Communications Officer"
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
 
 //CRYO CONSOLES
 /obj/machinery/computer/cryopod/ds1

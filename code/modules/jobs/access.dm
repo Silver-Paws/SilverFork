@@ -388,21 +388,21 @@
 	var/obj/item/card/id/I = GetID()
 	if(!I)
 		return
-	if(istype(src, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(I.special_assignment)
 			return "[I.special_assignment]"
-	if (istype(src, /obj/item/card/id/syndicate) & src.icon_state == "card_black")
-		var/obj/item/card/id/card = src
+	if (istype(I, /obj/item/card/id/syndicate) & I.icon_state == "card_black")
+		var/obj/item/card/id/card = GetID()
 		if (card.assignment == initial(card.assignment))
 			return "syndicate"
-	if (istype(src, /obj/item/card/id/inteq) & src.icon_state == "inteq")
-		var/obj/item/card/id/card = src
+	if (istype(I, /obj/item/card/id/inteq) & I.icon_state == "inteq")
+		var/obj/item/card/id/card = GetID()
 		if (card.assignment == initial(card.assignment))
 			return "inteq"
-	if (istype(src, /obj/item/card/id/syndicate/advanced/ds)) // Карты DS гостроли
-		var/obj/item/card/id/syndicate/advanced/ds/dscard = src
+	if (istype(I, /obj/item/card/id/syndicate/advanced/ds)) // Карты DS гостроли
+		var/obj/item/card/id/syndicate/advanced/ds/dscard = GetID()
 		return "[dscard.assignment]"
-	if (istype(src, /obj/item/card/id/away/hotel/splurt)) // Карты отельной гостроли
-		var/obj/item/card/id/away/hotel/splurt/hotelcard = src
+	if (istype(I, /obj/item/card/id/away/hotel/splurt)) // Карты отельной гостроли
+		var/obj/item/card/id/away/hotel/splurt/hotelcard = GetID()
 		return "[hotelcard.assignment]"
 	return GetJobName(I.assignment)
