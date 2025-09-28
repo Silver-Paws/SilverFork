@@ -129,11 +129,15 @@
 				else if(isalien(M))
 					assignment = "alien"
 
-				else if(ishostile(M))
+				else if(ishostile(M) || iscameramob(M))
 					if(isterrorspider(M))
 						assignment = "terrorspider"
 					else if(isswarmer(M))
 						assignment = "swarmer"
+					else if(isovermind(M))
+						assignment = "blobmind"
+					else if(isblobmonster(M))
+						assignment = "blobbernaut"
 
 				serialized["assignment"] = assignment
 
