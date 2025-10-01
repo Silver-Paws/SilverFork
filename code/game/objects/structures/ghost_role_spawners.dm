@@ -1678,7 +1678,6 @@
 	assignment = "DS-2 Hostage"
 	icon_state = "card_ds2prisoner"
 	access = list()
-	special_assignment = null
 
 /obj/item/card/id/syndicate/advanced/black
 	name = "Agent Card"
@@ -1693,7 +1692,7 @@
 /obj/item/card/id/syndicate/advanced/ds // Стоковая карта
 	name = "'Blessed' ID Card"
 	icon_state = "id_ds"
-	special_assignment = null
+	assignment = "Syndicate"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
 
 /obj/item/card/id/syndicate/advanced/ds/general
@@ -1736,7 +1735,7 @@
 // DS-1 карты
 /obj/item/card/id/syndicate/advanced/ds/lavaland
 	name = "'Dune' ID Card"
-	assignment = "DS-1 Agent"
+	assignment = "Syndicate"
 
 /obj/item/card/id/syndicate/advanced/ds/lavaland/researcher
 	assignment = "DS-1 Scientist"

@@ -1,6 +1,5 @@
 /obj/item/card/id/syndicate
 	var/uses = 10 // Даём гражданской Синди-Карте одно использование вместо десяти.
-	special_assignment = "syndicate"
 
 /obj/item/card/id/syndicate/one_access_copy
 	name = "Civilian Syndicate Card"
