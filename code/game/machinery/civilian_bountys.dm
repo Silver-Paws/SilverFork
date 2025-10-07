@@ -152,6 +152,7 @@
 	data["id_inserted"] = inserted_scan_id
 	if(inserted_scan_id && inserted_scan_id.registered_account)
 		if(inserted_scan_id.registered_account.civilian_bounty)
+			data["id_bounty_name"] = inserted_scan_id.registered_account.civilian_bounty.name
 			data["id_bounty_info"] = inserted_scan_id.registered_account.civilian_bounty.description
 			data["id_bounty_num"] = inserted_scan_id.registered_account.bounty_num()
 			data["id_bounty_value"] = (inserted_scan_id.registered_account.civilian_bounty.reward) * (CIV_BOUNTY_SPLIT/100)

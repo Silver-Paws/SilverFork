@@ -16,21 +16,41 @@
 	var/income_gen = 1
 	var/heating_power = 40000
 	var/delay = 5
-	var/temp_tolerance_low = 0
+	var/temp_tolerance_low = 50
 	var/temp_tolerance_high = T20C
 	var/temp_penalty_coefficient = 0.5	//1 = -1 points per degree above high tolerance. 0.5 = -0.5 points per degree above high tolerance.
+	var/datum/looping_sound/server_alarm_small/alarmloop
 
 /obj/machinery/rnd/server/Initialize(mapload)
 	. = ..()
 	SSresearch.servers |= src
 	stored_research = SSresearch.science_tech
+	alarmloop = new(src, !working)
 
 /obj/machinery/rnd/server/process()
-	if(!(machine_stat & NOPOWER))
+	if(!(machine_stat & NOPOWER) && working)
 		produce_heat(base_mining_income[1])
+	if(get_env_temp() >= (temp_tolerance_high + 50) || get_env_temp() <= temp_tolerance_low)
+		if(working)
+			working = FALSE
+			play_alarm()
+	else
+		if(!working)
+			working = TRUE
+			alarmloop.stop()
+
+/obj/machinery/rnd/server/examine() // BLUEMOON ADD
+	. = ..()
+	if(!working)
+		. += "\nThe server's status light is blinking [span_red("red")]."
+	else if(machine_stat & NOPOWER)
+		. += "\nThe server's status light is off."
+	else
+		. += "\nThe server's status light is blinking [span_green("green")]."
 
 /obj/machinery/rnd/server/Destroy()
 	SSresearch.servers -= src
+	QDEL_NULL(alarmloop)
 	return ..()
 
 /obj/machinery/rnd/server/RefreshParts()
@@ -67,7 +87,8 @@
 
 /obj/machinery/rnd/server/proc/mine()
 	. = base_mining_income.Copy()
-	var/penalty = max((get_env_temp() - temp_tolerance_high), 0) * temp_penalty_coefficient
+	var/turf/open/floor/circuit/c_floor = get_turf(src)
+	var/penalty = max((get_env_temp() - temp_tolerance_high), 0) * temp_penalty_coefficient * (c_floor ? 1 : 0.5)
 	for(var/i in .)
 		.[i] = max((.[i] * income_gen) - penalty, 0)
 
@@ -75,12 +96,12 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 	return environment.return_temperature()
 
-/obj/machinery/rnd/server/proc/produce_heat(perc)
+/obj/machinery/rnd/server/proc/produce_heat()
 	if(!(machine_stat & (NOPOWER|BROKEN))) //Blatently stolen from space heater.
 		var/turf/L = loc
 		if(istype(L))
 			var/datum/gas_mixture/env = L.return_air()
-			env.adjust_heat(heating_power * perc * heat_gen)
+			env.adjust_heat((heating_power * heat_gen)*0.8)
 			air_update_turf()
 
 /proc/fix_noid_research_servers()
@@ -105,6 +126,17 @@
 				server_ids += num
 		no_id_servers -= S
 
+/obj/machinery/rnd/server/proc/play_alarm()
+	if(!working)
+		alarmloop.start()
+		addtimer(CALLBACK(src, PROC_REF(play_alarm)), 10 SECONDS)
+
+/datum/looping_sound/server_alarm_small // BLUEMOON ADD Ввиду того что данное будет использоваться только для серверов, располагаю немодульно. Следует модулить, если будут ещё loop'ы от нас
+	mid_sounds = 'modular_bluemoon/kovac_shitcode/sound/ambience/enc/alarm_small_09.ogg'
+	mid_length = 60
+	volume = 5
+
+//////////////////////////
 
 /obj/machinery/computer/rdservercontrol
 	name = "R&D Server Controller"

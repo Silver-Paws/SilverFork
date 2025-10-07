@@ -67,13 +67,16 @@ export const CivCargoHoldTerminal = (props, context) => {
 
 const BountyTextBox = (props, context) => {
   const { data } = useBackend(context);
-  const { id_bounty_info, id_bounty_value, id_bounty_num } = data;
+  const { id_bounty_name, id_bounty_info, id_bounty_value, id_bounty_num } = data;
   const na_text = 'N/A, please add a new bounty.';
   return (
     <Section title="Bounty Info">
       <LabeledList>
+        <LabeledList.Item label="Name">
+          {id_bounty_info ? id_bounty_name : na_text}
+        </LabeledList.Item>
         <LabeledList.Item label="Description">
-          {id_bounty_info ? id_bounty_info : na_text}
+          {id_bounty_info ? id_bounty_info : 'N/A'}
         </LabeledList.Item>
         <LabeledList.Item label="Quantity">
           {id_bounty_info ? id_bounty_num : 'N/A'}
