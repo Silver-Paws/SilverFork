@@ -83,7 +83,7 @@
 		if(istype(B))
 			. += "(Progress: [B.blobs_legit.len]/[B.blobwincount])"
 
-/datum/antagonist/blob/create_team(/datum/antagonist/blob/new_team)
+/datum/antagonist/blob/create_team(/datum/team/blob_infection/new_team)
 	if(!new_team)
 		for(var/datum/antagonist/blob/B in GLOB.antagonists)
 			if(!B.owner || !B.blob_team)
@@ -117,7 +117,7 @@
 	. = ..()
 	addMemories()
 
-/datum/antagonist/blobbernaut/create_team(datum/team/terror_spiders/new_team)
+/datum/antagonist/blobbernaut/create_team(/datum/team/blob_infection/new_team)
 	if(!new_team)
 		for(var/datum/antagonist/blobbernaut/blobber in GLOB.antagonists)
 			if(!blobber.owner || !blobber.blobbernaut_team)
