@@ -10,6 +10,7 @@
 	var/datum/action/innate/blobpop/pop_action
 	var/starting_points_human_blob = 60
 	var/point_rate_human_blob = 2
+	var/datum/team/blob_infection/blob_team
 
 /datum/antagonist/blob/threat()
 	. = ..()
@@ -81,3 +82,61 @@
 		var/mob/camera/blob/B = owner.current
 		if(istype(B))
 			. += "(Progress: [B.blobs_legit.len]/[B.blobwincount])"
+
+/datum/antagonist/blob/create_team(/datum/antagonist/blob/new_team)
+	if(!new_team)
+		for(var/datum/antagonist/blob/B in GLOB.antagonists)
+			if(!B.owner || !B.blob_team)
+				continue
+			blob_team = B.blob_team
+			return
+		blob_team = new
+	else
+		if(!istype(new_team))
+			CRASH("Wrong blob team type provided to create_team")
+		blob_team = new_team
+
+/datum/antagonist/blob/get_team()
+	return blob_team
+
+///////////////////////////////////////////////////
+
+/datum/antagonist/blobbernaut
+	name = "Blobbernaut"
+	roundend_category = "blobs"
+	antagpanel_category = "Blob"
+	show_to_ghosts = TRUE
+	job_rank = ROLE_BLOB
+	objectives = list("Помочь сверхразуму блоба разрастись до критической массы.")
+	var/datum/team/blob_infection/blobbernaut_team
+
+/datum/antagonist/blobbernaut/proc/addMemories()
+	antag_memory += "Я - блоббернаут. <font color='red'><B>Я выращен сверхразумом блоба. Я обязан защищать его и подчиняться его приказам</B></font>!<br>"
+
+/datum/antagonist/blobbernaut/on_gain()
+	. = ..()
+	addMemories()
+
+/datum/antagonist/blobbernaut/create_team(datum/team/terror_spiders/new_team)
+	if(!new_team)
+		for(var/datum/antagonist/blobbernaut/blobber in GLOB.antagonists)
+			if(!blobber.owner || !blobber.blobbernaut_team)
+				continue
+			blobbernaut_team = blobber.blobbernaut_team
+			return
+		blobbernaut_team = new
+	else
+		if(!istype(new_team))
+			CRASH("Wrong blobbernaut team type provided to create_team")
+		blobbernaut_team = new_team
+
+///////////////////////////////////////////////////
+
+/datum/team/blob_infection
+	name = "Blob Infection"
+
+/datum/team/blob_infection/roundend_report()
+	var/list/parts = list()
+	parts += "<span class='header'>The [name] were:</span>"
+	parts += printplayerlist(members)
+	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
