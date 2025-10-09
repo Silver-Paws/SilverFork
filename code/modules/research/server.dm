@@ -23,9 +23,13 @@
 
 /obj/machinery/rnd/server/Initialize(mapload)
 	. = ..()
+	GLOB.rndservers_list += src
 	SSresearch.servers |= src
 	stored_research = SSresearch.science_tech
 	alarmloop = new(src, !working)
+
+	server_id = "[copytext(md5("[world.timeofday][rand()][src]"), 1, 5)]" // Генерируем серверу уникальный айди
+	name += " ([uppertext(server_id)])"
 
 /obj/machinery/rnd/server/process()
 	if(!(machine_stat & NOPOWER) && working)
@@ -141,7 +145,7 @@
 /obj/machinery/computer/rdservercontrol
 	name = "R&D Server Controller"
 	desc = "Used to manage access to research and manufacturing databases."
-	icon_screen = "rdcomp"
+	icon_screen = "generic"
 	icon_keyboard = "rd_key"
 	var/screen = 0
 	var/obj/machinery/rnd/server/temp_server
@@ -169,17 +173,49 @@
 /obj/machinery/computer/rdservercontrol/ui_interact(mob/user)
 	. = ..()
 	var/dat = ""
+	dat += "<html><head><title>R&D Server Control</title>"
+	dat += "<style>"
+	dat += "body { background-color: #000000; color: #00FF00; font-family: 'Courier New', monospace; font-size: 13px; }"
+	dat += "hr { border: 1px solid #00FF00; }"
+	dat += "b { color: #80FF80; }"
+	dat += ".dim { color: #007700; }"
+	dat += "</style></head><body>"
 
 	switch(screen)
-		if(0) //Main Menu
-			dat += "Connected Servers:<BR><BR>"
-
+		if(0)
+			var/total_servers = 0
 			for(var/obj/machinery/rnd/server/S in GLOB.machines)
-				dat += "[S.name]<BR>"
+				total_servers++
 
-		//Mining status here
+			// Шапка со всяким флаффом декоративным
+			dat += "<b>Nanotrasen Research Division DOS v3.4.2</b><br>"
+			dat += "Copyright (C) 2565 Nanotrasen Corporation<br>"
+			dat += "All Rights Reserved.<br><br>"
+			dat += "Initializing system resources... <span class='dim'>OK</span><br>"
+			dat += "Loading device drivers... <span class='dim'>OK</span><br>"
+			dat += "Establishing uplink... <span class='dim'>CONNECTED</span><br>"
+			dat += "Loading R&D server control interface... <span class='dim'>READY</span><br>"
+			dat += "<hr>"
+			// Реальная информация
+			dat += "C:\\>Connected Servers<br><br>"
+			if(total_servers == 0)
+				dat += "NO SERVERS DETECTED.<br>"
+			else
+				var/i = 1
+				for(var/obj/machinery/rnd/server/S in GLOB.machines)
+					dat += "[i]. Server: [uppertext(S.server_id)]<br>"
+					dat += "   Path: C:\\RND\\SERVER_[i]<br>"
+					dat += "   Income stream: <b>[S.income_gen]</b> RP/tick<br><br>"
+					i++
+				dat += "Total servers detected: <b>[total_servers]</b><br>"
 
-	user << browse("<TITLE>R&D Server Control</TITLE><HR>[dat]", "window=server_control;size=575x400")
+			dat += "<hr>"
+			dat += "C:\\>System ready.<br>"
+			dat += "C:\\>"
+
+	dat += "</body></html>"
+
+	user << browse(dat, "window=server_control;size=600x450")
 	onclose(user, "server_control")
 	return
 

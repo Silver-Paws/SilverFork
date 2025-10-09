@@ -4201,6 +4201,7 @@
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
 #include "modular_bluemoon\code\_DEFINES\mobs.dm"
+#include "modular_bluemoon\code\_globalvars\list\objects.dm"
 #include "modular_bluemoon\code\_HELPERS\roundend.dm"
 #include "modular_bluemoon\code\_HELPERS\text.dm"
 #include "modular_bluemoon\code\_onclick\hud\drones.dm"
