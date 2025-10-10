@@ -1,3 +1,6 @@
+/datum/bounty/item/roboticist/bot
+	gens_allowed = FALSE
+
 /datum/bounty/item/roboticist/bot/ship(mob/M)
 	if(!applies_to(M))
 		return
@@ -29,7 +32,7 @@
 
 /datum/bounty/item/roboticist/bot/firebot
 	name = "Firebot"
-	description = "Desperate times requieres desperate measures: we need one firebot as an mascot for our atmoshepic technicians."
+	description = "Desperate times requieres desperate measures: we need one firebot as a mascot for our atmoshepic technicians."
 	reward = 8000
 	required_count = 1
 	wanted_types = list(/mob/living/simple_animal/bot/firebot)
