@@ -6,7 +6,6 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	var/reward = 1000 // In credits.
 	var/claimed = FALSE
 	var/high_priority = FALSE
-	var/gens_allowed = TRUE // Are some items or "items" allowed to be generated in central command bounties
 
 // Displayed on bounty UI screen.
 /datum/bounty/proc/completion_string()
@@ -67,7 +66,7 @@ GLOBAL_LIST_EMPTY(bounties_list)
 
 // Returns FALSE if the bounty is incompatible with the current bounties.
 /proc/try_add_bounty(datum/bounty/new_bounty)
-	if(!new_bounty || !new_bounty.name || !new_bounty.description || !new_bounty.gens_allowed)
+	if(!new_bounty || !new_bounty.name || !new_bounty.description)
 		return FALSE
 	for(var/i in GLOB.bounties_list)
 		var/datum/bounty/B = i
@@ -88,11 +87,16 @@ GLOBAL_LIST_EMPTY(bounties_list)
 			var/subtype = pick(subtypesof(/datum/bounty/item/assistant))
 			return new subtype
 		if(2)
-			var/subtype
-			if(prob(30))
-				subtype = pick(subtypesof(/datum/bounty/item/mech))
-			else
-				subtype = pick(subtypesof(/datum/bounty/item/roboticist))
+			var/list/choices = list( // Процентный шанс пика определённой категории баунти. Применено ввиду неравности шансов выпадения.
+				/datum/bounty/item/mech = 25,
+				/datum/bounty/item/roboticist = 35,
+				/datum/bounty/item/cyborglimbs = 35,
+				/datum/bounty/item/modsuit = 30,
+				/datum/bounty/item/bot = 35
+				)
+			var/subtype_category = pickweight(choices)
+			var/list/subtypes = subtypesof(subtype_category)
+			var/subtype = pick(subtypes)
 			return new subtype
 		if(3)
 			var/subtype = pick(subtypesof(/datum/bounty/item/chef))
