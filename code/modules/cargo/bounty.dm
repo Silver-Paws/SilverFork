@@ -91,7 +91,6 @@ GLOBAL_LIST_EMPTY(bounties_list)
 				/datum/bounty/item/mech = 25,
 				/datum/bounty/item/roboticist = 35,
 				/datum/bounty/item/cyborglimbs = 35,
-				/datum/bounty/item/modsuit = 30,
 				/datum/bounty/item/bot = 35
 				)
 			var/subtype_category = pickweight(choices)
