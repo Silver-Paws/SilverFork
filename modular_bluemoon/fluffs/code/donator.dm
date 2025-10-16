@@ -1221,7 +1221,7 @@
 	name = "Jruttie Cat"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/choice_beacon/pet/jruttie
-	ckeywhitelist = list("scramblescream", "nai1ten", "discord980")
+	ckeywhitelist = list("scramblescream", "nai1ten", "discord980", "Spoopy_man228")
 
 /datum/gear/donator/bm/tavern_skirt
 	name = "Tavern skirt"
