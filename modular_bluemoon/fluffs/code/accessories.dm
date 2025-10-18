@@ -411,11 +411,3 @@
 	new /obj/item/clothing/head/ranger_helmet(src)
 	new /obj/item/clothing/under/donator/bm/ranger_uniform(src)
 	new /obj/item/clothing/mask/gas/syndicate/ranger_gasmask(src)
-
-/obj/item/clothing/gloves/color/black/soviet_gloves
-	name = "Soviet Black Gloves"
-	desc = "Чёрные перчатки."
-	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/gloves.dmi'
-	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/gloves.dmi'
-	icon_state = "sovietblackgloves"
-	item_state = "bgloves"
