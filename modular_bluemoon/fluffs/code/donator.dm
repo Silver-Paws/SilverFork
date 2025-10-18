@@ -1711,3 +1711,26 @@
 	path = /obj/item/lighter/plighter
 	ckeywhitelist = list("stasdvrz", "dimofon")
 
+/datum/gear/donator/bm/naivo_ushanka
+	name = "Soviet Black Ushanka"
+	slot = ITEM_SLOT_HEAD
+	path = /obj/item/clothing/head/ushanka/black
+	ckeywhitelist = list("naivo")
+
+/datum/gear/donator/bm/naivo_uniform
+	name = "Soviet Black Uniform"
+	slot = ITEM_SLOT_ICLOTHING
+	path = /obj/item/clothing/under/donator/bm/soviet_uniform
+	ckeywhitelist = list("naivo")
+
+/datum/gear/donator/bm/naivo_gloves
+	name = "Soviet Black Gloves"
+	slot = ITEM_SLOT_GLOVES
+	path = /obj/item/clothing/gloves/color/black/soviet_gloves
+	ckeywhitelist = list("naivo")
+
+/datum/gear/donator/bm/naivo_jackboots
+	name = "Soviet Black Jackboots"
+	slot = ITEM_SLOT_FEET
+	path = /obj/item/clothing/shoes/jackboots/tall/soviet_jackboots
+	ckeywhitelist = list("naivo")
