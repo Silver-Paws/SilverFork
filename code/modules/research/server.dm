@@ -232,9 +232,9 @@
 				for(var/obj/machinery/rnd/server/S in GLOB.machines)
 					var/turf/T = get_turf(S) // Ищем координаты
 					dat += "[i]. Server: [uppertext(S.server_id)]<br>"
-					dat += "   Path: C:\\RND\\SERVER_[i]<br>"
-					dat += "   Income stream: <b>[S.income_gen]</b> RP/tick<br>"
-					dat += "   Server location: ([T.x], [T.y], [T.z])<br><br>"
+					dat += "___Path: C:\\RND\\SERVER_[i]<br>"
+					dat += "___Income stream: <b>[S.income_gen]</b> RP/tick<br>"
+					dat += "___Server location: ([T.x], [T.y], [T.z])<br><br>"
 					i++
 				dat += "Total servers detected: <b>[total_servers]</b><br>"
 
