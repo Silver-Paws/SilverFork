@@ -53,7 +53,8 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/engineering/cyborg_advexting
-	name = "Cyborg Upgrade Module (Advanced Gas Analyzer)"
+	name = "Cyborg Upgrade Module (Advanced Fire Extinguisher)"
+	desc = "Atmospheric Technician-grade extinguisher for cyborg use. Can surpass most dangerous flames. Requires specialized foam tank to refill."
 	cost = 12000
 	contains = list(/obj/item/borg/upgrade/extinguisher_adv)
 	crate_name = "Cyborg Upgrade Module"
