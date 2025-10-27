@@ -24,7 +24,6 @@
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.pulledby?.stop_pulling()
 		if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
 			return
 
@@ -58,6 +57,7 @@
 				damage *= 0.75
 		//
 		H.apply_damage(damage, BRUTE, picked_def_zone, wound_bonus = 5)
+		H.pulledby?.stop_pulling()
 
 		if(cooldown < world.time - 10) //cooldown to avoid message spam.
 			if(!H.incapacitated(ignore_restraints = TRUE))

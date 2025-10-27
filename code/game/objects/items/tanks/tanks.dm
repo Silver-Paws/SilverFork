@@ -32,7 +32,7 @@
 		return
 
 	if(H.internal == src)
-		to_chat(H, "<span class='notice'>You close [src] valve.</span>")
+		to_chat(H, "<span class='notice'>Вы закрутили вентиль [src].</span>")
 		H.internal = null
 	else
 		if(!H.getorganslot(ORGAN_SLOT_BREATHING_TUBE))
@@ -123,7 +123,7 @@
 	else
 		descriptive = "обжигающе горячей"
 
-	. += "<span class='notice'>Поверхность выглядит [descriptive].</span>"
+	. += "<span class='notice'>Поверхность ощущается [descriptive] внешне.</span>"
 
 /obj/item/tank/blob_act(obj/structure/blob/B)
 	if(B && B.loc == loc)
