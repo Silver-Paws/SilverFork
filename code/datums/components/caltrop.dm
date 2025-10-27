@@ -24,10 +24,6 @@
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-
-		if(istype(A, /obj/structure/punji_sticks))
-			H.pulledby?.stop_pulling()
-
 		if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
 			return
 
@@ -51,6 +47,9 @@
 
 		if(HAS_TRAIT(H, TRAIT_HARD_SOLES))
 			return
+
+		if(H.movement_type & CRAWLING)
+			H.pulledby?.stop_pulling()
 
 		var/damage = rand(min_damage, max_damage)
 		if(HAS_TRAIT(H, TRAIT_LIGHT_STEP))
