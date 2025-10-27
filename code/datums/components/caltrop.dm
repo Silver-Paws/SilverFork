@@ -24,6 +24,10 @@
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
+
+		if(istype(A, /obj/structure/punji_sticks))
+			H.pulledby?.stop_pulling()
+
 		if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
 			return
 
