@@ -294,6 +294,11 @@
 	blood_bank = new(BLOODFLEDGE_BANK_CAPACITY)
 
 /datum/action/cooldown/bloodfledge/bite/Activate()
+	//BLUEMOON CHANGES START
+	if(owner.progressbars)
+		to_chat(owner, span_danger("Вы не можете кусать кого-либо, если уже делаете это, либо что бы там ни было еще!")) //защита от спама
+		return
+	//BLUEMOON CHANGES END
 	// Define action owner
 	var/mob/living/carbon/action_owner = owner
 
