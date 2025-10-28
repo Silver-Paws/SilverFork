@@ -47922,6 +47922,9 @@
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/box/yellow/corners{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/cargo/sorting)
 "bBN" = (
@@ -47932,9 +47935,6 @@
 /obj/effect/turf_decal/tile/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
-	},
-/obj/effect/turf_decal/box/yellow/corners{
-	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/cargo/sorting)
