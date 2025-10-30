@@ -31,7 +31,7 @@
 	name = "Cyborg Upgrade (Advanced Gas Analyzer)"
 	id = "borg_upgrade_advgasanalyzer"
 	build_type = MECHFAB
-	build_path = /obj/item/analyzer/ranged/cyborg
+	build_path = /obj/item/borg/upgrade/gasanalyzer_advanced
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/uranium = 1000, /datum/material/gold = 200, /datum/material/diamond = 100)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
