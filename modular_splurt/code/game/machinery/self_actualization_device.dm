@@ -172,6 +172,11 @@
 	patient.getBruteLoss(brute_damage)
 	patient.getFireLoss(burn_damage)
 
+	if(SSquirks?.check_blacklist_conflicts(patient.client?.prefs?.all_quirks))
+		patient.client.prefs.all_quirks.Cut()
+		patient.client.prefs.save_character()
+		log_admin("All quirks for [key_name(patient)] were reset due to quirk selection blacklist (via Self-Actualization Device).")
+
 	SSquirks.AssignQuirks(patient, patient.client, TRUE, TRUE, null, FALSE, patient)
 	SSlanguage.AssignLanguage(patient, patient.client)
 
