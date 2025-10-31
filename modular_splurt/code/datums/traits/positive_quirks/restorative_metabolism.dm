@@ -11,7 +11,13 @@
 	. = ..()
 	//Works only for organics #biopank_power
 	var/mob/living/carbon/human/H = quirk_holder //person who'll be healed
-	if (H.health == H.maxHealth)
+
+	var/total_brute = H.getBruteLoss_nonProsthetic()
+	var/total_burn = H.getFireLoss_nonProsthetic()
+	var/total_toxloss = H.getToxLoss()
+	var/total_damage = total_brute + total_burn + total_toxloss
+
+	if (total_damage == 0) // Раз метаболизм не лечит окси урон, не нужно прогонять прок при его наличии
 		return
 	var/consumed_damage = H.getFireLoss() * 2 + H.getBruteLoss() // the damage, the person have. Burn is bad for regeneration, so its multiplied
 	var/heal_multiplier = quirk_holder.getMaxHealth() / 100 // the heal is scaled by persons health, big guys heals faster
