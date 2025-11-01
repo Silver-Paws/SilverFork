@@ -59,9 +59,9 @@ GLOBAL_LIST_INIT(valid_slimecross, get_existing_slimecross_types())
 	switch(color_rarity)
 		if ("common")
 			reward = 7200 + round(rand(0, 2000), 100)
-		else if ("rare")
+		if ("rare")
 			reward = 9500 + round(rand(0, 4000), 100)
-		else if ("highest")
+		if ("highest")
 			reward = 13000 + round(rand(0, 2000), 100)
 		else
 			reward = 5000 // Если ВДРУГ будут какие-то новые цвета вне списка - это заглушка
