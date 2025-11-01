@@ -6,5 +6,3 @@
 #define COMMON_SLIME_COLORS list("grey", "orange", "purple", "blue", "metal", "yellow", "darkpurple", "darkblue", "silver")
 #define RARE_SLIME_COLORS list("red", "green", "pink", "gold", "bluespace", "sepia", "cerulean", "pyrite")
 #define HIGHEST_SLIME_COLORS list("oil", "black", "lightpink", "adamantine", "rainbow")
-
-GLOBAL_LIST_INIT(valid_slimecross, get_existing_slimecross_types())

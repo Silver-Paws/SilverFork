@@ -40,6 +40,7 @@
 	wanted_types = list(/obj/item/slime_extract/rainbow)
 
 ////////////////////////////////////////////////////////////
+GLOBAL_LIST_INIT(valid_slimecross, get_existing_slimecross_types())
 
 /datum/bounty/item/slime/crossbreeded
 	required_count = 1
