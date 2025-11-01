@@ -91,8 +91,8 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		cli.prefs.save_character()
 	if (!silent && LAZYLEN(cut))
 		to_chat(to_chat_target || user, "<span class='boldwarning'>Некоторые выбранные вами квирки были убраны, так как конфликтуют с выбранной должностью: [english_list(cut)].</span>")
-	if (!silent && quirk_blacklist)
-		to_chat(to_chat_target || user, "<span class='boldwarning'>Некоторые выбранные вами квирки несовместимы! Все квирки сброшены.</span>")
+	// if (!silent && LAZYLEN(quirk_blacklist))
+	// 	to_chat(to_chat_target || user, "<span class='boldwarning'>Некоторые выбранные вами квирки несовместимы! Все квирки сброшены.</span>")
 
 	var/mob/living/carbon/human/H = user
 	if(istype(H) && H.dna?.species)
