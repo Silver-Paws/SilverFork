@@ -45,9 +45,12 @@
 	required_count = 1
 
 /datum/bounty/item/slime/crossbreeded/New()
+	..()
 	var/slimetype = pick(GLOB.valid_slimecross)
 	var/slimedata = GLOB.valid_slimecross[slimetype]
-	name = "Slime Extr.: [slimedata["colour"]] [slimedata["effect"]]"
+	var/colour = capitalize(slimedata["colour"])
+	var/effect = capitalize(slimedata["effect"])
+	name = "[colour] [effect] Slime Extr."
 	wanted_types = list(slimetype)
 	description = "Nanotrasen's science lead is hunting for the rare and exotic [name]. A bounty has been offered for finding it."
 
@@ -61,7 +64,6 @@
 			reward = 13000 + round(rand(0, 2000), 100)
 		else
 			reward = 5000 // Если ВДРУГ будут какие-то новые цвета вне списка - это заглушка
-	..()
 
 ////////////
 
