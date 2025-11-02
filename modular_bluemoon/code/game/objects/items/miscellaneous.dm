@@ -41,3 +41,12 @@
 			var/atom/A = V
 			sol_mech_list[initial(A.name)] = A
 	return sol_mech_list
+
+/obj/item/choice_beacon/pet/jruttie
+	pets = list("Jruttie" = /mob/living/simple_animal/pet/cat/jruttie)
+
+/obj/item/choice_beacon/pet/juda
+	pets = list("Judas" = /mob/living/simple_animal/pet/dog/juda)
+
+/obj/item/choice_beacon/pet/wertanmoth
+	pets = list("Wertan" = /mob/living/simple_animal/pet/dog/corgi/mothroach/wertanmoth)
