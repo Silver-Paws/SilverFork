@@ -119,8 +119,6 @@
 	if(!.)
 		return
 
-	// Плохо работает. Спавнит новый инструмент в конце списка, не замещает старый.
-	// Из-за того, что тут дочерний-родительский объект. Нужен рефакторинг под rcd/cyborg/* вариант.
 	var/IRCD_index = 0
 	for(var/i = 1, i <= R.module.modules.len, i++) // Этот алгоритм зеркален тому, что для добавления
 		IRCD = R.module.modules[i]
@@ -135,7 +133,7 @@
 	for(RCD in R.module)
 		R.module.modules.Swap(IRCD_index, RCD_index)
 		R.module.basic_modules.Swap(IRCD_index, RCD_index)
-	R.module.remove_module(IRCD, TRUE)
+		R.module.remove_module(IRCD, TRUE)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -229,7 +227,7 @@
 	var/analyzer_index = 0
 	for(var/i = 1, i <= R.module.modules.len, i++) // Начинаем искать индекс старого анализатора
 		analyzer = R.module.modules[i]
-		if(istype(analyzer, /obj/item/construction/rcd/borg))
+		if(istype(analyzer, /obj/item/analyzer))
 			analyzer_index = i
 			break // Находим - прекращаем, не обрабатываем for'ом весь список.
 
@@ -247,12 +245,10 @@
 	if(!.)
 		return
 
-	// Плохо работает. Спавнит новый инструмент в конце списка, не замещает старый.
-	// Из-за того, что тут дочерний-родительский объект. Как с РЦД.
 	var/analyzer_adv_index = 0
 	for(var/i = 1, i <= R.module.modules.len, i++) // Этот алгоритм зеркален тому, что для добавления
 		analyzer_adv = R.module.modules[i]
-		if(istype(analyzer_adv, /obj/item/construction/rcd/borg/syndicate))
+		if(istype(analyzer_adv, /obj/item/analyzer/ranged/cyborg))
 			analyzer_adv_index = i
 			break
 
@@ -263,6 +259,6 @@
 	for(analyzer in R.module)
 		R.module.modules.Swap(analyzer_adv_index, analyzer_index)
 		R.module.basic_modules.Swap(analyzer_adv_index, analyzer_index)
-	R.module.remove_module(analyzer_adv, TRUE)
+		R.module.remove_module(analyzer_adv, TRUE)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
