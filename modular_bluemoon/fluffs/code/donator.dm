@@ -1231,7 +1231,7 @@
 	name = "Wertan Mothroach"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/choice_beacon/pet/wertanmoth
-	ckeywhitelist = list("silverfoxpaws", "wertan")
+	ckeywhitelist = list("silverfoxpaws", "wertan", "vlonger", "techgrid")
 
 /datum/gear/donator/bm/tavern_skirt
 	name = "Tavern skirt"
