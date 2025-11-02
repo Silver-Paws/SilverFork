@@ -34,13 +34,13 @@
 	reward = 9000
 	wanted_types = list(/obj/machinery/power/port_gen/pacman)
 
-/datum/bounty/item/engineering/pacman
+/datum/bounty/item/engineering/superpacman
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type port. gen."
 	description = "A neighboring station got their RBMK engine exploded as well with their SMES units. They have some uranium left, though. Can you send them a S.U.P.E.R.P.A.C.M.A.N.?"
 	reward = 10000
 	wanted_types = list(/obj/machinery/power/port_gen/pacman/super)
 
-	/datum/bounty/item/engineering/pacman
+/datum/bounty/item/engineering/mrspacman
 	name = "M.R.S.P.A.C.M.A.N.-type port. gen."
 	description = "A neighboring station got a harvester goal to deal with with a need to supply the machine with some real power. Can you send them a M.R.S.P.A.C.M.A.N.?"
 	reward = 11500
