@@ -625,7 +625,7 @@
 	deathmessage = "explodes with huge buzz!"
 	unique_pet = TRUE
 	gender = FEMALE
-	speak_chance = 3
+	speak_chance = 8
 	maxHealth = 30
 	health = 30
 	emote_see = list("flutters", "mothes")
