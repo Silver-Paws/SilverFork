@@ -625,6 +625,7 @@
 	deathmessage = "explodes with huge buzz!"
 	unique_pet = TRUE
 	gender = FEMALE
+	vocal_bark_id = "moff"
 	speak_chance = 8
 	maxHealth = 30
 	health = 30
