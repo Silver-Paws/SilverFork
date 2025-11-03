@@ -610,6 +610,41 @@
 	speak_chance = 10
 	loot = list(/obj/item/clothing/head/wizard/fake = 1)
 
+/mob/living/simple_animal/pet/dog/corgi/mothroach/wertanmoth
+	name = "Wertyan"
+	desc = "Серая инженерная мотылиха. Обожает эффективный контур, взрываться и молировать."
+	icon = 'modular_bluemoon/icons/mob/pets.dmi'
+	icon_state = "wertan"
+	icon_living = "wertan"
+	icon_dead = "wertan_dead"
+	held_icon = "wertan_held"
+	speak = list("Furrr.","Uhh.", "Hurrr.", "*msqueak", "*chitter", "*spin", "*flap")
+	deathmessage = "explodes with huge buzz	!"
+	unique_pet = TRUE
+	gender = FEMALE
+	speak_chance = 3
+	maxHealth = 30
+	health = 30
+	emote_see = list("flutters", "mothes")
+	gold_core_spawnable = null
+	footstep_type = FOOTSTEP_MOB_CLAW
+	loot = list(/obj/item/clothing/head/hardhat = 1)
+
+/mob/living/simple_animal/pet/dog/corgi/mothroach/wertanmoth/death(gibbed)
+	explosion(src.loc, -1, -1, 2, 3)
+	..()
+
+/mob/living/simple_animal/pet/dog/corgi/mothroach/wertanmoth/ComponentInitialize()
+	. = ..()
+	RemoveElement(/datum/element/wuv, "yaps happily!", EMOTE_AUDIBLE, /datum/mood_event/pet_animal, "growls!", EMOTE_AUDIBLE)
+	RemoveElement(/datum/element/strippable, GLOB.strippable_corgi_items)
+	RemoveElement(/datum/element/mob_holder, held_icon)
+	AddElement(/datum/element/wuv, "mothin`!", EMOTE_AUDIBLE, /datum/mood_event/pet_animal, "buzzes!", EMOTE_AUDIBLE)
+	AddElement(/datum/element/mob_holder, held_icon, inv_slots = ITEM_SLOT_HEAD)
+
+/mob/living/simple_animal/pet/dog/corgi/mothroach/wertanmoth/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
+	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback)
+
 ///////////////////
 
 /obj/item/storage/backpack/ert_commander
