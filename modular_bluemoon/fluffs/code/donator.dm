@@ -1227,6 +1227,12 @@
 	path = /obj/item/choice_beacon/pet/jruttie
 	ckeywhitelist = list("scramblescream", "nai1ten", "discord980", "spoopyman228")
 
+/datum/gear/donator/bm/pet_wertan
+	name = "Wertan Mothroach"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/choice_beacon/pet/wertanmoth
+	ckeywhitelist = list("silverfoxpaws", "wertan", "vlonger", "techgrid")
+
 /datum/gear/donator/bm/tavern_skirt
 	name = "Tavern skirt"
 	slot = ITEM_SLOT_ICLOTHING
