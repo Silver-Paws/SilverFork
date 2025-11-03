@@ -4472,6 +4472,7 @@
 #include "modular_bluemoon\code\modules\hydroponics\grown\herbs.dm"
 #include "modular_bluemoon\code\modules\item_pixel_shift\item_pixel_shift.dm"
 #include "modular_bluemoon\code\modules\jobs\job_types\job.dm"
+#include "modular_bluemoon\code\modules\jobs\job_types\service\curator.dm"
 #include "modular_bluemoon\code\modules\jobs\job_types\service\entertainer.dm"
 #include "modular_bluemoon\code\modules\jobs\job_types\synthetics\ai.dm"
 #include "modular_bluemoon\code\modules\jobs\job_types\synthetics\cyborg.dm"
