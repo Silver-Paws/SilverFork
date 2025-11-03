@@ -612,6 +612,7 @@
 
 /mob/living/simple_animal/pet/dog/corgi/mothroach/wertanmoth
 	name = "Wertyan"
+	real_name = "Wertyan"
 	desc = "Серая инженерная мотылиха. Обожает эффективный контур, взрываться и молировать."
 	icon = 'modular_bluemoon/icons/mob/pets.dmi'
 	icon_state = "wertan"
