@@ -48,7 +48,7 @@
 
 /datum/bounty/item/engineering/canisters
 	name = "Gas Canisters"
-	description = "After a recent debacle in a nearby sector, 10 gas canisters are needed for containing an experimental aerosol before it kills all the local fauna."
+	description = "After a recent debacle in a nearby sector, 8 gas canisters are needed for containing an experimental aerosol before it kills all the local fauna."
 	reward = 5200
 	required_count = 8 //easy to make
 	wanted_types = list(/obj/machinery/portable_atmospherics/canister)

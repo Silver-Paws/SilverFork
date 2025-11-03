@@ -619,7 +619,10 @@
 	icon_dead = "wertan_dead"
 	held_icon = "wertan_held"
 	speak = list("Furrr.","Uhh.", "Hurrr.", "*msqueak", "*chitter", "*spin", "*flap")
-	deathmessage = "explodes with huge buzz	!"
+	emote_see = list("мотает головой.", "крутится.", "дрожит.")
+	emote_hear = null
+	speak_emote = list("buzzes", "squeals")
+	deathmessage = "explodes with huge buzz!"
 	unique_pet = TRUE
 	gender = FEMALE
 	speak_chance = 3
