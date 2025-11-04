@@ -26,6 +26,7 @@
 
 /mob/living/simple_animal/pet/dog/corgi/mothroach
 	name = "Mothroach"
+	real_name = "Mothroach"
 	desc = "Мотылёк. Обожает светочи."
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "mothroach"
@@ -33,6 +34,7 @@
 	icon_dead = "mothroach_dead"
 	speak = list("Furrr.","Uhh.", "Hurrr.")
 	speak_chance = 0
+	speak_emote = list("chitters")
 	response_help_continuous = "pets"
 	response_disarm_continuous = "bops"
 	response_harm_continuous = "kicks"
