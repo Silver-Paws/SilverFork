@@ -965,7 +965,7 @@
 	loadout_flags = LOADOUT_CAN_NAME | LOADOUT_CAN_DESCRIPTION
 
 /datum/gear/donator/bm/cigpack_cannabis
-	name = "\improper Freak Brothers' Special Packet"
+	name = "Freak Brother's Special Cigpack"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/storage/fancy/cigarettes/cigpack_cannabis
 	ckeywhitelist = list()
