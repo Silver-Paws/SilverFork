@@ -621,7 +621,7 @@
 	held_icon = "wertan_held"
 	speak = list("Furrr.","Uhh.", "Hurrr.", "*msqueak", "*chitter", "*spin", "*flap")
 	emote_see = list("мотает головой.", "крутится.", "дрожит.")
-	emote_hear = null
+	emote_hear = list("дышит в противогаз.", "жужжит!", "хлопает крыльями.", "думает о контуре.")
 	speak_emote = list("buzzes", "squeals")
 	deathmessage = "explodes with huge buzz!"
 	unique_pet = TRUE
@@ -649,6 +649,7 @@
 
 /mob/living/simple_animal/pet/dog/corgi/mothroach/wertanmoth/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
 	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback)
+	target.emote
 
 ///////////////////
 
