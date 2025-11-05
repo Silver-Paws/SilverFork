@@ -179,6 +179,9 @@
 
 	SSquirks.AssignQuirks(patient, patient.client, TRUE, TRUE, null, FALSE, patient)
 	SSlanguage.AssignLanguage(patient, patient.client)
+	if(iscuratorjob(patient))
+		patient.grant_all_languages(source = LANGUAGE_CURATOR)
+		patient.remove_blocked_language(GLOB.all_languages, source=LANGUAGE_ALL)
 
 	open_machine()
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
