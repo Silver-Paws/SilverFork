@@ -1505,7 +1505,25 @@
 	name = "Black Rose atelier worker coffin"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/storage/backpack/coffin
-	ckeywhitelist = list("hateredsoul")
+	ckeywhitelist = list("hateredsoul", "ggishka")
+
+/datum/gear/donator/bm/coffinb2
+	name = "Black Rose atelier worker coffin"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/storage/backpack/coffin/b2
+	ckeywhitelist = list("hateredsoul", "ggishka")
+
+/datum/gear/donator/bm/coffinw
+	name = "Black Rose atelier worker coffin"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/storage/backpack/coffin/w
+	ckeywhitelist = list("hateredsoul", "ggishka")
+
+/datum/gear/donator/bm/coffinw2
+	name = "Black Rose atelier worker coffin"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/storage/backpack/coffin/w2
+	ckeywhitelist = list("hateredsoul", "ggishka")
 
 /datum/gear/donator/bm/bishop_mitre
 	name = "Book of stealing"
@@ -1778,7 +1796,7 @@
 /datum/gear/donator/bm/mu88_horns
 	name = "M.U. 88 New hope horns"
 	slot = ITEM_SLOT_ICLOTHING
-	path = /obj/item/clothing/head/helmet/sec/blueshield/mu88_horns
+	path = /obj/item/clothing/head/blueshield/mu88_horns
 	ckeywhitelist = list("milidead", "hateredsoul")
 	restricted_desc = "Brig Physician, Blueshield."
 	restricted_roles = list("Brig Physician, Blueshield.")
