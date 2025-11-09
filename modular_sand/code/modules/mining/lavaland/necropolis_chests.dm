@@ -222,6 +222,7 @@
 	var/total_mass_on = TOTAL_MASS_MEDIEVAL_WEAPON
 	var/wielded
 	var/item_state_on = "crucible1"
+	var/simpleanimal_bonus = 30
 
 /obj/item/crucible/Initialize(mapload)
 	. = ..()
@@ -264,7 +265,7 @@
 		icon_state = "crucible0"
 	clean_blood()
 
-/obj/item/crucible/attack(mob/target, mob/living/carbon/human/user)
+/obj/item/crucible/attack(mob/living/target, mob/living/carbon/human/user)
 	var/def_zone = user.zone_selected
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -285,8 +286,8 @@
 		else
 			..()
 	else if(isanimal(target) && wielded)
+		target.apply_damage(simpleanimal_bonus, BRUTE) // Без баффа это оружие слабее даже обычного крашера в пересчёте цифр, хотя падает с босса
 		..()
-		force += 30 // Без баффа это оружие слабее даже обычного крашера в пересчёте цифр, хотя падает с босса
 	else
 		..()
 
@@ -996,6 +997,7 @@
 	wound_bonus = 10
 	bare_wound_bonus = 12
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	var/simpleanimal_bonus = 15
 
 //Enables the sword to butcher bodies
 /obj/item/melee/sword_of_the_forsaken/Initialize(mapload)
@@ -1011,7 +1013,7 @@
 /obj/item/melee/sword_of_the_forsaken/attack(mob/living/target, mob/living/user)
 	..()
 	if(isanimal(target))
-		force += 30
+		target.apply_damage(simpleanimal_bonus, BRUTE) // Чтобы не быть зубочисткой на лаве
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=End of Sworf Of The Forsaken=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 
