@@ -402,13 +402,13 @@
 		if("aikofication")
 			if(!is_funmin)
 				return
-			var/choice = alert(usr, "Только для станции или для всех?","Подумай дважды","Всех", "Арены")
+			var/choice = alert(usr, "Только для станции или для всех?","Подумай дважды","Для всех", "Для станции")
 			var/amount_modified = 0
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
 				if(!GLOB.dna_for_copying || !istype(GLOB.dna_for_copying, /datum/dna))
 					alert(usr, "ERROR: There's nothing to copy!")
 					return
-				if(choice == "Всех" && !is_station_level(H.z))
+				if(choice == "Для станции" && !is_station_level(H.z))
 					continue
 				GLOB.dna_for_copying.transfer_identity(H, TRUE)
 				H.real_name = H.dna.real_name
