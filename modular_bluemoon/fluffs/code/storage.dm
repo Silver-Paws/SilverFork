@@ -170,3 +170,21 @@
 			RESKIN_ITEM_STATE = "coffin_w2"
 		),
 	)
+
+///////////////////////////////////////////////
+
+/obj/item/storage/backpack/case/dm_staff
+	name = "military uniform compartment case"
+	desc = "A clothing case with ready-to-go uniform for needs in forest color patterns. You can see label \"DM Arms\". Contains infantry jumpsuit, jacket and helmet."
+	icon = 'modular_bluemoon/fluffs/icons/obj/storage.dmi'
+	icon_state = "dm_case"
+	item_state = "dm_case"
+	lefthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/storage_lefthand.dmi'
+	righthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/storage_righthand.dmi'
+
+/obj/item/storage/backpack/case/dm_staff/PopulateContents()
+	new /obj/item/clothing/suit/donator/bm/dm_pzgrnd_suit(src)
+	new /obj/item/clothing/under/donator/bm/dm_pzgrnd_uniform(src)
+	new /obj/item/clothing/head/donator/bm/dm_pzgrnd_helmet(src)
+
+///////////////////////////////////////////////
