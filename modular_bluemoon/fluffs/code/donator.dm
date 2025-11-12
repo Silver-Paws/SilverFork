@@ -1807,37 +1807,49 @@
 	path = /obj/item/clothing/neck/tie/mu88_tie
 	ckeywhitelist = list("milidead", "hateredsoul")
 
+/datum/gear/donator/bm/cesar_tunic
+	name = "Fancy tunic"
+	slot = ITEM_SLOT_ICLOTHING
+	path = /obj/item/clothing/under/donator/bm/cesar_tunic
+	ckeywhitelist = list("nopeingeneer")
+
+/datum/gear/donator/bm/cesar_crown
+	name = "Golden laurel wreath"
+	slot = ITEM_SLOT_HEAD
+	path = /obj/item/clothing/head/laurel_crown
+	ckeywhitelist = list("nopeingeneer")
+
 ///////////////////////////////////////////////
 
 /datum/gear/donator/bm/dm_pzuniform
 	name = "Grenadier uniform"
 	slot = ITEM_SLOT_ICLOTHING
 	path = /obj/item/clothing/under/donator/bm/dm_pzgrnd_uniform
-	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288")
+	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288", "definitelynotnesuby")
 
 /datum/gear/donator/bm/dm_pzsuit
 	name = "Grenadier jacket"
 	slot = ITEM_SLOT_OCLOTHING
 	path = /obj/item/clothing/suit/donator/bm/dm_pzgrnd_suit
-	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288")
+	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288", "definitelynotnesuby")
 
 /datum/gear/donator/bm/dm_pzhelmet
 	name = "Pionier helmet"
 	slot = ITEM_SLOT_HEAD
 	path = /obj/item/clothing/head/donator/bm/dm_pzgrnd_helmet
-	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288")
+	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288", "definitelynotnesuby")
 
 /datum/gear/donator/bm/dm_case
 	name = "Infantry clothing case"
 	slot = ITEM_SLOT_HANDS
 	path = /obj/item/storage/backpack/case/dm_staff
-	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288")
+	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288", "definitelynotnesuby")
 	cost = 2
 
 /datum/gear/donator/bm/dm_stg56
 	name = "StG-56"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/modkit/stg56
-	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288")
+	ckeywhitelist = list("dimofon", "devildeadspace", "silverfoxpaws", "oni3288", "definitelynotnesuby")
 
 ///////////////////////////////////////////////
