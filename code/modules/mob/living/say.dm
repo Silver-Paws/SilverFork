@@ -103,9 +103,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	var/ic_blocked = FALSE
 
-	if(client && !forced && CHAT_FILTER_CHECK(message))
-		//The filter doesn't act on the sanitized message, but the raw message.
-		ic_blocked = TRUE
+	if(!(src?.onCentCom()))
+		if(client && !forced && CHAT_FILTER_CHECK(message))
+			//The filter doesn't act on the sanitized message, but the raw message.
+			ic_blocked = TRUE
 
 	if(sanitize)
 		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
