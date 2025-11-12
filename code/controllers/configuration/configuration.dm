@@ -461,7 +461,10 @@ Example config:
 		if(findtextEx(line,"#",1,2))
 			continue
 		in_character_filter += REGEX_QUOTE(line)
-	ic_filter_regex = in_character_filter.len ? regex("\\b([jointext(in_character_filter, "|")])\\b", "i") : null
+	if(in_character_filter.len)
+		ic_filter_regex = regex("([jointext(in_character_filter, "|")])", "iu")
+	else
+		ic_filter_regex = null
 
 //Message admins when you can.
 /datum/controller/configuration/proc/DelayedMessageAdmins(text)
