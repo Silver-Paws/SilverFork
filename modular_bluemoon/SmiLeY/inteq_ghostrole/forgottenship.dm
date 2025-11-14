@@ -405,6 +405,72 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	name = "InteQ Forgotten Inspection room"
 	icon_state = "inteq-ship"
 	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
+
+//Solfed, Ship
+/area/ruin/space/has_grav/bluemoon/solfed
+	name = "Solfed"
+	icon_state = "spacecontent1"
+	ambientsounds = list('sound/ambience/ambidanger.ogg', 'sound/ambience/ambidanger2.ogg', 'sound/ambience/ambigen9.ogg', 'sound/ambience/ambigen10.ogg')
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship
+	name = "Solfed Ship"
+	icon_state = "solfed-ship"
+	ambientsounds = list('sound/ambience/ambidanger.ogg', 'sound/ambience/ambidanger2.ogg', 'sound/ambience/ambigen9.ogg', 'sound/ambience/ambigen10.ogg')
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/outpost
+	name = "Solfed Outpost"
+	ambientsounds = list('sound/ambience/ambigen4.ogg', 'sound/ambience/signal.ogg')
+	sub_areas = list(/area/ruin/space/has_grav/bluemoon/solfed_ship/outpost_shower)
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/outpost_shower
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "shower"
+	name = "Solfed Outpost Shower"
+	valid_to_shower = TRUE
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/cargopod
+	name = "Solfed Cargo pod"
+	ambientsounds = list('sound/ambience/ambigen4.ogg', 'sound/ambience/signal.ogg')
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/vault
+	name = "Solfed Vault"
+	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/bar
+	name = "Solfed Bar"
+	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/bridge
+	name = "Solfed Bridge"
+	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/medbay
+	name = "Solfed Medical Bay"
+	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/atmos
+	name = "Solfed Turbine Control"
+	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/rnd
+	name = "Solfed Research and Development"
+	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/permabrig
+	name = "Solfed Permanent Brig"
+	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
+	sub_areas = list(/area/ruin/space/has_grav/bluemoon/solfed_ship/permabrig_shower)
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/permabrig_shower
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "shower"
+	name = "Solfed Permanent Brig Shower"
+	valid_to_shower = TRUE
+
+/area/ruin/space/has_grav/bluemoon/solfed_ship/inspection
+	name = "Solfed Inspection room"
+	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg')
+
 //Special NT NPCs
 
 /mob/living/simple_animal/hostile/nanotrasen/ranged/assault
