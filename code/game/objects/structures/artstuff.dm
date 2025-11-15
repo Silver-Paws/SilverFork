@@ -319,6 +319,7 @@
 		/obj/item/canvas/twentythreeXnineteen,
 		/obj/item/canvas/twentythreeXtwentythree,
 		/obj/item/canvas/twentyfour_twentyfour,
+		/obj/item/canvas/ultra_big
 	)
 	/// the type of wallframe it 'disassembles' into
 	var/wallframe_type = /obj/item/wallframe/painting
