@@ -72,6 +72,7 @@
 	icon_state = "shiro"
 	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/accessories.dmi'
 	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/accessories.dmi'
+	flash_protect = 0
 
 
 ////////////////////////
@@ -421,3 +422,17 @@
 	new /obj/item/clothing/head/ranger_helmet(src)
 	new /obj/item/clothing/under/donator/bm/ranger_uniform(src)
 	new /obj/item/clothing/mask/gas/syndicate/ranger_gasmask(src)
+
+////////////////////////
+
+/obj/item/clothing/glasses/halvedspectacles
+	name = "halved violet spectacles"
+	desc = "\"Половинки\"-очки в оправе тёмно-золотого оттенка. В них вставлены линзы фиалкового цвета. Пахнут фундуком."
+	icon_state = "coldhalved_s"
+	item_state = "coldhalved_s"
+	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/accessories.dmi'
+	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/accessories.dmi'
+	lefthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/accessories_left.dmi'
+	righthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/accessories_right.dmi'
+
+////////////////////////

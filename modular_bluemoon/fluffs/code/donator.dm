@@ -1283,12 +1283,18 @@
 
 /datum/gear/donator/bm/mengineer_hardhat
 	name = "Master Engineer's Hardhat"
-	slot = ITEM_SLOT_BACKPACK
+	slot = ITEM_SLOT_HEAD
 	path = /obj/item/clothing/head/hardhat/weldhat/mengineer
 	ckeywhitelist = list("silverfoxpaws")
 	restricted_desc = "Station Engineer"
 	restricted_roles = list("Station Engineer")
 	cost = 2
+
+/datum/gear/donator/bm/halvedspectacles
+	name = "Halved Violet Spectacles"
+	slot = ITEM_SLOT_EYES
+	path = /obj/item/clothing/glasses/halvedspectacles
+	ckeywhitelist = list("silverfoxpaws")
 
 /////////////////////////////////////
 
