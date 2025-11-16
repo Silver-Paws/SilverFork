@@ -66,13 +66,12 @@
 
 ////////
 
-/obj/item/clothing/glasses/sunglasses/shiro
+/obj/item/clothing/glasses/shiro
 	name = "Shiro's Sunglasses"
 	desc = "These silver aviators belong to Shiro Silverhand."
 	icon_state = "shiro"
 	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/accessories.dmi'
 	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/accessories.dmi'
-	flash_protect = 0
 
 
 ////////////////////////
