@@ -285,16 +285,16 @@
 	path = /obj/item/clothing/accessory/tratch_patch
 	ckeywhitelist = list("fryktik", "hazzi", "targon38", "ghos7ik", "devildeadspace", "trora", "happycrab")
 
-/datum/gear/donator/bm/SH_jacket
+/datum/gear/donator/bm/sh_jacket
 	name = "Shiro Silverhand Jacket"
 	slot = ITEM_SLOT_OCLOTHING
-	path = /obj/item/clothing/suit/donator/bm/SH_jacket
+	path = /obj/item/clothing/suit/donator/bm/sh_jacket
 	ckeywhitelist = list("vulpshiro", "dolbajob", "ordinarylife", "z67", "devildeadspace", "enigma418")
 
-/datum/gear/donator/bm/SH_glasses
+/datum/gear/donator/bm/sh_glasses
 	name = "Shiro Silverhand Glasses"
 	slot = ITEM_SLOT_EYES
-	path = /obj/item/clothing/glasses/sunglasses/shiro
+	path = /obj/item/clothing/glasses/shiro
 	ckeywhitelist = list("vulpshiro", "dolbajob", "ordinarylife", "z67", "devildeadspace", "enigma418")
 
 /datum/gear/donator/bm/emma_plush
@@ -1283,12 +1283,18 @@
 
 /datum/gear/donator/bm/mengineer_hardhat
 	name = "Master Engineer's Hardhat"
-	slot = ITEM_SLOT_BACKPACK
+	slot = ITEM_SLOT_HEAD
 	path = /obj/item/clothing/head/hardhat/weldhat/mengineer
 	ckeywhitelist = list("silverfoxpaws")
 	restricted_desc = "Station Engineer"
 	restricted_roles = list("Station Engineer")
 	cost = 2
+
+/datum/gear/donator/bm/halvedspectacles
+	name = "Halved Violet Spectacles"
+	slot = ITEM_SLOT_EYES
+	path = /obj/item/clothing/glasses/halvedspectacles
+	ckeywhitelist = list("silverfoxpaws")
 
 /////////////////////////////////////
 
