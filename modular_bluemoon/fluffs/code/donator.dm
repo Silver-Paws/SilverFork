@@ -961,7 +961,7 @@
 	name = "P320 kit"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/modkit/p320_kit
-	ckeywhitelist = list("pingvas", "ty4ka.ha.hebe")
+	ckeywhitelist = list("pingvas", "ty4kahahebe")
 
 /datum/gear/donator/bm/dedication_kit
 	name = "Dedication kit"
@@ -1238,6 +1238,12 @@
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/choice_beacon/pet/wertyanmoth
 	ckeywhitelist = list("silverfoxpaws", "wertan", "vlonger", "techgrid", "saimon228")
+
+/datum/gear/donator/bm/pet_lilmoth
+	name = "Little pet Moth"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/choice_beacon/pet/lilmoth
+	ckeywhitelist = list("saimon228")
 
 /datum/gear/donator/bm/tavern_skirt
 	name = "Tavern skirt"
