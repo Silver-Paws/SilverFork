@@ -919,7 +919,7 @@
 	name = "Red bra and striped skirt"
 	slot = ITEM_SLOT_ICLOTHING
 	path = /obj/item/clothing/under/donator/bm/braskirt
-	ckeywhitelist = list("deltarayx")
+	ckeywhitelist = list("deltarayx", "shizalrp")
 
 /datum/gear/donator/bm/mihana_mask
 	name = "Andromeda mask"
