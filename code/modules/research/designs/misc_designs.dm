@@ -791,7 +791,7 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/plastic = 1000)
 	build_path = /obj/item/stack/sticky_tape
-	category = list("initial", "Equipment")
+	category = list("initial", "Equipment", "Misc")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/super_sticky_tape
