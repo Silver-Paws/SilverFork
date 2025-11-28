@@ -585,7 +585,7 @@
 		for(var/i in custom_materials)
 			var/datum/material/M = i
 			materials_list += "[M.name]"
-		. += "<u>Сделано из следующих материалов:</u> [english_list(materials_list)]."
+		. += "<u>Сделано из:</u> [english_list(materials_list)]."
 	if(reagents)
 		. += "<hr>"
 		if(reagents.reagents_holder_flags & TRANSPARENT)
