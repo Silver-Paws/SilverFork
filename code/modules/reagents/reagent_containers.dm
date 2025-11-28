@@ -50,7 +50,7 @@
 	var/N = input("Объём переливания:","[src]") as null|anything in possible_transfer_amounts
 	if(N)
 		amount_per_transfer_from_this = N
-		to_chat(usr, "<span class='notice'>[src] теперь переливает за раз [amount_per_transfer_from_this]u.</span>")
+		to_chat(usr, "<span class='notice'>[src] теперь переливает [amount_per_transfer_from_this]u за раз.</span>")
 
 /obj/item/reagent_containers/proc/add_initial_reagents()
 	if(list_reagents)

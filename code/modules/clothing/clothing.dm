@@ -248,11 +248,11 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
 		var/zone_name = ru_gde_zone(zone)
 		switch(pct_damage_part)
 			if(100 to INFINITY)
-				. += "<span class='warning'><b>Поверхность на [zone_name] разорвана на части и требует ремонта!</b></span>"
+				. += "<span class='warning'><b>Материал на [zone_name] разорван на части и требует ремонта!</b></span>"
 			if(60 to 99)
-				. += "<span class='warning'>Поверхность на [zone_name] сильно порвана!</span>"
+				. += "<span class='warning'>Материал на [zone_name] сильно порван!</span>"
 			if(30 to 59)
-				. += "<span class='danger'>Поверхность на [zone_name] надорвана и имеет дыры.</span>"
+				. += "<span class='danger'>Материал на [zone_name] надорван и имеет дыры.</span>"
 	var/datum/component/storage/pockets = GetComponent(/datum/component/storage)
 	if(pockets)
 		var/list/how_cool_are_your_threads = list("<span class='notice'>")
@@ -309,7 +309,7 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
 				var/armor_amount = armor_list[dam_type]
 				readout += "\n[dam_type] [armor_to_protection_class(armor_amount)]" //e.g. BOMB IV
 		if(LAZYLEN(durability_list))
-			readout += "\n<b>СТОЙКОСТЬ</b>"
+			readout += "\n<b>УСТОЙЧИВОСТЬ</b>"
 			for(var/dam_type in durability_list)
 				var/durability_amount = durability_list[dam_type]
 				readout += "\n[dam_type] [armor_to_protection_class(durability_amount)]" //e.g. FIRE II
