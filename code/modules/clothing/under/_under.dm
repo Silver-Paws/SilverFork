@@ -267,9 +267,9 @@
 	. = ..()
 	if(can_adjust)
 		if(adjusted == ALT_STYLE)
-			. += "Alt-click по [src] для нормального стиля ношения."
+			. += "Alt-click для нормального стиля ношения."
 		else
-			. += "Alt-click по [src] для повседневного стиля ношения."
+			. += "Alt-click для повседневного стиля ношения."
 	switch(has_sensor)
 		if(BROKEN_SENSORS)
 			. += "<span class='warning'>Сенсоры полностью вышли из строя. Их можно починить кабелем.</span>"

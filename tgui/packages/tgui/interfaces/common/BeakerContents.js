@@ -6,7 +6,7 @@ export const BeakerContents = props => {
     <Box>
       {!beakerLoaded && (
         <Box color="label">
-          Ёмкость отсутствует.
+          Реагенты отсутствуют.
         </Box>
       ) || beakerContents.length === 0 && (
         <Box color="label">

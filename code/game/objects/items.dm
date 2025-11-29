@@ -302,16 +302,16 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	. += "[gender == PLURAL ? "Это вещи" : "Это предмет"] [weight_class_to_text(w_class)] размера."
 
 	if(resistance_flags & INDESTRUCTIBLE)
-		. += "[src] выглядит особенно прочно! Скорее всего, выдержит что угодно!"
+		. += "[gender == PLURAL ? "Оно" : "Этот предмет"] выглядит особенно прочным! Скорее всего, выдержит что угодно!"
 	else
 		if(resistance_flags & LAVA_PROOF)
-			. += "[src] содержит особо огнеупорный материал и, скорее всего, переживёт лаву!"
+			. += "[gender == PLURAL ? "Эти вещи содержат" : "Этот предмет содержит"] особо огнеупорный материал и, скорее всего, пережив[gender == PLURAL ? "ут" : "ёт"] лаву!"
 		if(resistance_flags & (ACID_PROOF | UNACIDABLE))
-			. += "[src] выглядит кислотостойко."
+			. += "[gender == PLURAL ? "Эти вещи выглядят устойчивыми" : "Этот предмет выглядит устойчивым"] к кислоте."
 		if(resistance_flags & FREEZE_PROOF)
-			. += "[src] содержит морозостойкие материалы."
+			. += "[gender == PLURAL ? "Эти вещи выглядят устойчивыми" : "Этот предмет выглядит устойчивым"] к холоду."
 		if(resistance_flags & FIRE_PROOF)
-			. += "[src] содержит огнеупорные материалы."
+			. += "[gender == PLURAL ? "Эти вещи выглядят устойчивыми" : "Этот предмет выглядит устойчивым"] к огню."
 
 	if(item_flags & (ITEM_CAN_BLOCK | ITEM_CAN_PARRY))
 		var/datum/block_parry_data/data = return_block_parry_datum(block_parry_data)

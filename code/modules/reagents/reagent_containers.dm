@@ -33,9 +33,9 @@
 /obj/item/reagent_containers/examine(mob/user)
 	. = ..()
 	if(length(possible_transfer_amounts) > 1)
-		. += "В данный момент переливается [amount_per_transfer_from_this]u за раз."
+		. += "В данный момент используется [amount_per_transfer_from_this] u за раз."
 		if(container_flags & APTFT_ALTCLICK && user.Adjacent(src))
-			. += "<span class='notice'>Alt-click для настройки объёмов переливания.</span>"
+			. += "<span class='notice'>Alt-click для настройки объёмов использования.</span>"
 
 /obj/item/reagent_containers/AltClick(mob/user)
 	. = ..()

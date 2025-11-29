@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 /obj/item/pda
 	name = "\improper PDA"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
+	desc = "Портативный микрокомпьютер от Thinktronic Systems, LTD. Функционал определяется препрограммированными ROM картриджами."
 	icon = 'icons/obj/pda_alt.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/ttone = "beep" //The ringtone!
 	var/honkamt = 0 //How many honks left when infected with honk.exe
 	var/mimeamt = 0 //How many silence left when infected with mime.exe
-	var/note = "Congratulations, your station has chosen the Thinktronic 5230 Personal Data Assistant! To help with navigation, we have provided the following definitions. North: Fore. South: Aft. West: Port. East: Starboard. Quarter is either side of aft." //Current note in the notepad function
+	var/note = "Поздравляем, вашу станцию избрали для поддержки программой Thinktronic 5230 Personal Data Assistant! Для помощи в навигации, мы приложили словарь направлений станции как судна. Север: нос. Юг: корма. Запад: левый борт. Восток: правый борт. Диагональ есть диагональ." //Current note in the notepad function
 	var/notehtml = ""
 	var/notescanned = FALSE // True if what is in the notekeeper was from a paper.
 	var/detonatable = TRUE // Can the PDA be blown up?
@@ -113,9 +113,9 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 /obj/item/pda/examine(mob/user)
 	. = ..()
-	. += id ? "<span class='notice'>Alt-click to remove the id.</span>" : ""
+	. += id ? "<span class='notice'>Alt-click для извлечения ID-карты.</span>" : ""
 	if(inserted_item && (!isturf(loc)))
-		. += "<span class='notice'>Ctrl-click to remove [inserted_item].</span>"
+		. += "<span class='notice'>Ctrl-click для извлечения [inserted_item].</span>"
 
 /obj/item/pda/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
@@ -279,8 +279,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	if (mode == 0)
 		dat += "<div align=\"center\">"
-		dat += "<br><a href='byond://?src=[REF(src)];choice=Toggle_Font'>Сменить шрифт</a>"
-		dat += " | <a href='byond://?src=[REF(src)];choice=Change_Color'>Сменить цвет</a>"
+		dat += "<br><a href='byond://?src=[REF(src)];choice=Toggle_Font'>Шрифт</a>"
+		dat += " | <a href='byond://?src=[REF(src)];choice=Change_Color'>Цвет экрана</a>"
 		dat += " | <a href='byond://?src=[REF(src)];choice=Toggle_Underline'>Подчёркивание</a>" //underline button
 
 		dat += "</div>"
@@ -303,72 +303,72 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 				dat += "<br><br>"
 
-				dat += "<h4>General Functions</h4>"
+				dat += "<h4>Основной функционал</h4>"
 				dat += "<ul>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=1'>[PDAIMG(notes)]Блокнот</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=2'>[PDAIMG(mail)]Мессенджер</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=41'>[PDAIMG(notes)]Манифест Экипажа</a></li>" // BLUEMOON ADD
+				dat += "<li><a href='byond://?src=[REF(src)];choice=41'>[PDAIMG(notes)]Манифест экипажа</a></li>" // BLUEMOON ADD
 
 				if (cartridge)
 					if (cartridge.access & CART_CLOWN)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Honk'>[PDAIMG(honk)]Honk Synthesizer</a></li>"
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Trombone'>[PDAIMG(honk)]Sad Trombone</a></li>"
 					if(cartridge.access & CART_STATUS_DISPLAY)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=42'>[PDAIMG(status)]Задать Статус-Дисплей</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=42'>[PDAIMG(status)]Интерлинк статус-дисплеев</a></li>"
 					dat += "</ul>"
 					if (cartridge.access & CART_ENGINE)
-						dat += "<h4>Engineering Functions</h4>"
+						dat += "<h4>Инженерные утилиты</h4>"
 						dat += "<ul>"
-						dat += "<li><a href='byond://?src=[REF(src)];choice=43'>[PDAIMG(power)]Монитор Питания</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=43'>[PDAIMG(power)]Консоли питания</a></li>"
 						dat += "</ul>"
 					if (cartridge.access & CART_MEDICAL)
-						dat += "<h4>Medical Functions</h4>"
+						dat += "<h4>Медицинские утилиты</h4>"
 						dat += "<ul>"
-						dat += "<li><a href='byond://?src=[REF(src)];choice=44'>[PDAIMG(medical)]Мед. Данные</a></li>"
-						dat += "<li><a href='byond://?src=[REF(src)];choice=Medical Scan'>[PDAIMG(scanner)][scanmode == 1 ? "Disable" : "Enable"] Мед. Сканер</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=44'>[PDAIMG(medical)]Мед. данные</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Medical Scan'>[PDAIMG(scanner)][scanmode == 1 ? "Выключить" : "Включить"] Мед. сканер</a></li>"
 						dat += "</ul>"
 					if (cartridge.access & CART_SECURITY)
-						dat += "<h4>Security Functions</h4>"
+						dat += "<h4>Охранные утилиты</h4>"
 						dat += "<ul>"
-						dat += "<li><a href='byond://?src=[REF(src)];choice=45'>[PDAIMG(cuffs)]База Данных СБ</A></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=45'>[PDAIMG(cuffs)]База данных СБ</A></li>"
 						dat += "</ul>"
 					if(cartridge.access & CART_QUARTERMASTER)
-						dat += "<h4>Quartermaster Functions:</h4>"
+						dat += "<h4>Утилиты квартирмейстера:</h4>"
 						dat += "<ul>"
-						dat += "<li><a href='byond://?src=[REF(src)];choice=47'>[PDAIMG(crate)]База Данных Карго</A></li>"
-						dat += "<li><a href='byond://?src=[REF(src)];choice=48'>[PDAIMG(crate)]Архив Операций Сило</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=47'>[PDAIMG(crate)]База данных карго</A></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=48'>[PDAIMG(crate)]Архив операций сило</a></li>"
 						dat += "</ul>"
 				dat += "</ul>"
 
-				dat += "<h4>Utilities</h4>"
+				dat += "<h4>Программы</h4>"
 				dat += "<ul>"
 				if (cartridge)
 					if(cartridge.bot_access_flags)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=54'>[PDAIMG(medbot)]Связь с Ботами</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=54'>[PDAIMG(medbot)]Интерлинк: боты</a></li>"
+					if (cartridge.access & CART_DRONEPHONE)
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Drone Phone'>[PDAIMG(dronephone)]Интерлинк: дроны</a></li>"
 					if (cartridge.access & CART_JANITOR)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=49'>[PDAIMG(bucket)]Custodial Locator</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=49'>[PDAIMG(bucket)]Инструменты уборщика</a></li>"
 					if(cartridge.access & CART_MIME)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=55'>[PDAIMG(emoji)]Emoji Guidebook</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=55'>[PDAIMG(emoji)]Руководство по эмодзи</a></li>"
 					if (istype(cartridge.radio))
-						dat += "<li><a href='byond://?src=[REF(src)];choice=40'>[PDAIMG(signaler)]Signaler System</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=40'>[PDAIMG(signaler)]Радиосигналер</a></li>"
 					if (cartridge.access & CART_NEWSCASTER)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=53'>[PDAIMG(notes)]Newscaster </a></li>"
 					if (cartridge.access & CART_REAGENT_SCANNER)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=Reagent Scan'>[PDAIMG(reagent)][scanmode == 3 ? "Disable" : "Enable"] Сканер Веществ</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Reagent Scan'>[PDAIMG(reagent)][scanmode == 3 ? "Выключить" : "Включить"] сканер веществ</a></li>"
 					if (cartridge.access & CART_ENGINE)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=Halogen Counter'>[PDAIMG(reagent)][scanmode == 4 ? "Disable" : "Enable"] Галогенный счётчик</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Halogen Counter'>[PDAIMG(reagent)][scanmode == 4 ? "Выключить" : "Включить"] галогенный счётчик</a></li>"
 					if (cartridge.access & CART_ATMOS)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=Gas Scan'>[PDAIMG(reagent)][scanmode == 5 ? "Disable" : "Enable"] Сканер Газов</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Gas Scan'>[PDAIMG(reagent)][scanmode == 5 ? "Выключить" : "Включить"] сканер газов</a></li>"
 					if (cartridge.access & CART_REMOTE_DOOR)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=Toggle Door'>[PDAIMG(rdoor)]Переключатель Шлюзов</a></li>"
-					if (cartridge.access & CART_DRONEPHONE)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=Drone Phone'>[PDAIMG(dronephone)]Вызов Дрона</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Toggle Door'>[PDAIMG(rdoor)]Переключатель шлюзов</a></li>"
 					if (cartridge.access & CART_BARTENDER)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=Drink Recipe Browser'>[PDAIMG(bucket)]Браузер Рецептов Напитков</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Drink Recipe Browser'>[PDAIMG(bucket)]Браузер рецептов: напитки</a></li>"
 					if (cartridge.access & CART_CHEMISTRY)
-						dat += "<li><a href='byond://?src=[REF(src)];choice=Chemistry Recipe Browser'>[PDAIMG(bucket)]Браузер Рецептов Химии</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=3'>[PDAIMG(atmos)]Сканирование Атмосферы</a></li>"
-				dat += "<li><a href='byond://?src=[REF(src)];choice=Light'>[PDAIMG(flashlight)][fon ? "Выключить" : "Включить"] Фонарик</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Chemistry Recipe Browser'>[PDAIMG(bucket)]Браузер рецептов: химия</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=3'>[PDAIMG(atmos)]Анализ атмосферного газа</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=Light'>[PDAIMG(flashlight)][fon ? "Выключить" : "Включить"] фонарик</a></li>"
 				if (pai)
 					if(pai.loc != src)
 						pai = null
@@ -387,10 +387,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 			if (2)
 				dat += "<h4>[PDAIMG(mail)] SpaceMessenger V3.9.6</h4>"
+				dat += "<a href='byond://?src=[REF(src)];choice=Ringtone'>[PDAIMG(bell)]Рингтон</a> | "
+				dat += "<a href='byond://?src=[REF(src)];choice=21'>[PDAIMG(mail)]Сообщения</a><br>"
 				dat += "<a href='byond://?src=[REF(src)];choice=Toggle Messenger'>[PDAIMG(mail)]Отправка / Получение: [toff == 1 ? "Off" : "On"]</a> | "
 				dat += "<a href='byond://?src=[REF(src)];choice=Toggle Ringer'>[PDAIMG(bell)]Уведомления: [silent == 1 ? "Off" : "On"]</a> | "
-				dat += "<a href='byond://?src=[REF(src)];choice=Ringtone'>[PDAIMG(bell)]Задать Рингтон</a> | "
-				dat += "<a href='byond://?src=[REF(src)];choice=21'>[PDAIMG(mail)]Сообщения</a><br>"
 
 				if(cartridge)
 					dat += cartridge.message_header()
@@ -450,7 +450,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					dat += "Температура: [round(environment.return_temperature()-T0C)]&deg;C<br>"
 				dat += "<br>"
 			if (41) //crew manifest
-				dat += "<h4>[PDAIMG(notes)] Манифест Экипажа</h4>"
+				dat += "<h4>[PDAIMG(notes)] Манифест экипажа</h4>"
 				dat += "<center>[GLOB.data_core.get_manifest_bm(monochrome=TRUE)]</center>"
 			else//Else it links to the cart menu proc. Although, it really uses menu hub 4--menu 4 doesn't really exist as it simply redirects to hub.
 				dat += cartridge.generate_menu()

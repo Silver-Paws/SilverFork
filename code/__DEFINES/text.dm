@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(mat_ru_genitive, list(
     "plasma" = "плазмы",
     "gold" = "золота",
     "silver" = "серебра",
-    "diamond" = "алмаза",
+    "diamond" = "алмазов",
     "uranium" = "урана",
     "titanium" = "титана",
     "plasma glass" = "плазменного стекла",
