@@ -50,7 +50,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 /obj/item/storage/part_replacer/bluespace
 	name = "bluespace rapid part exchange device"
-	desc = "Версия RPED, позволяющая лучшать и сканировать машинерию дистанционно, с большей ёмкостью хранилища деталей."
+	desc = "Версия RPED, позволяющая улучшать и сканировать машинерию дистанционно, и с высокой ёмкостью хранилища деталей."
 	icon_state = "BS_RPED"
 	item_state = "BS_RPED"
 	w_class = WEIGHT_CLASS_NORMAL

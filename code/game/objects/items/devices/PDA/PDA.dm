@@ -275,7 +275,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if ((!isnull(cartridge)) && (mode == 0))
 		dat += " | <a href='byond://?src=[REF(src)];choice=Eject'>[PDAIMG(eject)]Извлечь [cartridge]</a>"
 	if (mode)
-		dat += " | <a href='byond://?src=[REF(src)];choice=Return'>[PDAIMG(menu)]Вернуться</a>"
+		dat += " | <a href='byond://?src=[REF(src)];choice=Return'>[PDAIMG(menu)]Назад</a>"
 
 	if (mode == 0)
 		dat += "<div align=\"center\">"

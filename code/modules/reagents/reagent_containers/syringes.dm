@@ -159,7 +159,7 @@
 			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 			reagents.reaction(L, INJECT, fraction)
 			reagents.trans_to(target, amount_per_transfer_from_this, log = TRUE)
-			to_chat(user, "<span class='notice'>Вы вкололи себе [amount_per_transfer_from_this] u раствора. В шприце осталось [reagents.total_volume] u.</span>")
+			to_chat(user, "<span class='notice'>Вы вкололи [amount_per_transfer_from_this] u раствора. В шприце осталось [reagents.total_volume] u.</span>")
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
