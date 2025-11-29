@@ -191,7 +191,7 @@
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	if(name == "Chem Dispenser" || name == "Reagent Synthesizer")
 		if(HAS_TRAIT(user, TRAIT_PACIFISM))
-			to_chat(user, span_notice("Я боюсь использовать [src]... вдруг это приведёт к катастрофическим последствиям?"))
+			to_chat(user, span_notice("Я боюсь использовать [src]... Вдруг это приведёт к катастрофическим последствиям?"))
 			return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
