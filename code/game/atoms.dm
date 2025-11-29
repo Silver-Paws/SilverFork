@@ -584,8 +584,8 @@
 		var/list/materials_list = list()
 		for(var/i in custom_materials)
 			var/datum/material/M = i
-			materials_list += "[M.name]"
-		. += "<u>Сделано из:</u> [english_list(materials_list)]."
+			materials_list += material_to_ru_genitive(M.name)
+		. += "<u>Сделано из [english_list(materials_list)]</u>."
 	if(reagents)
 		. += "<hr>"
 		if(reagents.reagents_holder_flags & TRANSPARENT)
@@ -593,22 +593,22 @@
 			if(length(reagents.reagent_list))
 				if(user.can_see_reagents()) //Show each individual reagent
 					for(var/datum/reagent/R in reagents.reagent_list)
-						. += "[R.volume]u [R.name]"
+						. += "[R.volume] u [R.name]"
 					. += span_engradio("Температура: [round(reagents.chem_temp, 1)] K ([round(reagents.chem_temp-T0C, 1)] &deg;C)")
 					. += span_radio("pH: [round(reagents.pH, 0.01)]")
+				. += "<hr>"
 				else //Otherwise, just show the total volume
 					var/total_volume = 0
 					for(var/datum/reagent/R in reagents.reagent_list)
 						total_volume += R.volume
-					. += "Около [total_volume]u какого-то вещества."
+					. += "Около [total_volume] u какого-то вещества."
 			else
 				. += "Ничего."
 		else if(reagents.reagents_holder_flags & AMOUNT_VISIBLE)
 			if(reagents.total_volume)
-				. += "<span class='notice'>Внутри осталось [reagents.total_volume] юнитов вещества.</span>"
+				. += "<span class='notice'>Внутри осталось [reagents.total_volume] u вещества.</span>"
 			else
 				. += "<span class='danger'>Внутри пусто.</span>"
-		. += "<hr>"
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 

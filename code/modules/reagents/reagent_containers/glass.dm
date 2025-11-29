@@ -98,7 +98,7 @@
 			return
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this, log = "reagentcontainer-glass afterattack transfer to")
-		to_chat(user, "<span class='notice'>Вы перелили [trans]u веществ в [target].</span>")
+		to_chat(user, "<span class='notice'>Вы перелили [trans] u веществ в [target].</span>")
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume)
@@ -110,7 +110,7 @@
 			return
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, log = "reagentcontainer-glass afterattack fill from")
-		to_chat(user, "<span class='notice'>Вы заполнили [src] на [trans]u содержимого [target].</span>")
+		to_chat(user, "<span class='notice'>Вы заполнили [src] на [trans] u содержимого [target].</span>")
 
 	else if(reagents.total_volume)
 		if(user.a_intent == INTENT_HARM)
@@ -139,7 +139,7 @@
 
 /obj/item/reagent_containers/glass/beaker
 	name = "beaker"
-	desc = "Мензурка. Может держать 60u объёма. Не выдержит экстремальные алканно-кислотные значения pH."
+	desc = "Мензурка. Может держать 60 u объёма. Не выдержит экстремальные алканно-кислотные значения pH."
 	icon = 'icons/obj/chemical.dmi'
 	volume = 60
 	icon_state = "beaker"
@@ -186,12 +186,12 @@
 
 /obj/item/reagent_containers/glass/beaker/jar
 	name = "honey jar"
-	desc = "Банка из под мёда, может держать до 60u сладкого удовольствия. Плавится, если у вещества внутри радикальные значения pH."
+	desc = "Банка из под мёда, может держать до 60 u сладкого удовольствия. Плавится, если у вещества внутри радикальные значения pH."
 	icon_state = "honey"
 
 /obj/item/reagent_containers/glass/beaker/glass_dish
 	name = "glass dish"
-	desc = "Стеклянное блюдце... В него можно налить до 3u. Плавится, если у вещества внутри радикальные значения pH."
+	desc = "Стеклянное блюдце... В него можно налить до 3 u. Плавится, если у вещества внутри радикальные значения pH."
 	custom_materials = list(/datum/material/glass = 500)
 	icon_state = "glass_disk"
 	possible_transfer_amounts = list(0.1,0.5,0.75,1,2,3)
@@ -199,21 +199,21 @@
 
 /obj/item/reagent_containers/glass/beaker/flask/large
 	name = "large flask"
-	desc = "Большая колба, объёмом в 80u. Плавится, если у вещества внутри радикальные значения pH."
+	desc = "Большая колба, объёмом в 80 u. Плавится, если у вещества внутри радикальные значения pH."
 	custom_materials = list(/datum/material/glass = 2500)
 	icon_state = "flasklarge"
 	volume = 80
 
 /obj/item/reagent_containers/glass/beaker/flask
 	name = "small flask"
-	desc = "Малая колба, объёмом в 40u. Плавится, если у вещества внутри радикальные значения pH."
+	desc = "Малая колба, объёмом в 40 u. Плавится, если у вещества внутри радикальные значения pH."
 	custom_materials = list(/datum/material/glass = 1000)
 	icon_state = "flasksmall"
 	volume = 40
 
 /obj/item/reagent_containers/glass/beaker/flask/spouty
 	name = "flask with spout"
-	desc = "Колба с носиком! Объёмом в 120u. Плавится, если у вещества внутри радикальные значения pH."
+	desc = "Колба с носиком! Объёмом в 120 u. Плавится, если у вещества внутри радикальные значения pH."
 	custom_materials = list(/datum/material/glass = 2500)
 	icon_state = "flaskspouty"
 	possible_transfer_amounts = list(1,2,3,4,5,10,15,20,25,30,50,100,120)
@@ -221,7 +221,7 @@
 
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
-	desc = "Большая мензурка, объёмом в 120u. Плавится, если у вещества внутри радикальные значения pH."
+	desc = "Большая мензурка, объёмом в 120 u. Плавится, если у вещества внутри радикальные значения pH."
 	icon_state = "beakerlarge"
 	custom_materials = list(/datum/material/glass=2500)
 	volume = 120
@@ -231,7 +231,7 @@
 
 /obj/item/reagent_containers/glass/beaker/plastic
 	name = "x-large beaker"
-	desc = "Мензурка экстра-размера, объёмом в 180u. Выдерживает кислотные и алканные растворы, но плавится при температуре 444 K."
+	desc = "Мензурка экстра-размера, объёмом в 180 u. Выдерживает кислотные и алканные растворы, но плавится при температуре 444 K."
 	icon_state = "beakerwhite"
 	custom_materials = list(/datum/material/glass=2500, /datum/material/plastic=3000)
 	volume = 180
@@ -242,7 +242,7 @@
 
 /obj/item/reagent_containers/glass/beaker/meta
 	name = "metamaterial beaker"
-	desc = "Особо большая мензурка из метаматериалов. Может держать до 240u и стрессоустойчива к любым химическим задачам."
+	desc = "Особо большая мензурка из метаматериалов. Может держать до 240 u и стрессоустойчива к любым химическим задачам."
 	icon_state = "beakergold"
 	custom_materials = list(/datum/material/glass=2500, /datum/material/plastic=3000, /datum/material/gold=1000, /datum/material/titanium=1000)
 	volume = 240
@@ -253,7 +253,7 @@
 /obj/item/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
 	desc = "Криостазисная мензурка, позволяющая хранить реагенты \
-			без реакционного смешивания. Может держать до 50u. "
+			без реакционного смешивания. Может держать до 50 u."
 	icon_state = "beakernoreact"
 	custom_materials = list(/datum/material/iron=3000)
 	reagent_flags = OPENCONTAINER | NO_REACT
@@ -266,7 +266,7 @@
 	name = "bluespace beaker"
 	desc = "Блюспейс-мензурка, улучшенная экспериментальной блюспейс-технологией \
 		и технологией Element Cuban в совокупности с технологией Compound Pete. \
-		Может держать до 300u. Не выдержит вещества слишком высоких или низких значений pH."
+		Может держать до 300 u. Не выдержит вещества слишком высоких или низких значений pH."
 	icon_state = "beakerbluespace"
 	custom_materials = list(/datum/material/glass = 5000, /datum/material/plasma = 3000, /datum/material/diamond = 1000, /datum/material/bluespace = 1000)
 	volume = 300

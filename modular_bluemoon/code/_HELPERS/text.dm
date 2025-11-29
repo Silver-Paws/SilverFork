@@ -160,3 +160,11 @@
 		winners += haystack[i]
 
 	return winners
+
+// Прок-хелпер для examine-string'а материалов. Нужен по большей части для бэкапа неучтённых словарём материалов, а также если будут новые материалы.
+/proc/material_to_ru_genitive(mat_name)
+	var/ru = GLOB.mat_ru_genitive[lowertext(mat_name)]
+	if(ru)
+		return ru
+
+	return mat_name
