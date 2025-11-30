@@ -284,9 +284,9 @@
 			if(SENSOR_LIVING)
 				. += "Бинарные сенсоры статуса смерти включены."
 			if(SENSOR_VITALS)
-				. += "Сенсоры здоровья отслеживания здоровья выключены."
+				. += "Сенсоры жизненных показателей выключены."
 			if(SENSOR_COORDS)
-				. += "Сенсоры здоровья и маячок местонахождения включены."
+				. += "Сенсоры жизненных показателей и маячок местонахождения включены."
 	if(length(attached_accessories))
 		for(var/obj/item/clothing/accessory/attached_accessory in attached_accessories)
 			. += "\A [attached_accessory] находится на униформе."
@@ -321,28 +321,28 @@
 	if (src.loc == usr)
 		switch(sensor_mode_intended)
 			if(0)
-				to_chat(usr, "<span class='notice'>Вы отключили сенсорное оборудование вашей униформе.</span>")
+				to_chat(usr, "<span class='notice'>Вы отключили сенсорное оборудование вашей униформы.</span>")
 				sensor_mode = sensor_mode_intended
 			if(1)
-				to_chat(usr, "<span class='notice'>Ваша униформа будет отслеживать только то, в мертвом или живом вы состоянии.</span>")
+				to_chat(usr, "<span class='notice'>Ваша униформа будет сообщать только смерть своего владельца.</span>")
 				sensor_mode = sensor_mode_intended
 			if(2)
 				if(src.has_sensor == DAMAGED_SENSORS_LIVING)
-					to_chat(usr, "<span class='warning'>Сенсоры вашей униформы сломались, ввиду чего будут сообщаться только ваша смерть.</span>")
+					to_chat(usr, "<span class='warning'>Сенсоры вашей униформы сломались. Сообщается только смерть владельца.</span>")
 					sensor_mode = SENSOR_LIVING
 				else
-					to_chat(usr, "<span class='notice'>Ваша униформа будет отслеживать точное состояние здоровья.</span>")
+					to_chat(usr, "<span class='notice'>Ваша униформа будет отслеживать точное состояние жизненных показателей.</span>")
 					sensor_mode = sensor_mode_intended
 			if(3)
 				switch(src.has_sensor)
 					if(DAMAGED_SENSORS_LIVING)
-						to_chat(usr, "<span class='warning'>Сенсоры и маячок слежения вашей униформы сломались, ввиду чего сообщаться будет только ваша смерть.</span>")
+						to_chat(usr, "<span class='warning'>Сенсоры и маячок слежения вашей униформы сломались. Сообщается только смерть владельца.</span>")
 						sensor_mode = SENSOR_LIVING
 					if(DAMAGED_SENSORS_VITALS)
-						to_chat(usr, "<span class='warning'>Маячок слежения вашей униформы сломался, ввиду чего сообщаться будет только состояние вашего здоровья.</span>")
+						to_chat(usr, "<span class='warning'>Маячок слежения вашей униформы сломался. Сообщается только состояние жизненных показателей.</span>")
 						sensor_mode = SENSOR_VITALS
 					if(HAS_SENSORS)
-						to_chat(usr, "<span class='notice'>Ваша униформа теперь сообщает точное состояние здоровья и координатную позицию.</span>")
+						to_chat(usr, "<span class='notice'>Ваша униформа теперь сообщает точное состояние жизненных показателей и координатную позицию.</span>")
 						sensor_mode = sensor_mode_intended
 
 	if(ishuman(loc))
@@ -374,13 +374,13 @@
 
 	switch(src.has_sensor)
 		if(DAMAGED_SENSORS_LIVING)
-			to_chat(usr, "<span class='warning'>Сенсоры и маячок слежения вашей униформы сломались, ввиду чего сообщаться будет только ваша смерть.</span>")
+			to_chat(usr, "<span class='warning'>Сенсоры и маячок слежения вашей униформы сломались. Сообщается только смерть владельца.</span>")
 			sensor_mode = SENSOR_LIVING
 		if(DAMAGED_SENSORS_VITALS)
-			to_chat(usr, "<span class='warning'>Маячок слежения вашей униформы сломался, ввиду чего сообщаться будет только состояние вашего здоровья.</span>")
+			to_chat(usr, "<span class='warning'>Маячок слежения вашей униформы сломался. Сообщается только состояние жизненных показателей.</span>")
 			sensor_mode = SENSOR_VITALS
 		if(HAS_SENSORS)
-			to_chat(usr, "<span class='notice'>Ваша униформа теперь сообщает ваше точное состояние здоровья и координатную позицию.</span>")
+			to_chat(usr, "<span class='notice'>Ваша униформа теперь сообщает точное состояние жизненных показателей и координатную позицию.</span>")
 			sensor_mode = sensor_mode_intended
 
 	if(ishuman(user))
@@ -425,7 +425,7 @@
 			body_parts_covered &= ~CHEST
 			mutantrace_variation &= ~USE_TAUR_CLIP_MASK //How are we supposed to see the uniform otherwise?
 	else
-		to_chat(usr, "<span class='notice'>Вы поправили одежду в привычный вид.</span>")
+		to_chat(usr, "<span class='notice'>Вы поправили одежду в её привычный вид.</span>")
 		fitted = initial(fitted)
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
