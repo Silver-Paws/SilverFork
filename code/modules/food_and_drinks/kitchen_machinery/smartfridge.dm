@@ -3,7 +3,7 @@
 // -------------------------
 /obj/machinery/smartfridge
 	name = "smartfridge"
-	desc = "Хранит холодные вщеи холодными и горячие вещи холодными."
+	desc = "Хранит холодные вещи холодными и горячие вещи холодными."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "smartfridge"
 	layer = BELOW_OBJ_LAYER
