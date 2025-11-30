@@ -64,7 +64,7 @@ const ChemMasterContent = (props, context) => {
         )}
         {!!isBeakerLoaded && beakerContents.length === 0 && (
           <Box color="label" mt="3px" mb="5px">
-            Ёмкость отсутствует.
+            Ёмкость пуста.
           </Box>
         )}
         <ChemicalBuffer>

@@ -25,7 +25,7 @@
 
 /obj/item/storage/box
 	name = "Box"
-	desc = "It's just an ordinary box."
+	desc = "Самая обыкновенная коробка."
 	icon_state = "box"
 	item_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -563,7 +563,7 @@
 
 /obj/item/storage/box/bodybags
 	name = "body bags"
-	desc = "Этикетка даёт знать, что это мешок для трупов."
+	desc = "Этикетка даёт знать, что внутри мешки для трупов."
 	illustration = "bodybags"
 
 /obj/item/storage/box/bodybags/PopulateContents()

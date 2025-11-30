@@ -327,7 +327,7 @@
 			vol_each = vol_each_max
 		if(vol_each == null)
 			vol_each = text2num(input(usr,
-				"Макс. [vol_each_max] u на штуку.",
+				"Макс. [vol_each_max]u на штуку.",
 				"На какой объём заполнить?",
 				vol_each_max))
 		vol_each = clamp(vol_each, 0, vol_each_max)
@@ -339,10 +339,10 @@
 		if(!name)
 			var/name_default = reagents.get_master_reagent_name()
 			if (name_has_units)
-				name_default += " ([vol_each] u)"
+				name_default += " ([vol_each]u)"
 			name = stripped_input(usr,
-				"Име:",
-				"Присвойте имя!",
+				"Название:",
+				"Присвойте название!",
 				name_default,
 				MAX_NAME_LEN)
 		if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, !issilicon(usr)))

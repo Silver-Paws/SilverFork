@@ -13,7 +13,7 @@
 
 /obj/machinery/chem_dispenser
 	name = "Chem Dispenser"
-	desc = "Создаёт и выдаёт реагенты."
+	desc = "Создаёт и выдаёт препараты."
 	density = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
@@ -121,8 +121,8 @@
 		. += "<span class='notice'>Технический люк [src] открыт!</span>"
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>Статус-дисплей сообщает:\n\
-		Перезаряжается <b>[recharge_amount]</b> единиц заряда в цикл.\n\
-		Энергоэффективность повышена на <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
+		- Перезаряжается <b>[recharge_amount]</b> единиц заряда в цикл.\n\
+		- Энергоэффективность повышена на <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
 
 /obj/machinery/chem_dispenser/process()
 	if (recharge_counter >= 4)
@@ -594,7 +594,7 @@
 
 /obj/machinery/chem_dispenser/drinks
 	name = "Soda Dispenser"
-	desc = "Содержит огромное вместилище неалкогольных напитков."
+	desc = "Содержит огромное количество неалкогольных напитков."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "soda_dispenser"
 	has_panel_overlay = FALSE
@@ -659,7 +659,7 @@
 	)
 
 /obj/machinery/chem_dispenser/drinks/fullupgrade //fully ugpraded stock parts, emagged
-	desc = "Содержит огромное вместилище неалкогольных напитков. Конкретно у этого сбоят протоколы безопасности."
+	desc = "Содержит огромное количество неалкогольных напитков. Конкретно у этого сбоят протоколы безопасности."
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/fullupgrade
@@ -670,7 +670,7 @@
 
 /obj/machinery/chem_dispenser/drinks/beer
 	name = "Booze Dispenser"
-	desc = "Содержит огромное вместилище хорошего пойла."
+	desc = "Содержит огромное количество хорошего пойла."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "booze_dispenser"
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
@@ -712,7 +712,7 @@
 	)
 
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade //fully ugpraded stock parts, emagged
-	desc = "Содержит огромное вместилище хорошего пойла. Конкретно у этого сбоят протоколы безопасности."
+	desc = "Содержит огромное количество хорошего пойла. Конкретно у этого сбоят протоколы безопасности."
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer/fullupgrade

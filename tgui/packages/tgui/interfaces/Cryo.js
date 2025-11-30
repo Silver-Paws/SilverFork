@@ -38,10 +38,10 @@ const CryoContent = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <>
-      <Section title="Occupant">
+      <Section title="Пациент">
         <LabeledList>
-          <LabeledList.Item label="Occupant">
-            {data.occupant.name || 'No Occupant'}
+          <LabeledList.Item label="Пациент">
+            {data.occupant.name || 'Отсутствует'}
           </LabeledList.Item>
           {!!data.hasOccupant && (
             <>
@@ -80,9 +80,9 @@ const CryoContent = (props, context) => {
           )}
         </LabeledList>
       </Section>
-      <Section title="Cell">
+      <Section title="Капсула">
         <LabeledList>
-          <LabeledList.Item label="Power">
+          <LabeledList.Item label="Питание">
             <Button
               icon={data.isOperating ? "power-off" : "times"}
               disabled={data.isOpen}
@@ -91,10 +91,10 @@ const CryoContent = (props, context) => {
               {data.isOperating ? "On" : "Off"}
             </Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Temperature">
+          <LabeledList.Item label="Температура">
             <AnimatedNumber value={data.cellTemperature} /> K
           </LabeledList.Item>
-          <LabeledList.Item label="Door">
+          <LabeledList.Item label="Створки">
             <Button
               icon={data.isOpen ? "unlock" : "lock"}
               onClick={() => act('door')}
@@ -107,13 +107,13 @@ const CryoContent = (props, context) => {
         </LabeledList>
       </Section>
       <Section
-        title="Beaker"
+        title="Внутренняя ёмкость"
         buttons={(
           <Button
             icon="eject"
             disabled={!data.isBeakerLoaded}
             onClick={() => act('ejectbeaker')}
-            content="Eject" />
+            content="Извлечь" />
         )}>
         <BeakerContents
           beakerLoaded={data.isBeakerLoaded}

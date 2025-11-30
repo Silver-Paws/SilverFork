@@ -18,7 +18,7 @@ export const BeakerContents = props => {
           <AnimatedNumber
             initial={0}a
             value={chemical.volume} />
-          {" u "+chemical.name}
+          {"u "+chemical.name}
           {chemical.purity < 1 && "(Purity: "+chemical.purity+")"}
         </Box>
       ))}

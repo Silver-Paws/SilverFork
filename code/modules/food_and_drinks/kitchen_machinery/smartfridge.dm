@@ -39,7 +39,7 @@
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>Статус-дисплей сообщает:\n\
-		Это устройство может хранить максимум <b>[max_n_of_items]</b> предметов.</span>"
+		- Поместится максимум <b>[max_n_of_items]</b> шт. предметов.</span>"
 
 /obj/machinery/smartfridge/update_icon_state()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)

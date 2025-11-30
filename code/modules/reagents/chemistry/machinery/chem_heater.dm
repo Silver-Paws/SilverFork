@@ -56,7 +56,7 @@
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>Статус-дисплей сообщает: \n\
-		Вещества нагреваются со скоростью в <b>[heater_coefficient*1000]%</b>.</span>"
+		- Вещества нагреваются со скоростью в <b>[heater_coefficient*1000]%</b>.</span>"
 
 /obj/machinery/chem_heater/process()
 	..()
