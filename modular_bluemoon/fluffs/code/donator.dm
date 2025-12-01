@@ -1907,3 +1907,10 @@
 	slot = ITEM_SLOT_ICLOTHING
 	path = /obj/item/clothing/under/donator/bm/mk6_suit
 	ckeywhitelist = list("dragon9090")
+
+/datum/gear/donator/bm/apronchef_red
+	name = "Gubby Family Apron"
+	slot = ITEM_SLOT_OCLOTHING
+	path = /obj/item/clothing/suit/donator/bm/apronchef_red
+	ckeywhitelist = list("artgel11")
+
