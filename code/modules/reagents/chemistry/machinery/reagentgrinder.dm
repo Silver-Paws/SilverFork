@@ -204,18 +204,18 @@
 
 	if(beaker || length(holdingitems))
 		. += "<span class='notice'>\The [src] содержит:</span>"
-		if(beaker)
-			. += "<span class='notice'>- \A [beaker].</span>"
 		for(var/i in holdingitems)
 			var/obj/item/O = i
 			. += "<span class='notice'>- \A [O.name].</span>"
+		if(beaker)
+			. += "<span class='notice'>- \A [beaker].</span>"
 
 	if(!(machine_stat & (NOPOWER|BROKEN)))
-		. += "<span class='notice'>Статус-дисплей сообщает:</span>"
-		. += "<span class='notice'>- Содержимое перемалывается на скорости <b>[speed*100]%</b>.<span>"
 		if(beaker)
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				. += "<span class='notice'>- [R.volume]u [R.name].</span>"
+		. += "<span class='notice'>Статус-дисплей сообщает:\n\
+		- Содержимое дробится на скорости <b>[speed*100]%</b></span>."
 
 /obj/machinery/reagentgrinder/AltClick(mob/user)
 	. = ..()
