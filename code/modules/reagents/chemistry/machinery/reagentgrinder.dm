@@ -212,7 +212,7 @@
 
 	if(!(machine_stat & (NOPOWER|BROKEN)))
 		. += "<span class='notice'>Статус-дисплей сообщает:</span>"
-		. += "<span class='notice'>с Содержимое перемалывается на скорости <b>[speed*100]%</b>.<span>"
+		. += "<span class='notice'>- Содержимое перемалывается на скорости <b>[speed*100]%</b>.<span>"
 		if(beaker)
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				. += "<span class='notice'>- [R.volume]u [R.name].</span>"
