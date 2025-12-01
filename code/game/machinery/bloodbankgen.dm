@@ -1,6 +1,6 @@
 /obj/machinery/bloodbankgen
 	name = "blood bank generator"
-	desc = "Generates universally applicable synthetics for all blood types. Add regular blood to convert."
+	desc = "Производит универсально пригодную синткровь для любых групп крови. Добавьте обычную кровь для конвертации."
 	icon = 'icons/obj/bloodbank.dmi'
 	icon_state = "bloodbank-off"
 	density = TRUE
@@ -30,11 +30,12 @@
 /obj/machinery/bloodbankgen/examine(mob/user)
 	. = ..()
 	if(bag)
-		. += "<span class='notice'>It has \a [bag.name] hooked to its <b>input</b> slot. The counter reads: \"Current Capacity: [bag.reagents.total_volume] of [bag.reagents.maximum_volume]\"</span>"
+		. += "<span class='notice'>В слоте <b>Input</b> видно \a [bag.name]. Счётчик сообщает: \"Текущий объём: [bag.reagents.total_volume]u из [bag.reagents.maximum_volume]u\"</span>"
 	if(outbag)
-		. += "<span class='notice'>It has \a [outbag.name] hooked to its <b>output</b> slot. The counter reads: \"Current Capacity: [outbag.reagents.total_volume] of [outbag.reagents.maximum_volume]\"</span>"
+		. += "<span class='notice'>В слоте <b>Output</b> видно \a [outbag.name]. Счётчик сообщает: \"Текущий объём: [outbag.reagents.total_volume]u из [outbag.reagents.maximum_volume]u\"</span>"
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Efficiency: <b>[efficiency*100]%</b>.")
+		. += span_notice("Статус-дисплей сообщает: \n\
+		- Эффективность конвертации: <b>[efficiency*100]%</b>.")
 
 
 /obj/machinery/bloodbankgen/handle_atom_del(atom/A)
@@ -134,18 +135,20 @@
 		var/bonus = bag.blood_type == "SY" ? 0 : 5 * efficiency //no infinite loops using synthetics.
 		reagents.add_reagent(/datum/reagent/blood/synthetics, amount + bonus)
 		bag.reagents.remove_reagent(/datum/reagent/blood, amount)
+		updateUsrDialog()
 		update_icon()
 
 	if(filling)
 		if(!reagents.total_volume || !outbag || outbag.reagents.total_volume >= outbag.reagents.maximum_volume)
-			beep_stop_pumping("[src] pings.", TRUE)
+			beep_stop_pumping("[src] звенит.", TRUE)
 			return
 		//monitor the output bag's  reagents storage.
 		var/amount = min(transfer_amount, outbag.reagents.maximum_volume - outbag.reagents.total_volume)
 		reagents.trans_to(outbag, amount)
+		updateUsrDialog()
 		update_icon()
 
-/obj/machinery/bloodbankgen/proc/beep_stop_pumping(msg = "[src] beeps loudly.", out_instead_of_in = FALSE)
+/obj/machinery/bloodbankgen/proc/beep_stop_pumping(msg = "[src] громко гудит.", out_instead_of_in = FALSE)
 	if(out_instead_of_in)
 		filling = FALSE
 	else
@@ -177,30 +180,34 @@
 		. = TRUE //no afterattack
 		var/msg
 		if(panel_open)
-			. += "Close the maintenance panel"
+			. += "закройте панель обслуживания"
 		if(!anchored)
-			. += "[msg ? " and a" : "A"]nchor its bolts"
+			. += "[msg ? " и п" : "П"]рикрутите болты"
 		if(length(msg))
-			to_chat(user, "<span class='warning'>[msg] first.</span>")
+			to_chat(user, "<span class='warning'>Для начала [msg].</span>")
 			return
 		if(bag && outbag)
-			to_chat(user, "<span class='warning'>This machine already has bags attached.</span>")
+			to_chat(user, "<span class='warning'>Пакеты крови уже присоединены к машине.</span>")
 
 		if(!bag && !outbag)
-			var/choice = alert(user, "Choose where to place [O]", "", "Input", "Cancel", "Output")
+			var/choice = alert(user, "Выберите слот для [O]", "", "Слот Input", "ОТМЕНА", "Слот Output")
 			switch(choice)
-				if("Cancel")
+				if("ОТМЕНА")
 					return FALSE
-				if("Input")
+				if("Слот Input")
 					attachinput(O, user)
-				if("Output")
+					updateUsrDialog()
+				if("Слот Output")
 					attachoutput(O, user)
+					updateUsrDialog()
 		else if(!bag)
 			attachinput(O, user)
+			updateUsrDialog()
 		else if(!outbag)
 			attachoutput(O, user)
+			updateUsrDialog()
 	else
-		to_chat(user, "<span class='warning'>You cannot put this in [src]!</span>")
+		to_chat(user, "<span class='warning'>Вы не можете вставить это в [src]!</span>")
 
 /obj/machinery/bloodbankgen/is_operational()
 	return ..() && anchored
@@ -214,35 +221,35 @@
 	var/dat
 	switch(menustat)
 		if("noblood")
-			dat += "<div class='statusDisplay'>You do not have enough blood product to create synthetics.</div>"
+			dat += "<div class='statusDisplay'>Недостаточно ресурса крови для конвертации в исскуственный заменитель.</div>"
 			menustat = "menu"
 		if("complete")
-			dat += "<div class='statusDisplay'>Operation complete.</div>"
+			dat += "<div class='statusDisplay'>Конвертация завершена.</div>"
 			menustat = "menu"
 		if("nobagspace")
-			dat += "<div class='statusDisplay'>Not enough space left in container. Please replace receptical.</div>"
+			dat += "<div class='statusDisplay'>Не осталось места в пакете крови. Пожалуйста, замените слот Output.</div>"
 			menustat = "menu"
 
-	dat+= "<br><B>Current Synthetics stockpile: [reagents.total_volume] units.</B><HR>"
+	dat+= "<br><B>Текущий запас синткрови: [reagents.total_volume] u.</B><HR>"
 
-	dat += "<br>Supply Bag<HR>"
+	dat += "<br>Input пакет крови<HR>"
 	if(bag)
-		dat += "<br>Current Capacity: [bag.reagents.total_volume] of [bag.reagents.maximum_volume]"
+		dat += "<br>Объём: [bag.reagents.total_volume]u / [bag.reagents.maximum_volume]u"
 		if(bag.reagents && bag.reagents.total_volume)
-			dat += "<br><a href='?src=\ref[src];activateinput=1'>Drain</a>"
+			dat += "<br><a href='?src=\ref[src];activateinput=1'>Опустошить</a>"
 
-		dat += "<br><a href='?src=\ref[src];detachinput=1'>Detach</a>"
+		dat += "<br><a href='?src=\ref[src];detachinput=1'>Отсоединить</a>"
 
 
-	dat += "<br><br>Synthetics Bag<HR>"
+	dat += "<br><br>Output пакет крови<HR>"
 	if(outbag)
-		dat += "<br>Current Capacity:[outbag.reagents.total_volume] of [outbag.reagents.maximum_volume]"
+		dat += "<br>Объём: [outbag.reagents.total_volume]u / [outbag.reagents.maximum_volume]u"
 		if(!(outbag.reagents.total_volume >= outbag.reagents.maximum_volume))
-			dat += "<br><a href='?src=\ref[src];activateoutput=1'>Fill</a>"
-		dat += "<br><a href='?src=\ref[src];detachoutput=1'>Detach</a>"
+			dat += "<br><a href='?src=\ref[src];activateoutput=1'>Наполнить</a>"
+		dat += "<br><a href='?src=\ref[src];detachoutput=1'>Отсоединить</a>"
 
 	if(!bag && !outbag)
-		dat += "<div class='statusDisplay'>No containers inside, please insert container.</div>"
+		dat += "<div class='statusDisplay'>Не обнаружено пакетов крови, вставьте подходящие пакеты.</div>"
 
 	var/datum/browser/popup = new(user, "bloodbankgen", name, 350, 420)
 	popup.set_content(dat)
@@ -252,8 +259,9 @@
 	if(bag)
 		draining = TRUE
 		update_icon()
+		ui_update()
 	else
-		to_chat(usr, "<span class='warning'>There is no blood bag in the input slot.</span>")
+		to_chat(usr, "<span class='warning'>Отсутствует пакет крови в слоте Input.</span>")
 		return
 
 /obj/machinery/bloodbankgen/proc/activateoutput()
@@ -261,7 +269,7 @@
 		filling = TRUE
 		update_icon()
 	else
-		to_chat(usr, "<span class='warning'>There is no blood bag in the output slot.</span>")
+		to_chat(usr, "<span class='warning'>Отсутствует пакет крови в слоте Output.</span>")
 		return
 
 /obj/machinery/bloodbankgen/proc/check_container_volume(list/reagents, multiplier = 1)
@@ -299,22 +307,22 @@
 		if(!user.transferItemToLoc(O, src))
 			return
 		bag = O
-		to_chat(user, "<span class='notice'>You add [O] to the machine's input slot.</span>")
+		to_chat(user, "<span class='notice'>Вы вставили [O] в приёмный слот машины.</span>")
 		update_icon()
 		updateUsrDialog()
 	else
-		to_chat(user, "<span class='notice'>There is already something in this slot!</span>")
+		to_chat(user, "<span class='notice'>В этом слоте уже что-то есть!</span>")
 
 /obj/machinery/bloodbankgen/proc/attachoutput(obj/item/O, mob/user)
 	if(!outbag)
 		if(!user.transferItemToLoc(O, src))
 			return
 		outbag = O
-		to_chat(user, "<span class='notice'>You add [O] to the machine's output slot.</span>")
+		to_chat(user, "<span class='notice'>Вы добавили [O] в слот выдачи машины.</span>")
 		update_icon()
 		updateUsrDialog()
 	else
-		to_chat(user, "<span class='notice'>There is already something in this slot!</span>")
+		to_chat(user, "<span class='notice'>В этом слоте уже что-то есть!</span>")
 
 /obj/machinery/bloodbankgen/Topic(href, href_list)
 	. = ..()
