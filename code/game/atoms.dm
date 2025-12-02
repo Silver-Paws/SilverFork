@@ -606,7 +606,7 @@
 				. += "Ничего."
 		else if(reagents.reagents_holder_flags & AMOUNT_VISIBLE)
 			if(reagents.total_volume)
-				. += "<span class='notice'>Внутри осталось [reagents.total_volume] u вещества.</span>"
+				. += "<span class='notice'>Внутри находится [reagents.total_volume] u вещества.</span>"
 			else
 				. += "<span class='danger'>Внутри пусто.</span>"
 

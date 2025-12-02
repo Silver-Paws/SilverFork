@@ -103,7 +103,7 @@
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>Статус-дисплей сообщает: \n\
 		- Хранится до <b>[materials.local_size]</b> m/u локально.\n\
-		- Материи используется: <b>[print_cost_coeff*100]%</b>.</span>"
+		- Затраты материалов: <b>[print_cost_coeff*100]%</b>.</span>"
 
 //we eject the materials upon deconstruction.
 /obj/machinery/rnd/production/on_deconstruction()

@@ -236,7 +236,7 @@
 	if(bag)
 		dat += "<br>Объём: [bag.reagents.total_volume]u / [bag.reagents.maximum_volume]u"
 		if(bag.reagents && bag.reagents.total_volume)
-			dat += "<br><a href='?src=\ref[src];activateinput=1'>Опустошить</a>"
+			dat += "<br><a href='?src=\ref[src];activateinput=1'>Конвертировать</a>"
 
 		dat += "<br><a href='?src=\ref[src];detachinput=1'>Отсоединить</a>"
 

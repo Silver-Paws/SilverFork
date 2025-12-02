@@ -4,19 +4,19 @@ import { Window } from '../layouts';
 
 const damageTypes = [
   {
-    label: 'Brute',
+    label: 'Травмы',
     type: 'bruteLoss',
   },
   {
-    label: 'Burn',
+    label: 'Ожоги',
     type: 'fireLoss',
   },
   {
-    label: 'Toxin',
+    label: 'Токсины',
     type: 'toxLoss',
   },
   {
-    label: 'Oxygen',
+    label: 'Гипоксия',
     type: 'oxyLoss',
   },
 ];
@@ -83,12 +83,12 @@ export const Sleeper = (props, context) => {
                 <LabeledList.Item
                   label="Клетки"
                   color={occupant.cloneLoss ? 'bad' : 'good'}>
-                  {occupant.cloneLoss ? 'распадаются' : 'целостны'}
+                  {occupant.cloneLoss ? 'Распадаются' : 'Целостны'}
                 </LabeledList.Item>
                 <LabeledList.Item
                   label="Мозг"
                   color={occupant.brainLoss ? 'bad' : 'good'}>
-                  {occupant.brainLoss ? 'повреждён' : 'целостен'}
+                  {occupant.brainLoss ? 'Повреждён' : 'Стабилен'}
                 </LabeledList.Item>
               </LabeledList>
             </>

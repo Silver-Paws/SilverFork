@@ -5,20 +5,20 @@ import { BeakerContents } from './common/BeakerContents';
 
 const damageTypes = [
   {
-    label: "Brute",
+    label: "Травмы",
     type: "bruteLoss",
   },
   {
-    label: "Respiratory",
-    type: "oxyLoss",
+    label: "Ожоги",
+    type: "fireLoss",
   },
   {
-    label: "Toxin",
+    label: "Токсины",
     type: "toxLoss",
   },
   {
-    label: "Burn",
-    type: "fireLoss",
+    label: "Гипоксия",
+    type: "oxyLoss",
   },
 ];
 
@@ -46,18 +46,18 @@ const CryoContent = (props, context) => {
           {!!data.hasOccupant && (
             <>
               <LabeledList.Item
-                label="State"
+                label="Состояние"
                 color={data.occupant.statstate}>
                 {data.occupant.stat}
               </LabeledList.Item>
               <LabeledList.Item
-                label="Temperature"
+                label="Температура"
                 color={data.occupant.temperaturestatus}>
                 <AnimatedNumber
                   value={data.occupant.bodyTemperature} />
                 {' K'}
               </LabeledList.Item>
-              <LabeledList.Item label="Health">
+              <LabeledList.Item label="Здоровье">
                 <ProgressBar
                   value={data.occupant.health / data.occupant.maxHealth}
                   color={data.occupant.health > 0 ? 'good' : 'average'}>
