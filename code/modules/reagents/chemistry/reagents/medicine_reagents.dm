@@ -303,7 +303,16 @@
 
 /datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
-		if(method in list(INGEST, VAPOR, INJECT))
+		var/mob/living/carbon/human/H = M
+		var/protected = FALSE
+		if (H.wear_suit && H.head && istype(H.wear_suit, /obj/item/clothing) && istype(H.head, /obj/item/clothing))
+			var/obj/item/clothing/worn_suit = H.wear_suit
+			var/obj/item/clothing/worn_helmet = H.head
+			if (worn_suit.clothing_flags & worn_helmet.clothing_flags & THICKMATERIAL)
+				protected = TRUE
+		if(method == TOUCH && protected)
+			return
+		else if(method in list(INGEST, VAPOR, INJECT))
 			M.adjustToxLoss(0.5*reac_volume)
 			if(show_message)
 				to_chat(M, "<span class='warning'>You don't feel so good...</span>")
@@ -368,7 +377,16 @@
 
 /datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
-		if(method in list(INGEST, VAPOR, INJECT))
+		var/mob/living/carbon/human/H = M
+		var/protected = FALSE
+		if (H.wear_suit && H.head && istype(H.wear_suit, /obj/item/clothing) && istype(H.head, /obj/item/clothing))
+			var/obj/item/clothing/worn_suit = H.wear_suit
+			var/obj/item/clothing/worn_helmet = H.head
+			if (worn_suit.clothing_flags & worn_helmet.clothing_flags & THICKMATERIAL)
+				protected = TRUE
+		if(method == TOUCH && protected)
+			return
+		else if(method in list(INGEST, VAPOR, INJECT))
 			M.adjustToxLoss(0.5*reac_volume)
 			if(show_message)
 				to_chat(M, "<span class='warning'>You don't feel so good...</span>")
