@@ -311,6 +311,9 @@
 			if (worn_suit.clothing_flags & worn_helmet.clothing_flags & THICKMATERIAL)
 				protected = TRUE
 		if(method == TOUCH && protected)
+			M.visible_message("<span class='danger'>[M] был[M.ru_a()] облит [src]!</span>", \
+						"<span class='userdanger'>Меня облили [src]!</span>")
+			playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
 			return
 		else if(method in list(INGEST, VAPOR, INJECT))
 			M.adjustToxLoss(0.5*reac_volume)
@@ -385,6 +388,9 @@
 			if (worn_suit.clothing_flags & worn_helmet.clothing_flags & THICKMATERIAL)
 				protected = TRUE
 		if(method == TOUCH && protected)
+			M.visible_message("<span class='danger'>[M] был[M.ru_a()] облит [src]!</span>", \
+						"<span class='userdanger'>Меня облили [src]!</span>")
+			playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
 			return
 		else if(method in list(INGEST, VAPOR, INJECT))
 			M.adjustToxLoss(0.5*reac_volume)
@@ -566,7 +572,7 @@
 			if(vol >= 100)
 				for(var/i in C.all_scars)
 					qdel(i)
-				
+
 				//Has to be at less than THRESHOLD_UNHUSK burn damage before unhusking.
 				if(HAS_TRAIT_FROM(M, TRAIT_HUSK, "burn") && M.getFireLoss() < THRESHOLD_UNHUSK)
 					M.cure_husk("burn")
