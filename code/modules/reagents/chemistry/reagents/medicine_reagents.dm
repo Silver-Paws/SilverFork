@@ -301,7 +301,7 @@
 		new /obj/item/stack/medical/mesh/five(get_turf(G), reac_volume)
 		G.use(reac_volume)
 
-/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, mob/user, zone)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/human/H = M
 		var/protected = FALSE
@@ -311,8 +311,9 @@
 			if (worn_suit.clothing_flags & worn_helmet.clothing_flags & THICKMATERIAL)
 				protected = TRUE
 		if(method == TOUCH && protected)
-			M.visible_message("<span class='danger'>[M] был[M.ru_a()] облит [src]!</span>", \
-						"<span class='userdanger'>Меня облили [src]!</span>")
+			var/obj/item/clothing/worn_suit = H.wear_suit
+			M.visible_message("<span class='danger'>[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [worn_suit.name]!</span>", \
+						"<span class='userdanger'>Меня чем-то облили, но оно стекло вниз по [worn_suit.name]!</span>")
 			playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
 			return
 		else if(method in list(INGEST, VAPOR, INJECT))
@@ -324,6 +325,7 @@
 			if(show_message)
 				to_chat(M, "<span class='danger'>You feel your burns healing! It stings like hell!</span>")
 			//M.emote("scream")
+			shake_camera(M, 5, 2)
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 	..()
 
@@ -378,7 +380,7 @@
 	metabolization_rate = 5 * REAGENTS_METABOLISM
 	overdose_threshold = 50
 
-/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, mob/user, zone)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/human/H = M
 		var/protected = FALSE
@@ -388,8 +390,9 @@
 			if (worn_suit.clothing_flags & worn_helmet.clothing_flags & THICKMATERIAL)
 				protected = TRUE
 		if(method == TOUCH && protected)
-			M.visible_message("<span class='danger'>[M] был[M.ru_a()] облит [src]!</span>", \
-						"<span class='userdanger'>Меня облили [src]!</span>")
+			var/obj/item/clothing/worn_suit = H.wear_suit
+			M.visible_message("<span class='danger'>[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [worn_suit.name]!</span>", \
+						"<span class='userdanger'>Меня чем-то облили, но оно стекло вниз по [worn_suit.name]!</span>")
 			playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
 			return
 		else if(method in list(INGEST, VAPOR, INJECT))
@@ -397,10 +400,10 @@
 			if(show_message)
 				to_chat(M, "<span class='warning'>You don't feel so good...</span>")
 		else if(M.getBruteLoss())
-			M.adjustBruteLoss(-reac_volume)
 			if(show_message)
 				to_chat(M, "<span class='danger'>You feel your bruises healing! It stings like hell!</span>")
 			//M.emote("scream")
+			shake_camera(M, 5, 2)
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 	..()
 
