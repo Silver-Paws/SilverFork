@@ -32,7 +32,7 @@
 
 /obj/machinery/cell_charger/examine(mob/user)
 	. = ..()
-	. += "Здесь [charging ? "\a [charging]" : "отсутствует батарея"] в слоте."
+	. += "В слоте [charging ? "находится \a [charging]" : "отсутствует батарея"]."
 	if(charging)
 		. += "Текущий заряд: [round(charging.percent(), 1)]%."
 	if(in_range(user, src) || isobserver(user))

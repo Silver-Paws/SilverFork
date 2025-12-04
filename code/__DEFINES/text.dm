@@ -242,6 +242,38 @@ GLOBAL_LIST_INIT(ddlc_chars, list(
 		span_colossus("ТЫ НЕ СМОЖЕШЬ БЕЖАТЬ ВЕЧНО!!!"), \
 	)
 
+/// Лист-словарь для examine string'а материалов в именительном падеже
+GLOBAL_LIST_INIT(mat_ru_nominative, list(
+    "iron" = "железо",
+    "glass" = "стекло",
+    "plasma" = "плазма",
+    "gold" = "золото",
+    "silver" = "серебро",
+    "diamond" = "алмазы",
+    "uranium" = "уран",
+    "titanium" = "титан",
+    "plasma glass" = "плазменное стекло",
+    "reinforced glass" = "закалённое стекло",
+    "bluespace crystal" = "блюспейс-кристаллы",
+    "bananium" = "бананиум",
+	"runite" = "рунит",
+	"plastic" = "пластик",
+	"biomass" = "биомасса",
+	"wood" = "дерево",
+	"adamantine" = "адамантин",
+	"mythril" = "мифрил",
+	"sand" = "песк",
+	"sandstone" = "песчаник",
+	"snow" = "снег",
+	"runed metal" = "рунный металл",
+	"brass" = "латунь",
+	"bronze" = "бронза",
+	"paper" = "бумага",
+	"cardboard" = "картон",
+	"bone" = "кость",
+	"bamboo" = "бамбук",
+))
+
 /// Лист-словарь для examine string'а материалов в родительном падеже
 GLOBAL_LIST_INIT(mat_ru_genitive, list(
     "iron" = "железа",

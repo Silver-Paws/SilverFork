@@ -302,9 +302,9 @@
 		t = check_mat(D, M)
 		temp_material += " | "
 		if (t < 1)
-			temp_material += "<span class='bad'>[all_materials[M] * coeff] [CallMaterialName_Ru(M)]</span>"
+			temp_material += "<span class='bad'>[all_materials[M] * coeff] [CallMaterialName_RuGenitive(M)]</span>"
 		else
-			temp_material += " [all_materials[M] * coeff] [CallMaterialName_Ru(M)]"
+			temp_material += " [all_materials[M] * coeff] [CallMaterialName_RuGenitive(M)]"
 		c = min(c,t)
 
 	var/on_station = is_station_level(z)

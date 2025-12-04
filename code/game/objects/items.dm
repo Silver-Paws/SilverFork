@@ -338,7 +338,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	// Research prospects, including boostable nodes and point values.
 	// Deliver to a console to know whether the boosts have already been used.
-	var/list/research_msg = list("<font color='purple'>Research prospects:</font> ")
+	var/list/research_msg = list("<font color='purple'>Перспективы исследований:</font> ")
 	var/sep = ""
 	var/list/boostable_nodes = techweb_item_boost_check(src)
 	if (boostable_nodes)
@@ -355,18 +355,18 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		research_msg += techweb_point_display_generic(points)
 
 	if (!sep) // nothing was shown
-		research_msg += "None"
+		research_msg += "отсутствуют"
 
 	// Extractable materials. Only shows the names, not the amounts.
-	research_msg += ".<br><font color='purple'>Extractable materials:</font> "
+	research_msg += ".<br><font color='purple'>Материалы для разбора:</font> "
 	if (length(custom_materials))
 		sep = ""
 		for(var/mat in custom_materials)
 			research_msg += sep
-			research_msg += CallMaterialName(mat)
+			research_msg += CallMaterialName_RuNominative(mat)
 			sep = ", "
 	else
-		research_msg += "None"
+		research_msg += "отсутствуют"
 	research_msg += "."
 	. += research_msg.Join()
 
