@@ -611,15 +611,13 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
 	STR.can_hold = typecacheof(list(
-		/obj/item/gun/magic/wand,
-		/obj/item/antag_spawner/slaughter_demon/laughter
+		/obj/item/gun/magic/wand
 		))
 
 /obj/item/storage/belt/wands/full/PopulateContents()
-	new /obj/item/antag_spawner/slaughter_demon/laughter(src)
 	new /obj/item/gun/magic/wand/death(src)
 	new /obj/item/gun/magic/wand/resurrection(src)
-		new /obj/item/gun/magic/wand/polymorph(src)
+	new /obj/item/gun/magic/wand/polymorph(src)
 	new /obj/item/gun/magic/wand/teleport(src)
 	new /obj/item/gun/magic/wand/door(src)
 	new /obj/item/gun/magic/wand/fireball(src)
