@@ -163,8 +163,8 @@
 
 // Прок-хелпер для examine-string'а материалов. Нужен по большей части для бэкапа неучтённых словарём материалов, а также если будут новые материалы.
 /proc/material_to_ru_genitive(mat_name)
-	var/ru = GLOB.mat_ru_genitive[lowertext(mat_name)]
-	if(ru)
-		return ru
+	var/ru_mat_name = GLOB.mat_ru_genitive[lowertext(mat_name)]
+	if(ru_mat_name)
+		return ru_mat_name
 
 	return mat_name

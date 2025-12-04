@@ -492,7 +492,7 @@
 // -----------------------------
 /obj/machinery/smartfridge/chemistry
 	name = "smart chemical storage"
-	desc = "Охлаждаемое хранилище для содержания медпрепаратов."
+	desc = "Охлаждаемое хранилище для медпрепаратов."
 	base_build_path = /obj/machinery/smartfridge/chemistry
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O)

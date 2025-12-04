@@ -215,7 +215,7 @@
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				. += "<span class='notice'>- [R.volume]u [R.name].</span>"
 		. += "<span class='notice'>Статус-дисплей сообщает:\n\
-		- Содержимое дробится на скорости <b>[speed*100]%</b></span>."
+		- Содержимое перемалывается на скорости <b>[speed*100]%.</b></span>"
 
 /obj/machinery/reagentgrinder/AltClick(mob/user)
 	. = ..()

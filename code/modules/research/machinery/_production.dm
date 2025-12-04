@@ -236,7 +236,7 @@
 	else
 		l += "<font color='red'>No material storage connected, please contact the quartermaster.</font>"
 	l += "<A href='?src=[REF(src)];switch_screen=[RESEARCH_FABRICATOR_SCREEN_CHEMICALS]'><B>Объём химикатов:</B> [reagents.total_volume] / [reagents.maximum_volume]</A>"
-	l += "<a href='?src=[REF(src)];sync_research=1'>Синхронизировать исследования</a>"
+	l += "<a href='?src=[REF(src)];sync_research=1'>Синхронизация исследований</a>"
 	l += "<a href='?src=[REF(src)];switch_screen=[RESEARCH_FABRICATOR_SCREEN_MAIN]'>Главное меню</a></div>[RDSCREEN_NOBREAK]"
 	return l
 
@@ -250,7 +250,7 @@
 		var/datum/material/M = mat_id
 		var/amount = materials.mat_container.materials[mat_id]
 		var/ref = REF(M)
-		l += "* [amount] of [M.name]: "
+		l += "* [amount] см² [material_to_ru_genitive(M.name)]: "
 		if(amount >= MINERAL_MATERIAL_AMOUNT) l += "<A href='?src=[REF(src)];ejectsheet=[ref];eject_amt=1'>1x</A> [RDSCREEN_NOBREAK]"
 		if(amount >= MINERAL_MATERIAL_AMOUNT*5) l += "<A href='?src=[REF(src)];ejectsheet=[ref];eject_amt=5'>5x</A> [RDSCREEN_NOBREAK]"
 		if(amount >= MINERAL_MATERIAL_AMOUNT*10) l += "<A href='?src=[REF(src)];ejectsheet=[ref];eject_amt=10'>10x</A> [RDSCREEN_NOBREAK]"
@@ -302,9 +302,9 @@
 		t = check_mat(D, M)
 		temp_material += " | "
 		if (t < 1)
-			temp_material += "<span class='bad'>[all_materials[M] * coeff] [CallMaterialName(M)]</span>"
+			temp_material += "<span class='bad'>[all_materials[M] * coeff] [CallMaterialName_Ru(M)]</span>"
 		else
-			temp_material += " [all_materials[M] * coeff] [CallMaterialName(M)]"
+			temp_material += " [all_materials[M] * coeff] [CallMaterialName_Ru(M)]"
 		c = min(c,t)
 
 	var/on_station = is_station_level(z)
@@ -358,7 +358,7 @@
 		screen = RESEARCH_FABRICATOR_SCREEN_SEARCH
 	if(ls["sync_research"])
 		update_research()
-		say("Синхронизация исследований с базой данных научно-исследователського отдела.")
+		say("Синхронизация исследований с базой данных научно-исследовательского отдела.")
 	if(ls["category"])
 		selected_category = ls["category"]
 	if(ls["dispose"])  //Causes the protolathe to dispose of a single reagent (all of it)
