@@ -313,7 +313,6 @@
 	name = "Staff of Change"
 	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself."
 	item_path = /obj/item/gun/magic/staff/change
-	cost = 3
 	dynamic_requirement = 50
 
 /datum/spellbook_entry/item/staffanimation
@@ -394,7 +393,6 @@
 	desc = "A collection of wands that allow for a wide variety of utility. Wands have a limited number of charges, so be conservative in use. Comes in a handy belt."
 	item_path = /obj/item/storage/belt/wands/full
 	category = "Defensive"
-	cost = 4
 	dynamic_requirement = 60
 
 /datum/spellbook_entry/item/armor
