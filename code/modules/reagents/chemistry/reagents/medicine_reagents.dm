@@ -301,7 +301,7 @@
 		new /obj/item/stack/medical/mesh/five(get_turf(G), reac_volume)
 		G.use(reac_volume)
 
-/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, mob/user, zone)
+/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/human/H = M
 		var/protected = FALSE
@@ -380,7 +380,7 @@
 	metabolization_rate = 5 * REAGENTS_METABOLISM
 	overdose_threshold = 50
 
-/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, mob/user, zone)
+/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/human/H = M
 		var/protected = FALSE
