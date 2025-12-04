@@ -616,12 +616,10 @@
 		))
 
 /obj/item/storage/belt/wands/full/PopulateContents()
-	if(prob(25))
-		new /obj/item/gun/magic/wand/polymorph(src)
-	else
-		new /obj/item/antag_spawner/slaughter_demon/laughter(src)
+	new /obj/item/antag_spawner/slaughter_demon/laughter(src)
 	new /obj/item/gun/magic/wand/death(src)
 	new /obj/item/gun/magic/wand/resurrection(src)
+		new /obj/item/gun/magic/wand/polymorph(src)
 	new /obj/item/gun/magic/wand/teleport(src)
 	new /obj/item/gun/magic/wand/door(src)
 	new /obj/item/gun/magic/wand/fireball(src)
