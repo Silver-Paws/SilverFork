@@ -319,11 +319,11 @@
 		else if(method in list(INGEST, VAPOR, INJECT))
 			M.adjustToxLoss(0.5*reac_volume)
 			if(show_message)
-				to_chat(M, "<span class='warning'>You don't feel so good...</span>")
+				to_chat(M, "<span class='warning'>Вы ощущаете себя не очень хорошо...</span>")
 		else if(M.getFireLoss())
 			M.adjustFireLoss(-reac_volume)
 			if(show_message)
-				to_chat(M, "<span class='danger'>You feel your burns healing! It stings like hell!</span>")
+				to_chat(M, "<span class='danger'>Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!!</span>")
 			//M.emote("scream")
 			shake_camera(M, 5, 2)
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
@@ -391,6 +391,7 @@
 				protected = TRUE
 		if(method == TOUCH && protected)
 			var/obj/item/clothing/worn_suit = H.wear_suit
+			var/obj/item/clothing/worn_helmet = H.head
 			M.visible_message("<span class='danger'>[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [worn_suit.name]!</span>", \
 						"<span class='userdanger'>Меня чем-то облили, но оно стекло вниз по [worn_suit.name]!</span>")
 			playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
@@ -398,10 +399,11 @@
 		else if(method in list(INGEST, VAPOR, INJECT))
 			M.adjustToxLoss(0.5*reac_volume)
 			if(show_message)
-				to_chat(M, "<span class='warning'>You don't feel so good...</span>")
+				to_chat(M, "<span class='warning'>Вы ощущаете себя не очень хорошо...</span>")
 		else if(M.getBruteLoss())
+			M.adjustBruteLoss(-reac_volume)
 			if(show_message)
-				to_chat(M, "<span class='danger'>You feel your bruises healing! It stings like hell!</span>")
+				to_chat(M, "<span class='danger'>Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!</span>")
 			//M.emote("scream")
 			shake_camera(M, 5, 2)
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
