@@ -323,7 +323,7 @@
 	to_chat(user, "<span class='warning'>Вы не можете вылечить [M] при помощи \the [src]!</span>")
 
 /obj/item/stack/medical/ointment/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] выдавливает \the [src] в свой рот! Он[user.ru_a] вообще знает, что оно ядовито?!</span>")
+	user.visible_message("<span class='suicide'>[user] выдавливает \the [src] в свой рот! Он[user.ru_a()] вообще знает, что оно ядовито?!</span>")
 	return TOXLOSS
 
 /obj/item/stack/medical/mesh

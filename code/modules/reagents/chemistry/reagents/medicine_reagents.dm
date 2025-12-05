@@ -391,7 +391,6 @@
 				protected = TRUE
 		if(method == TOUCH && protected)
 			var/obj/item/clothing/worn_suit = H.wear_suit
-			var/obj/item/clothing/worn_helmet = H.head
 			M.visible_message("<span class='danger'>[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [worn_suit.name]!</span>", \
 						"<span class='userdanger'>Меня чем-то облили, но оно стекло вниз по [worn_suit.name]!</span>")
 			playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
