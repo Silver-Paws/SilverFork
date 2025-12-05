@@ -1101,7 +1101,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		if(WEIGHT_CLASS_SMALL)
 			. = "небольшого"
 		if(WEIGHT_CLASS_NORMAL)
-			. = "среднего"
+			. = "нормального"
 		if(WEIGHT_CLASS_BULKY)
 			. = "большого"
 		if(WEIGHT_CLASS_HUGE)

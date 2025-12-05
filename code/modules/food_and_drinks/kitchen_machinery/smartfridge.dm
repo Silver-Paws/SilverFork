@@ -378,7 +378,7 @@
 // ----------------------------
 /obj/machinery/smartfridge/drinks
 	name = "drink showcase"
-	desc = "A refrigerated storage unit for tasty tasty alcohol."
+	desc = "Охлаждаемое хранилище для бутылочек вкусной-вкусной выпивки."
 	base_build_path = /obj/machinery/smartfridge/drinks
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
@@ -391,7 +391,7 @@
 //  Food smartfridge
 // ----------------------------
 /obj/machinery/smartfridge/food
-	desc = "A refrigerated storage unit for food."
+	desc = "Холодильник для пищи."
 	base_build_path = /obj/machinery/smartfridge/food
 
 /obj/machinery/smartfridge/food/accept_check(obj/item/O)
@@ -404,7 +404,7 @@
 // -------------------------------------
 /obj/machinery/smartfridge/extract
 	name = "smart slime extract storage"
-	desc = "A refrigerated storage unit for slime extracts."
+	desc = "Охлаждаемое хранилище для содержания слаймовых экстрактов."
 	base_build_path = /obj/machinery/smartfridge/extract
 
 /obj/machinery/smartfridge/extract/accept_check(obj/item/O)
