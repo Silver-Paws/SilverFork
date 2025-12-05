@@ -1227,6 +1227,7 @@
 #include "code\game\objects\obj_defense.dm"
 #include "code\game\objects\objs.dm"
 #include "code\game\objects\structures.dm"
+#include "code\game\objects\timed_blockers.dm"
 #include "code\game\objects\effects\alien_acid.dm"
 #include "code\game\objects\effects\arachnid_web.dm"
 #include "code\game\objects\effects\blessing.dm"
