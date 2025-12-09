@@ -320,7 +320,7 @@
 
 /obj/item/storage/pill_bottle/mutadone
 	name = "bottle of mutadone pills"
-	desc = "Содержит пилюли для ухода за генетическими отклонениями."
+	desc = "Содержит пилюли для ухода генетических отклонений."
 
 /obj/item/storage/pill_bottle/mutadone/PopulateContents()
 	for(var/i in 1 to 7)
@@ -328,7 +328,7 @@
 
 /obj/item/storage/pill_bottle/mannitol
 	name = "bottle of mannitol pills"
-	desc = "Содержит пилюли для ухода за повреждениями мозга."
+	desc = "Содержит пилюли для ухода повреждений мозга."
 
 /obj/item/storage/pill_bottle/mannitol/PopulateContents()
 	for(var/i in 1 to 7)
@@ -385,7 +385,7 @@
 
 /obj/item/storage/pill_bottle/psicodine
 	name = "bottle of psicodine pills"
-	desc = "Содержит пилюли для ухода за ментальными расстройствами и травмами."
+	desc = "Содержит пилюли для ухода ментальных расстройств и травм."
 
 /obj/item/storage/pill_bottle/psicodine/PopulateContents()
 	for(var/i in 1 to 7)
