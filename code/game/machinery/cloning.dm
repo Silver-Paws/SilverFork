@@ -77,7 +77,7 @@
 
 //Clonepod
 
-	/examine(mob/user)
+/obj/machinery/clonepod/examine(mob/user)
 	. = ..()
 	var/mob/living/mob_occupant = occupant
 	. += span_notice("<i>Связующее</i> устройство может быть <i>отсканировано<i> мультитулом.</span>")
