@@ -49,14 +49,14 @@
 	. = ..()
 	if(get_dist(src, user) <= 1 || isobserver(user))
 		. += span_notice("Статус-дисплей сообщает: \n\
-		- Время операции: [DisplayTimeText(surgery_time)]")
+		- Время операции: [DisplayTimeText(surgery_time)].")
 		if(speed_up_percent)
-			. += span_notice("- Машина работает на [span_nicegreen("[speed_up_percent]% быстрее.")]")
+			. += span_notice("- Машина работает на [span_nicegreen("[speed_up_percent]%")] быстрее.")
 		if(processing)
 			. += span_notice("- В процессе имплантации [icon2html(stored_organ, user)] [stored_organ.name] в [occupant].")
 		else if(stored_organ)
 			. += span_notice("- Внутрь загружен и подготовлен к установке [icon2html(stored_organ, user)] [stored_organ.name].")
-			. += span_notice("Alt-click для извлечения органа.")
+			. += span_notice("Alt-click для извлечения органа/имплантата.")
 		if((obj_flags & EMAGGED) && panel_open)
 			. += span_boldwarning("Протоколы работы повреждены, выставлен режим РАСЧЛЕНЕНИЕ!")
 	else
