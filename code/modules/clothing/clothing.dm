@@ -257,7 +257,7 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
 	if(pockets)
 		var/list/how_cool_are_your_threads = list("<span class='notice'>")
 		if(pockets.attack_hand_interact)
-			how_cool_are_your_threads += "Хранилище [src] открывается на клик.\n"
+			how_cool_are_your_threads += "Хранилище [src] открывается кликом.\n"
 		else
 			how_cool_are_your_threads += "Хранилище [src] открывается при перетягивании на себя.\n"
 		how_cool_are_your_threads += "[src] может хранить [pockets.max_items] шт. предметов.\n"
@@ -271,16 +271,14 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
 
 	if(LAZYLEN(armor_list))
 		armor_list.Cut()
+	if(armor.melee)
+		armor_list += list("Рукопашная" = armor.melee)
 	if(armor.bullet)
-		armor_list += list("Пули" = armor.bullet)
+		armor_list += list("Пулевая" = armor.bullet)
 	if(armor.laser)
-		armor_list += list("Лазеры" = armor.laser)
+		armor_list += list("Лазерная" = armor.laser)
 	if(armor.energy)
 		armor_list += list("Энергия" = armor.energy)
-	if(armor.melee)
-		armor_list += list("Ближний бой" = armor.melee)
-	if(armor.bio)
-		armor_list += list("Токсины" = armor.bio)
 	if(armor.bomb)
 		armor_list += list("Взрывы" = armor.bomb)
 	if(armor.magic)
@@ -292,6 +290,8 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
 		durability_list += list("Огонь" = armor.fire)
 	if(armor.acid)
 		durability_list += list("Кислота" = armor.acid)
+	if(armor.bio)
+		durability_list += list("Токсины" = armor.bio)
 	if(armor.rad)
 		durability_list += list("Радиация" = armor.rad)
 
@@ -328,35 +328,40 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
   */
 /obj/item/clothing/proc/armor_to_protection_class(armor_value)
 	armor_value = round(armor_value,10) / 10
+	var/negative = armor_value < 0
+	armor_value = abs(armor_value)
+	var/value
 	switch (armor_value)
 		if (1)
-			. = "I"
+			value = "I"
 		if (2)
-			. = "II"
+			value = "II"
 		if (3)
-			. = "III"
+			value = "III"
 		if (4)
-			. = "IV"
+			value = "IV"
 		if (5)
-			. = "V"
+			value = "V"
 		if (6)
-			. = "VI"
+			value = "VI"
 		if (7)
-			. = "VII"
+			value = "VII"
 		if (8)
-			. = "VIII"
+			value = "VIII"
 		if (9)
-			. = "IX"
+			value = "IX"
 		if (10 to INFINITY)
-			. = "X"
-	return .
+			value = "X"
+	if(negative)
+		return span_red("-[value]")
+	return value
 
 /obj/item/clothing/obj_break(damage_flag)
 	damaged_clothes = CLOTHING_DAMAGED
 	update_clothes_damaged_state()
 	if(ismob(loc)) //It's not important enough to warrant a message if nobody's wearing it
 		var/mob/M = loc
-		to_chat(M, "<span class='warning'>Your [name] starts to fall apart!</span>")
+		to_chat(M, "<span class='warning'>[name] разваливается на части!</span>")
 
 //This mostly exists so subtypes can call appriopriate update icon calls on the wearer.
 /obj/item/clothing/proc/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
