@@ -78,7 +78,7 @@ GENETICS SCANNER
 	item_state = "healthanalyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	desc = "Ручной сканер тела с функцией распознвания показателей здоровья пациента."
+	desc = "Ручной сканер тела с функцией анализа показателей здоровья пациента."
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
