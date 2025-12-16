@@ -139,7 +139,7 @@
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
 	name = "\improper MediDrobe"
-	desc = "Вендомат, по слухам, способный выдавать одежду медперсоналу."
+	desc = "Вендомат, по слухам, выдающий одежду медперсоналу."
 	icon_state = "medidrobe"
 	product_slogans = "Сделайте пятна крови модными!!!"
 	vend_reply = "Спасибо за использование MediDrobe!"
