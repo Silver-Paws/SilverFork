@@ -368,19 +368,13 @@
 /obj/item/card/id/AltClick(mob/living/user)
 	. = ..()
 	//BLUEMOON ADD стикеры на карту
-	if(src.contents)
-		for(var/obj/item/card/id/ID in contents)
-			if(ID.card_sticker)
-				var/response = alert(user, "Что вы хотите сделать?","[src.name]", "[prob(1)? "сделать налоговое уклонение" : "снять деньги"]", "удалить стикер")
-				if(response == "удалить стикер")
-					to_chat(user, "<span class='notice'>Вы начинаете разворачивать карту...</span>")
-					if(!do_after(user, 15, target = user))
-						return
-					user.put_in_hands(ID)
-					icon = previous_icon_data[1]
-					icon_state = previous_icon_data[2]
-					assignment = previous_icon_data[3]
-					return
+	if(sticker)
+		var/response = tgui_alert(user, "Что вы хотите сделать?", src.name, list("Снять наличные", "Убрать наклейку"), autofocus = TRUE)
+		if(!response)
+			return
+		else if(response == "Убрать наклейку")
+			sticker.unwrap(src, user)
+			return
 	//BLUEMOON ADD END
 
 	if(!bank_support || !alt_click_can_use_id(user))
@@ -457,10 +451,6 @@
 			. += "<span class='boldnotice'>Если вы потеряете эту ID-карте, вы можете восстановить свой аккаунт, нажав Alt-Click по пустой ID-карту, держа её в руках, и введя номер своего банковского счёта.</span>"
 	else
 		. += "<span class='info'>Нет зарегистрированного аккаунта. Alt-Click, чтобы добавить.</span>"
-	//BLUEMOON ADD
-	if(card_sticker)
-		. += "<span class='info'>Можно использовать как стикер на другой ID-карте.</span>"
-	//BLUEMOON ADD END
 
 /obj/item/card/id/GetAccess()
 	return access
