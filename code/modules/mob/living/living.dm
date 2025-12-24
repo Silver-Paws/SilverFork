@@ -911,20 +911,22 @@
 	var/escchance
 	if(HAS_TRAIT(src, TRAIT_GARROTED))
 		escchance = 3
-	else
+	else if(istype(mind, /datum/mind) && istype(mind.martial_art, /datum/martial_art))
+		escchance = mind.martial_art.resist_grab_chance
+	else // Обычно БИ будет всегда и "базовому" уже выставлено 30, фейлчек для ТЕОРЕТИЧЕСКИХ случаев отсутствия
 		escchance = 30
 	if(pulledby.grab_state > GRAB_PASSIVE)
 		if(CHECK_MOBILITY(src, MOBILITY_RESIST) && prob(escchance/pulledby.grab_state))
-			pulledby.visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>",
-				"<span class='danger'>[src] has broken free of your grip!</span>", target = src,
-				target_message = "<span class='danger'>You have broken free of [pulledby]'s grip!</span>")
+			pulledby.visible_message(span_danger("[src] вырывается из хватки [pulledby]!"),
+				span_danger("[src] вырывается из вашей хватки!"), target = src,
+				target_message = span_danger("Вы вырвались из хватки [pulledby]!"))
 			pulledby.stop_pulling()
 			return TRUE
 		else if(moving_resist && client) //we resisted by trying to move // this is a horrible system and whoever thought using client instead of mob is okay is not an okay person
 			client.move_delay = world.time + 20
-		pulledby.visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>",
-			"<span class='danger'>[src] resists against your grip!</span>", target = src,
-			target_message = "<span class='danger'>You resist against [pulledby]'s grip!</span>")
+		pulledby.visible_message(span_danger("[src] сопротивляется хватке [pulledby]!"),
+			span_danger("[src] сопротивляется вашей хватке!"), target = src,
+			target_message = span_danger("Вы сопротивляетесь хватке [pulledby]!"))
 	else
 		pulledby.stop_pulling()
 		return TRUE
