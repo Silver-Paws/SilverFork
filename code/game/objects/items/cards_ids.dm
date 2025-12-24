@@ -456,10 +456,10 @@
 		if(registered_account.account_holder == user.real_name)
 			. += "<span class='boldnotice'>Если вы потеряете эту ID-карте, вы можете восстановить свой аккаунт, нажав Alt-Click по пустой ID-карту, держа её в руках, и введя номер своего банковского счёта.</span>"
 	else
-		. += "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>"
+		. += "<span class='info'>Нет зарегистрированного аккаунта. Alt-Click, чтобы добавить.</span>"
 	//BLUEMOON ADD
 	if(card_sticker)
-		. += "<span class='info'>Can be used like a card sticker on another card.</span>"
+		. += "<span class='info'>Можно использовать как стикер на другой ID-карте.</span>"
 	//BLUEMOON ADD END
 
 /obj/item/card/id/GetAccess()
