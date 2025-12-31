@@ -267,7 +267,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/rezadone/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/medicine/rezadone/reaction_mob(mob/living/M, method=TOUCH, reac_volume, affected_bodypart)
 	. = ..()
 	if(iscarbon(M))
 		var/mob/living/carbon/patient = M
@@ -301,32 +301,67 @@
 		new /obj/item/stack/medical/mesh/five(get_turf(G), reac_volume)
 		G.use(reac_volume)
 
-/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, affected_bodypart = BODY_ZONE_CHEST)
 	if(iscarbon(M) && M.stat != DEAD)
+		var/reac_strength = reac_volume
 		var/mob/living/carbon/human/H = M
-		var/protected = FALSE
-		if (H.wear_suit && H.head && istype(H.wear_suit, /obj/item/clothing) && istype(H.head, /obj/item/clothing))
-			var/obj/item/clothing/worn_suit = H.wear_suit
-			var/obj/item/clothing/worn_helmet = H.head
-			if (worn_suit.clothing_flags & worn_helmet.clothing_flags & THICKMATERIAL)
-				protected = TRUE
-		if(method == TOUCH && protected)
-			var/obj/item/clothing/worn_suit = H.wear_suit
-			M.visible_message("<span class='danger'>[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [worn_suit.name]!</span>", \
-						"<span class='userdanger'>Меня чем-то облили, но оно стекло вниз по [worn_suit.name]!</span>")
-			playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
-			return
-		else if(method in list(INGEST, VAPOR, INJECT))
-			M.adjustToxLoss(0.5*reac_volume)
+		var/obj/item/bodypart/aff_bodypart = affected_bodypart
+
+		// Проверка на одежду
+		if(ishuman(M))
+			if(method == TOUCH && aff_bodypart)
+				var/obj/item/clothing/protecting_clothing
+				protecting_clothing = get_bodypart_protecting_clothing_by_coverage(H, aff_bodypart)
+				if(protecting_clothing)
+					if(protecting_clothing.clothing_flags & THICKMATERIAL) // РИГ? ЕВА? Бронежилет СБ? Не подействует.
+						M.visible_message(span_danger("[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [protecting_clothing.name]!"), \
+									span_danger("Меня чем-то облили, но оно стекло вниз по [protecting_clothing.name]!"))
+						playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
+						return
+					else
+						reac_strength = reac_strength * 0.6 // Защита любой одеждой снижает эффективность препарата
+
+		// Отравление не-касательным применением
+		if(method in list(INGEST, VAPOR, INJECT))
+			M.adjustToxLoss(0.5*reac_volume) // не strength, т.к. попадание этими методами обходит любую одежду
 			if(show_message)
-				to_chat(M, "<span class='warning'>Вы ощущаете себя не очень хорошо...</span>")
-		else if(M.getFireLoss())
-			M.adjustFireLoss(-reac_volume)
-			if(show_message)
-				to_chat(M, "<span class='danger'>Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!!</span>")
-			//M.emote("scream")
+				to_chat(M, span_warning("Вы ощущаете себя не очень хорошо..."))
+
+		// Эффекты самого лекарства. Лечение бёрна.
+		else if((method in list(TOUCH, PATCH)) && M.getBruteLoss())
+			if(method == TOUCH) // Пластыри эффективнее обливания
+				reac_strength = reac_strength * 0.75
+			var/burn_healed = FALSE // Не хочу вызывать остальные эффекты, если лечения не произошло
+			if(ishuman(M)) // Человек?
+				if(aff_bodypart && aff_bodypart.burn_dam) // Урон может быть. Конечность может быть не поранена
+					aff_bodypart.heal_damage(burn = reac_strength)
+					burn_healed = TRUE
+			else // Обезьяна/ксенос?
+				M.adjustFireLoss(-reac_strength)
+				burn_healed = TRUE
+			M.update_body()
+
+			// Крики и прочие эффекты
+			if(show_message && burn_healed)
+				if(!HAS_TRAIT(M, TRAIT_MASO)) // Я решил дать сюда также эффекты при трейтах, например
+					to_chat(M, span_danger("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!"))
+					if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
+						M.emote("scream")
+					else
+						M.emote("me", EMOTE_VISIBLE, "стискивает зубы от боли.")
+				else
+					to_chat(M, span_lewd("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!~"))
+					M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
+					M.emote("moan")
+
+			// Дебаффы
+			M.Jitter(reac_strength/4)
+			M.blur_eyes(reac_strength/4)
 			shake_camera(M, 5, 2)
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+			if(!HAS_TRAIT(M, TRAIT_MASO))
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+			else
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "maso_medicine", /datum/mood_event/maso_medicine)
 	..()
 
 /datum/reagent/medicine/silver_sulfadiazine/on_mob_life(mob/living/carbon/M)
@@ -380,32 +415,60 @@
 	metabolization_rate = 5 * REAGENTS_METABOLISM
 	overdose_threshold = 50
 
-/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0, affected_bodypart)
 	if(iscarbon(M) && M.stat != DEAD)
+		var/reac_strength = reac_volume
 		var/mob/living/carbon/human/H = M
-		var/protected = FALSE
-		if (H.wear_suit && H.head && istype(H.wear_suit, /obj/item/clothing) && istype(H.head, /obj/item/clothing))
-			var/obj/item/clothing/worn_suit = H.wear_suit
-			var/obj/item/clothing/worn_helmet = H.head
-			if (worn_suit.clothing_flags & worn_helmet.clothing_flags & THICKMATERIAL)
-				protected = TRUE
-		if(method == TOUCH && protected)
-			var/obj/item/clothing/worn_suit = H.wear_suit
-			M.visible_message("<span class='danger'>[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [worn_suit.name]!</span>", \
-						"<span class='userdanger'>Меня чем-то облили, но оно стекло вниз по [worn_suit.name]!</span>")
-			playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
-			return
-		else if(method in list(INGEST, VAPOR, INJECT))
-			M.adjustToxLoss(0.5*reac_volume)
-			if(show_message)
-				to_chat(M, "<span class='warning'>Вы ощущаете себя не очень хорошо...</span>")
-		else if(M.getBruteLoss())
-			M.adjustBruteLoss(-reac_volume)
-			if(show_message)
-				to_chat(M, "<span class='danger'>Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!</span>")
-			//M.emote("scream")
-			shake_camera(M, 5, 2)
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+		var/obj/item/bodypart/aff_bodypart = affected_bodypart
+		// Проверка на одежду
+		if(ishuman(M))
+			if(method == TOUCH && aff_bodypart)
+				var/obj/item/clothing/protecting_clothing
+				protecting_clothing = get_bodypart_protecting_clothing_by_coverage(H, aff_bodypart)
+				if(protecting_clothing)
+					if(protecting_clothing.clothing_flags & THICKMATERIAL) // РИГ? ЕВА? Бронежилет СБ? Не подействует.
+						M.visible_message(span_danger("[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [protecting_clothing.name]!"), \
+									span_danger("Меня чем-то облили, но оно стекло вниз по [protecting_clothing.name]!"))
+						playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
+						return
+					else
+						reac_strength = reac_strength * 0.6 // Защита любой одеждой снижает эффективность препарата
+		switch(method)
+			// Отравление не-касательным применением
+			if(INGEST, VAPOR, INJECT)
+				M.adjustToxLoss(0.5 * reac_strength)
+				if(show_message)
+					to_chat(M, span_warning("Вы ощущаете себя не очень хорошо..."))
+			// Лечение брута
+			if(TOUCH, PATCH)
+				if(!M.getBruteLoss())
+					return ..()
+				if(method == TOUCH)
+					reac_strength *= 0.75
+				if(ishuman(M))
+					if(aff_bodypart && aff_bodypart.brute_dam)
+						aff_bodypart.heal_damage(brute = reac_strength)
+				else
+					M.adjustBruteLoss(-reac_strength)
+				if(show_message) // Крики и прочие эффекты
+					if(!HAS_TRAIT(M, TRAIT_MASO))
+						to_chat(M, span_danger("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!"))
+						if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
+							M.emote("scream")
+						else
+							M.emote("me", EMOTE_VISIBLE, "стискивает зубы от боли.")
+					else
+						to_chat(M, span_lewd("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!~"))
+						M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
+						M.emote("moan")
+				// Общие эффекты
+				M.Jitter(reac_strength / 4)
+				M.Dizzy(reac_strength / 4)
+				shake_camera(M, 5, 2)
+				if(!HAS_TRAIT(M, TRAIT_MASO))
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+				else
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "maso_medicine", /datum/mood_event/maso_medicine)
 	..()
 
 /datum/reagent/medicine/styptic_powder/reaction_obj(obj/O, reac_volume)
@@ -506,7 +569,7 @@
 	..()
 	return TRUE
 
-/datum/reagent/medicine/mine_salve/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/mine_salve/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, affected_bodypart)
 	if(iscarbon(M) && M.stat != DEAD)
 		if(method in list(INGEST, VAPOR, INJECT))
 			M.adjust_nutrition(-5)
@@ -542,7 +605,7 @@
 	value = REAGENT_VALUE_COMMON
 	var/toxic = TRUE // BLUEMOON ADD
 
-/datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, affected_bodypart)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(M.stat == DEAD)
@@ -1104,7 +1167,7 @@
 	var/expected_amount_to_full_heal = round(max_health / healing_per_reagent_unit, DAMAGE_PRECISION) / excess_healing_ratio
 	return amount_needed_to_revive + expected_amount_to_full_heal
 
-/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
+/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, affected_bodypart)
 	if(exposed_mob.stat != DEAD || !(exposed_mob.mob_biotypes & MOB_ORGANIC))
 		return ..()
 
@@ -1199,7 +1262,7 @@
 	color = "#EEFF8F"
 //	chemical_flags = REAGENT_ALL_PROCESS (BLUEMOON REMOVAL - роботы не должны получать эффекты реагента)
 
-/datum/reagent/medicine/neurine/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/medicine/neurine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, affected_bodypart)
 	if(!(method == INJECT))
 		return
 	var/obj/item/organ/brain/B = M.getorganslot(ORGAN_SLOT_BRAIN)
@@ -1834,7 +1897,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/polypyr/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/medicine/polypyr/reaction_mob(mob/living/M, method=TOUCH, reac_volume, affected_bodypart)
 	if(method == TOUCH || method == VAPOR)
 		if(M && ishuman(M) && reac_volume >= 0.5)
 			var/mob/living/carbon/human/H = M
@@ -1965,7 +2028,7 @@
 	overdose_threshold = 65 //it takes more than one bluespace syringe to overdose someone with this given how nasty the OD is.
 	value = REAGENT_VALUE_RARE
 
-/datum/reagent/medicine/limb_regrowth/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
+/datum/reagent/medicine/limb_regrowth/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume, affected_bodypart)
 	. = ..()
 	if(!.)
 		return

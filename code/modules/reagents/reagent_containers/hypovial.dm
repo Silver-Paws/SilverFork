@@ -21,6 +21,7 @@
 	)
 	always_reskinnable = TRUE
 	cached_icon = "hypovial"
+	reagent_flags = INJECTABLE | DRAWABLE
 
 /obj/item/reagent_containers/glass/bottle/vial/Initialize(mapload)
 	. = ..()

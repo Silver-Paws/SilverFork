@@ -37,7 +37,12 @@
 			if(isturf(target) && reagents.reagent_list.len && thrown_by)
 				log_combat(thrown_by, target, "splashed (thrown) [english_list(reagents.reagent_list)]")
 				message_admins("[ADMIN_LOOKUPFLW(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] at [ADMIN_VERBOSEJMP(target)].")
-			reagents.reaction(M, TOUCH)
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+				reagents.reaction(M, TOUCH, affected_bodypart = affecting)
+			else
+				reagents.reaction(M, TOUCH)
 			log_combat(user, M, "splashed", R)
 			var/turf/UT = get_turf(user)
 			var/turf/MT = get_turf(M)

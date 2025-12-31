@@ -877,7 +877,7 @@
 	pH = REAGENT_NORMAL_PH
 	return FALSE
 
-/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1, from_gas = 0)
+/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1, from_gas = 0, affected_bodypart)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
@@ -899,7 +899,10 @@
 				if(method == VAPOR)
 					var/mob/living/L = A
 					touch_protection = L.get_permeability_protection()
-				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
+					R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
+				if(method == TOUCH)
+					var/bodypart = affected_bodypart
+					R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection, affected_bodypart = bodypart)
 			if("TURF")
 				R.reaction_turf(A, R.volume * volume_modifier, show_message, from_gas)
 			if("OBJ")

@@ -2,11 +2,12 @@
 
 /obj/item/reagent_containers/glass/bottle
 	name = "bottle"
-	desc = "Маленькая бутылочка."
+	desc = "Маленькая бутылочка. Плотно закрыта крышкой."
 	icon_state = "bottle"
 	item_state = "atoxinbottle"
 	possible_transfer_amounts = list(5,10,15,25,30)
 	volume = 30
+	spillable = FALSE
 
 /obj/item/reagent_containers/glass/bottle/Initialize(mapload)
 	. = ..()
