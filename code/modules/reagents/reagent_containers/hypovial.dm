@@ -2,7 +2,7 @@
 
 /obj/item/reagent_containers/glass/bottle/vial // these have literally no fucking right to just be better beakers that you can shit out of a chemmaster
 	name = "broken hypovial"
-	desc = "Гипоампула, совместимая с большинствами гипоспреев."
+	desc = "Гипоампула, совместимая с большинством гипоспреев."
 	icon_state = "hypovial"
 	spillable = FALSE
 	volume = 10
@@ -29,6 +29,11 @@
 
 /obj/item/reagent_containers/glass/bottle/vial/on_reagent_change()
 	update_icon()
+
+/obj/item/reagent_containers/glass/bottle/vial/examine(mob/user)
+	. = ..()
+	. += span_info("Плотно закупорено: не пропускает жидкости внутрь.\n\
+	Игла шприца может взять содержимое, но его не выйдет вылить куда-то резко вылить.")
 
 /obj/item/reagent_containers/glass/bottle/vial/tiny
 	name = "small hypovial"

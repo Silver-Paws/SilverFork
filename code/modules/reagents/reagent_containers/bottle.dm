@@ -522,7 +522,7 @@
 			return TRUE
 
 		if(attacking_item.reagents.holder_full())
-			balloon_alert(user, "вместилище заполенено!")
+			balloon_alert(user, "бутылка заполнена!")
 			return TRUE
 
 		var/transfer_amount = reagents.trans_to(attacking_item, amount_per_transfer_from_this)

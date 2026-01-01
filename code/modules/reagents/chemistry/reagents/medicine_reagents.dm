@@ -307,7 +307,7 @@
 
 	if(isanimal(M))
 		M.adjustFireLoss(-reac_volume * 0.75) // Невозможно как-либо передать  симплмобу, кроме обливанием. Потому без бонуса пластыря.
-		to_chat(M, span_danger("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!"))
+		to_chat(M, span_danger("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!"))
 		return ..()
 
 	if(!iscarbon(M))
@@ -338,12 +338,14 @@
 					to_chat(M, span_warning("Вы ощущаете себя не очень хорошо..."))
 			// Эффекты самого лекарства. Лечение бёрна.
 			if(TOUCH, PATCH)
-				if(!M.getBruteLoss())
+				if(!M.getFireLoss())
 					return ..()
 				if(method == TOUCH) // Пластыри справятся лучше
 					reac_strength *= 0.75
 				if(ishuman(M))
-					if(aff_bodypart && aff_bodypart.burn_dam)
+					if(!aff_bodypart || !aff_bodypart.burn_dam)
+						return ..()
+					else
 						aff_bodypart.heal_damage(burn = reac_strength)
 				else // Обезьяна? Ксенос?
 					M.adjustFireLoss(-reac_strength)
@@ -352,6 +354,7 @@
 						to_chat(M, span_danger("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!"))
 						if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
 							M.emote("scream")
+							M.Jitter(reac_strength / 4)
 						else
 							M.emote("me", EMOTE_VISIBLE, "стискивает зубы от боли.")
 					else
@@ -359,8 +362,7 @@
 						M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
 						M.emote("moan")
 				// Общие эффекты
-				M.Jitter(reac_strength / 4)
-				M.blur_eyes(reac_strength / 4)
+				M.blur_eyes(reac_strength / 2)
 				shake_camera(M, 5, 2)
 				if(!HAS_TRAIT(M, TRAIT_MASO))
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
@@ -458,10 +460,12 @@
 			if(TOUCH, PATCH)
 				if(!M.getBruteLoss())
 					return ..()
-				if(method == TOUCH) // Пластыри справятся лучше
+				if(method == TOUCH) // Пластыри справятся лучш
 					reac_strength *= 0.75
 				if(ishuman(M))
-					if(aff_bodypart && aff_bodypart.brute_dam)
+					if(!aff_bodypart || !aff_bodypart.brute_dam)
+						return ..()
+					else
 						aff_bodypart.heal_damage(brute = reac_strength)
 				else // Обезьяна? Ксенос?
 					M.adjustBruteLoss(-reac_strength)
@@ -470,6 +474,7 @@
 						to_chat(M, span_danger("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!"))
 						if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
 							M.emote("scream")
+							M.Jitter(reac_strength / 4)
 						else
 							M.emote("me", EMOTE_VISIBLE, "стискивает зубы от боли.")
 					else
@@ -477,7 +482,6 @@
 						M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
 						M.emote("moan")
 				// Общие эффекты
-				M.Jitter(reac_strength / 4)
 				M.Dizzy(reac_strength / 4)
 				shake_camera(M, 5, 2)
 				if(!HAS_TRAIT(M, TRAIT_MASO))

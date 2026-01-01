@@ -117,7 +117,7 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, log = "reagentcontainer-glass afterattack fill from")
 		to_chat(user, "<span class='notice'>Вы заполнили [src] на [trans] u содержимого [target].</span>")
 
-	else if(reagents.total_volume)
+	else if(reagents.total_volume && reagent_flags & OPENCONTAINER)
 		if(user.a_intent == INTENT_HARM)
 			user.visible_message("<span class='danger'>[user] разливает содержимое [src] на [target]!</span>", \
 								"<span class='notice'>Вы вылили содержимое [src] на [target].</span>")
