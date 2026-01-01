@@ -37,7 +37,7 @@
 			. += "<span class='notice'>Из-за кода тревоги, фиксирующие зажимы могут быть переключены ID-картой.</span>"
 		else
 			. += "<span class='notice'>Фиксирующие зажимы могут быть [clamps_locked ? "раз" : "за"]блокированы ID-картой с доступами.</span>"
-  . += span_notice("Выглядит <b>откручиваемым</b>.")
+	. += span_notice("Выглядит <b>откручиваемым</b>.")
 
 /obj/machinery/defibrillator_mount/process()
 	if(defib && defib.cell && defib.cell.charge < defib.cell.maxcharge && is_operational())
