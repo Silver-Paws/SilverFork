@@ -4,8 +4,6 @@
 	if(!H || !body_part)
 		return FALSE
 
-	var/target_zone = body_part.body_zone
-
 	// Здесь важен порядок, чтобы цикл проверил сначала сьют (ЕВА, скафандры), потом остальное.
 	var/list/clothes = list(
 		H.wear_suit,
@@ -23,6 +21,7 @@
 		if(!covered_zones)
 			continue
 
+		var/target_zone = body_part.body_zone
 		if(target_zone in covered_zones)
 			return C
 

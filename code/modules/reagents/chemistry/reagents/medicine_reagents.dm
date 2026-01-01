@@ -302,66 +302,70 @@
 		G.use(reac_volume)
 
 /datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, affected_bodypart = BODY_ZONE_CHEST)
-	if(iscarbon(M) && M.stat != DEAD)
-		var/reac_strength = reac_volume
-		var/mob/living/carbon/human/H = M
-		var/obj/item/bodypart/aff_bodypart = affected_bodypart
+	if(M.stat == DEAD)
+		return ..()
 
-		// Проверка на одежду
-		if(ishuman(M))
-			if(method == TOUCH && aff_bodypart)
-				var/obj/item/clothing/protecting_clothing
-				protecting_clothing = get_bodypart_protecting_clothing_by_coverage(H, aff_bodypart)
-				if(protecting_clothing)
-					if(protecting_clothing.clothing_flags & THICKMATERIAL) // РИГ? ЕВА? Бронежилет СБ? Не подействует.
-						M.visible_message(span_danger("[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [protecting_clothing.name]!"), \
-									span_danger("Меня чем-то облили, но оно стекло вниз по [protecting_clothing.name]!"))
-						playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
-						return
-					else
-						reac_strength = reac_strength * 0.6 // Защита любой одеждой снижает эффективность препарата
+	if(isanimal(M))
+		M.adjustFireLoss(-reac_volume * 0.75) // Невозможно как-либо передать  симплмобу, кроме обливанием. Потому без бонуса пластыря.
+		to_chat(M, span_danger("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!"))
+		return ..()
 
-		// Отравление не-касательным применением
-		if(method in list(INGEST, VAPOR, INJECT))
-			M.adjustToxLoss(0.5*reac_volume) // не strength, т.к. попадание этими методами обходит любую одежду
-			if(show_message)
-				to_chat(M, span_warning("Вы ощущаете себя не очень хорошо..."))
+	if(!iscarbon(M))
+		return ..()
 
-		// Эффекты самого лекарства. Лечение бёрна.
-		else if((method in list(TOUCH, PATCH)) && M.getBruteLoss())
-			if(method == TOUCH) // Пластыри эффективнее обливания
-				reac_strength = reac_strength * 0.75
-			var/burn_healed = FALSE // Не хочу вызывать остальные эффекты, если лечения не произошло
-			if(ishuman(M)) // Человек?
-				if(aff_bodypart && aff_bodypart.burn_dam) // Урон может быть. Конечность может быть не поранена
-					aff_bodypart.heal_damage(burn = reac_strength)
-					burn_healed = TRUE
-			else // Обезьяна/ксенос?
-				M.adjustFireLoss(-reac_strength)
-				burn_healed = TRUE
-			M.update_body()
-
-			// Крики и прочие эффекты
-			if(show_message && burn_healed)
-				if(!HAS_TRAIT(M, TRAIT_MASO)) // Я решил дать сюда также эффекты при трейтах, например
-					to_chat(M, span_danger("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!"))
-					if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
-						M.emote("scream")
-					else
-						M.emote("me", EMOTE_VISIBLE, "стискивает зубы от боли.")
+	var/reac_strength = reac_volume
+	var/mob/living/carbon/human/H = M
+	var/obj/item/bodypart/aff_bodypart = affected_bodypart
+	// Проверка на одежду
+	if(ishuman(M))
+		if(method == TOUCH && aff_bodypart)
+			var/obj/item/clothing/protecting_clothing
+			protecting_clothing = get_bodypart_protecting_clothing_by_coverage(H, aff_bodypart)
+			if(protecting_clothing)
+				if(protecting_clothing.clothing_flags & THICKMATERIAL) // РИГ? ЕВА? Бронежилет СБ? Не подействует.
+					M.visible_message(span_danger("[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [protecting_clothing.name]!"), \
+								span_danger("Меня чем-то облили, но оно стекло вниз по [protecting_clothing.name]!"))
+					playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
+					return ..()
 				else
-					to_chat(M, span_lewd("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!~"))
-					M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
-					M.emote("moan")
+					reac_strength = reac_strength * 0.6 // Защита любой одеждой снижает эффективность препарата
 
-			// Дебаффы
-			M.Jitter(reac_strength/4)
-			M.blur_eyes(reac_strength/4)
-			shake_camera(M, 5, 2)
-			if(!HAS_TRAIT(M, TRAIT_MASO))
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
-			else
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "maso_medicine", /datum/mood_event/maso_medicine)
+		switch(method)
+			// Отравление не-касательным применением
+			if(INGEST, VAPOR, INJECT)
+				M.adjustToxLoss(reac_volume * pick(0.4, 0.5, 0.6))
+				if(show_message)
+					to_chat(M, span_warning("Вы ощущаете себя не очень хорошо..."))
+			// Эффекты самого лекарства. Лечение бёрна.
+			if(TOUCH, PATCH)
+				if(!M.getBruteLoss())
+					return ..()
+				if(method == TOUCH) // Пластыри справятся лучше
+					reac_strength *= 0.75
+				if(ishuman(M))
+					if(aff_bodypart && aff_bodypart.burn_dam)
+						aff_bodypart.heal_damage(burn = reac_strength)
+				else // Обезьяна? Ксенос?
+					M.adjustFireLoss(-reac_strength)
+				if(show_message) // Крики и прочий флавор-эффект.
+					if(!HAS_TRAIT(M, TRAIT_MASO))
+						to_chat(M, span_danger("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!"))
+						if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
+							M.emote("scream")
+						else
+							M.emote("me", EMOTE_VISIBLE, "стискивает зубы от боли.")
+					else
+						to_chat(M, span_lewd("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!~"))
+						M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
+						M.emote("moan")
+				// Общие эффекты
+				M.Jitter(reac_strength / 4)
+				M.blur_eyes(reac_strength / 4)
+				shake_camera(M, 5, 2)
+				if(!HAS_TRAIT(M, TRAIT_MASO))
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+				else
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "maso_medicine", /datum/mood_event/maso_medicine)
 	..()
 
 /datum/reagent/medicine/silver_sulfadiazine/on_mob_life(mob/living/carbon/M)
@@ -420,7 +424,7 @@
 		return ..()
 
 	if(isanimal(M))
-		M.adjustBruteLoss(-reac_volume * 0.75) // Невозможно как-либо передать реагент симплмобу, кроме обливанием. Потому без бонуса пластыря.
+		M.adjustBruteLoss(-reac_volume * 0.75) // Невозможно как-либо передать  симплмобу, кроме обливанием. Потому без бонуса пластыря.
 		to_chat(M, span_danger("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!"))
 		return ..()
 
@@ -440,46 +444,46 @@
 					M.visible_message(span_danger("[H] был[H.ru_a()] чем-то облит[H.ru_a()], но оно стекло вниз по [protecting_clothing.name]!"), \
 								span_danger("Меня чем-то облили, но оно стекло вниз по [protecting_clothing.name]!"))
 					playsound(src.loc, 'modular_bluemoon/krashly/sound/items/watersplash.ogg', 40, 1)
-					return
+					return ..()
 				else
 					reac_strength = reac_strength * 0.6 // Защита любой одеждой снижает эффективность препарата
 
-	switch(method)
-		// Отравление не-касательным применением
-		if(INGEST, VAPOR, INJECT)
-			M.adjustToxLoss(0.5 * -reac_strength)
-			if(show_message)
-				to_chat(M, span_warning("Вы ощущаете себя не очень хорошо..."))
-		// Лечение брута
-		if(TOUCH, PATCH)
-			if(!M.getBruteLoss())
-				return ..()
-			if(method == TOUCH) // Пластыри справятся лучше
-				reac_strength *= 0.75
-			if(ishuman(M))
-				if(aff_bodypart && aff_bodypart.brute_dam)
-					aff_bodypart.heal_damage(brute = reac_strength)
-			else // Обезьяна? Ксенос?
-				M.adjustBruteLoss(-reac_strength)
-			if(show_message) // Крики и прочие эффекты.
-				if(!HAS_TRAIT(M, TRAIT_MASO))
-					to_chat(M, span_danger("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!"))
-					if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
-						M.emote("scream")
+		switch(method)
+			// Отравление не-касательным применением
+			if(INGEST, VAPOR, INJECT)
+				M.adjustToxLoss(reac_volume * pick(0.4, 0.5, 0.6))
+				if(show_message)
+					to_chat(M, span_warning("Вы ощущаете себя не очень хорошо..."))
+			// Лечение брута
+			if(TOUCH, PATCH)
+				if(!M.getBruteLoss())
+					return ..()
+				if(method == TOUCH) // Пластыри справятся лучше
+					reac_strength *= 0.75
+				if(ishuman(M))
+					if(aff_bodypart && aff_bodypart.brute_dam)
+						aff_bodypart.heal_damage(brute = reac_strength)
+				else // Обезьяна? Ксенос?
+					M.adjustBruteLoss(-reac_strength)
+				if(show_message) // Крики и прочий флавор-эффект.
+					if(!HAS_TRAIT(M, TRAIT_MASO))
+						to_chat(M, span_danger("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!"))
+						if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
+							M.emote("scream")
+						else
+							M.emote("me", EMOTE_VISIBLE, "стискивает зубы от боли.")
 					else
-						M.emote("me", EMOTE_VISIBLE, "стискивает зубы от боли.")
+						to_chat(M, span_lewd("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!~"))
+						M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
+						M.emote("moan")
+				// Общие эффекты
+				M.Jitter(reac_strength / 4)
+				M.Dizzy(reac_strength / 4)
+				shake_camera(M, 5, 2)
+				if(!HAS_TRAIT(M, TRAIT_MASO))
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 				else
-					to_chat(M, span_lewd("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!~"))
-					M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
-					M.emote("moan")
-			// Общие эффекты
-			M.Jitter(reac_strength / 4)
-			M.Dizzy(reac_strength / 4)
-			shake_camera(M, 5, 2)
-			if(!HAS_TRAIT(M, TRAIT_MASO))
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
-			else
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "maso_medicine", /datum/mood_event/maso_medicine)
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "maso_medicine", /datum/mood_event/maso_medicine)
 	..()
 
 /datum/reagent/medicine/styptic_powder/reaction_obj(obj/O, reac_volume)

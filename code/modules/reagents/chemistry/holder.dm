@@ -896,13 +896,11 @@
 		switch(react_type)
 			if("LIVING")
 				var/touch_protection = 0
+				var/bodypart = affected_bodypart
 				if(method == VAPOR)
 					var/mob/living/L = A
 					touch_protection = L.get_permeability_protection()
-					R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
-				if(method == TOUCH)
-					var/bodypart = affected_bodypart
-					R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection, affected_bodypart = bodypart)
+				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection, affected_bodypart = bodypart)
 			if("TURF")
 				R.reaction_turf(A, R.volume * volume_modifier, show_message, from_gas)
 			if("OBJ")
