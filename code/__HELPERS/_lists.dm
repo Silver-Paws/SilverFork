@@ -872,16 +872,25 @@
 			continue
 		. += checked_atom.contents
 
-/// Ищет объект и его дочерние объекты среди указанного листа.
-/proc/is_typeof_list(typepath, list/type_list)
-	if (!ispath(typepath))
-		if (istext(typepath)) // Для работы с датумами прок учитывает то, что у нас выводится при return (Например, текстово - путь предмета /datum/gear)
-			typepath = text2path(typepath)
-		else
-			return FALSE
-	for (var/T in type_list)
-		if (ispath(typepath, T))
+/** Прок ищет объект и его дочерние объекты среди указанного листа.
+ * typepath – аргумент атома, обычно записывается как [x.path]
+ * list/type_list – указанный глобально или локально лист, по которому будет произведён поиск
+ */
+/proc/ispath_in_list(atom/thing, list/type_list)
+	if(!islist(type_list))
+		return FALSE
+
+	var/typepath
+	if(ispath(thing))
+		typepath = thing
+	else if(isdatum(thing))
+		typepath = thing.type
+	else
+		return FALSE
+	for(var/T in type_list)
+		if(ispath(T) && ispath(typepath, T))
 			return TRUE
+
 	return FALSE
 
 /// Returns whether a numerical index is within a given list's bounds. Faster than isnull(LAZYACCESS(L, I)).

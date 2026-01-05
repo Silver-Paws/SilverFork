@@ -32,8 +32,8 @@
 
 /obj/item/reagent_containers/glass/bottle/vial/examine(mob/user)
 	. = ..()
-	. += span_info("Плотно закупорено: не пропускает жидкости внутрь.\n\
-	Игла шприца может взять содержимое, но его не выйдет вылить куда-то резко вылить.")
+	. += span_info("Закупорено: нельзя залить жидкости.\n\
+	Игла шприца может взять содержимое. Ампулу невозможно резко опустошить.")
 
 /obj/item/reagent_containers/glass/bottle/vial/tiny
 	name = "small hypovial"

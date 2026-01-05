@@ -4484,8 +4484,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 										2. - не против Хаоса и неожиданных ситуаций, готов рисковать ради интереса. \n\
 										3. - СЛАВА ХАОСУ НЕДЕЛИМОМУ. Готов к любым безумствам и опасностям.",\
 										"Предпочитаемый Уровень Хаоса", 2, 3, 0, round_value = TRUE)
-					
-					if(isnum(chaos_level))		
+
+					if(isnum(chaos_level))
 						preferred_chaos_level = chaos_level
 
 				if("auto_capitalize_enabled")
@@ -4789,7 +4789,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/typepath = user_gear[LOADOUT_ITEM]
 				var/forbidden = FALSE
 				var/datum/gear/temp_gear = new typepath()
-				if (is_typeof_list(temp_gear.path, LOADOUT_IS_DISALLOWED_HEIRLOOM))
+				if (ispath_in_list(temp_gear.path, LOADOUT_IS_DISALLOWED_HEIRLOOM))
 					forbidden = TRUE
 				qdel(temp_gear) // На всякий случай, чтобы не засирало память лишними датумами
 				// Выбран ли какой-либо другой предмет как семейная реликвия, и если да, то какой?

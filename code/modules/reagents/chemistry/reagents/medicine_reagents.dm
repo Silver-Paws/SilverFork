@@ -352,7 +352,7 @@
 				if(show_message) // Крики и прочий флавор-эффект.
 					if(!HAS_TRAIT(M, TRAIT_MASO))
 						to_chat(M, span_danger("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!"))
-						if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
+						if((!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)) && reac_volume >= 10 && prob(50))
 							M.emote("scream")
 							M.Jitter(reac_strength / 4)
 						else
@@ -360,7 +360,10 @@
 					else
 						to_chat(M, span_lewd("Вы ощущаете, как ваши ожоги затягиваются! Жжётся адски!~"))
 						M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
-						M.emote("moan")
+						if(reac_volume >= 10)
+							M.emote("scream")
+						else
+							M.emote("moan")
 				// Общие эффекты
 				M.blur_eyes(reac_strength / 2)
 				shake_camera(M, 5, 2)
@@ -472,7 +475,7 @@
 				if(show_message) // Крики и прочий флавор-эффект.
 					if(!HAS_TRAIT(M, TRAIT_MASO))
 						to_chat(M, span_danger("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!"))
-						if(prob(50) && (!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)))
+						if((!HAS_TRAIT(M, TRAIT_PAINKILLER) || !HAS_TRAIT(M, TRAIT_BLUEMOON_HIGH_PAIN_THRESHOLD)) && reac_volume >= 10 && prob(50))
 							M.emote("scream")
 							M.Jitter(reac_strength / 4)
 						else
@@ -480,7 +483,10 @@
 					else
 						to_chat(M, span_lewd("Вы ощущаете, как ваши ушибы затягиваются! Жжётся адски!~"))
 						M.handle_post_sex(rand(LOW_LUST, reac_strength), null, null)
-						M.emote("moan")
+						if(reac_volume >= 10)
+							M.emote("scream")
+						else
+							M.emote("moan")
 				// Общие эффекты
 				M.Dizzy(reac_strength / 4)
 				shake_camera(M, 5, 2)

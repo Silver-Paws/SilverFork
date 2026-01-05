@@ -14,9 +14,6 @@
 	if(!canconsume(M, user))
 		return
 
-	if(!spillable)
-		return
-
 	if(!reagents || !reagents.total_volume)
 		to_chat(user, "<span class='warning'>Внутри [src] пусто!</span>")
 		return
@@ -28,6 +25,9 @@
 		gulp_amount = H.self_gulp_size
 	if(istype(M))
 		if(user.a_intent == INTENT_HARM)
+			if(!spillable)
+				to_chat(user, span_danger("Закупорено: не вылить!"))
+				return
 			M.visible_message("<span class='danger'>[user] выливает содержимое [src] на [M]!</span>", \
 							"<span class='userdanger'>[user] выливает содержимое [src] на [M]!</span>")
 			if(iscatperson(M))
@@ -117,7 +117,7 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, log = "reagentcontainer-glass afterattack fill from")
 		to_chat(user, "<span class='notice'>Вы заполнили [src] на [trans] u содержимого [target].</span>")
 
-	else if(reagents.total_volume && reagent_flags & OPENCONTAINER)
+	else if(reagents.total_volume && reagent_flags & OPENCONTAINER && spillable)
 		if(user.a_intent == INTENT_HARM)
 			user.visible_message("<span class='danger'>[user] разливает содержимое [src] на [target]!</span>", \
 								"<span class='notice'>Вы вылили содержимое [src] на [target].</span>")
