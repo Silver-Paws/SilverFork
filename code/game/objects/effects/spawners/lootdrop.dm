@@ -1,5 +1,5 @@
-#define ILLEGAL_LOOT_DELAY_MIN 120 SECONDS // Минимум времени на спавн теховской контрабанде
-#define ILLEGAL_LOOT_DELAY_MAX 360 SECONDS // Максимум времени
+#define ILLEGAL_LOOT_DELAY_MIN 210 SECONDS // Минимум времени на спавн теховской контрабанде
+#define ILLEGAL_LOOT_DELAY_MAX 1200 SECONDS // Максимум времени
 #define ILLEGAL_LOOT_DELAY_ROUND 30 SECONDS // Для округления рандомно выбранного числа из значений выше. Округляет до цельной половины минуты
 #define ILLEGAL_LOOT_DELAY_CHANCE 25 // С каким шансом лут будет доступен раундстарт
 
