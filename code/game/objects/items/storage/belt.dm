@@ -422,6 +422,15 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/storage/belt/military/green
+	name = "military belt"
+	desc = "A tactical belt with a woodland pattern, designed for infantry operations in dense vegetation."
+	mob_overlay_icon = 'modular_bluemoon/icons/mob/clothing/belt.dmi'
+	lefthand_file = 'modular_bluemoon/icons/mob/inhands/equipment/belt_lefthand.dmi'
+	righthand_file = 'modular_bluemoon/icons/mob/inhands/equipment/belt_righthand.dmi'
+	icon_state = "militarybelt"
+	item_state = "militarybelt"
+
 /obj/item/storage/belt/military/snack
 	name = "tactical snack rig"
 
