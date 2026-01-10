@@ -514,10 +514,6 @@
 			if(!stop_messages)
 				to_chat(M, span_warning("[host] не может уместить [I]!</span>"))
 			return FALSE
-		if(!allow_other_storages && GetComponent(I, /datum/component/storage))
-			if(!stop_messages)
-				to_chat(M, span_warning("[host] не может уместить в себя ёмкости вроде [I]!"))
-			return FALSE
 		if(storage_flags & STORAGE_LIMIT_MAX_W_CLASS && I.w_class > max_w_class)
 			if(!stop_messages)
 				to_chat(M, span_warning("[I] не вмещается по длине в [host]!"))
@@ -548,6 +544,10 @@
 	if(isitem(host))
 		var/obj/item/IP = host
 		var/datum/component/storage/STR_I = I.GetComponent(/datum/component/storage)
+		if(STR_I && !allow_other_storages)
+			if(!stop_messages)
+				to_chat(M, span_warning("[host] не может уместить в себя ёмкости вроде [I]!"))
+				return FALSE
 		if((I.w_class >= IP.w_class) && STR_I && !allow_big_nesting)
 			if(!stop_messages)
 				to_chat(M, span_warning("[IP] не может уместить [I], так как это ёмкость того же размера!"))
