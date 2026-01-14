@@ -361,13 +361,13 @@
 				if (CH.clothing_flags & THICKMATERIAL)
 					. = 0
 		else
-			if(wear_suit && istype(wear_suit, /obj/item/clothing))
-				var/obj/item/clothing/CS = wear_suit
-				if (CS.clothing_flags & THICKMATERIAL)
-					. = 0
+			var/obj/item/bodypart/BP = get_bodypart(target_zone)
+			var/obj/item/clothing/CS = get_bodypart_protecting_clothing_by_coverage(src, BP)
+			if(CS && (CS.clothing_flags & THICKMATERIAL))
+				. = 0
 	if(!. && error_msg && user)
 		// Might need re-wording.
-		to_chat(user, "<span class='alert'>There is no exposed flesh or thin material [above_neck(target_zone) ? "on [ru_ego()] head" : "on [ru_ego()] body"].</span>")
+		to_chat(user, "<span class='alert'>Участок тела на [above_neck(target_zone) ? "вашей голове" : "вашем теле"] скрыт или на нём слишком толстый слой одежды!</span>")
 
 /mob/living/carbon/human/check_obscured_slots()
 	. = ..()
