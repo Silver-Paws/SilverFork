@@ -731,6 +731,8 @@
 /datum/gear/uniform/kimono/poly
 	name = "Poly kimono"
 	path = /obj/item/clothing/under/costume/kimono/poly
+	loadout_flags = LOADOUT_CAN_NAME | LOADOUT_CAN_DESCRIPTION | LOADOUT_CAN_COLOR_POLYCHROMIC
+	loadout_initial_colors = list("#FFFFFF", "#C5302D")
 
 /datum/gear/uniform/ctlong
 	name = "cargo tech's jumpsuit (long pants)"
