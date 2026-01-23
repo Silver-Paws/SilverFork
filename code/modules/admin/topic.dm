@@ -1969,12 +1969,14 @@
 			else
 				gender_description = "<font color='red'><b>[M.gender]</b></font>"
 
-		to_chat(src.owner, "<b>Info about [M.name]:</b> ")
-		to_chat(src.owner, "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]")
-		to_chat(src.owner, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;")
-		to_chat(src.owner, "Location = [location_description];")
-		to_chat(src.owner, "[special_role_description]")
-		to_chat(src.owner, ADMIN_FULLMONTY_NONAME(M))
+		var/admininfo = ""
+		admininfo += "<center><b>Info about [M.name]:</b></center> "
+		admininfo += "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]"
+		admininfo += "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;"
+		admininfo += "Location = [location_description];"
+		admininfo += "[special_role_description]"
+		admininfo += ADMIN_FULLMONTY_NONAME(M)
+		to_chat(src.owner, examine_block(admininfo))
 
 	else if(href_list["addjobslot"])
 		if(!check_rights(R_ADMIN))
