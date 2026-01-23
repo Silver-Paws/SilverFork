@@ -2,7 +2,7 @@
 	name = "plasma blast"
 	icon_state = "plasmacutter"
 	damage_type = BRUTE
-	damage = 10
+	damage = 13
 	range = 4
 	dismemberment = 20
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
@@ -30,16 +30,20 @@
 			range++
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
+	if(isanimal(target))
+		target.apply_damage(round(damage*1.5), BRUTE)
 
 /obj/item/projectile/plasma/adv
-	damage = 14
+	damage = 19
 	range = 5
 	mine_range = 5
+	dismemberment = 40
 
 /obj/item/projectile/plasma/adv/mech
-	damage = 20
+	damage = 25
 	range = 9
 	mine_range = 3
+	dismemberment = 60
 
 /obj/item/projectile/plasma/turret
 	//Between normal and advanced for damage, made a beam so not the turret does not destroy glass
