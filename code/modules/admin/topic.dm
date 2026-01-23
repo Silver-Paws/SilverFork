@@ -1970,12 +1970,16 @@
 				gender_description = "<font color='red'><b>[M.gender]</b></font>"
 
 		var/admininfo = ""
-		admininfo += "<center><b>Info about [M.name]:</b></center> "
-		admininfo += "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]"
-		admininfo += "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;"
-		admininfo += "Location = [location_description];"
-		admininfo += "[special_role_description]"
-		admininfo += ADMIN_FULLMONTY_NONAME(M)
+		admininfo += "<center><b>Info про [M.name]:</b></center>"
+		admininfo += "<br><b>Mob type</b> = [M.type];<br><b>Gender</b> = [gender_description];<br><b>Damage</b> = [health_description]"
+		admininfo += "<br><b>Имена:</b>"
+		admininfo += "<br><span style='margin-left:12px;'>Name = <b>[M.name]</b>;</span>"
+		admininfo += "<br><span style='margin-left:12px;'>Real_name = [M.real_name];</span>"
+		admininfo += "<br><span style='margin-left:12px;'>Mind_name = [M.mind?"[M.mind.name]":""];</span>"
+		admininfo += "<br><span style='margin-left:12px;'>Key = <b>[M.key]</b>;</span>"
+		admininfo += "<br><b>Location</b> = [location_description];"
+		admininfo += "<br>[special_role_description]"
+		admininfo += "<br><center>[ADMIN_FULLMONTY_NONAME(M)]</center>"
 		to_chat(src.owner, examine_block(admininfo))
 
 	else if(href_list["addjobslot"])
