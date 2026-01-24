@@ -9,6 +9,7 @@
 	var/pressure_decrease_active = FALSE
 	var/pressure_decrease = 0.25
 	var/mine_range = 3 //mines this many additional tiles of rock
+	var/simplemob_damage_bonus = 1
 	tracer_type = /obj/effect/projectile/tracer/plasma_cutter
 	muzzle_type = /obj/effect/projectile/muzzle/plasma_cutter
 	impact_type = /obj/effect/projectile/impact/plasma_cutter
@@ -32,19 +33,21 @@
 			return BULLET_ACT_FORCE_PIERCE
 	if(isanimal(target))
 		var/mob/living/simple_animal/S = target
-		S.apply_damage(round(damage*1.5), BRUTE)
+		S.apply_damage(round(damage*simplemob_damage_bonus), BRUTE)
 
 /obj/item/projectile/plasma/adv
 	damage = 19
 	range = 5
 	mine_range = 5
 	dismemberment = 40
+	simplemob_damage_bonus = 0.75
 
 /obj/item/projectile/plasma/adv/mech
 	damage = 25
 	range = 9
 	mine_range = 3
 	dismemberment = 60
+	simplemob_damage_bonus = 1.25
 
 /obj/item/projectile/plasma/turret
 	//Between normal and advanced for damage, made a beam so not the turret does not destroy glass
@@ -58,3 +61,4 @@
 	damage = 10
 	range = 4
 	mine_range = 0
+	simplemob_damage_bonus = 1.5
