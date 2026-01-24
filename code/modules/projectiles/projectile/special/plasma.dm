@@ -8,6 +8,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	var/pressure_decrease_active = FALSE
 	var/pressure_decrease = 0.25
+	var/pressure_decrease_delimb = 0.5
 	var/mine_range = 3 //mines this many additional tiles of rock
 	var/simplemob_damage_bonus = 1
 	tracer_type = /obj/effect/projectile/tracer/plasma_cutter
@@ -19,6 +20,7 @@
 	if(!lavaland_equipment_pressure_check(get_turf(src)))
 		name = "weakened [name]"
 		damage = damage * pressure_decrease
+		dismemberment = dismemberment * pressure_decrease_delimb
 		pressure_decrease_active = TRUE
 
 /obj/item/projectile/plasma/on_hit(atom/target)
