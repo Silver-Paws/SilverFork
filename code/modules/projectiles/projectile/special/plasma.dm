@@ -31,7 +31,8 @@
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
 	if(isanimal(target))
-		target.apply_damage(round(damage*1.5), BRUTE)
+		var/mob/living/simple_animal/S = target
+		S.apply_damage(round(damage*1.5), BRUTE)
 
 /obj/item/projectile/plasma/adv
 	damage = 19
