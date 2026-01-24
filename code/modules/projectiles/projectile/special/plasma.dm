@@ -15,16 +15,15 @@
 	muzzle_type = /obj/effect/projectile/muzzle/plasma_cutter
 	impact_type = /obj/effect/projectile/impact/plasma_cutter
 
-/obj/item/projectile/plasma/Initialize(mapload)
-	. = ..()
-	if(!lavaland_equipment_pressure_check(get_turf(src)))
-		name = "weakened [name]"
-		damage = damage * pressure_decrease
-		dismemberment = dismemberment * pressure_decrease_delimb
-		pressure_decrease_active = TRUE
-
 /obj/item/projectile/plasma/on_hit(atom/target)
 	. = ..()
+	var/hit_turt = get_turf(src)
+	if(!lavaland_equipment_pressure_check(hit_turt))
+		name = "weakened [name]"
+		var/pressure_mult = get_pressure_damage_multiplier(hit_turt, LAVALAND_EQUIPMENT_EFFECT_PRESSURE, pressure_decrease)
+		damage = round(damage * pressure_mult, 0.5) // Округляем к ближайшему целому 0.5
+		dismemberment *= pressure_decrease_delimb
+		pressure_decrease_active = TRUE
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
 		M.gets_drilled(firer)
@@ -35,7 +34,7 @@
 			return BULLET_ACT_FORCE_PIERCE
 	if(isanimal(target))
 		var/mob/living/simple_animal/S = target
-		S.apply_damage(round(damage*simplemob_damage_bonus), BRUTE)
+		S.apply_damage(round(damage * simplemob_damage_bonus), BRUTE)
 
 /obj/item/projectile/plasma/adv
 	damage = 19
