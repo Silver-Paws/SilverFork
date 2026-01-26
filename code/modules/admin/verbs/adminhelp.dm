@@ -473,7 +473,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(!response || response == "Нет")
 			return FALSE
 
-	var/msg = span_adminhelp("Ваш тикет был взял админом [usr?.client?.holder?.fakekey ? usr?.client?.holder?.fakekey : "администратора"]! Пожалуйста, подождите, пока они напишут свой ответ и/или соберут причастную информацию.")
+	var/msg = span_adminhelp("Ваш тикет был взят [usr?.client?.holder?.fakekey ? usr?.client?.holder?.fakekey : "администратором"]! Пожалуйста, подождите, пока вам напишут ответ и/или соберут причастную информацию.")
 
 	if(initiator)
 		to_chat(initiator, msg)
