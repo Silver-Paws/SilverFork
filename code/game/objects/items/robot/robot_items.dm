@@ -953,9 +953,8 @@
 	charge_delay = 5
 
 /obj/item/gun/energy/plasmacutter/cyborg/emagged
-	name = "cyborg plasma cutter"
 	desc = "A basic variation of the plasma cutter, compressed into a cyborg chassis. Safety protocols of this one seems to be broken."
-	ammo_type = list(/obj/item/projectile/plasma/adv/mech)
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/mech)
 
 /obj/item/cyborg_clamp
 	name = "cyborg loading clamp"
