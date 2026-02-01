@@ -526,6 +526,30 @@
 	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/razor(src)
 
+/obj/item/storage/backpack/duffelbag/med/surgery/upgraded
+	name = "upgraded surgical tools case"
+	desc = "Надёжный кейс из пластика марки Trauma Team. Внутри находится набор высококачественных инструментов."
+	icon_state = "firstaid-surgery-upgraded"
+	item_state = "firstaid-toxin"
+	icon = 'modular_bluemoon/icons/obj/storage.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+
+/obj/item/storage/backpack/duffelbag/med/surgery/PopulateContents()
+	new /obj/item/scalpel/upgraded_t2(src)
+	new /obj/item/hemostat/upgraded_t2(src)
+	new /obj/item/retractor/upgraded_t2(src)
+	new /obj/item/circular_saw/upgraded_t2(src)
+	new /obj/item/cautery/upgraded_t2(src)
+	new /obj/item/surgicaldrill(src)
+	new /obj/item/bonesetter(src)
+	new /obj/item/blood_filter(src)
+	new /obj/item/stack/medical/bone_gel(src)
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/clothing/mask/surgical(src)
+	new /obj/item/reagent_containers/medspray/sterilizine(src)
+	new /obj/item/reagent_containers/medspray/synthflesh(src)
+
 /obj/item/storage/backpack/duffelbag/med/surgery_empty
 	name = "surgical tools case"
 	desc = "A large plastic case for holding surgical tools or most other medical supplies you could imagine."
