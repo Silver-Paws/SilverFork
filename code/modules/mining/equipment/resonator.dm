@@ -36,7 +36,7 @@
 		to_chat(user, span_notice("Вы настроили автоматический подрыв полей через 2 секунды."))
 		mode = RESONATOR_MODE_AUTO
 
-/obj/item/resonator/proc/create_resonance(target, mob/user, burst_only = FALSE)
+/obj/item/resonator/proc/create_resonance(target, mob/user)
 	var/turf/target_turf = get_turf(target)
 	var/obj/effect/temp_visual/resonance/resonance_field = locate(/obj/effect/temp_visual/resonance) in target_turf
 	if(resonance_field)
