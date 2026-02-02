@@ -166,7 +166,7 @@
 /datum/supply_pack/medical/adv_surgery_tools
 	name = "Med-Co Advanced Surgery Tools"
 	desc = "В этот ящик входит полный набор хирургических инструментов MedCo advanced, а также банка синтетической плоти. Требуется Хирургический доступ для открытия"
-	cost = 18000
+	cost = 11999
 	access = ACCESS_SURGERY
 	contains = list(/obj/item/storage/belt/medical/surgery_belt_adv,
 					/obj/item/reagent_containers/medspray/synthflesh,
