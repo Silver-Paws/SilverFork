@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	"pink" = "#ff3cc8",
 	"orange" = "#ff8000",
 	"cyan" = "#00ffff",
-	"white" = "#ffffff",
+	"white" = "#fdfdfd",
 	"red" = "#ff0000"
 	))
 
@@ -113,9 +113,9 @@ By design, d1 is the smallest direction and d2 is the highest
 	GLOB.cable_list += src //add it to the global cable list
 
 	if(d1)
-		stored = new/obj/item/stack/cable_coil(null,2,cable_color)
+		stored = new /obj/item/stack/cable_coil(null, 2, TRUE, cable_color)
 	else
-		stored = new/obj/item/stack/cable_coil(null,1,cable_color)
+		stored = new /obj/item/stack/cable_coil(null, 1, TRUE, cable_color)
 
 	var/list/cable_colors = GLOB.cable_colors
 	cable_color = param_color || cable_color || pick(cable_colors)
@@ -132,6 +132,7 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/structure/cable/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/turf/T = loc
+		stored.color = cable_color
 		stored.forceMove(T)
 	qdel(src)
 
@@ -539,10 +540,12 @@ By design, d1 is the smallest direction and d2 is the highest
 		user.visible_message("<span class='suicide'>[user] is strangling себя with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return(OXYLOSS)
 
-/obj/item/stack/cable_coil/Initialize(mapload, new_amount, merge = TRUE)
+/obj/item/stack/cable_coil/Initialize(mapload, new_amount, merge = TRUE, cable_color)
 	. = ..()
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
+	if(cable_color)
+		color = GLOB.cable_colors[cable_color]
 	update_icon()
 
 ///////////////////////////////////
@@ -716,7 +719,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	if(C.shock(user, 50))
 		if(prob(50)) //fail
-			new /obj/item/stack/cable_coil(get_turf(C), 1, C.color)
+			new /obj/item/stack/cable_coil(get_turf(C), 1, TRUE, C.color)
 			C.deconstruct()
 
 	return C
@@ -870,7 +873,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	color = "cyan"
 
 /obj/item/stack/cable_coil/white
-	color = "white"
+	color = "#fdfdfd"
 
 /obj/item/stack/cable_coil/random
 	color = "#ffffff"
