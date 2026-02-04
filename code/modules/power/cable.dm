@@ -112,15 +112,16 @@ By design, d1 is the smallest direction and d2 is the highest
 		hide(T.intact)
 	GLOB.cable_list += src //add it to the global cable list
 
+	var/list/cable_colors = GLOB.cable_colors
+	cable_color = param_color || cable_color || pick(cable_colors)
+	if(cable_colors[cable_color])
+		cable_color = cable_colors[cable_color]
+
 	if(d1)
 		stored = new /obj/item/stack/cable_coil(null, 2, TRUE, cable_color)
 	else
 		stored = new /obj/item/stack/cable_coil(null, 1, TRUE, cable_color)
 
-	var/list/cable_colors = GLOB.cable_colors
-	cable_color = param_color || cable_color || pick(cable_colors)
-	if(cable_colors[cable_color])
-		cable_color = cable_colors[cable_color]
 	update_icon()
 
 /obj/structure/cable/Destroy()					// called when a cable is deleted
@@ -132,7 +133,6 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/structure/cable/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/turf/T = loc
-		stored.color = cable_color
 		stored.forceMove(T)
 	qdel(src)
 
@@ -545,7 +545,11 @@ By design, d1 is the smallest direction and d2 is the highest
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
 	if(cable_color)
-		color = GLOB.cable_colors[cable_color]
+		var/list/cable_colors = GLOB.cable_colors
+		if(cable_colors[cable_color])
+			color = cable_colors[cable_color]
+		else
+			color = cable_color
 	update_icon()
 
 ///////////////////////////////////
