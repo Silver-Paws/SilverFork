@@ -9,6 +9,8 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	"red" = "#ff0000"
 	))
 
+GLOBAL_LIST_INIT(cable_color_list, list("yellow", "green", "blue", "pink", "orange", "cyan", "white", "red"))
+
 ///////////////////////////////
 //CABLE STRUCTURE
 ///////////////////////////////
@@ -880,12 +882,12 @@ By design, d1 is the smallest direction and d2 is the highest
 	color = "#fdfdfd"
 
 /obj/item/stack/cable_coil/random
-	color = "#ffffff"
+	color = "#fdfdfd"
 
-/obj/item/stack/cable_coil/random/Initialize(mapload, new_amount, merge = TRUE, param_color = null)
+/obj/item/stack/cable_coil/random/Initialize(mapload, new_amount, merge = TRUE, cable_color)
 	. = ..()
-	var/list/cable_colors = GLOB.cable_colors
-	color = pick(cable_colors)
+	var/chosen_color = pick(GLOB.cable_color_list)
+	color = GLOB.cable_colors[chosen_color]
 
 /obj/item/stack/cable_coil/random/five
 	amount = 5
@@ -894,7 +896,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	amount = null
 	icon_state = "coil2"
 
-/obj/item/stack/cable_coil/cut/Initialize(mapload, new_amount, merge = TRUE)
+/obj/item/stack/cable_coil/cut/Initialize(mapload, new_amount, merge = TRUE, cable_color)
 	// do random amount calls BEFORE we add the mats or else the code eats shit and dies
 	if(!amount)
 		amount = rand(1,2)
@@ -931,6 +933,6 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/cable_coil/cut/random/Initialize(mapload, new_amount, merge = TRUE, param_color = null)
 	. = ..()
-	var/list/cable_colors = GLOB.cable_colors
-	color = pick(cable_colors)
+	var/chosen_color = pick(GLOB.cable_color_list)
+	color = GLOB.cable_colors[chosen_color]
 
