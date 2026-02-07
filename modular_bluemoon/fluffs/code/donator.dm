@@ -1538,7 +1538,7 @@
 	name = "Dar Jr beacon"
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/choice_beacon/pet/dar
-	ckeywhitelist = list("avtobuspng", "dimofon", "definitelynotnesuby")
+	ckeywhitelist = list("avtobuspng", "dimofon", "definitelynotnesuby", "angelnedemon")
 
 /datum/gear/donator/bm/pawpack
 	name = "Paw Backpack"
