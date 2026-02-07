@@ -731,8 +731,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	.csetup-root .csetup_character_node{background-color:[bg_secondary];border-color:[border_color]}\n\
 	.csetup-root .csetup_character_label{color:[text_secondary]}\n\
 	.csetup-root .csetup-ai-core-preview img{border-color:[border_color];background-color:[bg_primary]}\n\
-	.csetup-root .theme-hub{background-color:[bg_secondary];border-color:[border_color]}\n\
-	.csetup-root .theme-picker-panel{background-color:[bg_secondary];border-color:[border_color]}\n\
+	.csetup-root .theme-selector{background-color:[bg_secondary];border-color:[border_color]}\n\
 	.csetup-root .theme-label{color:[text_secondary]}\n\
 	.csetup-root .theme-label-custom{color:[text_primary]}\n\
 	.csetup-root .theme-sep{background:[border_color]}\n\
@@ -740,7 +739,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	.csetup-root a.theme-swatch.active{border-color:[accent_color];outline:2px solid [accent_color];outline-offset:1px}\n\
 	.csetup-root a.theme-swatch--custom{border-radius:[button_radius]}\n\
 	.csetup-root a.theme-gear{border-radius:[button_radius]}\n\
-	.csetup-root .theme-settings-panel{background-color:[bg_secondary];border-color:[border_color];color:[text_primary]}\n\
 	.csetup-root .theme-custom-editor{background-color:[bg_secondary];border-color:[border_color];color:[text_primary]}\n\
 	.csetup-root .theme-custom-editor-hint{color:[text_secondary]}\n\
 </style>"
