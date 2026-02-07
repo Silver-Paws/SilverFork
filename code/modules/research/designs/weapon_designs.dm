@@ -675,7 +675,7 @@
 	desc = "Тазерная микробатарея энергоревольвера 'Big Iron'."
 	id = "mws01_battery_taser"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 1000, /datum/material/glass = 6000, /datum/material/gold = 2000)
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 6000, /datum/material/gold = 5000)
 	build_path = /obj/item/ammo_casing/mws_batt/taser
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
@@ -686,7 +686,7 @@
 	desc = "Лазерная микробатарея энергоревольвера 'Big Iron'."
 	id = "mws01_battery_lethal"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 8000, /datum/material/gold = 3000, /datum/material/silver = 3000)
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 8000, /datum/material/gold = 9000, /datum/material/silver = 6000)
 	build_path = /obj/item/ammo_casing/mws_batt/lethal
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
@@ -697,7 +697,7 @@
 	desc = "Рентген-лазерная микробатарея энергоревольвера 'Big Iron'."
 	id = "mws01_battery_xray"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 8000, /datum/material/gold = 3000, /datum/material/uranium = 6000)
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 8000, /datum/material/gold = 9000, /datum/material/uranium = 15000)
 	build_path = /obj/item/ammo_casing/mws_batt/xray
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
@@ -708,7 +708,7 @@
 	desc = "Ионная микробатарея энергоревольвера 'Big Iron'."
 	id = "mws01_battery_ion"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 8000, /datum/material/gold = 3000, /datum/material/titanium = 2000, /datum/material/bluespace = 100)
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 8000, /datum/material/gold = 5000, /datum/material/titanium = 5000, /datum/material/bluespace = 1000)
 	build_path = /obj/item/ammo_casing/mws_batt/ion
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
