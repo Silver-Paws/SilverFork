@@ -127,6 +127,7 @@
 				do_sparks(1, FALSE, A)
 				if(O)
 					O.update_icon()
+				update_icon()
 			else
 				break
 		if(done_any) // Only show a message if we succeeded at least once
@@ -156,6 +157,19 @@
 		cell = null
 		update_icon()
 
+/obj/item/inducer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!proximity_flag)
+		return
+
+	if(user.a_intent == INTENT_HARM)
+		return
+
+	if(cantbeused(user))
+		return
+
+	if(recharge(target, user))
+		return
 
 /obj/item/inducer/examine(mob/living/M)
 	. = ..()
@@ -173,7 +187,28 @@
 	if(!cell)
 		. += "inducer-nobat"
 	else
-		. += "inducer-bat"
+		var/charge_percent = cell.percent()
+		if(charge_percent >= 98)
+			. += "inducer-charge_full"
+		else if(charge_percent >= 2)
+			. += "inducer-charge_mid"
+		else
+			. += "inducer-charge_no"
+
+		if(istype(cell, /obj/item/stock_parts/cell/bluespace))
+			. += "inducer-bat_bscell"
+		else if(istype(cell, /obj/item/stock_parts/cell/vortex))
+			. += "inducer-bat_vcell"
+		else if(istype(cell, /obj/item/stock_parts/cell/hyper))
+			. += "inducer-bat_hpcell"
+		else if(istype(cell, /obj/item/stock_parts/cell/super))
+			. += "inducer-bat_scell"
+		else if(istype(cell, /obj/item/stock_parts/cell/high/plus))
+			. += "inducer-bat_h+cell"
+		else if(istype(cell, /obj/item/stock_parts/cell/high))
+			. += "inducer-bat_hcell"
+		else
+			. += "inducer-bat"
 
 /obj/item/inducer/dry
 	cell_type = null

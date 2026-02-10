@@ -85,10 +85,12 @@
 		return
 	if(!has_charge_overlay || charge < 0.01)
 		return
-	else if(charge/maxcharge >=0.995)
+	if(percent() >= 98)
 		. += "cell-o2"
-	else
+	else if(percent() >= 6)
 		. += "cell-o1"
+	else
+		. += "cell-o1_blink"
 
 /obj/item/stock_parts/cell/proc/percent()		// return % charge of cell
 	return 100*charge/maxcharge
