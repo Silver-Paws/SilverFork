@@ -173,14 +173,14 @@
 		. += "inducer-nobat"
 	else
 		var/charge_percent = cell.percent()
-		if(charge_percent >= 98)
+		if(charge_percent >= 98) // Первый слой в списке: статус заряда батареи индусера
 			. += "inducer-charge_full"
 		else if(charge_percent >= 2)
 			. += "inducer-charge_mid"
 		else
 			. += "inducer-charge_no"
 
-		if(istype(cell, /obj/item/stock_parts/cell/bluespace))
+		if(istype(cell, /obj/item/stock_parts/cell/bluespace))  // Второй слой в списке: тип батареи в индусере. Он кладётся ПОВЕРХ предыдущего слоя
 			. += "inducer-bat_bscell"
 		else if(istype(cell, /obj/item/stock_parts/cell/vortex))
 			. += "inducer-bat_vcell"
