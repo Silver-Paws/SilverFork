@@ -83,11 +83,12 @@
 	if(grown_battery)
 		. += image('icons/obj/power.dmi', "grown_wires")
 		return
-	if(!has_charge_overlay || charge < 0.01)
+	var/charge_percent = percent() // Если это неочевидно, расчёт вызывается один раз здесь для юза во всех последующих участках этого прока
+	if(!has_charge_overlay || charge_percent < 1)
 		return
-	if(percent() >= 98)
+	if(charge_percent >= 98)
 		. += "cell-o2"
-	else if(percent() >= 6)
+	else if(charge_percent >= 6)
 		. += "cell-o1"
 	else
 		. += "cell-o1_blink"

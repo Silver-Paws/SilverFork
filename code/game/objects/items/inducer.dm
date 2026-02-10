@@ -180,7 +180,7 @@
 		else
 			. += "inducer-charge_no"
 
-		if(istype(cell, /obj/item/stock_parts/cell/bluespace))  // Второй слой в списке: тип батареи в индусере. Он кладётся ПОВЕРХ предыдущего слоя
+		if(istype(cell, /obj/item/stock_parts/cell/bluespace) || istype(cell, /obj/item/stock_parts/cell/bluespacereactor))  // Второй слой в списке: тип батареи в индусере. Он кладётся ПОВЕРХ предыдущего слоя
 			. += "inducer-bat_bscell"
 		else if(istype(cell, /obj/item/stock_parts/cell/vortex))
 			. += "inducer-bat_vcell"
