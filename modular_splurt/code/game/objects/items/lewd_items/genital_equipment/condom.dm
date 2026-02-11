@@ -15,7 +15,6 @@
 
 /obj/item/genital_equipment/condom/Initialize(mapload)
 	create_reagents(max_volume, DRAWABLE|TRANSPARENT|NO_REACT)
-	AddElement(/datum/element/trash)
 	return ..()
 
 /obj/item/genital_equipment/condom/item_inserting(datum/source, obj/item/organ/genital/G, mob/user)
