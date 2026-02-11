@@ -159,9 +159,9 @@
 /obj/item/inducer/examine(mob/living/M)
 	. = ..()
 	if(cell)
-		. += span_notice("Дисплей сообщает заряд в [DisplayEnergy(cell.charge)].")
+		. += span_notice("Дисплей сообщает о наличии батареи внутри: [cell.name].")
 	else
-		. += span_notice("Дисплей матово-тёмный.")
+		. += span_notice("Дисплей устройства матово-тёмный.")
 	if(opened)
 		. += span_notice("Слот батареи открыт.")
 
@@ -175,8 +175,10 @@
 		var/charge_percent = cell.percent()
 		if(charge_percent >= 98) // Первый слой в списке: статус заряда батареи индусера
 			. += "inducer-charge_full"
-		else if(charge_percent >= 2)
+		else if(charge_percent >= 6)
 			. += "inducer-charge_mid"
+		else if(charge_percent >= 1)
+			. += "inducer-charge_midblink"
 		else
 			. += "inducer-charge_no"
 
