@@ -733,7 +733,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			var/mutable_appearance/facial_overlay = mutable_appearance(fhair_file, fhair_state, -HAIR_LAYER)
 			facial_overlay.category = "HEAD"
 
-			if(!forced_colour)
+			if(!forced_colour && S.do_colouration)
 				if(hair_color)
 					if(hair_color == "mutcolor")
 						facial_overlay.color = "#" + H.dna.features["mcolor"]
@@ -799,7 +799,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				hair_overlay.icon = hair_file
 				hair_overlay.icon_state = hair_state
 
-				if(!forced_colour)
+				if(!forced_colour && S.do_colouration)
 					if(hair_color)
 						if(hair_color == "mutcolor")
 							hair_overlay.color = "#" + H.dna.features["mcolor"]
@@ -1103,7 +1103,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				H.dna.features[tertiary_string] = advanced_color_system ? H.dna.features["mcolor3"] : "FFFFFF"
 
 			if(!husk)
-				if(!forced_colour)
+				if(!forced_colour && S.do_colouration)
 					switch(S.color_src)
 						if(SKINTONE)
 							accessory_overlay.color = SKINTONE2HEX(H.skin_tone)
