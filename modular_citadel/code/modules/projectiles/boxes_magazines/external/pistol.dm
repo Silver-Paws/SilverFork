@@ -77,6 +77,7 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
 
+/*
 /datum/design/sl357ap
 	name = "revolver speedloader (.357 AP)"
 	desc = "A revolver speedloader. Cuts through like a hot knife through butter."
@@ -106,6 +107,7 @@
 	build_path = /obj/item/ammo_box/c10mm/ap
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
+*/
 
 /datum/design/m10firebox
 	name = "ammo box (10mm Incendiary)"
