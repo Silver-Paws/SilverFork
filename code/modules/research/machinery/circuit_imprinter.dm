@@ -48,6 +48,7 @@
 							"Computer Parts",
 							"Shuttle Machinery",
 							"Production Machinery",
+							"Cargo Machinery",
 							"Culinary Machinery",
 							"Misc. Machinery",
 								)

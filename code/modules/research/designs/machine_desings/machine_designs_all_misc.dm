@@ -32,8 +32,9 @@
 	id = "autolathe"
 	build_path = /obj/item/circuitboard/machine/autolathe
 	category = list ("Production Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
+/*
 /datum/design/board/autolathe_secure
 	name = "Machine Design (Secure Autolathe Board)"
 	desc = "The circuit board for an autolathe. This one is programmed to not allow hacking."
@@ -41,6 +42,7 @@
 	build_path = /obj/item/circuitboard/machine/autolathe/secure
 	category = list ("Production Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
+*/
 
 /datum/design/board/recharger
 	name = "Machine Design (Weapon Recharger Board)"
@@ -80,7 +82,7 @@
 	desc = "The circuit board for an All-In-One Grinder."
 	id = "reagentgrinder"
 	build_path = /obj/item/circuitboard/machine/reagentgrinder
-	category = list ("Medical Machinery")
+	category = list ("Culinary Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/microwave
