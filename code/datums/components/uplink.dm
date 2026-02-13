@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/amt = TC.amount
 	telecrystals += amt
 	TC.use(amt)
-	// log_uplink("[key_name(user)] loaded [amt] telecrystals into [parent]'s uplink")
+	log_game("UPLINK: [key_name(user)] loaded [amt] telecrystals into [parent]'s uplink")
 
 /datum/component/uplink/proc/OnAttackBy(datum/source, obj/item/I, mob/user)
 	SIGNAL_HANDLER
@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 			var/cost = UI.refund_amount || UI.cost
 			if(I.type == path && UI.refundable && I.check_uplink_validity())
 				telecrystals += cost
-				// log_uplink("[key_name(user)] refunded [UI] for [cost] telecrystals using [parent]'s uplink")
+				log_game("UPLINK: [key_name(user)] refunded [UI] for [cost] telecrystals using [parent]'s uplink")
 				if(purchase_log)
 					purchase_log.total_spent -= cost
 				to_chat(user, span_notice("[I] refunded."))
@@ -255,6 +255,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		U.limited_stock -= 1
 
 	SSblackbox.record_feedback("nested tally", "traitor_uplink_items_bought", 1, list("[initial(U.name)]", "[U.cost]"))
+	log_game("UPLINK: [key_name(user)] purchased [U] for [U.cost] telecrystals from [parent]'s uplink")
 	return TRUE
 
 // Implant signal responses
