@@ -938,7 +938,7 @@
 	deltimer(cloaking_timer)
 	cloaking_timer = null
 	is_cloaked = FALSE
-	if(check_strong_alpha_sources(owner) && owner.alpha < CHAMELEON_QUIRK_MID_ALPHA)
+	if(!check_strong_alpha_sources(owner) && owner.alpha < CHAMELEON_QUIRK_MID_ALPHA)
 		animate(owner, alpha = (owner.check_mutation(CHAMELEON) ? CHAMELEON_QUIRK_PLUS_MUTATION_MID_ALPHA : CHAMELEON_QUIRK_MID_ALPHA), time = 0.5 SECONDS)
 
 #undef CHAMELEON_QUIRK_PLUS_MUTATION_MIN_ALPHA
