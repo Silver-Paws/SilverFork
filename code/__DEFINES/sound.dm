@@ -288,6 +288,9 @@ GLOBAL_LIST_INIT(deathgasp_sounds, list(
 	"Зомбированный сталкер" =	'modular_bluemoon/sound/voice/death_gasps/stalkerzombie.ogg'
 	))
 
+#define SFX_ROLLING_PIN_ROLLING "rolling_pin_rolling"
+#define SFX_KNIFE_SLICE "knife_slice"
+
 GLOBAL_LIST_INIT(otherworld_sounds, list(
 		'sound/items/bubblewrap.ogg',
 		'sound/items/change_jaws.ogg',
