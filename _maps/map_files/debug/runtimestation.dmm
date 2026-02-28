@@ -3363,11 +3363,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/service/cafeteria)
-"PE" = (
-/obj/effect/turf_decal/delivery,
-/obj/item/hilbertshotel/ghostdojo,
-/turf/open/floor/plasteel,
-/area/cargo/storage)
 "PJ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -9824,7 +9819,7 @@ ev
 eT
 fm
 fm
-PE
+ev
 et
 fO
 fO
