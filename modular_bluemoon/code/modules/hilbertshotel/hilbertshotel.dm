@@ -12,6 +12,7 @@
 	var/list/storedRooms = list()
 	var/list/checked_in_ckeys = list()
 	var/list/lockedRooms = list()
+	var/roundtype_delete = FALSE
 	light_color = "#5692d6"
 	light_range = 5
 	light_power = 3
@@ -19,13 +20,17 @@
 /obj/item/hilbertshotel/ghostdojo
 	name = "Infinite Dormitories"
 	anchored = TRUE
+	roundtype_delete = TRUE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND
 
 /obj/item/hilbertshotel/ghostdojo/ghostcafe
 	rooms_can_be_locked = TRUE
+	roundtype_delete = FALSE
 
 /obj/item/hilbertshotel/Initialize(mapload)
 	. = ..()
+	if(roundtype_delete && !GLOB.round_type == ROUNDTYPE_EXTENDED)
+		Destroy()
 	if(!length(SShilbertshotel.hotel_map_list) && CONFIG_GET(flag/hilbertshotel_enabled))
 		INVOKE_ASYNC(SShilbertshotel, TYPE_PROC_REF(/datum/controller/subsystem/hilbertshotel, prepare_rooms))
 
