@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(hilbertshotel)
 /// Прок для проверки режима игры и действий со сферой при условии того или иного режима
 /datum/controller/subsystem/hilbertshotel/proc/roundtype_check()
 	SIGNAL_HANDLER
-	if(GLOB.master_mode != ROUNDTYPE_EXTENDED)
+	if(!(GLOB.master_mode in list(ROUNDTYPE_EXTENDED, ROUNDTYPE_DYNAMIC_LIGHT)))
 		for(var/obj/item/hilbertshotel/sphere in all_hilbert_spheres)
 			if(sphere.is_ghost_cafe || sphere.ruinSpawned)
 				continue
