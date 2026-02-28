@@ -32,14 +32,14 @@ SUBSYSTEM_DEF(hilbertshotel)
 	//RegisterSignal(src, COMSIG_HILBERT_ROOM_UPDATED, PROC_REF(on_room_updated))
 	hhMysteryroom_number = hhMysteryroom_number || rand(1, 999999)
 	prepare_rooms()
-	RegisterSignal(src, COMSIG_TICKER_ROUND_STARTING, PROC_REF(roundtype_check))
+	RegisterSignal(SSticker, COMSIG_TICKER_ROUND_STARTING, PROC_REF(roundtype_check))
 
 	return SS_INIT_SUCCESS
 
 /// Прок для проверки режима игры и действий со сферой при условии того или иного режима
 /datum/controller/subsystem/hilbertshotel/proc/roundtype_check()
 	SIGNAL_HANDLER
-	if(!GLOB.master_mode == ROUNDTYPE_EXTENDED)
+	if(GLOB.master_mode != ROUNDTYPE_EXTENDED)
 		for(var/obj/item/hilbertshotel/sphere in all_hilbert_spheres)
 			if(sphere.is_ghost_cafe || sphere.ruinSpawned)
 				continue
