@@ -155,7 +155,7 @@
 	desc = "A storage case for a heavy revolver."
 
 /obj/item/storage/secure/briefcase/rsh12_box/PopulateContents()
-	new /obj/item/gun/ballistic/shotgun/rsh12(src)
+	new /obj/item/gun/ballistic/shotgun/automatic/rsh12(src)
 	new /obj/item/ammo_box/shotgun/loaded/rubbershot(src)
 	new /obj/item/ammo_box/shotgun/loaded/rubbershot(src)
 	new /obj/item/ammo_box/shotgun/loaded/buckshot(src)
