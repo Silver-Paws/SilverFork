@@ -51,14 +51,14 @@
 	chemical_flags = REAGENT_ALL_PROCESS
 	value = REAGENT_VALUE_EXCEPTIONAL
 	overdose_threshold = 20
-	var/tox_heal = 3  // Отхил коррозии
-	var/brute_burn_heal = 1 // Остальной урон
 
 /datum/reagent/medicine/ferrocortex/on_mob_life(mob/living/carbon/M)
 	if(!isrobotic(M))
 		M.adjustToxLoss(4 * REM, 0)
 		return ..()
 
+	var/tox_heal = 3  // Отхил коррозии
+	var/brute_burn_heal = 1 // Остальной урон
 	if(M.health < 0)
 		tox_heal = (M.getToxLoss() > 60) ? 20 : 10 // Тернарка. Выше 60 коррозии - хил выше
 		brute_burn_heal = 2
@@ -72,5 +72,5 @@
 		M.Jitter(5)
 		if(prob(5))
 			do_sparks(rand(1, 2), TRUE, M)
-	M.adjustToxLoss(6 * REM, 0)
+	M.adjustToxLoss(6 * REM, toxins_type = TOX_OMNI)
 	return ..()
