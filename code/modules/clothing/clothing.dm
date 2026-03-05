@@ -310,7 +310,7 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
 		// Если у нас есть и броня, и устойчивость айтема - таблично две ячейки в чат отпрвляем
 		if(has_armor && has_durability)
 			readout += "<table style='width:100%;margin-top:4px;font-size:13px;line-height:1.2;'>"
-			readout += "<tr style='border-bottom:1px solid #555;'></tr>"
+			readout += "<tr style='border-bottom:1px solid `#555`;'>"
 			readout += "<td style='width:45%;padding:2px 8px;'><b>БРОНЯ</b></td>"
 			readout += "<td style='width:55%;padding:2px 8px;'><b>УСТОЙЧИВОСТЬ</b></td>"
 			readout += "</tr>"
