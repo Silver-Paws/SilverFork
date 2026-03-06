@@ -306,7 +306,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(resistance_flags)
 		var/resistance_text = ""
 		if(resistance_flags & INDESTRUCTIBLE)
-			resistance_text = "Выглядит особенно прочным[is_plural ? "и" : ""]. Скорее всего, выдерж[is_plural ? "а" : "и"]т что угодно."
+			resistance_text = "Выгляд[is_plural ? "я" : "и"]т особенно прочным[is_plural ? "и" : ""]. Скорее всего, выдерж[is_plural ? "а" : "и"]т что угодно."
 		else
 			var/list/resistance_list = list()
 			if(resistance_flags & LAVA_PROOF)
