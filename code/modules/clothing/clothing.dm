@@ -303,36 +303,96 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
 	. = ..()
 
 	if(href_list["list_armor"])
-		var/list/readout = list("<span class='notice'><u><b>КЛАССЫ ЗАЩИТЫ (I-X)</b></u><table style='margin-top:2px;margin-bottom:2px;font-size:13px;line-height:1.1;'>")
-		if(LAZYLEN(armor_list))
-			readout += "<tr><td colspan='2' style='padding:2px 4px;'><b>БРОНЯ</b></td></tr>"
-			for(var/dam_type in armor_list)
-				var/armor_amount = armor_list[dam_type]
-				readout += "<tr><td style='padding:1px 8px 1px 0;'>[dam_type]</td><td style='padding:1px 0 1px 0;'>[armor_to_protection_class(armor_amount)]</td></tr>"
-		if(LAZYLEN(durability_list))
-			readout += "<tr><td colspan='2' style='padding:2px 4px;'></td></tr>" // пустая строка для визуала
-			readout += "<tr><td colspan='2' style='padding:2px 4px;'><b>УСТОЙЧИВОСТЬ</b></td></tr>"
-			for(var/dam_type in durability_list)
-				var/durability_amount = durability_list[dam_type]
-				readout += "<tr><td style='padding:1px 8px 1px 0;'>[dam_type]</td><td style='padding:1px 0 1px 0;'>[armor_to_protection_class(durability_amount)]</td></tr>"
-		readout += "</table></span>"
+		var/list/readout = list("<span class='notice'><u><b>КЛАССЫ ЗАЩИТЫ (I-X; s - ПОЛОВИНА)</b></u></span><br>")
+		var/has_armor = LAZYLEN(armor_list)
+		var/has_durability = LAZYLEN(durability_list)
 
-		to_chat(usr, "[readout.Join()]")
+		// Если у нас есть и броня, и устойчивость айтема - таблично две ячейки в чат отпрвляем
+		if(has_armor && has_durability)
+			readout += "<table style='width:100%;margin-top:4px;font-size:13px;line-height:1.2;'>"
+			readout += "<tr style='border-bottom:1px solid `#555`;'>"
+			readout += "<td style='width:45%;padding:2px 8px;'><b>БРОНЯ</b></td>"
+			readout += "<td style='width:55%;padding:2px 8px;'><b>УСТОЙЧИВОСТЬ</b></td>"
+			readout += "</tr>"
+			var/list/armor_types = list()
+			var/list/durability_types = list()
+			for(var/dam_type in armor_list)
+				armor_types += dam_type
+			for(var/dam_type in durability_list)
+				durability_types += dam_type
+			// Вместо старой системы мы определим кол-во строк по кол-ву имеющихся у айтема арморов/устойчивостей
+			var/armor_count = armor_types.len
+			var/durability_count = durability_types.len
+			var/max_rows = max(armor_count, durability_count)
+			var/current_row = 1
+
+			while(current_row <= max_rows)
+				readout += "<tr>"
+				// Броня по левой колонке
+				if(current_row <= armor_count)
+					var/dam_type = armor_types[current_row]
+					var/armor_value = armor_list[dam_type]
+					var/protection_class = armor_to_protection_class(armor_value)
+					readout += "<td style='padding:2px 8px;text-align-last:justify;'>[dam_type]: [protection_class]</td>"
+				else
+					readout += "<td style='padding:2px 8px;'></td>"
+				// Устойчивость по правой колонке
+				if(current_row <= durability_count)
+					var/dam_type = durability_types[current_row]
+					var/durability_value = durability_list[dam_type]
+					var/protection_class = armor_to_protection_class(durability_value)
+					readout += "<td style='padding:2px 8px;text-align-last:justify;'>[dam_type]: [protection_class]</td>"
+				else
+					readout += "<td style='padding:2px 8px;'></td>"
+
+				readout += "</tr>"
+				current_row++
+			readout += "</table>"
+
+		// Если у айтема нет отдельно брони или устойчивостей - выведем инфо в старом стиле (Одинарно, подходит хорошо)
+		else
+			readout += "<table style='margin-top:2px;margin-bottom:2px;font-size:13px;line-height:1.1;'>"
+			if(has_armor)
+				readout += "<tr><td colspan='2' style='padding:2px 4px;'><b>БРОНЯ</b></td></tr>"
+				for(var/dam_type in armor_list)
+					var/armor_value = armor_list[dam_type]
+					var/protection_class = armor_to_protection_class(armor_value)
+					readout += "<tr><td style='padding:1px 8px 1px 0;'>[dam_type]</td><td style='padding:1px 0 1px 0;'>[protection_class]</td></tr>"
+			if(has_durability)
+				readout += "<tr><td colspan='2' style='padding:2px 4px;'><b>УСТОЙЧИВОСТЬ</b></td></tr>"
+				for(var/dam_type in durability_list)
+					var/durability_value = durability_list[dam_type]
+					var/protection_class = armor_to_protection_class(durability_value)
+					readout += "<tr><td style='padding:1px 8px 1px 0;'>[dam_type]</td><td style='padding:1px 0 1px 0;'>[protection_class]</td></tr>"
+			readout += "</table>"
+
+		var/result = readout.Join()
+		to_chat(usr, examine_block(result))
 
 /**
   * Rounds armor_value to nearest 10, divides it by 10 and then expresses it in roman numerals up to 10
   *
   * Rounds armor_value to nearest 10, divides it by 10
   * and then expresses it in roman numerals up to 10
+  * Включения блюмуна:
+  * - Считает негативное значение брони и выводит его с дефизом (Минусом)
+  * - Считает половинные значения брони (5, 15, 25, e.t.c), отделяет его
+  * и добавляет подстрочной буквой s.
   * Arguments:
   * * armor_value - Number we're converting
   */
 /obj/item/clothing/proc/armor_to_protection_class(armor_value)
-	armor_value = round(armor_value,10) / 10
 	var/negative = armor_value < 0
 	armor_value = abs(armor_value)
+
+	var/class_num = round(armor_value / 10)  // Округляем значения для корректного вывода, если там есть "X5" значения
+	var/halfnumber = armor_value % 10         // Остаток, значение 5 из "X5"
+	var/is_half = (halfnumber >= 5)
+
 	var/value
-	switch (armor_value)
+	switch (class_num) // Чтобы вывести цельное римское число - юзаем посчитанное ЦЕЛЬНОЕ арабское значение
+		if(0)
+			value = ""
 		if (1)
 			value = "I"
 		if (2)
@@ -353,6 +413,11 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
 			value = "IX"
 		if (10 to INFINITY)
 			value = "X"
+	if(is_half && class_num < 10)	// Добавим тут подстрочную s (semis, половина с римского)
+		if(class_num > 0)
+			value += "<sub>s</sub>"
+		else
+			value += "s"
 	if(negative)
 		return span_red("-[value]")
 	return value
