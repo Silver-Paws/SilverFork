@@ -255,19 +255,11 @@ MOVED TO: modular_splurt/code/module/clothing/clothing.dm
 				. += "<span class='danger'>Материал на [zone_name] надорван и имеет дыры.</span>"
 	var/datum/component/storage/pockets = GetComponent(/datum/component/storage)
 	if(pockets)
-		var/list/how_cool_are_your_threads = list("<span class='notice'>")
-		if(pockets.attack_hand_interact)
-			how_cool_are_your_threads += "Хранилище [src] открывается кликом.\n"
-		else
-			how_cool_are_your_threads += "Хранилище [src] открывается при перетягивании на себя.\n"
-		how_cool_are_your_threads += "[src] может хранить [pockets.max_items] шт. предметов.\n"
-		how_cool_are_your_threads += "[src] может хранить предметы [weight_class_to_text(pockets.max_w_class)] размера или меньше.\n"
-		if(pockets.quickdraw)
-			how_cool_are_your_threads += "Вы можете быстро извлечь предмет из [src] с помощью Alt-Click.\n"
-		if(pockets.silent)
-			how_cool_are_your_threads += "Взятие или добавление предметов в [src] бесшумно.\n"
-		how_cool_are_your_threads += "</span>"
-		. += how_cool_are_your_threads.Join()
+		var/how_cool_are_your_threads = "Открывается [pockets.attack_hand_interact ? "кликом" : "при перетягивании на себя"] и может хранить до \
+									[pockets.max_items] шт. предметов [weight_class_to_text(pockets.max_w_class)] размера или меньше.\
+									[pockets.silent ? " Взятие или добавление предметов бесшумно" : ""]"
+		var/tooltip_to_show = "<span class='chat-tooltip chat-tooltip--warning'>\[?\]<span class='chat-tooltip__content'>[how_cool_are_your_threads]</span></span>[span_notice(".")]"
+		. += span_notice("[gender == PLURAL ? "Могут" : "Может"] хранить предметы [tooltip_to_show]. [pockets.quickdraw ? "Вы можете быстро извлечь предмет с помощью Alt-Click." : ""]")
 
 	if(armor)
 		if(LAZYLEN(armor_list))
