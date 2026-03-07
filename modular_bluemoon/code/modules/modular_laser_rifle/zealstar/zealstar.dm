@@ -13,7 +13,7 @@
 	icon_state = "zealstar_spear"
 	base_icon_state = "zealstar"
 	charge_sections = 3
-	charge_delay = 10
+	charge_delay = 1
 	cell_type = /obj/item/stock_parts/cell/hyeseong_internal_cell
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/pulse)
 	weapon_mode_options = list(

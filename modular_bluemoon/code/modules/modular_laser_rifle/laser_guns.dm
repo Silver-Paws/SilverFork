@@ -26,7 +26,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/cybersun_big_kill)
 	ammo_x_offset = 0
 	selfcharge = 1
-	charge_delay = 15
+	charge_delay = 1
 	shaded_charge = TRUE
 	slot_flags = ITEM_SLOT_BACK
 	obj_flags = UNIQUE_RENAME
@@ -303,7 +303,7 @@
 /obj/item/stock_parts/cell/hyeseong_internal_cell
 	name = "\improper Hyeseong modular laser rifle internal cell"
 	desc = "These are usually supposed to be inside of the gun, you know."
-	maxcharge = 40000
+	maxcharge = 10000
 
 /datum/action/item_action/toggle_personality
 	name = "Toggle Weapon Personality"
