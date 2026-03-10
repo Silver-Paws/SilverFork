@@ -2432,6 +2432,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 											extra_loadout_data += "<BR><a class='linkOn' href='?_src_=prefs;preference=gear;loadout_removeheirloom=1;loadout_gear_name=[url_encode(gear.name)];'>Select as Heirloom</a><BR>"
 										else
 											extra_loadout_data += "<BR><a href='?_src_=prefs;preference=gear;loadout_addheirloom=1;loadout_gear_name=[url_encode(gear.name)];'>Select as Heirloom</a><BR>"
+										if(ispath(gear.path, /obj/item/clothing))
+											extra_loadout_data += "<BR><a [loadout_item["loadout_examtooltip"] ? "class='linkOn' " : ""]href='?_src_=prefs;preference=gear;loadout_examtooltip=1;loadout_gear_name=[url_encode(gear.name)];'>Examine tooltip: [loadout_item["loadout_examtooltip"] ? "Set!" : "None"]</a>"
 										if(ispath(gear.path, /obj/item/clothing/neck/petcollar)) //"name tag" sounds better for me, but in petcollar code "tagname" is used so let it be.
 											extra_loadout_data += "<BR><a href='?_src_=prefs;preference=gear;loadout_tagname=1;loadout_gear_name=[url_encode(gear.name)];'>Name tag</a> [loadout_item["loadout_custom_tagname"] ? loadout_item["loadout_custom_tagname"] : "Name tag is visible for everyone looking at wearer."]"
 								  // BLUEMOON ADD END
@@ -6365,7 +6367,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					sanitize_current_slot.Remove(list(entry))
 					break
 
-		if(href_list["loadout_color"] || href_list["loadout_color_polychromic"] || href_list["loadout_color_HSV"] || href_list["loadout_rename"] || href_list["loadout_redescribe"] || href_list["loadout_addheirloom"] || href_list["loadout_removeheirloom"] || href_list["loadout_tagname"])
+		if(href_list["loadout_color"] || href_list["loadout_color_polychromic"] || href_list["loadout_color_HSV"] || href_list["loadout_rename"] || href_list["loadout_redescribe"] || href_list["loadout_addheirloom"] || href_list["loadout_removeheirloom"] || href_list["loadout_tagname"] || href_list["loadout_examtooltip"])
 
 			//if the gear doesn't exist, or they don't have it, ignore the request
 			var/name = url_decode(href_list["loadout_gear_name"])
@@ -6460,6 +6462,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/new_tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", null, MAX_NAME_LEN)
 				if(new_tagname)
 					user_gear["loadout_custom_tagname"] = new_tagname
+			if(href_list["loadout_examtooltip"])
+				var/defaultinput = (islist(user_gear["loadout_examtooltip"])) ? user_gear["loadout_examtooltip"][1] : null
+				var/examtooltip_usrinput = stripped_input(user, "Это описание предмета будет видно при осмотре персонажа, носящего предмет. Cancel - очистить.", "Дополнительное описание", defaultinput, MAX_MESSAGE_LEN)
+				if(examtooltip_usrinput)
+					user_gear["loadout_examtooltip"] = list(examtooltip_usrinput, TRUE)
+					examtooltip_usrinput = alert(usr, "Оставлять описание даже после снятия предмета с персонажа?", "Постоянное описание", "Да", "Нет")
+					if(examtooltip_usrinput == "Да")
+						user_gear["loadout_examtooltip"][2] = FALSE
+				else
+					user_gear -= "loadout_examtooltip"
 
 	ShowChoices(user)
 	return TRUE
