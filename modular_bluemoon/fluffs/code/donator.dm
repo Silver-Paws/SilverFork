@@ -620,10 +620,10 @@
 	path = /obj/item/modkit/pf940_kit_g22
 	ckeywhitelist = list("leony24")
 
-/datum/gear/donator/bm/p940_g22
-	name = "Shotgun into KS-23M Kit"
+/datum/gear/donator/bm/shotgun_ks22
+	name = "Shotgun into KS-22M Kit"
 	slot = ITEM_SLOT_BACKPACK
-	path = /obj/item/modkit/ks23_kit
+	path = /obj/item/modkit/ks22_kit
 	ckeywhitelist = list("lodagn")
 
 /datum/gear/donator/bm/g36_kit
