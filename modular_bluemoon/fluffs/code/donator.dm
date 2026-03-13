@@ -2165,3 +2165,15 @@
 	slot = ITEM_SLOT_BACKPACK
 	path = /obj/item/modkit/nebular_kit
 	ckeywhitelist = list("lapkee")
+
+/datum/gear/donator/bm/toy_plasma_scythe
+	name = "Toy Plasma Scythe"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/plasmascythe/toy
+	ckeywhitelist = list("freakowo")
+
+/datum/gear/donator/bm/toy_sledgehammer
+	name = "Toy Sledgehammer"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/inteq_sledgehammer/toy
+	ckeywhitelist = list("freakowo")
