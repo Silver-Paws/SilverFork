@@ -328,7 +328,6 @@
 	armour_penetration = 0
 	attack_speed = CLICK_CD_MELEE
 	slot_flags = ITEM_SLOT_BELT
-	hitsound = 'sound/effects/adminhelp.ogg'
 
 /obj/item/inteq_sledgehammer/toy/ComponentInitialize()
 	AddComponent(/datum/component/two_handed, force_unwielded=1, force_wielded=1, icon_wielded="sledgehammer1")
@@ -341,7 +340,7 @@
 		M.visible_message("<span class='danger'>[user] бахнул [M] по голове [src]!</span>", "<span class='userdanger'>[user] бахнул тебя по голове [src]!</span>", "<span class='hear'>Слышен звук баха.</span>")
 	else
 		M.visible_message("<span class='danger'>[user] нашлёпал [M] [src]!</span>", "<span class='userdanger'>[user] нашлёпал тебя [src]!</span>", "<span class='hear'>Слышен звук хлюпа.</span>")
-	playsound(loc, 'sound/effects/adminhelp.ogg', 15)
+	playsound(loc, 'modular_splurt/sound/misc/bonk.ogg', 1000, 1)
 	if(user.a_intent != INTENT_HELP)
 		return ..()
 
