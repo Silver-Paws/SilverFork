@@ -235,6 +235,20 @@
 		if(L.mind?.enslaved_to == src)
 			. += L
 
+/mob/living/proc/inteq_drone_comm()
+	var/list/enslaved = hasenslaved()
+	if(!LAZYLEN(enslaved))
+		to_chat(src, "<span class='warning'>У тебя нет связанных дронов.</span>")
+		return
+	var/input = stripped_input(src, "Сообщение для дрона:", "Связь с дроном", "")
+	if(!input)
+		return
+	var/my_message = "<span class='holoparasite bold'><i>[src.real_name]:</i> [input]</span>"
+	to_chat(src, my_message)
+	for(var/mob/living/L in enslaved)
+		to_chat(L, "<span class='holoparasite'><font color=\"#FF6B35\"><b><i>[src.real_name]:</i></b></font> [input]</span>")
+	log_talk(input, LOG_SAY, tag="inteq_drone")
+
 /datum/action/innate/inteq_drone_comm
 	name = "Связаться с дроном"
 	desc = "Телепатически связаться с дроном InteQ."
@@ -243,18 +257,9 @@
 	check_flags = AB_CHECK_CONSCIOUS
 
 /datum/action/innate/inteq_drone_comm/Activate()
-	var/list/enslaved = owner.hasenslaved()
-	if(!LAZYLEN(enslaved))
-		to_chat(owner, "<span class='warning'>У тебя нет связанных дронов.</span>")
-		return
-	var/input = stripped_input(owner, "Сообщение для дрона:", "Связь с дроном", "")
-	if(!input)
-		return
-	var/my_message = "<span class='holoparasite bold'><i>[owner.real_name]:</i> [input]</span>"
-	to_chat(owner, my_message)
-	for(var/mob/living/L in enslaved)
-		to_chat(L, "<span class='holoparasite'><font color=\"#FF6B35\"><b><i>[owner.real_name]:</i></b></font> [input]</span>")
-	owner.log_talk(input, LOG_SAY, tag="inteq_drone")
+	if(isliving(owner))
+		var/mob/living/L = owner
+		L.inteq_drone_comm()
 
 /datum/action/innate/inteq_drone_communicate
 	name = "Связаться с Мастером"
