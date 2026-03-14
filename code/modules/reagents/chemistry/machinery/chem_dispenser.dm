@@ -848,7 +848,8 @@
 		data["beakerMaxVolume"] = beaker.volume
 		data["beakerTransferAmounts"] = beaker.possible_transfer_amounts
 		// pH precision scales with capacitor rating.
-		var/rounded_ph = round(beaker.reagents.pH, 10**-(capacitor_rating+1))
+		var/ph_precision = max(10**-(capacitor_rating+1), 0.0001)
+		var/rounded_ph = round(beaker.reagents.pH, ph_precision)
 		data["beakerCurrentpH"] = rounded_ph
 		data["beakerCurrentpHCol"] = ConvertpHToCol(rounded_ph)
 
@@ -1567,7 +1568,7 @@
 			var/recipe_name = params["recipe"]
 			if(recipe_name && saved_recipes[recipe_name])
 				saved_recipes -= recipe_name
-	
+
 				log_reagent("DISPENSER: [key_name(usr)] deleted recipe [recipe_name]")
 			. = TRUE
 		if("record_recipe")
@@ -1594,7 +1595,7 @@
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						return
 				saved_recipes[name] = recording_recipe
-	
+
 				logstring = logstring.Join(", ")
 				recording_recipe = null
 				log_reagent("DISPENSER: [key_name(usr)] recorded recipe [name] with chemicals [logstring]")
@@ -1815,8 +1816,8 @@
 		return TRUE
 
 /obj/machinery/chem_dispenser/proc/ConvertpHToCol(pH)
-	if(pH == null || !isnum(pH))
-		return "good"
+	if(!isnum(pH) || (pH != pH)) // null or NaN
+		return "average"
 	switch(pH)
 		if(-INFINITY to 1)
 			return "red"
@@ -1841,9 +1842,11 @@
 		if(12.5 to INFINITY)
 			return "purple"
 		else
-			return "good"
+			return "average"
 
 /obj/machinery/chem_dispenser/proc/get_reagent_category(reagent_type)
+	if(!reagent_type)
+		return "other"
 	if(ispath(reagent_type, /datum/reagent/medicine))
 		return "medicine"
 	if(ispath(reagent_type, /datum/reagent/toxin))
