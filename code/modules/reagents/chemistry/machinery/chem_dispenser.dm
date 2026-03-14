@@ -1816,50 +1816,68 @@
 		return TRUE
 
 /obj/machinery/chem_dispenser/proc/ConvertpHToCol(pH)
-	if(!isnum(pH) || (pH != pH)) // null or NaN
+	// Recursion guard: prevents stack overflow when TGUI serializes large payloads (BYOND bug workaround)
+	var/static/recursion_depth = 0
+	if(recursion_depth > 0)
 		return "average"
+	recursion_depth++
+	. = "average"
+	if(!isnum(pH) || (pH != pH)) // null or NaN
+		recursion_depth--
+		return
 	switch(pH)
 		if(-INFINITY to 1)
-			return "red"
+			. = "red"
 		if(1 to 2)
-			return "orange"
+			. = "orange"
 		if(2 to 3)
-			return "average"
+			. = "average"
 		if(3 to 4)
-			return "yellow"
+			. = "yellow"
 		if(4 to 5)
-			return "olive"
+			. = "olive"
 		if(5 to 6)
-			return "good"
+			. = "good"
 		if(6 to 8)
-			return "green"
+			. = "green"
 		if(8 to 9.5)
-			return "teal"
+			. = "teal"
 		if(9.5 to 11)
-			return "blue"
+			. = "blue"
 		if(11 to 12.5)
-			return "violet"
+			. = "violet"
 		if(12.5 to INFINITY)
-			return "purple"
+			. = "purple"
 		else
-			return "average"
+			. = "average"
+	recursion_depth--
 
 /obj/machinery/chem_dispenser/proc/get_reagent_category(reagent_type)
+	// Recursion guard: prevents stack overflow when TGUI serializes large payloads (BYOND bug workaround)
+	var/static/recursion_depth = 0
+	var/static/list/category_cache = list()
+	if(recursion_depth > 0)
+		return "other"
+	if(reagent_type && category_cache[reagent_type])
+		return category_cache[reagent_type]
+	recursion_depth++
+	var/result = "other"
 	if(!reagent_type)
-		return "other"
+		recursion_depth--
+		return result
 	if(ispath(reagent_type, /datum/reagent/medicine))
-		return "medicine"
-	if(ispath(reagent_type, /datum/reagent/toxin))
-		return "toxins"
-	if(ispath(reagent_type, /datum/reagent/drug))
-		return "drugs"
-	if(ispath(reagent_type, /datum/reagent/consumable/organicprecursor))
-		return "other"
-	if(ispath(reagent_type, /datum/reagent/consumable/ethanol))
-		return "alcoholic_drinks"
-	if(ispath(reagent_type, /datum/reagent/consumable))
-		return "soft_drinks"
-	if(reagent_type in list(
+		result = "medicine"
+	else if(ispath(reagent_type, /datum/reagent/toxin))
+		result = "toxins"
+	else if(ispath(reagent_type, /datum/reagent/drug))
+		result = "drugs"
+	else if(ispath(reagent_type, /datum/reagent/consumable/organicprecursor))
+		result = "other"
+	else if(ispath(reagent_type, /datum/reagent/consumable/ethanol))
+		result = "alcoholic_drinks"
+	else if(ispath(reagent_type, /datum/reagent/consumable))
+		result = "soft_drinks"
+	else if(reagent_type in list(
 		/datum/reagent/water,
 		/datum/reagent/fuel,
 		/datum/reagent/stable_plasma,
@@ -1871,10 +1889,13 @@
 		/datum/reagent/diethylamine,
 		/datum/reagent/saltpetre
 	))
-		return "compounds"
-	if(ispath(reagent_type, /datum/reagent))
-		return "elements"
-	return "other"
+		result = "compounds"
+	else if(ispath(reagent_type, /datum/reagent))
+		result = "elements"
+	if(reagent_type)
+		category_cache[reagent_type] = result
+	recursion_depth--
+	return result
 
 
 /obj/machinery/chem_dispenser/drinks/Initialize(mapload)
