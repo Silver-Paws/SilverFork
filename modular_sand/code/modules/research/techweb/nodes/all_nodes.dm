@@ -8,8 +8,8 @@
 
 /datum/techweb_node/syndicate_basic/cool
 	id = "syndicate_cool"
-	display_name = "Syndicate standart ammunition"
-	description = "Shoot with style! Luger cannot be supressed!"
+	display_name = "Syndicate standard ammunition"
+	description = "Shoot with style! Luger cannot be suppressed!"
 	prereq_ids = list("syndicate_basic")
 	design_ids = list("luger", "pistolm9mm", "c9mm_box")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)

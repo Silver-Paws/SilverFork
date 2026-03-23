@@ -209,7 +209,7 @@
 /datum/design/c9mmr
 	name = "Ammo (9mm Rubber)"
 	id = "c9mmr"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 1000)
 	build_path = /obj/item/ammo_casing/c9mm/rubber
 	category = list("hacked", "Security")
