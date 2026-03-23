@@ -4428,7 +4428,6 @@
 #include "modular_bluemoon\code\game\objects\items\storage\boxes.dm"
 #include "modular_bluemoon\code\game\objects\items\storage\briefcase.dm"
 #include "modular_bluemoon\code\game\objects\items\storage\firstaid.dm"
-#include "modular_bluemoon\code\game\objects\items\storage\toolbox.dm"
 #include "modular_bluemoon\code\game\objects\items\tools\crowbar.dm"
 #include "modular_bluemoon\code\game\objects\items\tools\misc.dm"
 #include "modular_bluemoon\code\game\objects\items\tools\screwdriver.dm"
