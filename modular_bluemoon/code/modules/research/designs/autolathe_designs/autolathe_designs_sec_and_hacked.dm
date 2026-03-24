@@ -7,7 +7,7 @@
 /////////////
 
 /datum/design/a556_rubber
-	name = "Ammo (5.56mm rubber)"
+	name = "Rifle Bullet (5.56mm rubber)"
 	id = "a556_rubber"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 1200)
@@ -15,7 +15,7 @@
 	category = list("initial", "Security")
 
 /datum/design/a762x39_rubber
-	name = "Ammo (7.62x39 rubber)"
+	name = "Rifle Bullet (7.62x39 rubber)"
 	id = "a762x39_rubber"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 1200)
@@ -39,7 +39,7 @@
 /////////////////
 
 /datum/design/a556
-	name = "Ammo Box (5.56mm)"
+	name = "Rifle Bullet (5.56mm)"
 	id = "a556"
 	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 1500)
@@ -47,7 +47,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/a762x39
-	name = "Ammo Box (7.62x39)"
+	name = "Rifle Bullet (7.62x39)"
 	id = "a762x39"
 	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 1500)

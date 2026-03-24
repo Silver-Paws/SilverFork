@@ -175,7 +175,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/c10mm
-	name = "Ammo (10mm)"
+	name = "Pistol Bullet (10mm)"
 	id = "c10mm"
 	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 1200)
@@ -183,7 +183,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/c45
-	name = "Ammo (.45 Rubber)"
+	name = "Pistol Bullet (.45 Rubber)"
 	id = "c45"
 	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 800)
@@ -191,7 +191,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/c45lethal
-	name = "Ammo (.45 Lethal)"
+	name = "Pistol Bullet (.45 Lethal)"
 	id = "c45lehtal"
 	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 1000)
@@ -199,7 +199,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/c9mm
-	name = "Ammo (9mm)"
+	name = "Pistol Bullet (9mm)"
 	id = "c9mm"
 	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 1100)
@@ -207,7 +207,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/c9mmr
-	name = "Ammo (9mm Rubber)"
+	name = "Pistol Bullet (9mm Rubber)"
 	id = "c9mmr"
 	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 1000)
@@ -215,7 +215,7 @@
 	category = list("hacked", "Security")
 
 /datum/design/c22
-	name = "Ammo (.22)"
+	name = "Pistol Bullet (.22)"
 	id = "c22"
 	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 900)

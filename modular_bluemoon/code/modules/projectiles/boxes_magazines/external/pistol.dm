@@ -127,7 +127,7 @@
 ///////////////////// DATUM DESIGN /////////////////////
 
 /datum/design/c9mm_box
-	name = "Ammo (9mm)"
+	name = "Ammo Box (9mm)"
 	desc = "A box of ammo containing 30 rounds of nine mil' caliber."
 	id = "c9mm_box"
 	build_type =  PROTOLATHE
