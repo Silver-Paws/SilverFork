@@ -103,6 +103,7 @@
 	custom_materials = list(/datum/material/iron = 5600) // 5000 bullets + 600 clip (10%)
 	max_ammo = 5
 	multiple_sprites = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/ammo_box/c308
 	name = "ammo box (.308)"

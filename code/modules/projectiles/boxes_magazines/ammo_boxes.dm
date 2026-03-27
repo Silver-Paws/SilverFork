@@ -7,6 +7,7 @@
 	max_ammo = 7
 	multiple_sprites = 1
 	speedloader = TRUE
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/ammo_box/a357/match
 	name = "speed loader (.357 Match)"
@@ -32,6 +33,7 @@
 	multiple_sprites = 1
 	custom_materials = list(/datum/material/iron = 20000)
 	speedloader = TRUE
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/ammo_box/c38/lethal
 	name = "speed loader (.38)"
@@ -134,6 +136,7 @@
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 5
 	multiple_sprites = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/ammo_box/n762
 	name = "ammo box (7.62x38mmR)"
@@ -175,6 +178,7 @@
 	max_ammo = 4
 	var/pixeloffsetx = 4
 	start_empty = TRUE
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_box/shotgun/update_overlays()
 	. = ..()
