@@ -25,7 +25,7 @@
 	var/busy = FALSE
 
 	///the multiplier for how much materials the created object takes from this machines stored materials
-	var/creation_efficiency = AUTOLATHE_EFFICIENCY_BASE
+	var/creation_efficiency = AUTOLATHE_EFFICIENCY_BASE * 0.01 // Для игры 100% = 1
 
 	var/datum/design/being_built
 	var/datum/techweb/stored_research
@@ -360,11 +360,11 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.max_amount = mat_capacity
 
-	var/efficiency = AUTOLATHE_EFFICIENCY_BASE * 0.01 // Значения оперируются не в сотнях
+	var/efficiency = AUTOLATHE_EFFICIENCY_BASE
 	for(var/obj/item/stock_parts/manipulator/new_manipulator in component_parts)
 		efficiency -= (new_manipulator.rating - 1) * (AUTOLATHE_EFFICIENCY_STEP * 0.01)
 	efficiency = round(efficiency, 0.01)
-	creation_efficiency = max(0.15, efficiency) // creation_efficiency goes 1 -> 0,88 -> 0,76 -> 0,64 per level of manipulator efficiency
+	creation_efficiency = max(0.15, efficiency) // creation_efficiency goes 1 -> 0.91 -> 0.82 -> 0.73 per level of manipulator efficiency
 
 /obj/machinery/autolathe/examine(mob/user)
 	. += ..()
