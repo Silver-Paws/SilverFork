@@ -1,5 +1,5 @@
-#define AUTOLATHE_EFFICIENCY_BASE 2 	// базовая эффективность крафта (200%)
-#define AUTOLATHE_EFFICIENCY_STEP 0.19	// на сколько эффективнее станет машина за тир деталей
+#define AUTOLATHE_EFFICIENCY_BASE 100 	// базовая эффективность машины (В процентах)
+#define AUTOLATHE_EFFICIENCY_STEP 9	// эффективность машины за тир деталей (В процентах)
 
 /obj/machinery/autolathe
 	name = "autolathe"
@@ -360,11 +360,11 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.max_amount = mat_capacity
 
-	var/efficiency = AUTOLATHE_EFFICIENCY_BASE
+	var/efficiency = AUTOLATHE_EFFICIENCY_BASE * 0.01 // Значения оперируются не в сотнях
 	for(var/obj/item/stock_parts/manipulator/new_manipulator in component_parts)
-		efficiency -= (new_manipulator.rating - 1) * AUTOLATHE_EFFICIENCY_STEP
+		efficiency -= (new_manipulator.rating - 1) * (AUTOLATHE_EFFICIENCY_STEP * 0.01)
 	efficiency = round(efficiency, 0.01)
-	creation_efficiency = max(1, efficiency) // creation_efficiency goes 2 -> 1,8 -> 1,6 -> 1,4 per level of manipulator efficiency
+	creation_efficiency = max(0.15, efficiency) // creation_efficiency goes 1 -> 0,88 -> 0,76 -> 0,64 per level of manipulator efficiency
 
 /obj/machinery/autolathe/examine(mob/user)
 	. += ..()
