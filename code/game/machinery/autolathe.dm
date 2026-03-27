@@ -1,5 +1,5 @@
-#define AUTOLATHE_EFFICIENCY_BASE 100 	// базовая эффективность машины (В процентах)
-#define AUTOLATHE_EFFICIENCY_STEP 9	// эффективность машины за тир деталей (В процентах)
+#define AUTOLATHE_EFFICIENCY_BASE 100 * 0.01	// базовая эффективность машины (В процентах, для игры 100% = 1)
+#define AUTOLATHE_EFFICIENCY_STEP 9 * 0.01		// эффективность машины за тир деталей (В процентах)
 
 /obj/machinery/autolathe
 	name = "autolathe"
@@ -25,7 +25,7 @@
 	var/busy = FALSE
 
 	///the multiplier for how much materials the created object takes from this machines stored materials
-	var/creation_efficiency = AUTOLATHE_EFFICIENCY_BASE * 0.01 // Для игры 100% = 1
+	var/creation_efficiency = AUTOLATHE_EFFICIENCY_BASE
 
 	var/datum/design/being_built
 	var/datum/techweb/stored_research
@@ -362,7 +362,7 @@
 
 	var/efficiency = AUTOLATHE_EFFICIENCY_BASE
 	for(var/obj/item/stock_parts/manipulator/new_manipulator in component_parts)
-		efficiency -= (new_manipulator.rating - 1) * (AUTOLATHE_EFFICIENCY_STEP * 0.01)
+		efficiency -= (new_manipulator.rating - 1) * AUTOLATHE_EFFICIENCY_STEP
 	efficiency = round(efficiency, 0.01)
 	creation_efficiency = max(0.15, efficiency) // creation_efficiency goes 1 -> 0.91 -> 0.82 -> 0.73 per level of manipulator efficiency
 
