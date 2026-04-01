@@ -532,11 +532,12 @@ SUBSYSTEM_DEF(job)
 		switch(rank)
 			if("Head of Security") // Секция добавления штук для ГСБ
 				var/station_armory = GLOB.areas_by_type[/area/ai_monitored/security/armory]
-				var/obj/structure/safe/floor/syndi/armory/brigsafe
-				for(brigsafe in station_armory)
-					var/code_text = "[brigsafe.tumblers.Join("-")]"
-					flavor_display_text += "\n<li><span class='red'>Вам известен код сейфа оружейной:<br><B>[code_text].</B></span>\n</li>"
-					H.mind.memory += ("Код сейфа оружейной: [code_text].\n") // Нет, add_memory не работает, этот брутфорс был нужен.
+				if(station_armory)
+					var/obj/structure/safe/floor/syndi/armory/brigsafe
+					for(brigsafe in station_armory)
+						var/code_text = "[brigsafe.tumblers.Join("-")]"
+						flavor_display_text += "\n<li><span class='red'>Вам известен код сейфа оружейной:<br><B>[code_text].</B></span>\n</li>"
+						H.mind.memory += ("Код сейфа оружейной: [code_text].\n") // Нет, add_memory не работает, этот брутфорс был нужен.
 		// BLUEMOON EDIT END
 		handle_roundstart_items(H, M.ckey, H.mind.assigned_role, H.mind.special_role)
 	to_chat(M, examine_block(flavor_display_text))
