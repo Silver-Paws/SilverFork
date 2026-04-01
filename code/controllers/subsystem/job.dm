@@ -520,8 +520,7 @@ SUBSYSTEM_DEF(job)
 		var/mob/living/carbon/human/wageslave = H
 		flavor_display_text += "\n<li>Номер вашего банковского аккаунта - [wageslave.account_id].</li>"
 		H.add_memory("Номер вашего банковского аккаунта - [wageslave.account_id].")
-	to_chat(M, examine_block(flavor_display_text))
-	// BLUEMOON EDIT
+	// BLUEMOON EDIT END
 	if(job && H)
 		if(job.dresscodecompliant)// CIT CHANGE - dress code compliance
 			equip_loadout(N, H) // CIT CHANGE - allows players to spawn with loadout items
@@ -539,8 +538,8 @@ SUBSYSTEM_DEF(job)
 					flavor_display_text += "\n<li><span class='red'>Вам известен код сейфа оружейной:<br><B>[code_text].</B></span>\n</li>"
 					H.mind.memory += ("Код сейфа оружейной: [code_text].\n") // Нет, add_memory не работает, этот брутфорс был нужен.
 		// BLUEMOON EDIT END
-
 		handle_roundstart_items(H, M.ckey, H.mind.assigned_role, H.mind.special_role)
+	to_chat(M, examine_block(flavor_display_text))
 
 	var/list/tcg_cards
 	if(ishuman(H))
