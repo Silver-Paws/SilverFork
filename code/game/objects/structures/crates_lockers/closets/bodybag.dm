@@ -1,7 +1,7 @@
 
 /obj/structure/closet/body_bag
 	name = "body bag"
-	desc = "Пластиковый мешок для хранения и транспортировок кадавров."
+	desc = "Пластиковый мешок для хранения и транспортировки кадавров."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag"
 	density = FALSE
