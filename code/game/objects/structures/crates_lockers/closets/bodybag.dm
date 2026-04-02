@@ -105,7 +105,7 @@
 
 /obj/structure/closet/body_bag/containment
 	name = "containment body bag"
-	desc = "Тяжёлый мешок для тел, спроектированный для хранения и транспортировки кадаров с высоким облучением."
+	desc = "Тяжёлый мешок для тел, спроектированный для хранения и транспортировки кадавров с высоким облучением."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "radbodybag"
 	mob_storage_capacity = 1

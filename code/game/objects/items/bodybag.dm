@@ -65,7 +65,7 @@
 	for(var/atom/movable/A in contents)
 		A.forceMove(R)
 		if(isliving(A))
-			to_chat(A, span_notice("YВнезапно вы ощущаете, как пространство вокруг вас рвётся! Вы свободны!"))
+			to_chat(A, span_notice("Внезапно вы ощущаете, как пространство вокруг вас рвётся! Вы свободны!"))
 	R.open(user)
 	R.add_fingerprint(user)
 	qdel(src)
@@ -86,7 +86,7 @@
 
 /obj/item/bodybag/containment
 	name = "radiation containment body bag"
-	desc = "Сложенный тяжёлый мешок для для хранения и транспортировки кадавров с высоким облучением."
+	desc = "Сложенный тяжёлый мешок для хранения и транспортировки кадавров с высоким облучением."
 	icon_state = "radbodybag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/containment
 	w_class = WEIGHT_CLASS_NORMAL
