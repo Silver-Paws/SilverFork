@@ -39,7 +39,7 @@
 
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
-	desc = "Рюкзак с доступом в компактизированное блюспейс-пространство."
+	desc = "Рюкзак с доступом в карманное блюспейс-пространство."
 	icon_state = "holdingpack"
 	item_state = "holdingpack"
 	resistance_flags = FIRE_PROOF
@@ -50,13 +50,13 @@
 
 /obj/item/storage/backpack/holding/satchel
 	name = "satchel of holding"
-	desc = "Поясной ранец с доступом в компактизированное блюспейс-пространство."
+	desc = "Поясной ранец с доступом в карманное блюспейс-пространство."
 	icon_state = "holdingsat"
 	item_state = "holdingsat"
 
 /obj/item/storage/backpack/holding/duffel
 	name = "duffel bag of holding"
-	desc = "Сумка с доступом в компактизированное блюспейс-пространство."
+	desc = "Сумка с доступом в карманное блюспейс-пространство."
 	icon_state = "holdingduffel"
 	item_state = "holdingduffel"
 
