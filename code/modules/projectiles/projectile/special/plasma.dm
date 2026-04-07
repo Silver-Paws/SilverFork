@@ -44,7 +44,7 @@
 	range = 5
 	mine_range = 5
 	dismemberment = 30
-	simplemob_damage_bonus = 0.25
+	simplemob_damage_bonus = 0.75
 
 /obj/item/projectile/plasma/adv/mech
 	damage = 25
