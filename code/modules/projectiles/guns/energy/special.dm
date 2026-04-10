@@ -149,18 +149,21 @@
 		if(cell.charge >= cell.maxcharge)
 			to_chat(user, span_warning("Ваш [src] уже полностью заряжен!"))
 			return
-		if(do_after(user, 10, src))
-			if(INTERACTING_WITH(user, src))
+		if(do_after(user, 1 SECONDS, src))
+			if(INTERACTING_WITH(user, src) || QDELETED(I) || QDELETED(cell))
 				return
-			I.use(1)
+			if(!I.use(1))
+				return
 			cell.give(1000)
 			to_chat(user, span_notice("Вы вставили [I] в [src], добавляя заряд."))
 	else if(istype(I, /obj/item/stack/ore/plasma))
 		if(cell.charge >= cell.maxcharge)
 			to_chat(user, span_warning("Ваш [src] уже полностью заряжен!"))
 			return
-		if(do_after(user, 12, src))
-			if(INTERACTING_WITH(user, src))
+		if(do_after(user, 1.2 SECONDS, src))
+			if(INTERACTING_WITH(user, src) || QDELETED(I) || QDELETED(cell))
+				return
+			if(!I.use(1))
 				return
 			I.use(1)
 			cell.give(500)
@@ -206,7 +209,7 @@
 
 /obj/item/gun/energy/gravity_gun/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/assembly/signaler/anomaly))
-		to_chat(user, span_notice("You insert [C] into the gravitational manipulator and the weapon gently) hums to life."))
+		to_chat(user, span_notice("Вы вставляете [C] в гравитационный манипулятор, и оружие тихо оживает."))
 		firing_core = TRUE
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		qdel(C)
@@ -234,7 +237,7 @@
 
 /obj/item/gun/energy/wormhole_projector/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/assembly/signaler/anomaly))
-		to_chat(user, span_notice("You insert [C] into the wormhole projector and the weapon gently) hums to life."))
+		to_chat(user, span_notice("Вы вставляете [C] в проектор червоточин, и оружие тихо оживает."))
 		firing_core = TRUE
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		qdel(C)
