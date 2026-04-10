@@ -166,7 +166,7 @@
 			return
 		potential_disky.forceMove(src)
 		disky = potential_disky
-		to_chat(src, span_nicegreen("ДА!! Вам удалось подобрать [disky] (Кликните где угодно, чтобы положить)."))
+		to_chat(src, span_nicegreen("ДА!! Вам удалось подобрать [disky] (Кликните в пустое место, чтобы положить)."))
 		update_icon()
 		if(!disky.fake)
 			client.give_award(/datum/award/achievement/misc/cayenne_disk, src)
