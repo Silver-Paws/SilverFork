@@ -2,7 +2,7 @@
 
 /mob/living/simple_animal/hostile/carp
 	name = "space carp"
-	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	desc = "Свирепое, клыконосное существо, напоминающее рыбу."
 	icon_state = "carp"
 	icon_living = "carp"
 	icon_dead = "carp_dead"
@@ -11,10 +11,10 @@
 	speak_chance = 0
 	turns_per_move = 5
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/carpmeat = 2)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
+	response_help_continuous = "гладит"
+	response_help_simple = "погладил"
+	response_disarm_continuous = "мягко отталкивает в сторону"
+	response_disarm_simple = "мягко толкает в сторону"
 	emote_taunt = list("gnashes")
 	taunt_chance = 30
 	speed = 0
@@ -25,10 +25,10 @@
 	obj_damage = 50
 	melee_damage_lower = 15
 	melee_damage_upper = 25
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "кусает"
+	attack_verb_simple = "укусил"
 	attack_sound = 'sound/weapons/bite.ogg'
-	speak_emote = list("gnashes")
+	speak_emote = list("скрежещет острыми зубами")
 	//Space carp aren't affected by cold.
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
@@ -70,7 +70,7 @@
 		heal_overall_damage(regen_amount)
 
 /mob/living/simple_animal/hostile/carp/AttackingTarget()
-	if(!. && (istype(target, /obj/machinery/portable_atmospherics/canister) || istype(target, /obj/machinery/atmospherics/pipe)))
+	if(istype(target, /obj/machinery/portable_atmospherics/canister) || istype(target, /obj/machinery/atmospherics/pipe))
 		if(prob(99))
 			to_chat(src, span_warning("[target] выглядит отвратительно на вкус!"))
 		else
@@ -91,7 +91,7 @@
 /mob/living/simple_animal/hostile/carp/megacarp
 	icon = 'icons/mob/broadMobs.dmi'
 	name = "Mega Space Carp"
-	desc = "A ferocious, fang bearing creature that resembles a shark. This one seems especially ticked off."
+	desc = "Свирепое, клыконосное существо, напоминающее акулу. Оно кажется особенно сильно разозлённым..."
 	icon_state = "megacarp"
 	icon_living = "megacarp"
 	icon_dead = "megacarp_dead"
@@ -121,10 +121,11 @@
 /mob/living/simple_animal/hostile/carp/cayenne
 	name = "Cayenne"
 	real_name = "Cayenne"
-	desc = "A failed Syndicate experiment in weaponized space carp technology, it now serves as a lovable mascot."
+	desc = "Неудачный эксперимент Триглава по использованию технологии космических карпов в военных целях. Теперь оно служит как всеми любимый маскот."
 	gender = FEMALE
 	speak_emote = list("squeaks")
 	AIStatus = AI_OFF
+	attack_verb_simple = "укусила"
 	gold_core_spawnable = NO_SPAWN
 	faction = list(ROLE_INTEQ)
 	/// Keeping track of the nuke disk for the functionality of storing it.
