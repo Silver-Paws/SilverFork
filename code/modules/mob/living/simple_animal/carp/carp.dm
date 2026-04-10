@@ -70,6 +70,12 @@
 		heal_overall_damage(regen_amount)
 
 /mob/living/simple_animal/hostile/carp/AttackingTarget()
+	if(!. && (istype(target, /obj/machinery/portable_atmospherics/canister) || istype(target, /obj/machinery/atmospherics/pipe)))
+		if(prob(99))
+			to_chat(src, span_warning("[target] выглядит отвратительно на вкус!"))
+		else
+			to_chat(src, span_userdanger("ФУ, НЕВКУСНО!!!"))
+		return
 	. = ..()
 	if(. && ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -150,7 +156,7 @@
 /mob/living/simple_animal/hostile/carp/cayenne/examine(mob/user)
 	. = ..()
 	if(disky)
-		. += span_notice("Wait... is that [disky] in [ru_ego()] mouth?")
+		. += span_notice("Минуту... Это что, [disky] в [ru_ego()] пасти?")
 
 /mob/living/simple_animal/hostile/carp/cayenne/AttackingTarget(atom/attacked_target)
 	if(istype(attacked_target, /obj/item/disk/nuclear))
@@ -159,14 +165,14 @@
 			return
 		potential_disky.forceMove(src)
 		disky = potential_disky
-		to_chat(src, span_nicegreen("YES!! You manage to pick up [disky]. (Click anywhere to place it back down.)"))
+		to_chat(src, span_nicegreen("ДА!! Вам удалось подобрать [disky] (Кликните где угодно, чтобы положить)."))
 		update_icon()
 		if(!disky.fake)
 			client.give_award(/datum/award/achievement/misc/cayenne_disk, src)
 		return
 	if(disky)
 		if(isopenturf(attacked_target))
-			to_chat(src, span_notice("You place [disky] on [attacked_target]"))
+			to_chat(src, span_notice("Вы положили [disky] на [attacked_target]"))
 			disky.forceMove(attacked_target.drop_location())
 			disky = null
 			update_icon()
