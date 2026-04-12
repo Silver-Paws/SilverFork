@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(budget_ru_genitive, list(
 ))
 
 /// Лист-словарь для модулей киборгов
-GLOBAL_LIST_INIT(borgmodule_ru_nominative, list(
+GLOBAL_LIST_INIT(borgmodule_ru_adjective, list(
 	"default" = "стандартный",
 	"standard" = "универсальный",
     "medical" = "медицинский",

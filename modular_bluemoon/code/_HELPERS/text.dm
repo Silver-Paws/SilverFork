@@ -193,7 +193,7 @@
 
 // падежи для модулей киборгов
 /proc/module_to_ru_adjective(module_name)
-	var/ru_module_name = GLOB.borgmodule_ru_nominative[lowertext(module_name)]
+	var/ru_module_name = GLOB.borgmodule_ru_adjective[lowertext(module_name)]
 	if(ru_module_name)
 		return ru_module_name
 
