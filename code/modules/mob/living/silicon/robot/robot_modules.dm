@@ -1016,7 +1016,7 @@
 
 /obj/item/robot_module/security/do_transform_animation()
 	..()
-	to_chat(loc, span_userdanger("Выбрав охранный модуль, вы все ещё следовать своим законам и стандартам силиконов, а не Космическому Закону. \
+	to_chat(loc, span_userdanger("Выбрав охранный модуль, вы все ещё следуете своим законам и стандартам силиконов, а не Космическому Закону. \
 	Для Crewsimov это значит, что вы следуете приказам преступников до тех пор, пока содержание закона 1 не допустит обратного."))
 
 /obj/item/robot_module/security/be_transformed_to(obj/item/robot_module/old_module)
@@ -1334,7 +1334,7 @@
 /obj/item/robot_module/peacekeeper/do_transform_animation()
 	..()
 	to_chat(loc, span_userdanger("При законах ASIMOV/CREWSIMOV, вы блюститель ПОРЯДКА. \
-	Вы не охранный модуль и от вас ожидается исполнение приказов с максимальным усилиями по минимализации вреда в процессе. Вы следуете своим законам и политике силиконов, а не Космическому Закону."))
+	Вы не охранный модуль и от вас ожидается следование приказам с минимальным вредом в процессе исполнения. Вы следуете своим законам и политике силиконов, а не Космическому Закону."))
 
 /obj/item/robot_module/peacekeeper/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc

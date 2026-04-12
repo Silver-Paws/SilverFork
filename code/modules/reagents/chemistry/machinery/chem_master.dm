@@ -80,8 +80,8 @@
 
 /obj/machinery/chem_master/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Статус-дисплей сообщает: \n\
-		- Множитель выдачи лекарств: <b>х[max_create_amount_multiplier]</b>."
+	. += span_notice("Статус-дисплей сообщает: \n\
+		- Множитель выдачи лекарств: <b>х[max_create_amount_multiplier]</b>.")
 
 /obj/machinery/chem_master/ex_act(severity, target, origin)
 	if(severity < 3)

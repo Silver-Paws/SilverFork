@@ -350,6 +350,7 @@ GLOBAL_LIST_INIT(borgmodule_ru_nominative, list(
 	"syndicate saboteur" = "саботажный",
 	"inteq assault" = "штурмовой",
 	"inteq medical" = "медицинский",
+	"inteq saboteur" = "саботажный",
 	"inteq engineering" = "инженерный",
 	"spider assault" = "штурмовой",
 	"spider medical" = "медицинский",
