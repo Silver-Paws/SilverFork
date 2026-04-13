@@ -48777,7 +48777,8 @@
 /obj/effect/turf_decal/bot/yellow,
 /obj/effect/mob_spawn/human/lavaland_syndicate{
 	dir = 8;
-	mob_name = "a Syndicate 'Glacier' Researcher"
+	mob_name = "a Syndicate 'Glacier' Researcher";
+	name = "DS-1 Glacier Specialist"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/icemoon/unpowered/glacier/dormitories)
@@ -102753,7 +102754,8 @@
 /obj/effect/turf_decal/bot/yellow,
 /obj/effect/mob_spawn/human/lavaland_syndicate{
 	dir = 4;
-	mob_name = "a Syndicate 'Glacier' Researcher"
+	mob_name = "a Syndicate 'Glacier' Researcher";
+	name = "DS-1 Glacier Specialist"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/icemoon/unpowered/glacier/dormitories)
