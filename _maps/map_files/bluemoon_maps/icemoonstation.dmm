@@ -3657,7 +3657,8 @@
 /obj/effect/turf_decal/bot/yellow,
 /obj/effect/mob_spawn/human/lavaland_syndicate/shaft{
 	dir = 8;
-	mob_name = "a Syndicate 'Glacier' Combatant"
+	mob_name = "a Syndicate 'Glacier' Combatant";
+	short_desc = "Вы Специалист по обеспечению безопасности Синдиката, работающий на Аванпосту Айсмуна и изучающий аномальное поле Системы Синих Лун. Вы второй по главенству оперативник после Специалиста Прослушки на Глейсире."
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/icemoon/unpowered/glacier/dormitories)
@@ -48778,7 +48779,8 @@
 /obj/effect/mob_spawn/human/lavaland_syndicate{
 	dir = 8;
 	mob_name = "a Syndicate 'Glacier' Researcher";
-	name = "DS-1 Glacier Specialist"
+	name = "DS-1 Glacier Specialist";
+	short_desc = "Вы Научный Специалист Синдиката, работающий на Аванпосту Айсмуна и изучающий аномальное поле Системы Синих Лун."
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/icemoon/unpowered/glacier/dormitories)
@@ -66444,7 +66446,8 @@
 /obj/effect/turf_decal/bot/yellow,
 /obj/effect/mob_spawn/human/lavaland_syndicate/offcomm{
 	dir = 4;
-	mob_name = "a Syndicate 'Glacier' Leader"
+	mob_name = "a Syndicate 'Glacier' Leader";
+	short_desc = "Вы Офицер Коммуникаций, работающий на Аванпосту Айсмуна и руководящий объектом. Обеспечьте функционирование вверенного вам аванпоста. Проводите отчётную деятельность."
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/icemoon/unpowered/glacier/dormitories)
@@ -102755,7 +102758,8 @@
 /obj/effect/mob_spawn/human/lavaland_syndicate{
 	dir = 4;
 	mob_name = "a Syndicate 'Glacier' Researcher";
-	name = "DS-1 Glacier Specialist"
+	name = "DS-1 Glacier Specialist";
+	short_desc = "Вы Научный Специалист Синдиката, работающий на Аванпосту Айсмуна и изучающий аномальное поле Системы Синих Лун."
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/icemoon/unpowered/glacier/dormitories)
