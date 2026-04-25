@@ -26,7 +26,7 @@
 	status += "Дисплей канала связи ИИ сообщает [R.connected_ai ? R.connected_ai.name : "NULL"]."
 	status += "Светодиод камеры [!isnull(R.builtInCamera) && R.builtInCamera.status ? "мигает зелёным цветом" : "неактивен"]."
 	status += "Индикатор блокировки [R.locked_down ? "горит красным цветом" : "неактивен"]."
-	status += "Аппаратный софт функции сброса модуля [R.has_module() ? "наготове" : "неактивен"]."
+	status += "Сервоприводы модуля киборга [R.has_module() ? "наготове" : "неактивны"]."
 	return status
 
 /datum/wires/robot/on_pulse(wire, user)
