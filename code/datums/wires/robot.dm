@@ -26,7 +26,7 @@
 	status += "Дисплей канала связи ИИ сообщает [R.connected_ai ? R.connected_ai.name : "NULL"]."
 	status += "Светодиод камеры [!isnull(R.builtInCamera) && R.builtInCamera.status ? "мигает зелёным цветом" : "неактивен"]."
 	status += "Индикатор блокировки [R.locked_down ? "горит красным цветом" : "неактивен"]."
-	status += "Аппаратная часть модуля сброса [R.has_module() ? "наготовое" : "активирована"]."
+	status += "Аппаратный софт функции сброса модуля [R.has_module() ? "наготове" : "неактивен"]."
 	return status
 
 /datum/wires/robot/on_pulse(wire, user)
@@ -81,7 +81,7 @@
 			if(!QDELETED(R.builtInCamera) && !R.scrambledcodes)
 				R.builtInCamera.status = mend
 				R.builtInCamera.toggle_cam(usr, 0)
-				R.visible_message("Линзы камер [R] громко фокусируются.", "Линзы ваших камер громко фокусируются.")
+				R.visible_message("Линзы камеры [R] громко фокусируются.", "Линзы вашей камеры громко фокусируются.")
 		if(WIRE_LOCKDOWN) // Simple lockdown.
 			R.SetLockdown(!mend)
 		if(WIRE_RESET_MODULE)
