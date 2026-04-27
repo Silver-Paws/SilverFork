@@ -252,8 +252,7 @@
 
 /obj/item/borg/upgrade/transform/syndicatejack/action(mob/living/silicon/robot/R, user = usr)
 	if(R.emagged)
-		if(R.builtInCamera.status == 1) // Если камера работает
-			R.builtInCamera.toggle_cam(user, 0)
+		R.camera_remove(TRUE)
 		return ..()
 
 /obj/item/borg/upgrade/transform/syndicatejack/syndie_assault

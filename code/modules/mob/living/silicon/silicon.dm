@@ -87,6 +87,22 @@
 /mob/living/silicon/contents_explosion(severity, target, origin)
 	return
 
+/mob/living/silicon/proc/camera_remove(drop_assembly = FALSE)
+	if(QDELETED(builtInCamera))
+		return
+
+	if(drop_assembly)
+		var/cyborg_turf_loc = get_turf(src)
+		new /obj/item/wallframe/camera (cyborg_turf_loc)
+		new /obj/item/stack/cable_coil(cyborg_turf_loc, 2)
+	qdel(builtInCamera)
+
+/mob/living/silicon/proc/camera_restore()
+	if(builtInCamera && !QDELETED(builtInCamera))
+		return
+
+	builtInCamera = initial(builtInCamera)
+
 /mob/living/silicon/proc/queueAlarm(message, type, incoming = FALSE)
 	var/in_cooldown = (alarms_to_show.len > 0 || alarms_to_clear.len > 0)
 	if(incoming)
