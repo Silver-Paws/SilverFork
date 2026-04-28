@@ -1284,7 +1284,7 @@
 	QDEL_NULL(builtInCamera)
 
 /mob/living/silicon/robot/proc/camera_restore()
-	if(builtInCamera && !QDELETED(builtInCamera))
+	if(!QDELETED(builtInCamera) || scrambledcodes)
 		return
 
 	builtInCamera = new (src)
@@ -1293,7 +1293,7 @@
 	builtInCamera.internal_light = FALSE
 
 	if(wires?.is_cut(WIRE_CAMERA))
-		builtInCamera.status = 0
+		builtInCamera.toggle_cam(src, 0)
 
 /mob/living/silicon/robot/proc/TryConnectToAI(mob/living/silicon/ai/connect_to)
 	set_connected_ai(connect_to || select_active_ai_with_fewest_borgs(z))
