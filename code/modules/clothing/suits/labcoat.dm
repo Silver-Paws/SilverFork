@@ -111,11 +111,25 @@
 
 /obj/item/clothing/suit/toggle/labcoat/depjacket/eng
 	name = "engineering jacket"
-	desc = "A comfortable jacket in engineering yellow."
+	desc = "Комфортная инженерно-жёлтая куртка."
 	icon_state = "engi_dep_jacket"
 	item_state = "engi_dep_jacket"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 20, FIRE = 30, ACID = 45)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter)
+
+/obj/item/clothing/suit/toggle/labcoat/depjacket/eng/chief_engineer
+	name = "chief engineer's jacket"
+	desc = "Комфортная серебряно-белая куртка. На бирке надпись: \"Не проводить стирку урановым порошком\"."
+	icon = 'modular_bluemoon/icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'modular_bluemoon/kovac_shitcode/icons/mob/clothing/suit.dmi'
+	icon_state = "chiefengi_dep_jacket"
+	item_state = "labcoat"
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 40, FIRE = 60, ACID = 65)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/clothing/suit/toggle/labcoat/depjacket/eng/chief_engineer/Initialize(mapload)
+	. = ..()
+	allowed += list(/obj/item/melee/classic_baton/telescopic, /obj/item/areaeditor/blueprints)
 
 /obj/item/clothing/suit/toggle/labcoat/syndicate
 	name = "DS Labcoat"
