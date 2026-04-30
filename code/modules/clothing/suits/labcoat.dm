@@ -115,7 +115,10 @@
 	icon_state = "engi_dep_jacket"
 	item_state = "engi_dep_jacket"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 20, FIRE = 30, ACID = 45)
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman,
+		/obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser, /obj/item/toy,
+		/obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/device/cooler
+	)
 
 /obj/item/clothing/suit/toggle/labcoat/depjacket/eng/chief_engineer
 	name = "chief engineer's jacket"
