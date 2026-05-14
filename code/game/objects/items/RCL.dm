@@ -3,7 +3,7 @@
 	desc = "Устройство для скоростной укладки кабелей. Имеет боковые винты, которые можно убрать, чтобы стянуть провода с катушки. На этикетке возле винтов пишется: \"Не использовать без изоляции\"!"
 	icon = 'modular_bluemoon/icons/obj/rcl.dmi'
 	icon_state = "rcl"
-	item_state = "rcl-0"
+	item_state = "rcl"
 	var/obj/structure/cable/last
 	var/obj/item/stack/cable_coil/loaded
 	opacity = FALSE
@@ -67,15 +67,19 @@
 		if(!loaded)
 			return
 		if(ghetto && prob(10)) //Is it a ghetto RCL? If so, give it a 10% chance to fall apart
-			to_chat(user, span_warning("You attempt to loosen the securing screws on the side, but it falls apart!"))
+			var/drop_loc = get_turf(src)
 			while(loaded.amount > 30) //There are only two kinds of situations: "nodiff" (60,90), or "diff" (31-59, 61-89)
 				var/diff = loaded.amount % 30
 				if(diff)
 					loaded.use(diff)
-					new /obj/item/stack/cable_coil(get_turf(user), diff)
+					new /obj/item/stack/cable_coil(drop_loc, diff)
 				else
 					loaded.use(30)
-					new /obj/item/stack/cable_coil(get_turf(user), 30)
+					new /obj/item/stack/cable_coil(drop_loc, 30)
+			new /obj/item/stack/sheet/metal(drop_loc, rand(3, 7))
+			new /obj/item/stack/rods(drop_loc, rand(2, 8))
+			to_chat(user, span_userdanger("Вы попытались ослабить защитные винты, но всё развалилось!"))
+			playsound(drop_loc, 'sound/effects/clang2.ogg', 120, 1)
 			qdel(src)
 			return
 
@@ -122,7 +126,7 @@
 	if(!isinhands || !(loaded?.amount))
 		return
 	// Use "rcl" sprite when loaded - rcl-10/20/30 don't exist in in-hand DMIs (tgstation uses same approach)
-	var/mutable_appearance/cable_overlay = mutable_appearance(icon_file, "rcl")
+	var/mutable_appearance/cable_overlay = mutable_appearance(icon_file, "rcl-[10 * CEILING(loaded.amount/(max_amount/3), 1)]")
 	cable_overlay.color = GLOB.cable_colors[colors[current_color_index]]
 	. += cable_overlay
 
