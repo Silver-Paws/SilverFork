@@ -78,7 +78,7 @@
 "aw" = (
 /obj/machinery/door/airlock/grunge{
 	id_tag = "dorm3";
-	name = "Room 1";
+	name = "Room 2";
 	req_one_access_txt = "152"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -284,7 +284,7 @@
 "bk" = (
 /obj/machinery/door/airlock/grunge{
 	id_tag = "dorm1";
-	name = "Room 3";
+	name = "Room 4";
 	req_one_access_txt = "152"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -766,7 +766,7 @@
 "dL" = (
 /obj/machinery/porta_turret/inteq{
 	pixel_y = 32;
-	pass_flags = 12
+	pass_flags = 16
 	},
 /turf/template_noop,
 /area/ruin/space)
@@ -3477,7 +3477,7 @@
 "rD" = (
 /obj/machinery/door/airlock/grunge{
 	id_tag = "dorm2";
-	name = "Room 2";
+	name = "Room 3";
 	req_one_access_txt = "152"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -3519,6 +3519,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/machinery/door/airlock/grunge{
+	name = "InteQ Dorm 3";
+	req_one_access_txt = "152"
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bluemoon/inteq_forgotten_ship)
@@ -6659,7 +6663,7 @@
 "HS" = (
 /obj/machinery/porta_turret/inteq{
 	pixel_y = 32;
-	pass_flags = 12
+	pass_flags = 16
 	},
 /turf/template_noop,
 /area/template_noop)
@@ -7892,10 +7896,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/grunge{
-	name = "Syndciate Dorm 3";
-	req_one_access_txt = "152"
-	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/bluemoon/inteq_forgotten_ship)
 "NI" = (
@@ -8484,7 +8484,7 @@
 "Rz" = (
 /obj/machinery/door/airlock/grunge{
 	id_tag = "dorm4";
-	name = "Recreation";
+	name = "Room 1";
 	req_one_access_txt = "152"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
