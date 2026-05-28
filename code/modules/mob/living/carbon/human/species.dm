@@ -1526,7 +1526,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				if(return_warning)
 					return_warning[1] = "The [I.name] is too big to attach."
 				return FALSE
-			if( istype(I, /obj/item/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
+			if( istype(I, /obj/item/modular_computer/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
 				return TRUE
 			return FALSE
 		if(ITEM_SLOT_HANDCUFFED)
@@ -2550,6 +2550,17 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		return
 
 	var/loc_temp = H.get_temperature(environment)
+
+	var/turf/ambient_turf = get_turf(H)
+	if(istype(ambient_turf))
+		for(var/obj/machinery/shower/shower in ambient_turf.contents)
+			if(!shower.on)
+				continue
+			switch(shower.watertemp)
+				if("freezing")
+					loc_temp = min(loc_temp, SHOWER_FREEZING_LOCAL_TEMP)
+				if("boiling")
+					loc_temp = max(loc_temp, SHOWER_BOILING_LOCAL_TEMP)
 
 	//Body temperature is adjusted in two parts: first there your body tries to naturally preserve homeostasis (shivering/sweating), then it reacts to the surrounding environment
 	//Thermal protection (insulation) has mixed benefits in two situations (hot in hot places, cold in hot places)
