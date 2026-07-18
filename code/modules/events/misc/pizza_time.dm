@@ -56,7 +56,7 @@
 		message_admins("Present Time: неверный тип доставки, событие прервано.")
 		return
 	for(var/mob/living/carbon/human/person in GLOB.human_list)
-		if(!person.mind || !(person.mind.key in GLOB.joined_player_list))
+		if(!person.mind || !((ckey(person.mind.key)) in GLOB.joined_player_list))
 			continue
 		var/turf/target_turf = get_turf(person)
 		if(!target_turf || !is_station_level(target_turf.z))
