@@ -17,8 +17,9 @@
 	addtimer(CALLBACK(src, PROC_REF(deliver_pizzas), pizzatype_list), 5 SECONDS)
 
 /datum/round_event/pizza_time/proc/deliver_pizzas(list/pizzatype_list)
-	for(var/target_mob in GLOB.joined_player_list)
-		var/mob/living/carbon/human/person = get_mob_by_ckey(target_mob)
+	for(var/mob/living/carbon/human/person in GLOB.human_list)
+		if(!person.mind || !(ckey(person.mind.key) in GLOB.joined_player_list)) // Нужно для отделения трупа НПС от игрока + поиск станционного экипажа вместо всех мобов мира
+			continue
 		var/turf/target_turf = get_turf(person)
 		if(!target_turf || !is_station_level(target_turf.z))
 			continue // НЕТ ТУРФА - НЕТ ПИЦЦЫ, НЕТ РАНТАЙМА
@@ -32,7 +33,7 @@
 		new pizzatype(pod)
 		pod.explosionSize = list(0,0,0,0)
 		to_chat(person, span_nicegreen("Время пиццы! Вот бы только чем запить..."))
-		new /obj/effect/pod_landingzone(get_turf(person), pod)
+		new /obj/effect/pod_landingzone(target_turf, pod)
 
 /datum/round_event_control/pizza_time_admin
 	name = "Present Time"
@@ -54,12 +55,17 @@
 	if(!ispath(delivery_type, /atom/movable))
 		message_admins("Present Time: неверный тип доставки, событие прервано.")
 		return
-	for(var/mob/living/carbon/human/person in GLOB.joined_player_list)
+	for(var/mob/living/carbon/human/person in GLOB.human_list)
+		if(!person.mind || !(person.mind.key in GLOB.joined_player_list))
+			continue
+		var/turf/target_turf = get_turf(person)
+		if(!target_turf || !is_station_level(target_turf.z))
+			continue
 		var/obj/structure/closet/supplypod/centcompod/pod = new()
 		new delivery_type(pod)
 		pod.explosionSize = list(0,0,0,0)
 		to_chat(person, span_nicegreen("К вам падает посылка!"))
-		new /obj/effect/pod_landingzone(get_turf(person), pod)
+		new /obj/effect/pod_landingzone(target_turf, pod)
 
 /datum/event_admin_setup/pizza_time_delivery_path
 	var/resolved
