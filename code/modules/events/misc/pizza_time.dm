@@ -4,17 +4,28 @@
 	weight = 5
 	max_occurrences = 1
 	category = EVENT_CATEGORY_HOLIDAY
-	description = "Мгновенная доставка пицца подом абсолютно всем сотрудникам."
+	description = "Доставка пиццы подом абсолютно всем сотрудникам с включёнными координатными датчиками."
 
 /datum/round_event/pizza_time/announce(fake)
-	priority_announce("Ваше начальство довольно вами и выделяет для вас подарочный обед за свой счёт. Слава ПАКТу!", "Центральное Командование")
+	priority_announce("Ваше начальство довольно вами и выделяет для вас подарочный обед за свой счёт через... Пять секунд! Для получения координатные датчики униформы должны быть включены. Слава ПАКТу!", "Центральное Командование")
 	sound_to_playing_players('sound/misc/pizza_time.ogg', volume = 25)
 
 /datum/round_event/pizza_time/start()
 	var/pizzatype_list = subtypesof(/obj/item/pizzabox)
 	pizzatype_list -= /obj/item/pizzabox/margherita/robo // No murder pizza
 	pizzatype_list -= /obj/item/pizzabox/bomb // No robo pizza
-	for(var/mob/living/carbon/human/person in GLOB.human_list)
+	addtimer(CALLBACK(src, PROC_REF(deliver_pizzas), pizzatype_list), 5 SECONDS)
+
+/datum/round_event/pizza_time/proc/deliver_pizzas(list/pizzatype_list)
+	for(var/target_mob in GLOB.joined_player_list)
+		var/mob/living/carbon/human/person = get_mob_by_ckey(target_mob)
+		var/turf/target_turf = get_turf(person)
+		if(!target_turf || !is_station_level(target_turf.z))
+			continue // НЕТ ТУРФА - НЕТ ПИЦЦЫ, НЕТ РАНТАЙМА
+		var/obj/item/clothing/under/uniforms = person.w_uniform
+		if(!uniforms || uniforms.sensor_mode != SENSOR_COORDS)
+			to_chat(person, span_red("Мои датчики! Я остался без пиццы..."))
+			continue // Униформа будет сортировать скрытных космонавтиков и трупы в морге
 		// Yes, this delivers to dead bodies. It's REALLY FUNNY.
 		var/obj/structure/closet/supplypod/centcompod/pod = new()
 		var/pizzatype = pick(pizzatype_list)
@@ -43,7 +54,7 @@
 	if(!ispath(delivery_type, /atom/movable))
 		message_admins("Present Time: неверный тип доставки, событие прервано.")
 		return
-	for(var/mob/living/carbon/human/person in GLOB.human_list)
+	for(var/mob/living/carbon/human/person in GLOB.joined_player_list)
 		var/obj/structure/closet/supplypod/centcompod/pod = new()
 		new delivery_type(pod)
 		pod.explosionSize = list(0,0,0,0)
