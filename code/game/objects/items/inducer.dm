@@ -155,8 +155,10 @@
 		user.visible_message("[user] извлекает [cell] из [src]!", span_notice("Вы извлекли [cell]."))
 		cell.update_icon()
 		user.put_in_hands(cell)
-		cell = null
+		if(cell.cell_is_radioactive)
+			cell.rad_strength = initial(cell.rad_strength)
 		cell_rad_str = 0
+		cell = null
 		update_icon()
 
 /obj/item/inducer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
