@@ -27,6 +27,8 @@
 		cell = new cell_type
 	if(cell && cell.cell_is_radioactive)
 		cell_rad_str = cell.rad_strength
+		if(!opened)
+			cell.rad_strength = cell_rad_str * INDUCER_SHIELD_VAL
 
 /obj/item/inducer/proc/induce(obj/item/stock_parts/cell/target, coefficient)
 	var/totransfer = min(cell.charge,(powertransfer * coefficient))
@@ -156,7 +158,7 @@
 		cell.update_icon()
 		user.put_in_hands(cell)
 		if(cell.cell_is_radioactive)
-			cell.rad_strength = initial(cell.rad_strength)
+			cell.rad_strength = cell_rad_str
 		cell_rad_str = 0
 		cell = null
 		update_icon()
