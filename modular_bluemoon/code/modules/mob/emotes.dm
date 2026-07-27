@@ -84,7 +84,7 @@
 	emote_cooldown = 10 SECONDS
 
 /datum/emote/sound/human/suka1/replace_pronoun(mob/user, message)
-	if(user.gender == "female")
+	if(user.gender == FEMALE || (user.gender == PLURAL && isfeminine(user)))
 		message = "выглядит очень злой."
 	else
 		message = message
@@ -100,7 +100,7 @@
 	emote_cooldown = 10 SECONDS
 
 /datum/emote/sound/human/suka2/replace_pronoun(mob/user, message)
-	if(user.gender == "female")
+	if(user.gender == FEMALE || (user.gender == PLURAL && isfeminine(user)))
 		message = "выглядит <b>очень</b> злой."
 	else
 		message = message
