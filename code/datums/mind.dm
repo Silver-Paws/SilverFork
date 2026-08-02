@@ -552,7 +552,7 @@
 			if(other_owners.len)
 				output += "<ul>"
 				for(var/datum/mind/M in other_owners)
-					output += "<li>Conspirator: [M.name]</li>"
+					output += "<li>Сообщники: [M.name]</li>"
 				output += "</ul>"
 
 // Кнопки для амбиций и их отображение
