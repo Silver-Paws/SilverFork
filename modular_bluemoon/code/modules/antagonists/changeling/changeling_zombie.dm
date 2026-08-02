@@ -266,7 +266,7 @@
 		return
 	V.AddComponent(/datum/component/changeling_zombie_infection)
 	user.visible_message(span_danger("Рана на теле [V] вспенивается – инфекция развивается внутри неё!"))
-		var/datum/antagonist/changeling_zombie/us = user.mind.has_antag_datum(/datum/antagonist/changeling_zombie)
+	var/datum/antagonist/changeling_zombie/us = user.mind.has_antag_datum(/datum/antagonist/changeling_zombie)
 	if(us?.infect_objective)
 		us.infect_objective.total_infections += 1
 
