@@ -351,7 +351,7 @@
 		var/old_pixel_x = item_target.pixel_x
 		var/old_pixel_y = item_target.pixel_y
 		var/old_pixel_z = item_target.pixel_z
-		var/old_pixel_z = item_target.pixel_w
+		var/old_pixel_w = item_target.pixel_w
 
 		item_target.layer = FLOAT_LAYER //AAAH
 		item_target.plane = FLOAT_PLANE //^ what that guy said
