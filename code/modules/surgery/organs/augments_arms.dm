@@ -388,7 +388,7 @@
 	var/mob/living/carbon/human/human_user = user
 
 	if(loc == human_user && isrobotic(human_user) && HAS_TRAIT(human_user, TRAIT_BLUEMOON_POWERSHARING))
-		. += span_info("Опция передачи энергии сейчас в состоянии <b>[power_sharing_mod ? "ON" : "OFF"]</b>, вы можете переключить их, <b>использовав в руке</b> свой зарядный кабель.")
+		. += span_info("Режим передачи энергии <b>[power_sharing_mod ? "включён" : "выключен"]</b>, вы можете переключить его, <b>использовав в руке</b> свой зарядный кабель.")
 		. += span_green("\n У вас в текущий момент <b>[human_user.nutrition]</b> юнитов заряда или приблизительно <b>[human_user.nutrition * 6]W</b> мощности остатка.")
 
 /obj/item/apc_powercord/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -543,6 +543,7 @@
 			break
 
 		H.adjust_nutrition(-50)
+		do_sparks(1, FALSE, A)
 		A.cell.give(300)
 		to_chat(H, span_notice("Вы передаёте часть заряда [A]."))
 

@@ -673,7 +673,7 @@
 			if(getStaminaLoss())
 				if(getStaminaLoss() > 30)
 					if(robotic_user)
-						to_send += span_info("Ресурс ваших сервоприводов исчерпан.")
+						to_send += span_info("Ресурс ваших сервоприводов исчерпан.\n")
 					else
 						to_send += span_info("Вы полностью измотаны.\n")
 				else
@@ -699,9 +699,9 @@
 							to_send += span_danger("Вы задыхаетесь!\n")
 				else
 					switch(toxloss)
-						if(10 to 19)
+						if(10 to 19.99)
 							to_send += span_danger("Обнаружена коррозия контактов.\n")
-						if(20 to 39)
+						if(20 to 39.99)
 							to_send += span_danger("Коррозия затронула глубины корпуса!\n")
 						if(40 to INFINITY)
 							to_send += span_danger("ВНИМАНИЕ: коррозия поразила позитронный мозг!\n")

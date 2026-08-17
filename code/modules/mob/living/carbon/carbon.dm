@@ -578,7 +578,7 @@
 				hunger_status = 4
 
 		if(hud_used.hunger)
-			hud_used.hunger.icon_state = "icon_state[hunger_status]"
+			hud_used.hunger.icon_state = "nutrition[hunger_status]"
 		if(hud_used.charge)
 			hud_used.charge.icon_state = "charge[hunger_status]"
 
