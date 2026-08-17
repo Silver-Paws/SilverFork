@@ -977,6 +977,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/splash)
 	else if(coolant > BLOOD_VOLUME_SURVIVE * owner.blood_ratio)
 		valuecolor = "#e7520d"
 	maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'><font color='[valuecolor]'>[round((coolant / (BLOOD_VOLUME_NORMAL * owner.blood_ratio)) * 100, 1)]</font></div>")
+	maptext_x = -2
 
 	var/efficiency_suffix
 	var/state_suffix
