@@ -544,61 +544,79 @@
 	return ..()
 
 /mob/living/carbon/adjust_nutrition(change, max)
+	var/old_nutrition = nutrition
 	. = ..()
-	update_hunger_and_thirst_hud()
+	if(nutrition != old_nutrition)
+		update_hunger_and_thirst_hud()
 
 /mob/living/carbon/set_nutrition(change)
+	var/old_nutrition = nutrition
 	. = ..()
-	update_hunger_and_thirst_hud()
+	if(nutrition != old_nutrition)
+		update_hunger_and_thirst_hud()
 
 /mob/living/carbon/adjust_thirst(change, max)
+	var/old_thirst = thirst
 	. = ..()
-	update_hunger_and_thirst_hud()
+	if(thirst != old_thirst)
+		update_hunger_and_thirst_hud()
 
 /mob/living/carbon/set_thirst(change)
+	var/old_thirst = thirst
 	. = ..()
-	update_hunger_and_thirst_hud()
+	if(thirst != old_thirst)
+		update_hunger_and_thirst_hud()
 
 /// Sandstorm прок обновления HUD, отвечающих за индикацию голода
 /mob/living/carbon/proc/update_hunger_and_thirst_hud()
 	if(!client || !hud_used)
 		return
+	var/robotic_user = isrobotic(src)
 	if(hud_used.hunger || hud_used.charge)
-		var/hunger_status
+		var/nutrition_prefix = robotic_user ? "charge" : "nutrition" // Тип стейта
+		var/nutrition_status // Цифра стейта
 		switch(src.nutrition)
 			if(NUTRITION_LEVEL_FULL to INFINITY)
-				hunger_status = 0
+				nutrition_status = 0
 			if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
-				hunger_status = 1
+				nutrition_status = 1
 			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_WELL_FED)
-				hunger_status = 2
+				nutrition_status = 2
 			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-				hunger_status = 3
+				nutrition_status = 3
 			if(-INFINITY to NUTRITION_LEVEL_STARVING)
-				hunger_status = 4
+				nutrition_status = 4
+		var/nutrition_state = "[nutrition_prefix][nutrition_status]"
 
-		if(hud_used.hunger)
-			hud_used.hunger.icon_state = "nutrition[hunger_status]"
-		if(hud_used.charge)
-			hud_used.charge.icon_state = "charge[hunger_status]"
-
-	if(hud_used.thirst)
-		// BLUEMOON ADD START - персонажи, которые не имеют жажды, вечно полные
-		if(HAS_TRAIT(src, TRAIT_NOTHIRST))
-			hud_used.thirst.icon_state = "hydration0"
+		// Проверка очень простая - старый стейт меняем только если новый не является им же
+		if(robotic_user)
+			if(hud_used?.charge.icon_state != nutrition_state)
+				hud_used.charge.icon_state = nutrition_state
 		else
-		// BLUEMOON ADD END
+			if(hud_used.hunger?.icon_state != nutrition_state)
+				hud_used.hunger.icon_state = nutrition_state
+
+	if(!robotic_user && hud_used.thirst)
+		var/thirst_status
+		// Персонажи, которые не имеют жажды, вечно полные
+		if(HAS_TRAIT(src, TRAIT_NOTHIRST))
+			thirst_status = 0
+		else
 			switch(get_thirst(src))
 				if(THIRST_LEVEL_FULL to INFINITY)
-					hud_used.thirst.icon_state = "hydration0"
+					thirst_status = 0
 				if(THIRST_LEVEL_QUENCHED to THIRST_LEVEL_FULL)
-					hud_used.thirst.icon_state = "hydration1"
+					thirst_status = 1
 				if(THIRST_LEVEL_THIRSTY to THIRST_LEVEL_QUENCHED)
-					hud_used.thirst.icon_state = "hydration2"
+					thirst_status = 2
 				if(THIRST_LEVEL_PARCHED to THIRST_LEVEL_THIRSTY)
-					hud_used.thirst.icon_state = "hydration3"
+					thirst_status = 3
 				if(0 to THIRST_LEVEL_PARCHED)
-					hud_used.thirst.icon_state = "hydration4"
+					thirst_status = 4
+
+		var/thirst_state = "hydration[thirst_status]"
+		if(hud_used.thirst.icon_state != thirst_state)
+			hud_used.thirst.icon_state = thirst_state
 
 /mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER) && !force)
