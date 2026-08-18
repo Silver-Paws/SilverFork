@@ -270,8 +270,8 @@ export const FabricatorContent = (props) => {
   const chemsNameById = chemsArrayToNameById(chems);
 
   return (
-    <Section fill>
-      <Stack fill vertical>
+    <Section fill minHeight={0}>
+      <Stack fill vertical minHeight={0}>
         <Stack.Item>
           <Collapsible
             open
@@ -322,9 +322,10 @@ export const FabricatorContent = (props) => {
           </Collapsible>
         </Stack.Item>
 
-        <Stack.Item grow={1} basis={0}>
+        <Stack.Item grow={1} basis={0} minHeight={0}>
           <Section
             fill
+            minHeight={0}
             title={hacked ? 'Designs (Safety protocols: DISABLED)' : 'Designs'}
             buttons={(
               <>
@@ -349,7 +350,7 @@ export const FabricatorContent = (props) => {
               </>
             )}
           >
-            <Stack fill>
+            <Stack fill minHeight={0}>
               {/* //категории */}
               {!searchIsActive && (
                 <>
@@ -377,7 +378,7 @@ export const FabricatorContent = (props) => {
                 </>
               )}
 
-              <Stack.Item grow={1} basis={0}>
+              <Stack.Item grow={1} basis={0} minHeight={0}>
                 {/* //содержимое-таблицы */}
                 {items.length === 0 && (
                   <NoticeBox>
