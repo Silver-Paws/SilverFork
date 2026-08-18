@@ -5,7 +5,8 @@
 /datum/mood_event/fat/add_effects(param)
 	. = ..()
 	var/mob/living/carbon/human/owner_mob = owner_mob()
-	description = "<span class='warning'><B>Я так[owner_mob.ru_aya_oy()] толст[owner_mob.ru_aya()]...</B></span>\n" //muh fatshaming
+	description = span_warning("<B>Я так[owner_mob.ru_aya_oy()] толст[owner_mob.ru_aya()]...</B>\n") //muh fatshaming
+	description_robotic = span_warning("<B>Я перезаряже[owner_mob.ru_a()] энергией...</B>\n")
 
 /datum/mood_event/wellfed
 	mood_change = 6

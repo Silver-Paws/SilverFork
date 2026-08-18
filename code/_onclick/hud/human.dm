@@ -88,12 +88,11 @@
 /mob/living/carbon/human/set_hud_used(datum/hud/new_hud)
 	. = ..()
 	update_robotic_screenhud()
-	update_hunger_and_thirst_hud()
+	update_hunger_and_thirst_hud(TRUE, TRUE)
 
 /mob/living/carbon/human/proc/update_robotic_screenhud()
 	if(!istype(hud_used, /datum/hud/human))
 		return
-
 	var/datum/hud/human/H = hud_used
 	H.set_robotic_screenhud(src)
 
