@@ -517,6 +517,9 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 	if(connection != "seeker" && connection != "web")//Invalid connection type.
 		return null
 
+	// Цена этого подключения по этапам - см. client_connect_probe.dm
+	var/datum/client_connect_probe/connect_probe = new(ckey)
+
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
@@ -545,6 +548,7 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 	fps = sanitize_clientfps(prefs.clientfps)
+	connect_probe.mark("prefs")
 
 	// BLUEMOON EDIT — Enable Ctrl+F find and persistent byondStorage in browser windows (BYOND 516+)
 	if(byond_version >= 516)
@@ -629,6 +633,7 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 
 
 	. = ..()	//calls mob.Login()
+	connect_probe.mark("Login")
 	// if (length(GLOB.stickybanadminexemptions))
 	// 	GLOB.stickybanadminexemptions -= ckey
 	// 	if (!length(GLOB.stickybanadminexemptions))
@@ -661,6 +666,7 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
 	tgui_panel.initialize()
 	acquire_dpi()
+	connect_probe.mark("dpi")
 
 	if(alert_mob_dupe_login && !holder)
 		var/dupe_login_message = "Your ComputerID has already logged in with another key this round, please log out of this one NOW or risk being banned!"
@@ -831,6 +837,8 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 	// плюс цикл коррекции. Откладываем, как это уже делает change_view.
 	addtimer(CALLBACK(src, VERB_REF(fit_viewport)), LOGIN_FIT_VIEWPORT_DELAY)
 	Master.UpdateTickRate()
+	connect_probe.mark("хвост")
+	connect_probe.finish(round_login_index)
 
 /// Отсутствие окна кэша ассетов означает кастомный скин - предупреждаем и только.
 /// Зовётся таймером после логина: winexists ждёт ответа скина, и на входе в игру
@@ -892,10 +900,10 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 
 	prefs.ui_zoom_preferences[safe_window_key] = safe_zoom
 	// Зум приходит пачкой, пока игрок тянет рамку окна, а запись savefile
-	// синхронная - она морозит весь процесс, а не только вызывающего. Откладываем
-	// на дебаунс: таймер держит ссылку на префы сам, поэтому запись переживает
-	// логаут даже если клиент ушёл раньше срабатывания.
-	prefs.queue_save_pref(PREF_SAVE_COOLDOWN, TRUE)
+	// синхронная - она морозит весь процесс, а не только вызывающего. Кладём один
+	// ключ в буфер склейки: он уйдёт на диск одним открытием савфайла, а не полным
+	// сейвом префов, и переживёт логаут - флаш висит на разлогине и на Destroy датума.
+	prefs.save_single_pref("ui_zoom_preferences", prefs.ui_zoom_preferences)
 	return TRUE
 
 /client/proc/legacy_zoom_head(window_key, base_zoom = 100)
@@ -1147,6 +1155,11 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 		churn_record[3] = min(churn_record[3], lifetime_seconds)
 	else
 		GLOB.round_connection_lifetimes[ckey] = list(1, lifetime_seconds, lifetime_seconds)
+	// Отложенные одиночные записи префов ждут таймера склейки. Игрок уходит - дописываем
+	// их сейчас: датум префов переживёт логаут и таймер бы отработал, но настройка,
+	// изменённая в последние секунды, иначе доедет до диска только если сервер доживёт до
+	// срабатывания. Пустой буфер до диска не доходит, так что обычный логаут бесплатен.
+	prefs?.flush_single_prefs()
 	// Tear down listed-turf signals and any queued icon work so we don't leak refs through the signal subsystem.
 	if(listed_turf_watched || mob?.listed_turf)
 		clear_listed_turf(send_output = FALSE)
@@ -1238,6 +1251,13 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 		view_size.chief = null
 	QDEL_NULL(tooltips)
 	QDEL_NULL(parallax_holder)
+	//Ловец кликов заводится в update_clickcatcher() на первом же Login и больше
+	//нигде не удаляется: screen.Cut() ниже снимает его с экрана, а ссылка в
+	//client.click_catcher держит его, пока жив сам клиент. В раунде 10060 с нулём
+	//игроков перепись давала +31..49 click_catcher за интервал при 40-50
+	//оборванных подключениях - по одному на соединение, которое BYOND отверг до
+	//встроенного New() и чей /client так и не дошёл до Del.
+	QDEL_NULL(click_catcher)
 	QDEL_NULL(void)
 	QDEL_NULL(void_right)
 	QDEL_NULL(void_bottom)
@@ -1760,6 +1780,11 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 		addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
 
 	#if (PRELOAD_RSC == 0)
+	// Книга недатумных аллокаций: каталог VOX уходит каждому входящему по игровому
+	// соединению отдельной копией, и бюджет на него держит preload_size_budgets.dm.
+	// Отмечаем весь каталог одной записью и по общему промеру: per-file length(file)
+	// завышал впятеро и заодно дёргал книгу 1596 раз на каждый вход.
+	note_nondatum_alloc(NONDATUM_LEDGER_RSC_BYTES, get_vox_preload_bytes())
 	for (var/type in GLOB.vox_types)
 		if(QDELETED(src))
 			return
@@ -1822,7 +1847,15 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 	update_clickcatcher()
 	parallax_holder?.Reset()
 	mob?.hud_used?.screentip_text?.update_view()
-	mob.reload_fullscreen()
+	// Гарды на mob здесь и на SEND_SIGNAL ниже: change_view зовётся из /datum/view_data/New()
+	// (view.dm:86 apply -> chief.change_view) ещё внутри /client/New() - client_procs.dm:826,
+	// то есть в момент, когда моба у клиента может не быть. Локально на MetaStation это
+	// воспроизводилось каждым подключением DreamSeeker: "Cannot execute null.reload
+	// fullscreen()", следом "Cannot read null.comp_lookup", а упавший /client/New() BYOND
+	// трактует как отказ и рвёт соединение. На проде этого рантайма нет ни разу за 144 логина
+	// раунда 10048, то есть там моб к этому моменту уже назначен - но соседние строки этот же
+	// моб и так спрашивают через ?., здесь просто потерян знак вопроса.
+	mob?.reload_fullscreen()
 	if (isliving(mob))
 		var/mob/living/M = mob
 		M.update_damage_hud()
@@ -1830,7 +1863,8 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 		// Отложено, чтобы не дёргать winget во время логина. Задержка обязана стоять
 		// аргументом addtimer: внутри CALLBACK она уходит в сам верб, и таймер срабатывает сразу.
 		addtimer(CALLBACK(src, VERB_REF(fit_viewport)), 1 SECONDS)
-	SEND_SIGNAL(mob, COMSIG_MOB_CLIENT_CHANGE_VIEW, src, old_view, actualview)
+	if(mob)
+		SEND_SIGNAL(mob, COMSIG_MOB_CLIENT_CHANGE_VIEW, src, old_view, actualview)
 
 /client/proc/generate_clickcatcher()
 	if(!void)
@@ -1857,7 +1891,15 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 	if(!LAZYLEN(char_render_holders))
 		for(var/plane_master_path as anything in subtypesof(/atom/movable/screen/plane_master))
 			var/atom/movable/screen/plane_master/plane_master = new plane_master_path()
-			char_render_holders["plane_master-[plane_master.plane]"] = plane_master
+			var/holder_key = "plane_master-[plane_master.plane]"
+			//WALL_PLANE, ABOVE_WALL_PLANE и GAME_PLANE - одно и то же число (-3),
+			//поэтому ключа по плоскости на всех не хватает: два плейн-мастера из
+			//трёх затирались в списке, но оставались в client.screen. Найти их
+			//clear_character_previews() уже не мог, и каждая пересборка превью
+			//оставляла по два бессмертных экранных объекта.
+			if(char_render_holders[holder_key])
+				holder_key = "plane_master-[plane_master.type]"
+			char_render_holders[holder_key] = plane_master
 			plane_master.backdrop(mob)
 			screen |= plane_master
 			plane_master.screen_loc = "character_preview_map:0,CENTER"
@@ -1961,24 +2003,20 @@ GLOBAL_VAR_INIT(last_churn_alert, 0)
 
 //increment progress for an unlockable loadout item
 /client/proc/increment_progress(key, amount)
-	if(prefs)
-		var/savefile/S = new /savefile(prefs.path)
-		var/list/unlockable_loadout_data = prefs.unlockable_loadout_data
-		if(!length(unlockable_loadout_data))
-			unlockable_loadout_data = list()
-			unlockable_loadout_data[key] = amount
-			WRITE_FILE(S["unlockable_loadout"], safe_json_encode(unlockable_loadout_data))
-			prefs.unlockable_loadout_data = unlockable_loadout_data
-			return TRUE
-		else
-			if(unlockable_loadout_data[key])
-				unlockable_loadout_data[key] += amount
-			else
-				unlockable_loadout_data[key] = amount
-			WRITE_FILE(S["unlockable_loadout"], safe_json_encode(unlockable_loadout_data))
-			prefs.unlockable_loadout_data = unlockable_loadout_data
-			return TRUE
-	return FALSE
+	if(!prefs || !key)
+		return FALSE
+	var/list/unlockable_loadout_data = prefs.unlockable_loadout_data
+	if(!islist(unlockable_loadout_data))
+		unlockable_loadout_data = list()
+	// null не равен нулю, поэтому сложение через isnull, а не через прямое +=
+	var/current = unlockable_loadout_data[key]
+	unlockable_loadout_data[key] = (isnull(current) ? 0 : current) + amount
+	prefs.unlockable_loadout_data = unlockable_loadout_data
+	// Прежде тут открывался савфайл и писался WRITE_FILE напрямую, мимо замера
+	// блокирующих вызовов: каждая вымытая плитка уходила синхронно на диск, а
+	// детектор спайков видел её как безымянный "внешний столл". Ключ один, так что
+	// пишем его одиночной записью и под тем же прибором, что и остальные префы.
+	return prefs.save_single_pref("unlockable_loadout", safe_json_encode(unlockable_loadout_data))
 
 /client/proc/open_filter_editor(atom/in_atom)
 	if(holder)

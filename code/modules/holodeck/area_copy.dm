@@ -1,7 +1,7 @@
 //Vars that will not be copied when using /DuplicateObject
 //signal_procs/active_timers: шальная копия рождает "регистрации", которых никто
 //не делал (подвисшие ключи-датумы), а Destroy клона гасит таймеры оригинала.
-//important_recursive_contents/spatial_grid_key/client_mobs_in_contents: клон
+//important_recursive_contents/spatial_grid_key: клон
 //объявил бы себя держателем чужого содержимого и травил ячейки спатиал-грида
 //component_parts/debris/actions: списки чужих датумов. Копия списка мелкая, поэтому клон
 //получал ссылки на детали, обломки и экшены оригинала, а его QDEL_LIST в Destroy убивал их
@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 	"tag", "datum_components", "area", "type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key",
 	"power_supply", "contents", "reagents", "stat", "x", "y", "z", "group", "atmos_adjacent_turfs", "comp_lookup",
 	"pixloc", "signal_procs", "signal_enabled", "active_timers", "important_recursive_contents", "spatial_grid_key",
-	"client_mobs_in_contents", "component_parts", "debris", "actions"
+	"component_parts", "debris", "actions"
 	))
 
 GLOBAL_LIST_INIT(duplicate_forbidden_vars_by_type, typecacheof_assoc_list(list(
@@ -26,16 +26,23 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars_by_type, typecacheof_assoc_list(list(
 //lc_* - углы шаблона с его координатами. Источник света рядом с копией брал их из
 //соседнего турфа и лез в таблицу затухания по смещению в десятки тайлов
 //("list index out of bounds" в LUM_FALLOFF, 166 рантаймов за один ресет тандердома).
-//lighting_object/lighting_corners_initialised - настоящий оверлей приёмника терялся
-//без qdel и уходил в харддел, а флаг инициализации врал про наличие четырёх углов.
+//lighting_object и lighting_flags (углы разложены + есть непрозрачный атом) - настоящий
+//оверлей приёмника терялся без qdel и уходил в харддел, а флаг инициализации врал про
+//наличие четырёх углов.
 //light/light_sources - источники, принадлежащие атомам шаблона.
-//has_opaque_atom/shadow_weight_sum/cached_lumcount/dynamic_lumcount/luminosity -
-//производные величины, их пересчитывает сам ChangeTurf.
+//shadow_weight_sum/cached_lumcount/dynamic_lumcount/luminosity - производные величины,
+//их пересчитывает сам ChangeTurf.
+//overlays/underlays/filters/vis_contents/vis_locs - встроенные списки BYOND: islist() на них
+//истина, а ассоциативного чтения они не поддерживают, поэтому общий цикл копирования падал
+//на source[ключ] с "bad index" (273 рантайма за раунд 10137: ключом там сырой аппиранс).
+//Оверлеи и подложки при этом на копию не переезжали вовсе - их переносит
+//copy_template_vars() отдельно, значением.
 GLOBAL_LIST_INIT(turf_copy_forbidden_vars, list(
-	"light", "light_sources", "lighting_object", "lighting_corners_initialised",
+	"light", "light_sources", "lighting_object", "lighting_flags",
 	"lc_topleft", "lc_topright", "lc_bottomleft", "lc_bottomright",
-	"has_opaque_atom", "shadow_weight_sum", "cached_lumcount", "dynamic_lumcount",
-	"luminosity"
+	"shadow_weight_sum", "cached_lumcount", "dynamic_lumcount",
+	"luminosity",
+	"overlays", "underlays", "filters", "vis_contents", "vis_locs"
 	))
 
 /proc/DuplicateObject(atom/original, perfectcopy = TRUE, sameloc = FALSE, atom/newloc = null, nerf = FALSE, holoitem=FALSE)
@@ -241,6 +248,16 @@ GLOBAL_LIST_INIT(turf_copy_forbidden_vars, list(
 		if(IS_BORROWED_TEMPLATE_REF(template_value))
 			continue
 		vars[varname] = template_value
+	//внешний вид шаблона: встроенные списки исключены из общего цикла (см.
+	//GLOB.turf_copy_forbidden_vars), поэтому оверлеи и подложки переносим значением.
+	//Аппиранс - значение, а не ссылка на хозяйство шаблона, наследовать его копия обязана,
+	//иначе с приёмника слетают решётки, трубы и прочая нарисованная обвязка турфа.
+	copy_overlays(template, TRUE)
+	//Copy() как в copy_overlays(): снимок, а не общий с шаблоном список
+	underlays = template.underlays.Copy()
+	//filters тоже исключены из общего цикла и не переезжали ни с чем: присваиваем значением,
+	//как это делает mass_apply в filterrific. filter_data (обычный список) везёт общий цикл
+	filters = template.filters
 	//светящиеся вары шаблона доехали, а источник света остался у шаблона:
 	//заводим/гасим собственный по свежим light_range/light_power/light_on.
 	//Обычный тёмный пол сюда не заходит - это горячий цикл на сотни турфов
