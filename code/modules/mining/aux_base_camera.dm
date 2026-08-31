@@ -226,7 +226,7 @@
 	if(!check_spot())
 		return
 
-	if(fan_turf.density)
+	if(!isfloorturf(fan_turf))
 		to_chat(owner, "<span class='warning'>Fans may only be placed on a floor.</span>")
 		return
 
