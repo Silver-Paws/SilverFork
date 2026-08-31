@@ -21,9 +21,9 @@
 		return FALSE //Lol, lmao, even
 	H.mob_biotypes |= MOB_UNDEAD
 	for(var/A = 1, A <= zperks.len, A++)
-		ADD_TRAIT(H,zperks[A],ROUNDSTART_TRAIT)
-    H.physiology.hunger_mod *= 1.8
-    H.physiology.thirst_mod *= 1.8
+		ADD_TRAIT(H, zperks[A], ROUNDSTART_TRAIT)
+	H.physiology.hunger_mod *= 1.8
+	H.physiology.thirst_mod *= 1.8
 
 /datum/quirk/undead/remove()
 	. = ..()
@@ -32,11 +32,11 @@
 	if(!H)
 		return
 	// BLUEMOON EDIT END
-	H.mob_biotypes &= ~MOB_UNDEAD
+	H.mob_biotypes &= ~MOB_UNDEAD // Забытая тильда приведёт к тому, что игра инвертирует побитовую маску, сделав моба всеми биотипами, кроме undead
 	for(var/A = 1, A <= zperks.len, A++)
 		REMOVE_TRAIT(H,zperks[A], ROUNDSTART_TRAIT)
 	H.physiology.hunger_mod /= 1.8
-    H.physiology.thirst_mod /= 1.8
+	H.physiology.thirst_mod /= 1.8
 
 /datum/quirk/undead/on_process()
 	. = ..()
