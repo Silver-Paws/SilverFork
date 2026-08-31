@@ -270,7 +270,7 @@
 		if(C.health < HEALTH_THRESHOLD_FULLCRIT && oxydamage)
 			var/diff = C.health - HEALTH_THRESHOLD_FULLCRIT
 			C.adjustOxyLoss(diff)	//Heal their oxydamage up to hardcrit (or if less, as much as they have, since the proc has sanity)
-		C.revive(full_heal = FALSE, admin_revive = FALSE)
+		C.revive(full_heal = FALSE, admin_revive = FALSE, post_revive_effects = TRUE)
 		C.emote("gasp")
 		C.Jitter(100)
 		SEND_SIGNAL(C, COMSIG_LIVING_MINOR_SHOCK)
