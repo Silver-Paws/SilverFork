@@ -131,7 +131,7 @@
 			H.adjustFireLoss((mobhealth - HALFWAYCRITDEATH) * (total_burn / overall_damage), 0)
 			H.adjustBruteLoss((mobhealth - HALFWAYCRITDEATH) * (total_brute / overall_damage), 0)
 		H.updatehealth() // Previous "adjust" procs don't update health, so we do it manually.
-		H.visible_message("<span class='notice'>The [tool] zaps the heart, inducing several contractions before speeding up into a regular rhythm, [H]'s eyes snapping open with a loud gasp!</span>")
+		H.visible_message(span_notice("[tool] проводит разряд по сердцу, вызывая сокращения, после которых сердечный ритм выравнивается и [H] распахивает глаза[breathless ? ", сильно дёргаясь телом" : " с громким вдохом"]!"))
 		playsound(src, 'sound/machines/defib_success.ogg', 50, 0)
 		H.set_heartattack(FALSE)
 		H.revive(post_revive_effects = TRUE)
