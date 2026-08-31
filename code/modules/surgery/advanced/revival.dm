@@ -78,9 +78,9 @@
 		user.visible_message("...[target] wakes up, alive and aware!", "<span class='notice'><b>IT'S ALIVE!</b></span>")
 		target.visible_message("...[target] wakes up, alive and aware!")
 		if(breathless)
-			H.emote("twitch")
+			target.emote("twitch")
 		else
-			H.emote("gasp")
+			target.emote("gasp")
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 199) //MAD SCIENCE
 		for(var/obj/item/organ/O in target.internal_organs)//zap those buggers back to life!
 			if(O.organ_flags & ORGAN_FAILING)
