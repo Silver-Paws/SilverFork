@@ -148,5 +148,5 @@
 
 /// Ускорение движения киборга от VTEC
 /datum/config_entry/number/movedelay/robot_vtec_boost
-    default = 1
+	default = 1
 	min_val = 0.5
