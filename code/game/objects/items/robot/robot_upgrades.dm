@@ -897,7 +897,7 @@
 // Citadel's Vtech Controller
 /obj/effect/proc_holder/silicon/cyborg/vtecControl
 	name = "vTec Control"
-	desc = "Позволяет контролировать ускорение vTec: включить и выключить форсажный режим."
+	desc = "Позволяет контролировать ускорение vTec: переключение крейсерского режима скорости."
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "Chevron_State_0"
 
