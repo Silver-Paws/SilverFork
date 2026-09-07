@@ -436,10 +436,17 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
 
 /datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
+	if(VM.map_variants?.len) // Напрямую считываем по переменной-листу, есть ли несколько карт на выбор в пути (Папке)
+		var/variant_path = pick(VM.map_variants)
+		VM = load_map_config(variant_path)
+		if(!VM || VM.defaulted)
+			message_admins("Failed to load random map variant: [variant_path]")
+			return FALSE
+
 	if(!VM.MakeNextMap())
 		next_map_config = load_map_config(default_to_box = TRUE)
 		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
-		return
+		return FALSE
 
 	next_map_config = VM
 
