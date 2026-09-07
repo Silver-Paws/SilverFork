@@ -436,7 +436,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
 
 /datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
-	if(VM.map_variants?.len) // Напрямую считываем по переменной-листу, есть ли несколько карт на выбор в пути (Папке)
+	if(VM.map_variants?.len) // Напрямую считываем по переменной-листу, есть ли несколько карт на выбор
 		var/variant_path = pick(VM.map_variants)
 		VM = load_map_config(variant_path)
 		if(!VM || VM.defaulted)
