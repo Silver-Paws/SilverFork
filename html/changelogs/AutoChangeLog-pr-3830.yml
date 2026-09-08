@@ -1,7 +1,0 @@
-author: Silver-Paws
-delete-after: true
-changes:
-  - map: Box Station и Peace Syndicate Station теперь рандомизируются в рамках единого
-      выбора, если в голосовании победит карта Box Station (Random).
-  - code_imp: Добавлена переменная-лист списка карт, которая заполняется из .JSON
-      файла карт, если подразумевается, что у одной карты есть несколько вариаций.
