@@ -513,7 +513,7 @@ SUBSYSTEM_DEF(vote)
 						SSticker.start_immediately = FALSE
 						SSticker.SetTimeLeft(240 SECONDS)
 						// Вообще, по-хорошему, исключать бы из воута карту, которая дала нам FALSE в чейнджмап, но это слишком утяжелит код. Этого будет достаточно
-						SSvote.initiate_vote("map", "server", display = SHOW_RESULTS|SHOW_WINNER, votesystem = vote_type, forced = TRUE)
+						SSvote.initiate_vote("map", "server", display = SHOW_RESULTS|SHOW_WINNER, votesystem = APPROVAL_VOTING, forced = TRUE)
 				// BLUEMOON ADD END
 			if("transfer") // austation begin -- Crew autotransfer vote
 				if(. == VOTE_TRANSFER)
