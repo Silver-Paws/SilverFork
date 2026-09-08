@@ -44,7 +44,7 @@
 	user.visible_message(span_suicide("[user] влезает внутрь [src]! Похоже, что [user.ru_who()] пытается исчезнуть навсегда!"))
 	user.dropItemToGround(src, TRUE)
 	user.Stun(100, ignore_canstun = TRUE)
-	sleep(20)
+	sleep(2 SECONDS)
 	playsound(src, "rustle", 50, 1, -5)
 	qdel(user)
 	return
@@ -69,10 +69,10 @@
 			if(!depleted_core)
 				new /obj/effect/anomaly/bluespace(get_turf(src))
 			else
-				for(var/mob/living/M in range(4, src))
-					if(QDELETED(M))
+				for(var/mob/living/affected_mob in range(4, src))
+					if(QDELETED(affected_mob))
 						continue
-					do_teleport(M, get_turf(M), 6, channel = TELEPORT_CHANNEL_BLUESPACE)
+					do_teleport(M, get_turf(affected_mob), 6, channel = TELEPORT_CHANNEL_BLUESPACE)
 			qdel(src)
 		if(1 to 25)
 			say("Внимание, стабильность конструкции изменена и составляет [stability]%. Требуется срочная рекалибровка.")
@@ -116,10 +116,10 @@
 			return
 
 		to_chat(user, span_notice("Вы начинаете вставлять [I] в [src]."))
-		if(!do_after(user, 30, src))
+		if(!do_after(user, 3 SECONDS, src))
 			return
 		if(!user.temporarilyRemoveItemFromInventory(src))
-			to_chat(user, span_danger("Я не смогу вставить ядро, оно прилипло к моей руке!"))
+			to_chat(user, span_danger("Я не смогу вставить ядро, пока [src] прилипло к моей руке!"))
 			return
 
 		var/obj/item/storage/backpack/holding/created_boh = new backpack_type(get_turf(loc))
