@@ -72,7 +72,7 @@
 				for(var/mob/living/affected_mob in range(4, src))
 					if(QDELETED(affected_mob))
 						continue
-					do_teleport(M, get_turf(affected_mob), 6, channel = TELEPORT_CHANNEL_BLUESPACE)
+					do_teleport(affected_mob, get_turf(affected_mob), 6, channel = TELEPORT_CHANNEL_BLUESPACE)
 			qdel(src)
 		if(1 to 25)
 			say("Внимание, стабильность конструкции изменена и составляет [stability]%. Требуется срочная рекалибровка.")
