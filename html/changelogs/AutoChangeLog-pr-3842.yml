@@ -1,0 +1,5 @@
+author: Silver-Paws
+delete-after: true
+changes:
+  - bugfix: 'Исправлен выбор между Бокс Стейшеном: вместо аплинк-версии Синди-станции
+      будет появляться корректный Peace Syndie вариант.'
