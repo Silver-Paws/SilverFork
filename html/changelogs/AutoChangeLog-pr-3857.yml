@@ -1,0 +1,4 @@
+author: RG-TRK
+delete-after: true
+changes:
+  - bugfix: ACRM mag sprite now visible again.
