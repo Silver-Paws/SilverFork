@@ -21,10 +21,3 @@
 	if(..())
 		return
 	REMOVE_TRAIT(owner, TRAIT_NOBREATH, GENETIC_MUTATION)
-
-/datum/mutation/human/no_breathing/on_life()
-	if(!owner)
-		return
-	// Defibrillation can stack oxyloss on mobs that do not breathe; bleed it off slowly.
-	if(owner.oxyloss > 0)
-		owner.adjustOxyLoss(-3)
