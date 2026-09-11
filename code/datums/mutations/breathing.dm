@@ -1,13 +1,13 @@
 /// No Breathing — holder does not need an atmosphere (still vulnerable to toxins, vacuum pressure without adaptation, etc.)
 /datum/mutation/human/no_breathing
-	name = "No Breathing"
-	desc = "The host no longer needs to breathe. CPR and similar resuscitation will not work on them."
+	name = "Недышащий"
+	desc = "У носителя больше нет потребности в дыхании. СЛР и схожие виды реанимаций не сработают для него."
 	quality = POSITIVE
 	difficulty = 32
 	instability = 40
 	locked = TRUE
-	text_gain_indication = "<span class='notice'>You feel no need to breathe.</span>"
-	text_lose_indication = "<span class='danger'>You need to breathe again...</span>"
+	text_gain_indication = "<span class='notice'>Вам больше не нужно дышать.</span>"
+	text_lose_indication = "<span class='danger'>Вам снова нужен кислород для жизни...</span>"
 
 /datum/mutation/human/no_breathing/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
