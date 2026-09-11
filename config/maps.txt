@@ -18,7 +18,7 @@ endmap
 map boxstation_variants_rand
 ##maxplayers 70
 ##max_round_search_span 6
-##max_rounds_played 2
+##max_rounds_played 1
 endmap
 
 map metastation
