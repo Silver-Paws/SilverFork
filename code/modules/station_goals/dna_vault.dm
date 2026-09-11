@@ -255,7 +255,7 @@
 		return ..()
 
 /obj/machinery/dna_vault/proc/upgrade(mob/living/carbon/human/H,upgrade_type)
-	if(!istype(H) || H.stat == DEAD || !completed || !H.ckey)
+	if(!ishuman(H) || H.stat == DEAD || !completed || !H.ckey)
 		return FALSE
 	var/list/available_powers = power_lottery[H.ckey]
 	if(!length(available_powers) || !(upgrade_type in available_powers))
