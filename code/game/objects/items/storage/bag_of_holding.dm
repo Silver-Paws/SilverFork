@@ -1,7 +1,5 @@
 // Сумки хранения, БоХ/BoH и их инертные версии
 
-#define CORE_PENALTY_MODIFIER 3 // множитель
-
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
 	desc = "Рюкзак с доступом в карманное блюспейс-пространство."
@@ -127,11 +125,7 @@
 		var/core_max_integrity = I.max_integrity
 		var/core_integrity = I.obj_integrity
 		if(core_max_integrity && core_integrity < core_max_integrity) // Первая проверка защита от 0/null, дельнейшее деление на ноль нам не нужно
-			var/core_integrity_percentage = 100 * core_integrity / core_max_integrity // Находим процент целостности ядра
-			var/core_penalty_steps = round((100 - core_integrity_percentage) / 10)
-			var/datum/component/storage/boh_storage = created_boh.GetComponent(/datum/component/storage)
-			if(boh_storage)
-				boh_storage.max_volume -= core_penalty_steps * CORE_PENALTY_MODIFIER
+			var/core_integrity_percentage = 100 * core_integrity / core_max_integrity
 			if(core_integrity_percentage < 80)
 				created_boh.depleted_core = TRUE
 
@@ -152,5 +146,3 @@
 	name = "inert duffel bag of holding"
 	icon_state = "duff-inert"
 	backpack_type = /obj/item/storage/backpack/holding/duffel
-
-#undef CORE_PENALTY_MODIFIER
