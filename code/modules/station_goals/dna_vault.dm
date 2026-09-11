@@ -11,7 +11,7 @@
 #define VAULT_SPEED "Стимуляция мышц ног"
 #define VAULT_QUICK "Стимуляция мышц рук"
 #define VAULT_NOSOFTCRIT "Адреностимуляция"
-#define VAULT_VENTCRAWL "Суставная"
+#define VAULT_VENTCRAWL "Суставная суперфлексия"
 
 /datum/station_goal/dna_vault
 	name = "DNA Vault"
