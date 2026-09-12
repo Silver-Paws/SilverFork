@@ -3049,16 +3049,16 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>")
+			to_chat(usr, span_danger("Выбранный клиент является администратором. Нельзя назначить его ментором."))
 			return
 	if(GLOB.mentor_datums[ckey])
-		to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>")
+		to_chat(usr, span_danger("[ckey] уже является ментором."))
 		return
 	if(!SSplayer_ranks.add_player_to_group(usr.client, ckey, "mentor"))
 		return
-	message_admins("[key_name_admin(usr)] has granted mentor status to [ckey].")
-	log_admin_private("[key_name(usr)] has granted mentor status to [ckey].")
-	to_chat(usr, "<span class='adminnotice'>New mentor added.</span>")
+	message_admins("[key_name_admin(usr)] выдал [ckey] права ментора.")
+	log_admin_private("[key_name(usr)] выдал [ckey] права ментора.")
+	to_chat(usr, span_adminnotice("Права ментора выданы."))
 
 /datum/admins/proc/removeMentor(ckey)
 	if(!usr.client)
@@ -3071,13 +3071,13 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin, not a mentor! Cannot de-mentorize.</span>")
+			to_chat(usr, span_danger("Выбранный клиент является администратором, а не ментором. Нельзя снять с него права ментора."))
 			return
 	if(!GLOB.mentor_datums[ckey])
-		to_chat(usr, "<span class='danger'>[ckey] is not a mentor.</span>")
+		to_chat(usr, span_danger("[ckey] не является ментором."))
 		return
 	if(!SSplayer_ranks.remove_player_from_group(usr.client, ckey, "mentor"))
 		return
-	message_admins("[key_name_admin(usr)] has revoked mentor status from [ckey].")
-	log_admin_private("[key_name(usr)] has revoked mentor status from [ckey].")
-	to_chat(usr, "<span class='adminnotice'>Mentor removed.</span>")
+	message_admins("[key_name_admin(usr)] снял с [ckey] права ментора.")
+	log_admin_private("[key_name(usr)] снял с [ckey] права ментора.")
+	to_chat(usr, span_adminnotice("Права ментора сняты."))
