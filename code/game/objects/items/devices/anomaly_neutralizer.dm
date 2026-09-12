@@ -17,5 +17,5 @@
 	if(istype(target, /obj/effect/anomaly))
 		var/obj/effect/anomaly/A = target
 		to_chat(user, span_notice("Электроника устройства поджаривается в процессе нейтрализации [A]!"))
-		A.anomalyNeutralize()
+		A.anomalyNeutralize(FALSE)
 		qdel(src)
