@@ -1,6 +1,7 @@
 #define MAX_RADIUS_REQUIRED 175			// tritbomb
 #define MIN_RADIUS_REQUIRED 20			// maxcap
 #define RADIUS_OVERHEAT_MODIFIER 30
+#define IMPLOSION_SOUND_BATCH 24
 #define OVERHEAT_DURATION 360 SECONDS 	// 6 минут
 #define REQUIRED_IMPLOSION_POWER 400000	// В ваттах
 /**
@@ -216,12 +217,46 @@
 		eject_core()
 		return FALSE
 
+	play_implosion_effects(range)
 	inserted_core.create_core(drop_location(), TRUE, TRUE)
 	inserted_core = null
 	++overheat_count
 	overheat_timer = addtimer(CALLBACK(src, PROC_REF(overheat_check)), OVERHEAT_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
 	say("Успешно. Теоретический радиус получившейся детонации: [range]. Требуемый радиус: [required_radius]. Создание ядра завершено.")
 	QDEL_NULL(inserted_bomb)	// bomb goes poof
+
+/obj/machinery/research/explosive_compressor/proc/play_implosion_effects(range)
+	var/turf/epicenter = get_turf(src)
+	if(!epicenter || range <= 0)
+		return
+
+	var/frequency = get_rand_frequency()
+	var/sound/explosion_sound = sound(get_sfx("explosion"))
+	var/sound/far_explosion_sound = sound('sound/effects/explosionfar.ogg')
+	var/sound/explosion_echo_sound = sound('sound/effects/explosion_distant.ogg')
+	var/near_explosion_range = round(range + world.view - 2, 1)
+	var/far_dist = range * 7.5
+	var/implosion_sound_batch = 0
+	for(var/mob/M as anything in GLOB.player_list)
+		if(M.z != epicenter.z)
+			continue
+		var/turf/M_turf = get_turf(M)
+		if(!M_turf)
+			continue
+
+		var/dist = get_dist(M_turf, epicenter)
+		if(dist > near_explosion_range)
+			play_explosion_distant_effect(M, epicenter, M_turf, dist, far_dist, range, 0, range, frequency, FALSE, far_explosion_sound, null, explosion_echo_sound)
+		else
+			generate_explosion_near_sounds(M, epicenter, dist, range, range, frequency, explosion_sound = explosion_sound)
+
+		if(++implosion_sound_batch >= IMPLOSION_SOUND_BATCH)
+			implosion_sound_batch = 0
+			if(TICK_CHECK)
+				stoplag()
+
+	if(TICK_CHECK)
+		stoplag()
 
 ////////////////////////// ТАЙМЕР //////////////////////////
 /**
@@ -340,3 +375,4 @@
 #undef RADIUS_OVERHEAT_MODIFIER
 #undef OVERHEAT_DURATION
 #undef REQUIRED_IMPLOSION_POWER
+#undef IMPLOSION_SOUND_BATCH

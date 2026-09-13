@@ -45,7 +45,7 @@
 
 /obj/item/assembly/signaler/anomaly/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_ANALYZER)
-		to_chat(user, span_notice("Анализ... Нестабильное поле вокруг [src] колеблется флуктуациями частоты [format_frequency(aSignal.frequency)] и кода [aSignal.code]."))
+		to_chat(user, span_notice("Анализ... Нестабильное поле вокруг [src] колеблется флуктуациями частоты [format_frequency(frequency)] и кода [code]."))
 	return ..()
 
 //Anomaly cores
