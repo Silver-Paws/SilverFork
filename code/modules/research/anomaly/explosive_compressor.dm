@@ -117,6 +117,8 @@
 	if(overheat_timer)
 		deltimer(overheat_timer)
 		overheat_timer = null
+	inserted_core = null
+	inserted_bomb = null
 	return ..()
 
 /obj/machinery/research/explosive_compressor/attackby(obj/item/I, mob/living/user, params)
@@ -217,13 +219,13 @@
 		eject_core()
 		return FALSE
 
-	play_implosion_effects(range)
 	inserted_core.create_core(drop_location(), TRUE, TRUE)
 	inserted_core = null
 	++overheat_count
 	overheat_timer = addtimer(CALLBACK(src, PROC_REF(overheat_check)), OVERHEAT_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
 	say("Успешно. Теоретический радиус получившейся детонации: [range]. Требуемый радиус: [required_radius]. Создание ядра завершено.")
 	QDEL_NULL(inserted_bomb)	// bomb goes poof
+	play_implosion_effects(range)
 
 /obj/machinery/research/explosive_compressor/proc/play_implosion_effects(range)
 	var/turf/epicenter = get_turf(src)
