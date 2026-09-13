@@ -55,6 +55,7 @@
 	.["sound_adminhelp"] = !!(toggles & SOUND_ADMINHELP)
 	.["sound_mentorhelp"] = !!(mentor_toggles & SOUND_MENTORHELP)
 	.["sound_fax"] = !!(toggles & SOUND_FAX)
+	.["sound_actions_button"] = !!(sound_toggles & SOUND_BUTTONS)
 
 	// Sound volumes
 	.["sound_volume_midi"] = sound_volume_midi
@@ -121,6 +122,7 @@
 	// Gameplay: combat
 	.["disable_combat_cursor"] = disable_combat_cursor
 	.["disable_combat_mouse_lock"] = disable_combat_mouse_lock
+	.["smartlink"] = smartlink
 
 	// Screenshake
 	.["screenshake"] = screenshake
@@ -267,6 +269,9 @@
 							user.client.playtitlemusic()
 					else
 						user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+				if("sound_actions_button")
+					sound_toggles ^= SOUND_BUTTONS
+					dirty_var = "sound_toggles"
 				if("sound_midi")
 					toggles ^= SOUND_MIDI
 					if(!(toggles & SOUND_MIDI))
@@ -479,6 +484,11 @@
 				if("disable_combat_mouse_lock")
 					disable_combat_mouse_lock = !disable_combat_mouse_lock
 					dirty_var = "disable_combat_mouse_lock"
+				if("smartlink") //BLUEMOON ADD
+					smartlink = !smartlink
+					dirty_var = "smartlink"
+					if(isliving(user))
+						user.refresh_ammo_hud()
 			save_pref_var(dirty_var)
 			return TRUE
 
