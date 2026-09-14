@@ -39,8 +39,8 @@ GLOBAL_LIST_EMPTY(explosions)
 #define FAR_LOWER 40 //lower limit for the far_volume, distance, clamped.
 #define PROB_SOUND 75 //The probability modifier for a sound to be an echo, or a far sound. (0-100)
 #define SHAKE_CLAMP 2.5 //The limit for how much the camera can shake for out of view booms.
-#define FREQ_UPPER 40 //The upper limit for the randomly selected frequency.
-#define FREQ_LOWER 25 //The lower of the above.
+#define FREQ_UPPER 80 //The upper limit for the randomly selected frequency.
+#define FREQ_LOWER 50 //The lower of the above.
 /// How many on-Z mobs to process in the explosion sound loop before a CHECK_TICK (per-mob was yielding constantly on highpop).
 #define EX_EXPLOSION_SOUND_BATCH 24
 /// How many overloaded ticks to accumulate before stoplag() while applying ex_act (yield-every-turf made maxcaps take 10+ seconds of real time).
