@@ -55,7 +55,7 @@
 	if(power > 1 && SSticker.mode.bloodsucker_sunlight?.time_til_cycle > 90)
 		var/obj/effect/sunlight/sucker_light = SSticker.mode.bloodsucker_sunlight
 		sucker_light.time_til_cycle = 90
-		sucker_light.warn_daylight(1, span_danger("Сверхновая звезда будет облучать станцию опасными объёмами ультрафиолета в течении приблизительно [80 + rand(1, 20)] секунд. <b>Приготовьтесь искать укрытие в гробах или шкафчиках.</b>"))
+		sucker_light.warn_daylight(1, span_danger("Сверхновая звезда будет облучать станцию опасными объёмами ультрафиолета в течение приблизительно [80 + rand(1, 20)] секунд. <b>Приготовьтесь искать укрытие в гробах или шкафчиках.</b>"))
 		sucker_light.give_home_power()
 
 /datum/round_event/supernova/tick()

@@ -2,10 +2,10 @@
 /datum/weather/rad_storm
 	parallax_profile = "ion_blizzard"
 	name = "radiation storm"
-	desc = "Интентивное облако радиации проходит сквозь зону, нанося радиационный вред всем, кто от него не защищён."
+	desc = "Интенсивное облако радиации проходит сквозь зону, нанося радиационный вред всем, кто от него не защищён."
 
 	telegraph_duration = 400
-	telegraph_message = span_danger"Воздух вокруг вас нагревается."
+	telegraph_message = span_danger("Воздух вокруг вас нагревается.")
 
 	weather_message = span_userdanger("<i>Вы ощущаете волну жара, окатывающую вас! Ищите укрытие!</i>")
 	weather_overlay = "ash_storm"
@@ -17,7 +17,7 @@
 	end_duration = 100
 	end_message = span_notice("Кажется, воздух вокруг вас стал охлаждаться...")
 
-	priority_end_message = "Облако радиации миновало Космическю Станцию. Пожалуйста, вернитесь на свои рабочие места."
+	priority_end_message = "Облако радиации миновало космическую станцию. Пожалуйста, вернитесь на свои рабочие места."
 
 	area_type = /area
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer, /area/commons/toilet, /area/security/prison, /area/security/brig,
