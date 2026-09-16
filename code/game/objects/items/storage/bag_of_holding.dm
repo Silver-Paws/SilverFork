@@ -121,7 +121,7 @@
 			return
 
 		var/obj/item/storage/backpack/holding/created_boh = new backpack_type(get_turf(loc))
-		// Рассчёт штрафа к ёмкости БоХа, если мы используем повреждённое ядро
+		// Рассчёт процентной прочности ядра, если оно повреждено, для булевой переменной, влияющей на спавн аномалий
 		var/core_max_integrity = I.max_integrity
 		var/core_integrity = I.obj_integrity
 		if(core_max_integrity && core_integrity < core_max_integrity) // Первая проверка защита от 0/null, дельнейшее деление на ноль нам не нужно
