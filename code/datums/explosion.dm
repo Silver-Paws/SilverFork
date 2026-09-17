@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(explosions)
 		baseshakeamount = sqrt((shake_range - dist) * 0.1)
 
 	var/far_volume = clamp(far_dist/2, FAR_LOWER, FAR_UPPER)
-	var/heard_explosion = !creaking_explosion || explosion_sound_audible(M, epicenter, listener_turf, dist, distance_multiplier = 0)
+	var/heard_explosion =  explosion_sound_audible(M, epicenter, listener_turf, dist)
 	if(dist <= far_dist)
 		if(heard_explosion)
 			if(istype(get_area(listener_turf), /area/maintenance))
