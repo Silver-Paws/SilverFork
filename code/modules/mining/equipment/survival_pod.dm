@@ -338,6 +338,8 @@
 /obj/structure/fans/tiny/proc/on_parent_turf_qdeleting(datum/source)
 	SIGNAL_HANDLER
 	if(source == loc && !QDELETED(src))
+		if(isfloorturf(loc)) // sanity check - если турф удаляется во время замены на другой пол (Плитку, например),
+			return			// такой как /turf/open/proc/replace_floor, то дропать фан не надо.
 		deconstruct()
 
 /obj/structure/fans/Initialize(mapload)
