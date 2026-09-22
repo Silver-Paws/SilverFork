@@ -316,7 +316,7 @@
 
 /obj/structure/fans/tiny
 	name = "tiny fan"
-	desc = "A tiny fan, releasing a thin gust of air."
+	desc = "Маленький вентилятор, выпускающий тонкий поток воздуха."
 	layer = ABOVE_NORMAL_TURF_LAYER
 	density = FALSE
 	icon_state = "fan_tiny"
@@ -324,23 +324,8 @@
 
 /obj/structure/fans/tiny/Initialize(mapload)
 	. = ..()
-	if(!mapload && !isfloorturf(loc))
-		return INITIALIZE_HINT_QDEL
-	if(isfloorturf(loc))
-		RegisterSignal(loc, COMSIG_PARENT_QDELETING, PROC_REF(on_parent_turf_qdeleting))
-
-/obj/structure/fans/tiny/Destroy()
-	if(isfloorturf(loc))
-		UnregisterSignal(loc, COMSIG_PARENT_QDELETING)
-	return ..()
-
-// source передаётся через SEND_SIGNAL сигнала COMSIG_PARENT_QDELETING, как D, заявленный как loc в RegisterSignal() внутри Initialize()
-/obj/structure/fans/tiny/proc/on_parent_turf_qdeleting(datum/source)
-	SIGNAL_HANDLER
-	if(source == loc && !QDELETED(src))
-		if(isfloorturf(loc)) // sanity check - если турф удаляется во время замены на другой пол (Плитку, например),
-			return			// такой как /turf/open/proc/replace_floor, то дропать фан не надо.
-		deconstruct()
+	if(!(resistance_flags & INDESTRUCTIBLE) && !(invisibility == INVISIBILITY_ABSTRACT))
+		AddComponent(/datum/component/requires_floor)
 
 /obj/structure/fans/Initialize(mapload)
 	. = ..()
