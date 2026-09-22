@@ -18,9 +18,9 @@
 	RegisterSignal(watched_turf, COMSIG_PARENT_QDELETING, PROC_REF(on_floor_qdeleting))
 
 /datum/component/requires_floor/Destroy(force, silent)
-	if(warched_turf)
+	if(watched_turf)
 		UnregisterSignal(watched_turf, COMSIG_PARENT_QDELETING)
-		warched_turf = null
+		watched_turf = null
 	return ..()
 
 /**
