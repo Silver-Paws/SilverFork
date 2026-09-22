@@ -54,7 +54,7 @@
 		return FALSE
 	switch(build_state)
 		if(1)
-			to_chat(user, span_notice("Вы начали приваривать \the [src]..."))
+			to_chat(user, span_notice("Вы начали приваривать [src]..."))
 			if(I.use_tool(src, user, 30, volume=50))
 				to_chat(user, span_notice("Вы надёжно приварили [src] к месту."))
 				setAnchored(TRUE)
@@ -63,7 +63,7 @@
 				AddComponent(/datum/component/requires_floor)
 			return TOOL_ACT_TOOLTYPE_SUCCESS
 		if(2)
-			to_chat(user, span_notice("Вы начали разваривать \the [src]..."))
+			to_chat(user, span_notice("Вы начали разваривать [src]..."))
 			if(I.use_tool(src, user, 30, volume=50))
 				to_chat(user, span_notice("Вы отварили [src] от пола."))
 				setAnchored(FALSE)

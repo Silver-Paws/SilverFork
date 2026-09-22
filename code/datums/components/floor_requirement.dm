@@ -17,6 +17,12 @@
 	watched_turf = atom.loc
 	RegisterSignal(watched_turf, COMSIG_PARENT_QDELETING, PROC_REF(on_floor_qdeleting))
 
+/datum/component/requires_floor/Destroy(force, silent)
+	if(warched_turf)
+		UnregisterSignal(watched_turf, COMSIG_PARENT_QDELETING)
+		warched_turf = null
+	return ..()
+
 /**
   * Прок разборки parent компонента, если условие удаления родителя-турфа пола выполнено.
   * Неважно, что разобрало родителя: инструменты, взрыв или админ-кнопки.

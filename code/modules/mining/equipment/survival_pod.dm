@@ -324,6 +324,10 @@
 
 /obj/structure/fans/tiny/Initialize(mapload)
 	. = ..()
+	if(!isfloorturf(loc)) // Нет поверхности?
+		if(!mapload) // Мы не маппинг-объект?
+			return INITIALIZE_HINT_QDEL // Sisyphus Prime treatment
+		return
 	if(!(resistance_flags & INDESTRUCTIBLE) && !(invisibility == INVISIBILITY_ABSTRACT))
 		AddComponent(/datum/component/requires_floor)
 
