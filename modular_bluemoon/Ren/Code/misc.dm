@@ -46,7 +46,7 @@
 /obj/item/screwdriver/nuke/inteq/get_belt_overlay()
 	var/mutable_appearance/body = mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver")
 	var/mutable_appearance/head = mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver_head")
-	body.color = "#4d3333"
+	body.color = COLOR_INTEQ_LIGHT
 	head.add_overlay(body)
 	return head
 
@@ -56,9 +56,6 @@
 	icon_state = "crowbar_brown"
 	force = 8
 	toolspeed = 0.9
-
-/obj/item/crowbar/brown/get_belt_overlay()
-	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "crowbar")
 
 /obj/item/wirecutters/brown
 	icon = 'modular_bluemoon/Ren/Icons/Obj/infiltrator.dmi'
@@ -71,7 +68,7 @@
 /obj/item/wirecutters/brown/get_belt_overlay()
 	var/mutable_appearance/body = mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "cutters")
 	var/mutable_appearance/head = mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "cutters_cutty_thingy")
-	body.color = "#4d3333"
+	body.color = COLOR_INTEQ_LIGHT
 	head.add_overlay(body)
 	return head
 
