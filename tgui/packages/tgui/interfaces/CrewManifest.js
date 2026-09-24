@@ -1,5 +1,5 @@
 import { useBackend } from "../backend";
-import { Icon, Section, Table, Flex } from "../components";
+import { Flex, Icon, Section, Table } from "../components";
 import { Window } from "../layouts";
 
 const commandJobs = [
@@ -22,6 +22,7 @@ const departmentNames = {
   Service: "Отдел сервиса",
   Silicon: "Синтетика",
   Law: "Юридический отдел",
+  Misc: "Прочее"
 };
 
 export const CrewManifest = (props) => {

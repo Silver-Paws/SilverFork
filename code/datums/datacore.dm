@@ -653,7 +653,7 @@ GLOBAL_LIST_EMPTY(record_photos_in_flight)
 				if(!manifest_out[department])
 					manifest_out[department] = list()
 				// Append to beginning of list if captain or department head
-				if (department_check == "Captain" || (DEPARTMENT_COMMAND != "Command" && (rank in GLOB.command_positions)))
+				if (department_check == "Captain" || (department != DEPARTMENT_COMMAND && (rank in GLOB.command_positions)))
 					manifest_out[department] = list(list(
 						"name" = name,
 						"rank" = rank,
