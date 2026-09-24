@@ -22,7 +22,7 @@ const departmentNames = {
   Service: "Отдел сервиса",
   Silicon: "Синтетика",
   Law: "Юридический отдел",
-  Misc: "Прочее"
+  Misc: "Прочее",
 };
 
 export const CrewManifest = (props) => {
