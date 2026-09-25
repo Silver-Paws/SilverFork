@@ -187,6 +187,17 @@ h4
 	margin: 4px;
 }
 
+.notice.dark
+{
+	background: #bf9e6b;
+}
+
+.notice.red
+{
+	background: #a92621;
+	color: #000000;
+}
+
 .notice.icon
 {
 	padding: 2px 4px 0 20px;

@@ -581,7 +581,7 @@
 			to_chat(src, "<span class='redtext'>На этот раунд, у вас отключена возможность стать антагонистом посреди раунда (её можно настроить в Параметрах Игры > Антагонисты).</span>")
 	// BLUEMOON ADD END
 
-	var/dat = "<div class='notice'>Длительность раунда: [DisplayTimeText(world.time - SSticker.round_start_time)]<br>Уровень тревоги: <b>[capitalize(SECURITY_LEVEL_COLORED(GLOB.security_level) || SECURITY_LEVEL_COLORED(SEC_LEVEL_GREEN))]</b></div>"
+	var/dat = "<div class='notice dark'>Длительность раунда: [DisplayTimeText(world.time - SSticker.round_start_time)]<br>Уровень тревоги: <b>[capitalize(SECURITY_LEVEL_COLORED(GLOB.security_level) || SECURITY_LEVEL_COLORED(SEC_LEVEL_GREEN))]</b></div>"
 	if(SSshuttle.emergency)
 		switch(SSshuttle.emergency.mode)
 			if(SHUTTLE_ESCAPE)
