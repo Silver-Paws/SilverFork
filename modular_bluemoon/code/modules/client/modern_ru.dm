@@ -222,6 +222,7 @@ var/list/ru_strings = list(
 	"pda_reskin" = "Переделка КПК",
 	"set_pda_reskin" = "Вид КПК",
 	"pda_ringtone" = "Рингтон КПК",
+	"pda_theme" = "Тема КПК"
 	"set_pda_ringtone" = "Установить рингтон КПК",
 
 	// Silicon preferences
@@ -1026,7 +1027,7 @@ var/list/en_strings = list(
 	"name" = "Name",
 
 	// Speech tab labels
-	"speech_preferences" = "Настройки речи",
+	"speech_preferences" = "Speech preferences",
 
 	// Identity section
 	"identity" = "Identity",

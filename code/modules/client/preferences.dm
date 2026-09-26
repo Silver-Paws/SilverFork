@@ -1322,6 +1322,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pda_style_label = src.use_modern_translations ? get_modern_text("pda_style", src) : "PDA style"
 					var/pda_reskin_label = src.use_modern_translations ? get_modern_text("pda_reskin", src) : "PDA reskin"
 					var/pda_ringtone_label = src.use_modern_translations ? get_modern_text("pda_ringtone", src) : "PDA ringtone"
+					var/pda_theme_label = src.use_modern_translations ? get_modern_text("pda_theme", src) : "PDA theme"
 					var/silicon_preferences_label = src.use_modern_translations ? get_modern_text("silicon_preferences", src) : "Silicon preferences"
 					var/silicon_laws_label = src.use_modern_translations ? get_modern_text("silicon_laws_label", src) : "Silicon laws"
 					var/server_has_disabled_laws_label = src.use_modern_translations ? get_modern_text("server_has_disabled_laws", src) : "The server has disabled choosing your own laws, you can still choose and save, but it won't do anything in-game."
@@ -1410,7 +1411,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(GLOB.pda_name_to_theme[theme_name] == pda_theme)
 							pda_theme_display_name = theme_name
 							break
-					dat += "<b>Тема КПК:</b> <a href='?_src_=prefs;task=input;preference=pda_theme'>[pda_theme_display_name]</a><br>"
+					dat += "<b>[pda_theme_label]:</b> <a href='?_src_=prefs;task=input;preference=pda_theme'>[pda_theme_display_name]</a><br>"
 
 					dat += "<h2>[silicon_preferences_label]</h2>"
 					if(!CONFIG_GET(flag/allow_silicon_choosing_laws))
@@ -5151,7 +5152,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						custom_speech_verb = selected_custom_speech_verb
 
 				if("speech_verb_ru")
-					if(!get_tongue_true_key(custom_speech_verb))
+					if(!get_default_speech_verb(custom_speech_verb))
 						var/list/source_list = custom_speech_verb_ru ? GLOB.speech_verbs_ru : GLOB.speech_verbs
 						var/list/target_list = custom_speech_verb_ru ? GLOB.speech_verbs : GLOB.speech_verbs_ru
 						var/verb_index = source_list.Find(custom_speech_verb)
