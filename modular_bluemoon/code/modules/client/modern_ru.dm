@@ -222,7 +222,7 @@ var/list/ru_strings = list(
 	"pda_reskin" = "Переделка КПК",
 	"set_pda_reskin" = "Вид КПК",
 	"pda_ringtone" = "Рингтон КПК",
-	"pda_theme" = "Тема КПК"
+	"pda_theme" = "Тема КПК",
 	"set_pda_ringtone" = "Установить рингтон КПК",
 
 	// Silicon preferences
@@ -1076,6 +1076,7 @@ var/list/en_strings = list(
 	"pda_reskin" = "PDA Reskin",
 	"set_pda_reskin" = "Set PDA reskin",
 	"pda_ringtone" = "PDA Ringtone",
+	"pda_theme" = "PDA Theme",
 	"set_pda_ringtone" = "Set PDA ringtone",
 
 	// Silicon preferences
