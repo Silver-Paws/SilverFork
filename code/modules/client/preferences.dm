@@ -6643,10 +6643,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			custom_names[name_id] = sanitized_name
 
 /datum/preferences/proc/get_default_speech_verb(value)
-	if(modern_ui_language == 1)
-		return value == GLOB.speech_verbs_ru[1]
-	else
-		return value == GLOB.speech_verbs[1]
+	return (value == GLOB.speech_verbs[1] || value == GLOB.speech_verbs_ru[1])
 
 /datum/preferences/proc/get_custom_namedata(name_id)
 	if(modern_ui_language == 1)
