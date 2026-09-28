@@ -12,6 +12,7 @@
 	return ..()
 
 /datum/component/robot_module_component/proc/on_module_reset()
+	SIGNAL_HANDLER
 	return qdel(src)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +42,6 @@
 	var/mob/living/silicon/robot/R = parent
 	for(var/i in 1 to amount)
 		new upgrade_item(get_turf(R))
-		to_chat(world, "DEBUG plating: amount=[amount], item=[upgrade_item], turf=[get_turf(R)]")
 	plate_bonus = null
 	upgrade_item = null
 	return ..()
