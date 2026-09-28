@@ -6542,7 +6542,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(T)
 				qdel(T)
 			var/obj/item/organ/tongue/new_custom_tongue = new new_tongue
-			new_custom_tongue.Insert(character)
+			new_custom_tongue.Insert(character, custom_speech_verb_ru = custom_speech_verb_ru)
 	if(!get_default_speech_verb(custom_speech_verb))
 		character.dna.species.say_mod = custom_speech_verb
 
