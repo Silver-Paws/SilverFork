@@ -129,7 +129,7 @@
 	desc = "A flat and broad muscle commonly found in canine."
 	icon_state = "tonguefluffy"
 	say_mod = "rawrs"
-	say_mod_ru = "рявкает"
+	say_mod_ru = "рычит"
 	taste_sensitivity = 10 // nose extra sensitive
 	maxHealth = 50 //extra sensitivity means tongue is more susceptible to damage
 	initial_accents = list(/datum/accent/canine)
