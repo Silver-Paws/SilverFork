@@ -2385,7 +2385,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						custom_speech_verb_display = verb_display_target[verb_display_index]
 					dat += "<a style='display:inline-block; margin-bottom:4px;' href='?_src_=prefs;preference=speech_verb;task=input'>[custom_speech_verb_display]</a><BR>"
 					dat += "<b>[custom_speech_verb_ru_label]?</b><BR>"
-					dat += "<a style='display:inline-block; margin-bottom:4px;' href='?_src_=prefs;preference=speech_verb_ru;task=input'>[custom_speech_verb_ru ? "Да" : "Нет"]</a><BR>"
+					dat += "<a style='display:inline-block; margin-bottom:4px;' href='?_src_=prefs;preference=speech_verb_ru;task=input'>[custom_speech_verb_ru ? yes_label : no_label]</a><BR>"
 					dat += "<b>[custom_tongue_label]</b><BR>"
 					var/custom_tongue_display = get_tongue_display_key(custom_tongue)
 					dat += "<a style='display:inline-block; margin-bottom:4px;' href='?_src_=prefs;preference=tongue;task=input'>[custom_tongue_display]</a><BR>"
@@ -5146,6 +5146,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/selected_custom_tongue = tgui_input_list(user, "Выберите желаемый акцент (\"Обычный\" означает акцент вашего вида)", "Настройка персонажа", tongue_choices)
 					if(selected_custom_tongue)
 						custom_tongue = get_tongue_true_key(selected_custom_tongue)
+
 				if("speech_verb")
 					var/selected_custom_speech_verb = tgui_input_list(user, "Выберите желаемый глагол речи (\"Обычный\" означает глагол вашего вида)", "Настройка персонажа", (custom_speech_verb_ru? GLOB.speech_verbs_ru : GLOB.speech_verbs))
 					if(selected_custom_speech_verb)
@@ -6542,7 +6543,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				qdel(T)
 			var/obj/item/organ/tongue/new_custom_tongue = new new_tongue
 			new_custom_tongue.Insert(character)
-	if(!get_tongue_true_key(custom_speech_verb))
+	if(!get_default_speech_verb(custom_speech_verb))
 		character.dna.species.say_mod = custom_speech_verb
 
 	character.set_bark(bark_id)
@@ -6642,7 +6643,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			custom_names[name_id] = sanitized_name
 
 /datum/preferences/proc/get_default_speech_verb(value)
-	return (value == GLOB.speech_verbs[1] || value == GLOB.speech_verbs_ru[1])
+	if(modern_ui_language == 1)
+		return value == GLOB.speech_verbs_ru[1]
+	else
+		return value == GLOB.speech_verbs[1]
 
 /datum/preferences/proc/get_custom_namedata(name_id)
 	if(modern_ui_language == 1)
