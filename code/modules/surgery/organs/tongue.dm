@@ -88,13 +88,22 @@
 		SSblackbox.record_feedback("tally", "fermi_chem", 1, "Tongues lost to Fermi")
 		qdel(src)
 
-/obj/item/organ/tongue/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE, custom_speech_verb_ru = FALSE)
+/**
+ * custom_speech_verb_ru – аргумент следует передавать, если наша цель потенциально имеет русское имя или должен использоваться
+ * русский глагол, можно передать булевым TRUE/FALSE. Вызов в preferences.dm сразу передаёт булевый выбор русских глаголов у клиента, например,
+ * в то время как неявно указанные пройдут нулл проверку, удобно при смене языка внутри раунда.
+ */
+/obj/item/organ/tongue/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE, custom_speech_verb_ru)
 	. = ..()
 	if(!.)
 		return
 	if(say_mod && M.dna && M.dna.species)
+		var/use_ru_verb = custom_speech_verb_ru
+		if(isnull(use_ru_verb))
+			var/datum/preferences/prefs = M.client?.ckey ? GLOB.preferences_datums[M.client.ckey] : null
+			use_ru_verb = prefs?.custom_speech_verb_ru
 		if(say_mod_ru)
-			M.dna.species.say_mod = custom_speech_verb_ru ? say_mod_ru : say_mod
+			M.dna.species.say_mod = use_ru_verb ? say_mod_ru : say_mod
 		else
 			M.dna.species.say_mod = say_mod
 	if(length(initial_accents) || length(accents))
