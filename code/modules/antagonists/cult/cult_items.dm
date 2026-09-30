@@ -582,6 +582,7 @@
 	color_cutoffs = null
 	glass_colour_type = null
 	is_togglable = FALSE
+	actions_types = null
 
 /obj/item/clothing/glasses/hud/health/night/cultblind/equipped(mob/living/user, slot)
 	..()
