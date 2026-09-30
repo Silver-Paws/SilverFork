@@ -308,7 +308,7 @@
 
 /obj/item/clothing/glasses/hud/security/night
 	name = "night vision security HUD"
-	desc = "Продвинутые интерфесные сканеры, предоставляющие данные об ID и видимость в полной темноте."
+	desc = "Продвинутые интерфейсные сканеры, предоставляющие данные об ID и видимость в полной темноте."
 	icon_state = "securityhudnight"
 	darkness_view = 8
 	flash_protect = -2 //You either are flashproof or you can see in the dark, pick one.
@@ -326,7 +326,7 @@
 
 /obj/item/clothing/glasses/hud/security/night/combat
 	name = "combat night vision security  HUD"
-	desc = "Продвинутые и экранированные интерфесные сканеры правоохранительных органов со встроенной защитой от вспышек и способностью видения в полной темноте."
+	desc = "Продвинутые и экранированные интерфейсные сканеры правоохранительных органов со встроенной защитой от вспышек и способностью видения в полной темноте."
 	flash_protect = 1
 	vision_correction = 1
 
