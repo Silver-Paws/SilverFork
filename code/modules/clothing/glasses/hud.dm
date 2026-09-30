@@ -111,16 +111,24 @@
 	color_cutoffs = list(20, 20, 45)
 	glass_colour_type = /datum/client_colour/glass_colour/green
 	actions_types = list(/datum/action/item_action/toggle_nv)
+	/// Эта переменная определяет, будет ли меняться спрайт, если очки умеют переключаться. Каким-нибудь /obj/item/clothing/glasses/hud/health/night/cultblind нужен FALSE
+	var/is_togglable = TRUE
 
 /obj/item/clothing/glasses/hud/health/night/update_icon_state()
 	. = ..()
-	icon_state = length(color_cutoffs) ? initial(icon_state) : "night_off"
+	if(is_togglable)
+		icon_state = length(color_cutoffs) ? initial(icon_state) : "hudnight_off"
 
 /obj/item/clothing/glasses/hud/health/night/syndicate
 	name = "combat night vision health scanner HUD"
 	desc = "Продвинутые, экранированные медицинские интерфейсные сканеры, позволяющие солдатам оценить степень перекормленности их сослуживцев свинцом, в условиях полной темноты."
+	icon_state = "combat_healthhudnight"
 	flash_protect = 1
 	vision_correction = 1
+
+/obj/item/clothing/glasses/hud/health/night/syndicate/update_icon_state()
+	. = ..()
+	icon_state = length(color_cutoffs) ? initial(icon_state) : "combat_night_off"
 
 /obj/item/clothing/glasses/hud/health/sunglasses
 	name = "medical HUDSunglasses"
@@ -182,7 +190,7 @@
 
 /obj/item/clothing/glasses/hud/diagnostic/night/update_icon_state()
 	. = ..()
-	icon_state = length(color_cutoffs) ? initial(icon_state) : "night_off"
+	icon_state = length(color_cutoffs) ? initial(icon_state) : "hudnight_off"
 
 ////////////
 //Sec Huds//
@@ -319,16 +327,18 @@
 
 /obj/item/clothing/glasses/hud/security/night/update_icon_state()
 	. = ..()
-	icon_state = length(color_cutoffs) ? initial(icon_state) : "night_off"
-
-/obj/item/clothing/glasses/night/syndicate/red // this lives here due to icon_state reference
-	icon_state = "securityhudnight"
+	icon_state = length(color_cutoffs) ? initial(icon_state) : "hudnight_off"
 
 /obj/item/clothing/glasses/hud/security/night/combat
 	name = "combat night vision security  HUD"
 	desc = "Продвинутые и экранированные интерфейсные сканеры правоохранительных органов со встроенной защитой от вспышек и способностью видения в полной темноте."
+	icon_state = "combat_securityhudnight"
 	flash_protect = 1
 	vision_correction = 1
+
+/obj/item/clothing/glasses/hud/security/night/combat/update_icon_state()
+	. = ..()
+	icon_state = length(color_cutoffs) ? initial(icon_state) : "combat_night_off"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
 	name = "\improper HUD gar glasses"

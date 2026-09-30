@@ -141,7 +141,7 @@
 /obj/item/clothing/glasses/night
 	name = "night vision goggles"
 	desc = "Теперь вы можете полностью видеть в темноте! Просто не смотрите на яркие источники света слишком пристально. У этой пары очков нет никакого экранирования от вспышек."
-	icon_state = "night"
+	icon_state = "base_night"
 	item_state = "glasses"
 	darkness_view = 8
 	flash_protect = -2
@@ -151,7 +151,8 @@
 	actions_types = list(/datum/action/item_action/toggle_nv)
 
 /obj/item/clothing/glasses/night/update_icon_state()
-	icon_state = length(color_cutoffs) ? initial(icon_state) : "night_off"
+	. = ..()
+	icon_state = length(color_cutoffs) ? initial(icon_state) : "base_night_off"
 
 /obj/item/clothing/glasses/night/prescription/Initialize(mapload)
 	. = ..()
@@ -160,11 +161,15 @@
 /obj/item/clothing/glasses/night/syndicate
 	name = "combat night vision goggles"
 	desc = "Видь всё. Без страха. Без сожалений."
+	icon_state = "combat_night"
 	flash_protect = 1
 	vision_correction = 1
 
+/obj/item/clothing/glasses/night/syndicate/update_icon_state()
+	icon_state = length(color_cutoffs) ? initial(icon_state) : "combat_night_off"
+
 /obj/item/clothing/glasses/night/syndicate/red
-	icon_state = "securityhudnight"
+	icon_state = "combat_securityhudnight"
 
 /obj/item/clothing/glasses/science/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] is tightening \the [src]'s straps around [user.ru_ego()] neck! It looks like [user.p_theyre()] trying to commit suicide!</span>")
