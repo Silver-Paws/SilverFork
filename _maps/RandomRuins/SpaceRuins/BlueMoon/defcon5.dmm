@@ -213,15 +213,15 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/starboardhall)
 "bg" = (
 /obj/effect/mapping_helpers/network_builder/power_cable/auto,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/solid,
-/obj/machinery/door/airlock/security{
-	name = "Brig";
-	req_access_txt = "63; 42";
-	req_access = list("66")
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 2
+	},
+/obj/machinery/door/airlock/security{
+	name = "Brig";
+	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/secoff)
@@ -1058,7 +1058,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/developement)
 "fI" = (
-/obj/structure/closet/secure_closet/medical1,
+/obj/structure/closet/secure_closet/medical1{
+	req_access = list("tarkoff")
+	},
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
 	},
@@ -1602,12 +1604,13 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/kitchen)
 "hY" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/window/brigdoor/security/cell{
-	req_access = list("66")
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 2
+	},
+/obj/machinery/door/window/brigdoor/security/cell{
+	req_access_txt = "2";
+	req_access = null
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/secoff)
@@ -2305,17 +2308,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/observ)
-"ls" = (
-/obj/machinery/door/window/brigdoor/security/cell{
-	req_access = list("66")
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 2
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/bluemoon/port_tarkon/secoff)
 "lt" = (
 /obj/machinery/light_switch/directional/east,
 /obj/effect/turf_decal/tile/yellow/anticorner,
@@ -3692,8 +3684,10 @@
 /turf/closed/mineral/random/high_chance,
 /area/ruin/space/has_grav)
 "sw" = (
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
 /turf/open/floor/wood/wood_large,
@@ -5259,7 +5253,9 @@
 	dir = 8
 	},
 /obj/item/circuitboard/machine/sleeper,
-/obj/structure/closet/secure_closet/medical1,
+/obj/structure/closet/secure_closet/medical1{
+	req_access = list("tarkoff")
+	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/trauma)
@@ -7088,8 +7084,10 @@
 "JC" = (
 /obj/effect/mapping_helpers/network_builder/power_cable/auto,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/starboardhall)
 "JE" = (
@@ -7191,11 +7189,14 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/comms)
 "JY" = (
 /obj/structure/window/reinforced/tinted,
-/obj/structure/closet/secure_closet/medical2,
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/secure_closet/medical2{
+	req_access = null;
+	req_access_txt = "5"
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/trauma)
 "Kf" = (
@@ -8834,11 +8835,13 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/window/brigdoor/security/cell{
-	req_access_txt = "66"
+	req_access_txt = "2";
+	req_access = null
 	},
 /obj/machinery/door/window/brigdoor/security/cell{
-	req_access_txt = "66";
-	dir = 1
+	req_access_txt = "2";
+	dir = 1;
+	req_access = null
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/secoff)
@@ -12600,7 +12603,7 @@ aF
 Ft
 Qz
 LH
-aF
+Vr
 rr
 Kq
 If
@@ -12668,7 +12671,7 @@ aF
 aF
 aF
 aF
-Vr
+aF
 aF
 rr
 dr
@@ -14397,7 +14400,7 @@ jY
 zt
 lW
 nk
-ls
+hY
 yz
 EC
 vC

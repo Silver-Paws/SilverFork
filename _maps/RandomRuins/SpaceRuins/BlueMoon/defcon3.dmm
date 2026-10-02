@@ -287,13 +287,13 @@
 /obj/effect/mapping_helpers/network_builder/power_cable/auto,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/solid,
-/obj/machinery/door/airlock/security{
-	name = "Brig";
-	req_access_txt = "66"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 2
+	},
+/obj/machinery/door/airlock/security{
+	name = "Brig";
+	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/secoff)
@@ -414,6 +414,18 @@
 /mob/living/simple_animal/hostile/carp/megacarp,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
+"bP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 2
+	},
+/obj/machinery/door/window/brigdoor/security/cell{
+	req_access_txt = "2";
+	req_access = null
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/secoff)
 "bQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/network_builder/power_cable/auto,
@@ -1182,11 +1194,13 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/developement)
 "fI" = (
-/obj/structure/closet/secure_closet/medical1,
-/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/secure_closet/medical1{
+	req_access = list("tarkoff")
+	},
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/trauma)
 "fJ" = (
@@ -1809,6 +1823,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/solid/closed,
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/mining)
 "iq" = (
@@ -2509,12 +2524,13 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/observ)
 "ls" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/window/brigdoor/security/cell{
-	req_access_txt = "66"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 2
+	},
+/obj/machinery/door/window/brigdoor/security/cell{
+	req_access_txt = "2";
+	req_access = null
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/secoff)
@@ -3556,6 +3572,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/storage)
 "qi" = (
@@ -4009,8 +4026,10 @@
 /area/ruin/space/has_grav)
 "sw" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
 /turf/open/floor/wood/wood_large,
@@ -5630,12 +5649,14 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/mining)
 "Bp" = (
 /obj/structure/window/reinforced/tinted,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
 	},
 /obj/item/circuitboard/machine/sleeper,
-/obj/structure/closet/secure_closet/medical1,
+/obj/structure/closet/secure_closet/medical1{
+	req_access = list("tarkoff")
+	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/trauma)
 "Bq" = (
@@ -7174,6 +7195,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/storage)
 "Iy" = (
@@ -7540,10 +7562,13 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/comms)
 "JY" = (
 /obj/structure/window/reinforced/tinted,
-/obj/structure/closet/secure_closet/medical2,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 4
+	},
+/obj/structure/closet/secure_closet/medical2{
+	req_access = null;
+	req_access_txt = "5"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/trauma)
@@ -7815,6 +7840,7 @@
 	name = "External Bay Shutters"
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/storage)
 "Lp" = (
@@ -7905,8 +7931,9 @@
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/forehall)
 "LJ" = (
+/obj/structure/cable,
 /mob/living/simple_animal/hostile/carp/megacarp,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/airless/solarpanel,
 /area/solars/tarkon)
 "LN" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8059,8 +8086,10 @@
 "MF" = (
 /obj/effect/mapping_helpers/network_builder/power_cable/auto,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/starboardhall)
 "MJ" = (
@@ -8846,6 +8875,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/garden)
+"Rl" = (
+/obj/machinery/door/airlock/security{
+	name = "Brig";
+	req_access_txt = "63; 42";
+	req_access = list("66")
+	},
+/turf/closed/wall,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall)
 "Rm" = (
 /obj/effect/turf_decal/stripes{
 	dir = 1
@@ -9132,11 +9169,13 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/window/brigdoor/security/cell{
-	req_access_txt = "66"
+	req_access_txt = "2";
+	req_access = null
 	},
 /obj/machinery/door/window/brigdoor/security/cell{
-	req_access_txt = "66";
-	dir = 1
+	req_access_txt = "2";
+	dir = 1;
+	req_access = null
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/secoff)
@@ -9755,6 +9794,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/forehall)
 "VN" = (
@@ -9940,6 +9980,7 @@
 "WE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/solid/closed,
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/forehall)
 "WJ" = (
@@ -12775,7 +12816,7 @@ Gy
 Gy
 co
 ZS
-Jn
+LJ
 Gy
 ZZ
 Db
@@ -12844,7 +12885,7 @@ Gy
 Gy
 Gy
 Gy
-LJ
+Gy
 Gy
 ZZ
 XR
@@ -13837,7 +13878,7 @@ gd
 zZ
 aS
 ah
-Ki
+Rl
 vF
 nQ
 EA
@@ -14573,7 +14614,7 @@ jY
 zt
 QR
 nk
-ls
+bP
 UA
 EC
 vC
