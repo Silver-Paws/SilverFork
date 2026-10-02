@@ -636,6 +636,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/kitchen)
+"cS" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood/wood_large,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "cT" = (
 /obj/machinery/light/dim/directional/east,
 /obj/effect/decal/cleanable/dirt,
@@ -808,7 +817,6 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/afthall)
 "dv" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm/directional/east,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
 	dir = 9;
@@ -1291,6 +1299,10 @@
 /obj/item/clothing/gloves/color/latex/nitrile,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/developement)
+"fY" = (
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/carpet/purple,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "ga" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1875,10 +1887,13 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/trauma)
 "iB" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/window/brigdoor/southright,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall/shower)
+/obj/structure/bed/pod,
+/obj/item/bedsheet/random,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "iC" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/firealarm/directional/east,
@@ -2594,16 +2609,8 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon)
 "lD" = (
-/obj/machinery/door/airlock/wood{
-	id_tag = "ptdorm4";
-	name = "Couples Suite";
-	req_access = list("tarkoff")
-	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor/solid,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
-/turf/open/floor/wood/wood_large,
+/turf/closed/wall,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "lE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3158,7 +3165,6 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/mining)
 "ov" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
 	dir = 6;
@@ -3375,6 +3381,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/kitchen)
+"pq" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
+/obj/machinery/door/firedoor/solid,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/wood{
+	id_tag = "ptdorm3";
+	name = "Private Dorm 3";
+	req_access = list("tarkoff")
+	},
+/turf/open/floor/wood/wood_large,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "pr" = (
 /obj/item/wallframe/airalarm,
 /obj/effect/decal/cleanable/blood/tracks{
@@ -3532,8 +3549,14 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "pX" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/vending/clothing,
 /obj/machinery/light/dim/directional/east,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 4;
+	level = 1
+	},
 /turf/open/floor/wood/wood_large,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "pY" = (
@@ -3686,6 +3709,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall)
+"qM" = (
+/obj/machinery/door/firedoor/solid,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/wood{
+	id_tag = "ptdorm1";
+	name = "Private Dorm 4";
+	req_access = list("tarkoff")
+	},
+/turf/open/floor/wood/wood_large,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "qQ" = (
 /obj/effect/mapping_helpers/network_builder/power_cable/auto,
 /obj/machinery/power/apc/auto_name/north{
@@ -4043,11 +4077,12 @@
 /area/ruin/space/has_grav)
 "sw" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 4;
+	level = 1
 	},
 /turf/open/floor/wood/wood_large,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
@@ -4055,10 +4090,12 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "sD" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/carpet/black,
+/obj/machinery/shower/directional/east,
+/obj/structure/window/reinforced/tinted{
+	dir = 2
+	},
+/turf/open/floor/plasteel/showroomfloor/shower,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "sE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4282,15 +4319,15 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall)
 "tM" = (
-/obj/machinery/door/airlock/wood{
-	id_tag = "ptdorm2";
-	name = "Private Dorm 2";
-	req_access = list("tarkoff")
-	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/firedoor/solid,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
+/obj/machinery/door/airlock/wood{
+	id_tag = "ptdorm1";
+	name = "Private Dorm 2";
+	req_access = list("tarkoff")
+	},
 /turf/open/floor/wood/wood_large,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "tN" = (
@@ -4347,21 +4384,21 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall)
 "tY" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/pod{
 	dir = 1
 	},
 /obj/item/bedsheet/random{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
 /obj/machinery/button/door/directional/south{
 	id = "ptdorm1";
 	name = "Door Lock Control";
 	normaldoorcontrol = 1;
 	specialfunctions = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
 	},
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
@@ -4446,6 +4483,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/forehall)
+"ur" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/carpet/black,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "ut" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/bin,
@@ -4577,16 +4619,8 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall)
 "ve" = (
-/obj/machinery/door/airlock/wood{
-	id_tag = "ptdorm3";
-	name = "Private Dorm 3";
-	req_access = list("tarkoff")
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor/solid,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
-/turf/open/floor/wood/wood_large,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/carpet/cyan,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "vj" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4966,9 +5000,7 @@
 "xq" = (
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm/directional/west,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/carpet/black,
+/turf/closed/wall,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "xt" = (
 /turf/closed/wall/r_wall,
@@ -5052,6 +5084,20 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/power1)
+"xR" = (
+/obj/structure/bed/double/pod,
+/obj/item/bedsheet/random/double,
+/obj/machinery/button/door/directional/north{
+	id = "ptdorm4";
+	name = "Door Lock Control";
+	normaldoorcontrol = 1;
+	specialfunctions = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "xS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/generic,
@@ -5200,12 +5246,7 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/developement)
 "yA" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
-	dir = 5;
-	level = 1
-	},
-/turf/open/floor/carpet/red,
+/turf/closed/wall,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "yB" = (
 /obj/effect/decal/cleanable/blood/tracks,
@@ -5262,6 +5303,15 @@
 /obj/machinery/door/firedoor/solid,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/toolstorage)
+"yZ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
+	dir = 5;
+	level = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "zb" = (
 /obj/structure/fence/door/opened{
 	dir = 4
@@ -5931,12 +5981,12 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/observ)
 "Cy" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/airlock/wood{
 	id_tag = "ptdorm1";
 	name = "Private Dorm 1";
 	req_access = list("tarkoff")
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/firedoor/solid,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
@@ -6040,9 +6090,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "CS" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/cyan,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "CT" = (
@@ -6948,12 +6998,19 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/starboardhall)
-"Hi" = (
+"Hh" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
+"Hi" = (
+/obj/machinery/shower/directional/east{
+	layer = 3.21
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor/shower,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "Hk" = (
 /obj/effect/mapping_helpers/network_builder/power_cable/auto,
@@ -7185,22 +7242,22 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall)
 "Im" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/pod{
 	dir = 1
 	},
 /obj/item/bedsheet/random{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
 /obj/machinery/button/door/directional/north{
 	id = "ptdorm2";
 	name = "Door Lock Control";
 	normaldoorcontrol = 1;
 	specialfunctions = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
 	},
 /turf/open/floor/carpet/cyan,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
@@ -7304,6 +7361,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/trauma)
+"IJ" = (
+/obj/machinery/shower/directional/west{
+	layer = 3.21
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor/shower,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "IK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet,
@@ -7363,7 +7429,6 @@
 "Ji" = (
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm/directional/east,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4{
 	dir = 10;
@@ -7531,8 +7596,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/power1)
 "JO" = (
-/obj/structure/bed/pod,
-/obj/item/bedsheet/random,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/button/door/directional/south{
 	id = "ptdorm3";
@@ -7540,9 +7603,7 @@
 	normaldoorcontrol = 1;
 	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "JQ" = (
@@ -7710,6 +7771,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/toolstorage)
+"KF" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/carpet/black,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "KG" = (
 /obj/structure/sign/warning/docking,
 /turf/closed/wall/r_wall/rust,
@@ -7768,12 +7833,16 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/observ)
 "KV" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 1
+/obj/machinery/door/window/brigdoor/eastleft{
+	req_access = list("tarkoff")
 	},
-/obj/machinery/door/window/brigdoor/eastleft,
 /obj/machinery/shower{
-	dir = 4
+	dir = 4;
+	layer = 3.21
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1;
+	pixel_y = 3
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall/shower)
@@ -8084,6 +8153,13 @@
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall)
+"MA" = (
+/obj/machinery/shower/directional/west,
+/obj/structure/window/reinforced/tinted{
+	dir = 2
+	},
+/turf/open/floor/plasteel/showroomfloor/shower,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "MB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/anticorner{
@@ -8369,9 +8445,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/observ)
 "Oj" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/bananalamp,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "On" = (
@@ -8494,18 +8570,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/developement)
 "Pa" = (
-/obj/structure/bed/double/pod,
-/obj/item/bedsheet/random/double,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/button/door/directional/north{
-	id = "ptdorm4";
-	name = "Door Lock Control";
-	normaldoorcontrol = 1;
-	specialfunctions = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "Pf" = (
@@ -9227,12 +9293,17 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/forehall)
 "SL" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/vomit/old,
 /obj/machinery/shower{
+	dir = 4;
+	layer = 3.21
+	},
+/obj/machinery/door/window/brigdoor/southright{
+	req_access = list("tarkoff");
 	dir = 4
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall/shower)
@@ -9357,6 +9428,12 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon)
+"Tq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "Ts" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/tile/brown/anticorner{
@@ -10149,11 +10226,11 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/starboardhall)
 "XE" = (
+/obj/effect/decal/cleanable/vomit/old,
 /obj/structure/toilet{
 	dir = 8
 	},
 /obj/machinery/light/small/directional/north,
-/obj/effect/decal/cleanable/vomit/old,
 /obj/machinery/door/window/brigdoor/westleft,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall/shower)
@@ -10310,11 +10387,11 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/developement)
 "YC" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mapping_helpers/network_builder/power_cable/auto,
 /obj/machinery/power/apc/auto_name/north{
 	locked = 0;
 	start_charge = 0
 	},
-/obj/effect/mapping_helpers/network_builder/power_cable/auto,
 /obj/machinery/airalarm/directional/south,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -10567,12 +10644,8 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon)
 "ZY" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm/directional/west,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/carpet/red,
+/obj/machinery/vending/clothing,
+/turf/open/floor/wood/wood_large,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "ZZ" = (
 /obj/structure/cable{
@@ -12448,7 +12521,7 @@ WU
 uC
 ag
 ag
-iB
+Ti
 SL
 KV
 Iw
@@ -14780,13 +14853,13 @@ vC
 vC
 vC
 vC
-Jv
-Jv
+MA
+fY
 Jv
 YC
 Jv
-Jv
-Jv
+ve
+IJ
 Hy
 Sa
 Fq
@@ -14854,12 +14927,12 @@ kR
 kX
 vC
 xq
-ov
-ve
+yA
+lD
 sw
 lD
 yA
-ZY
+yA
 Hy
 hS
 wm
@@ -14999,13 +15072,13 @@ vC
 vC
 vC
 vC
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+KF
+ov
+pq
+cS
+qM
+yZ
+Tq
 zf
 Ng
 rq
@@ -15071,14 +15144,14 @@ sv
 sv
 Wa
 sv
-sv
-Wa
-sv
-sv
-Wa
-Wa
-XZ
-Wa
+Sw
+ur
+iB
+Jv
+ZY
+Jv
+xR
+Hh
 bH
 Lp
 Pp
@@ -15144,14 +15217,14 @@ Wa
 Wa
 sv
 Wa
-Wa
-sv
-sv
-Wa
-Wa
-Wa
-XZ
-Wa
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 bH
 lZ
 kh
@@ -15218,10 +15291,10 @@ sv
 sv
 sv
 sv
+XZ
+XZ
 sv
-Wa
-sv
-sv
+XZ
 Wa
 Wa
 XZ
@@ -15293,7 +15366,7 @@ Wa
 Wa
 Wa
 Wa
-Wa
+XZ
 Wa
 zo
 WY
