@@ -1442,9 +1442,7 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/trauma)
 "fJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2,
 /turf/open/floor/plasteel/cult,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "fL" = (
@@ -1631,7 +1629,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/visible/layer2,
 /turf/open/floor/plasteel/cult,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "gN" = (
@@ -2055,7 +2053,6 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "iy" = (
@@ -2078,7 +2075,9 @@
 "iB" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
 /turf/open/floor/plasteel/cult,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "iC" = (
@@ -2098,15 +2097,12 @@
 	dir = 4;
 	name = "Pipe To Right"
 	},
+/obj/machinery/atmospherics/components/binary/pump/layer2{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "iI" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 4;
-	name = "killroom vent";
-	layer = 3;
-	piping_layer = 4
-	},
 /obj/effect/turf_decal/stripes/asteroid{
 	dir = 1
 	},
@@ -2115,6 +2111,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/weather/sand/plating,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4{
+	dir = 4
+	},
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/space/has_grav)
 "iJ" = (
@@ -2270,9 +2269,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
-	name = "Pipe To Left";
+	name = "to waste";
 	piping_layer = 4;
-	layer = 3
+	layer = 3;
+	icon_state = "pump_map-4"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
@@ -2304,7 +2304,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/visible/layer2,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "jK" = (
@@ -2438,6 +2438,9 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
 	name = "Pipe To Right"
+	},
+/obj/machinery/atmospherics/components/binary/pump/layer2{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
@@ -3748,9 +3751,7 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/centerhall)
 "qp" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/binary/valve{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "qr" = (
@@ -4031,7 +4032,9 @@
 "rO" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 9
+	dir = 9;
+	piping_layer = 2;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
@@ -5095,6 +5098,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/developement)
+"xy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/visible/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "xB" = (
 /obj/machinery/igniter{
 	id = "tarkoff_Incinerator"
@@ -5423,7 +5433,7 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/mining)
 "yX" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
 	dir = 4
 	},
 /turf/open/floor/plasteel/cult,
@@ -5441,7 +5451,11 @@
 /area/ruin/space/has_grav)
 "zc" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 10;
+	piping_layer = 2;
+	icon_state = "pipe11-2"
+	},
 /turf/open/floor/plasteel/cult,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "zd" = (
@@ -5492,7 +5506,7 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/starboardhall)
 "zq" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "zt" = (
@@ -5798,6 +5812,9 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
 	name = "Pipe To Right"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/visible/layer2{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
@@ -6398,6 +6415,14 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solars/tarkon)
+"DX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/binary/pump/layer2{
+	dir = 1;
+	name = "to distro"
+	},
+/turf/open/floor/plasteel/cult,
+/area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "DY" = (
 /obj/effect/mapping_helpers/network_builder/power_cable/auto,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -7263,11 +7288,11 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/power1)
 "HU" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "HW" = (
@@ -8209,7 +8234,7 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/afthall)
 "LO" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -9505,8 +9530,8 @@
 /area/ruin/space/has_grav/bluemoon/port_tarkon/dorms)
 "Sx" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/manifold{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
@@ -9699,7 +9724,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/trinary/mixer/flipped,
+/obj/machinery/atmospherics/components/trinary/mixer/flipped/layer2,
 /turf/open/floor/plasteel/cult,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "Tz" = (
@@ -9933,10 +9958,6 @@
 "UM" = (
 /turf/open/floor/mineral/titanium,
 /area/ruin/space/has_grav)
-"UQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/closed/wall/mineral/cult/artificer,
-/area/ruin/space/has_grav/bluemoon/port_tarkon)
 "US" = (
 /obj/machinery/door/firedoor/solid,
 /obj/effect/spawner/structure/window/reinforced/no_firelock,
@@ -10617,7 +10638,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/spawner/lootdrop/grille_or_trash,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer2,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/bluemoon/port_tarkon/atmos)
 "YZ" = (
@@ -11824,8 +11845,8 @@ dl
 mW
 ez
 SM
-SM
-ez
+xy
+yX
 Bk
 yX
 ez
@@ -11895,7 +11916,7 @@ we
 xt
 An
 jJ
-zc
+DX
 gK
 iB
 zc
@@ -13573,7 +13594,7 @@ Uv
 xF
 oD
 yf
-UQ
+Uv
 Uv
 Sv
 qL
