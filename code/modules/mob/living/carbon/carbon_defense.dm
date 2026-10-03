@@ -292,6 +292,15 @@
 			if((!get_bodypart(BODY_ZONE_L_ARM) && !get_bodypart(BODY_ZONE_R_ARM)) || incapacitated())
 				return FALSE
 
+			var/list/available_hands = list()
+			if(punished.get_bodypart(BODY_ZONE_L_ARM))
+				available_hands += BODY_ZONE_PRECISE_L_HAND
+			if(punished.get_bodypart(BODY_ZONE_R_ARM))
+				available_hands += BODY_ZONE_PRECISE_R_HAND
+			if(!length(available_hands))
+				return FALSE
+			var/hand = pick(available_hands)
+
 			punished.visible_message(
 				span_warning("<b>[src]</b> внезапно выкручивает руку <b>[punished]</b>!"),
 				span_boldwarning("Ты чувствуешь, как <b>[src]</b> резко выкручивает тебе руку! Лучше не трогать [ru_ego()]!"),
@@ -301,7 +310,6 @@
 			if(!HAS_TRAIT(punished, TRAIT_ROBOTIC_ORGANISM)) // роботы не кричат от боли
 				punished.emote(pick("realagony", "scream"))
 			punished.dropItemToGround(punished.get_active_held_item())
-			var/hand = pick(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 			punished.apply_damage(50, STAMINA, hand)
 			punished.apply_damage(5, BRUTE, hand)
 			punished.Knockdown(60) // STOP TOUCHING ME!

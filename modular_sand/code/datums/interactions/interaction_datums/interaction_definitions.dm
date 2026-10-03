@@ -43,7 +43,8 @@
 	if(HAS_TRAIT(target, TRAIT_DISTANT))
 		to_chat(user, span_warning("[capitalize(target.name)] отстраняется от тебя, не желая таких прикосновений."))
 		to_chat(target, span_warning("Ты чувствуешь раздражение, когда [user] трогает тебя за голову."))
-		if(iscarbon(target) && target.distant_punishment_interaction(user))
+		var/mob/living/carbon/carbon_target = astype(target, /mob/living/carbon)
+		if(carbon_target && carbon_target.distant_punishment_interaction(user))
 			return TRUE
 
 	if(HAS_TRAIT(target, TRAIT_HEADPAT_SLUT))
