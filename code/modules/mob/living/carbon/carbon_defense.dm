@@ -279,9 +279,12 @@
 	if(should_stun)
 		DefaultCombatKnockdown(60)
 
-
-/mob/living/carbon/proc/punishment_interaction(mob/living/carbon/user)
-	if(HAS_TRAIT(src, TRAIT_PACIFISM) || HAS_TRAIT(user, TRAIT_PACIFISM))
+/**
+ * Прок наказания при интеракции с карбоном, у которого есть квирк "Отстранённый"
+ * * punished – всегда моб/элайв/карбон, который потенциально получит сдачи за интеракт
+ */
+/mob/living/carbon/proc/distant_punishment_interaction(mob/living/carbon/punished)
+	if(HAS_TRAIT(src, TRAIT_PACIFISM) || HAS_TRAIT(punished, TRAIT_PACIFISM))
 		return FALSE
 
 	switch(rand(1, 100))
@@ -289,21 +292,21 @@
 			if((!get_bodypart(BODY_ZONE_L_ARM) && !get_bodypart(BODY_ZONE_R_ARM)) || incapacitated())
 				return FALSE
 
-			user.visible_message(
-				span_warning("<b>[src]</b> внезапно выкручивает руку <b>[user]</b>!"),
+			punished.visible_message(
+				span_warning("<b>[src]</b> внезапно выкручивает руку <b>[punished]</b>!"),
 				span_boldwarning("Ты чувствуешь, как <b>[src]</b> резко выкручивает тебе руку! Лучше не трогать [ru_ego()]!"),
 				target = src,
-				target_message = span_warning("Ты ловко выкручиваешь руку <b>[user]</b> за попытку прикоснуться к тебе.")
+				target_message = span_warning("Ты ловко выкручиваешь руку <b>[punished]</b> за попытку прикоснуться к тебе.")
 			)
-			if(!HAS_TRAIT(user, TRAIT_ROBOTIC_ORGANISM)) // роботы не кричат от боли
-				user.emote(pick("realagony", "scream"))
-			user.dropItemToGround(user.get_active_held_item())
+			if(!HAS_TRAIT(punished, TRAIT_ROBOTIC_ORGANISM)) // роботы не кричат от боли
+				punished.emote(pick("realagony", "scream"))
+			punished.dropItemToGround(punished.get_active_held_item())
 			var/hand = pick(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
-			user.apply_damage(50, STAMINA, hand)
-			user.apply_damage(5, BRUTE, hand)
-			user.Knockdown(60) // STOP TOUCHING ME!
-			if(HAS_TRAIT(user, TRAIT_MODULAR_LIMBS) && prob(33))
-				var/obj/item/bodypart/arm = user.get_bodypart(check_zone(hand))
+			punished.apply_damage(50, STAMINA, hand)
+			punished.apply_damage(5, BRUTE, hand)
+			punished.Knockdown(60) // STOP TOUCHING ME!
+			if(HAS_TRAIT(punished, TRAIT_MODULAR_LIMBS) && prob(33))
+				var/obj/item/bodypart/arm = punished.get_bodypart(check_zone(hand))
 				arm?.drop_limb()
 			return TRUE
 
@@ -311,29 +314,33 @@
 			if((!get_bodypart(BODY_ZONE_L_LEG) && !get_bodypart(BODY_ZONE_R_LEG)) || incapacitated())
 				return FALSE
 
-			if(!user.lying)
-				user.visible_message(
-					span_warning("<b>[src]</b> внезапно делает подсечку <b>[user]</b>!"),
+			face_atom(punished)
+			if(!punished.lying)
+				punished.visible_message(
+					span_warning("<b>[src]</b> внезапно делает подсечку <b>[punished]</b>!"),
 					span_boldwarning("Ты внезапно летишь на землю, как <b>[src]</b> резко делает по тебе подсечку! Лучше не трогать [ru_ego()]!"),
 					target = src,
-					target_message = span_warning("Ты даёшь <b>[user]</b> мощную подсечку за попытку прикоснуться к тебе.")
+					target_message = span_warning("Ты даёшь <b>[punished]</b> мощную подсечку за попытку прикоснуться к тебе.")
 				)
-				user.Paralyze(5 DECISECONDS)
-				user.DefaultCombatKnockdown(1 SECONDS, override_hardstun = 1, override_stamdmg = 0)
+				punished.Paralyze(5 DECISECONDS)
+				punished.DefaultCombatKnockdown(1 SECONDS, override_hardstun = 1, override_stamdmg = 0)
+				playsound(get_turf(src), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 			else
-				user.visible_message(
-					span_warning("<b>[src]</b> даёт мощнейший пинок в челюсть <b>[user]</b>, нокаутируя [user.ru_ego()]!"),
+				punished.visible_message(
+					span_warning("<b>[src]</b> даёт мощнейший пинок в челюсть <b>[punished]</b>, нокаутируя [punished.ru_ego()]!"),
 					span_boldwarning("У тебя мутнеет в глазах после того, как <b>[src]</b> со всей силы заряжает тебе по челюсти после касаний!"),
 					target = src,
-					target_message = span_warning("Ты даёшь <b>[user]</b> пинок со всей силы за попытку прикоснуться к тебе.")
+					target_message = span_warning("Ты даёшь <b>[punished]</b> пинок со всей силы за попытку прикоснуться к тебе.")
 				)
-				user.SetSleeping(4 SECONDS)
-				user.apply_damage(12, BRUTE, BODY_ZONE_HEAD)
-			playsound(get_turf(user), 'sound/effects/hit_kick.ogg', 50, 1, -1)
+				punished.SetSleeping(4 SECONDS)
+				punished.apply_damage(12, BRUTE, BODY_ZONE_HEAD)
+				var/hit_sounds = pick('sound/effects/hit_crunchy1.ogg', 'sound/effects/hit_crunchy2.ogg', 'sound/effects/hit_crunchy3.ogg')
+				playsound(get_turf(src), hit_sounds, 50, 1, -1)
 			return TRUE
 
 		else // Терпим
 			return FALSE
+
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(SEND_SIGNAL(src, COMSIG_CARBON_PRE_MISC_HELP, M) & COMPONENT_BLOCK_MISC_HELP)
@@ -411,7 +418,7 @@
 					"<span class='warning'>Вы бупаете <b>[H]</b> в нос! Кажется, [ru_ego()] глаза презрительно смещаются в вашу сторону...</span>")
 				sound_to_play = SOUND_BOOP // BLUEMOON EDIT - было playsound(src, 'sound/items/Nose_boop.ogg', 50, 0)
 				H.add_lust(-5) //Why are you touching me?
-				punishment_interaction(M)
+				distant_punishment_interaction(M)
 
 			else
 			// BLUEMOON ADD END
@@ -448,7 +455,7 @@
 				M.visible_message("<span class='warning'><b>[H]</b> резко осматривается на <b>[M]</b>, когда [ru_ego()] гладят по голове! Кажется, [ru_who()] раздражен[ru_a()]...</span>", \
 					"<span class='warning'>Вы гладите <b>[H]</b> по голове! Кажется, [ru_ego()] глаза презрительно смещаются в вашу сторону...</span>")
 				H.add_lust(-5) //Why are you touching me?
-				punishment_interaction(M)
+				distant_punishment_interaction(M)
 
 			//BLUTEMOON ADD START (TRAIT_SPIKY)
 
