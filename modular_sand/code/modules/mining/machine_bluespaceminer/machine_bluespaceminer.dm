@@ -129,8 +129,8 @@ GLOBAL_VAR_INIT(bsminers_lock, FALSE)
 
 /obj/machinery/mineral/bluespace_miner/examine_display_content(mob/user)
 	var/list/display_list = list()
-	display_list += "– Эффективность выработки: <b>[PERCENT(multiplier)]%</b>."
-	display_list += "Добыча блюспейс-кристаллов: <b>[multiplier >= BLUESPACE_MINER_CRYSTAL_TIER ? span_green("активна") : span_danger("неактивна")]</b><br>"
+	display_list += "Эффективность выработки: <b>[PERCENT(multiplier)]%</b>."
+	display_list += "Добыча блюспейс-кристаллов: <b>[multiplier >= BLUESPACE_MINER_CRYSTAL_TIER ? span_green("активна") : span_danger("неактивна")]</b>."
 
 	if(no_core_damage)
 		display_list += "Установлен [span_bold(span_green("стабилизатор"))], ядро [span_bold(span_green("не будет"))] повреждаться при работе."
@@ -141,15 +141,15 @@ GLOBAL_VAR_INIT(bsminers_lock, FALSE)
 		var/list/inst_pattern = LAZYACCESS(instability_settings, get_instability_level())
 		var/percent_core_integrity_text = span_bold("[CORE_INTEGRITY_PERCENT]%")
 		if(inst_pattern)
-			percent_core_integrity_text = "<span style='color:[inst_pattern[INSTABILITY_SETTINGS_EXAMINE_COLOR]]'>[percent_core_integrity_text]</span><br>"
+			percent_core_integrity_text = "<span style='color:[inst_pattern[INSTABILITY_SETTINGS_EXAMINE_COLOR]]'>[percent_core_integrity_text]</span>"
 		else
 			percent_core_integrity_text = span_green(percent_core_integrity_text)
-		display_list += "Состояние ядра: [percent_core_integrity_text]<br>"
+		display_list += "Состояние ядра: [percent_core_integrity_text]"
 
 	display_list += "Термостат машины горит <b>[get_bs_core_temp_damage_multiplier() > 1 ? span_danger("красным") : span_notice("синим")]</b> цветом."
 	display_list += "Барометр машины горит <b>[get_bs_core_pressure_damage_multiplier() > 1 ? span_red("красным") : span_green("зелёным")]</b> цветом."
 
-	. += jointext(display_list, "\n– ")
+	. += "– [jointext(display_list, "\n– ")]"
 
 /obj/machinery/mineral/bluespace_miner/RefreshParts()
 	multiplier = 0
