@@ -1044,7 +1044,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			.["user"]["job"] = C.registered_account.account_job.title
 			.["user"]["department"] = C.registered_account.account_job.paycheck_department
 		else
-			.["user"]["job"] = "No Job"
+			.["user"]["job"] = "БЕЗ РАБОТЫ"
 			.["user"]["department"] = DEPARTMENT_UNASSIGNED
 	// Ключ - REF записи (он же ref в статик-данных): имена товаров не уникальны,
 	// и запись с совпадающим именем перекрывала чужой остаток - цифра в UI замирала.

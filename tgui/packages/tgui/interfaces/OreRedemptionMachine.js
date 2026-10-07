@@ -119,7 +119,7 @@ const MaterialRow = (props) => {
       </Table.Cell>
       <Table.Cell collapsing textAlign="right">
         <Box mr={2} color="label" inline>
-          {material.value && material.value + ' кр'}
+          {material.value && material.value + ' очков'}
         </Box>
       </Table.Cell>
       <Table.Cell collapsing textAlign="right">

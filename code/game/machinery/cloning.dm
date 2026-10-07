@@ -81,10 +81,8 @@
 	. = ..()
 	var/mob/living/mob_occupant = occupant
 	. += span_notice("<i>Связующее</i> устройство может быть <i>отсканировано</i> мультитулом.</span>")
-	if(mess)
+	if(mess && !isobserver(usr) && !in_range(user, src))
 		. += "Наполнено кровю и потрохами. Вы покляться можете, что оно двинулось..."
-		if(efficiency > 5)
-			to_chat(user, span_notice("Капсула улучшена и поддерживает автообработку."))
 	if(is_operational() && mob_occupant)
 		if(mob_occupant.stat != DEAD)
 			. += "Текущий цикл клонирования завершён на [round(get_completion())]%"
@@ -93,6 +91,8 @@
 	. += "\
 	– Скорость клонирования: <b>[speed_coeff*50]%</b> \n\
 	– Ожидаемые клеточные травмы: <b>[100-heal_level]%</b>."
+	if(efficiency > 5)
+		. += "\nКапсула улучшена и поддерживает автообработку."
 
 /obj/machinery/clonepod/return_air()
 	// We want to simulate the clone not being in contact with

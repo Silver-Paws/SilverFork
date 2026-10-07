@@ -543,7 +543,7 @@
 /obj/machinery/chem_dispenser/examine_display_content(mob/user)
 	. += "\
 	– Перезаряжается <b>[recharge_amount]</b> ед. заряда в цикл.\n\
-	– Энергоэффективность повышена на <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
+	– Энергоэффективность повышена на <b>[round((powerefficiency*1000)-100, 1)]%</b>."
 
 /obj/machinery/chem_dispenser/process()
 	if (recharge_counter >= CHEM_DISPENSER_RECHARGE_INTERVAL)

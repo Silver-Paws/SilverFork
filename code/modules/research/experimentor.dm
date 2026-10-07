@@ -87,7 +87,7 @@
 
 /obj/machinery/rnd/experimentor/examine_display_content(mob/user)
 	. += "– Вероятность сбоя снижена на <b>[badThingCoeff]%</b>.\n\
-	– Интервал между экспериментами: <b>[resetTime*0.1]</b> с."
+	– Интервал между экспериментами: <b>[resetTime / (1 SECONDS)]</b> с."
 
 /obj/machinery/rnd/experimentor/proc/checkCircumstances(obj/item/O)
 	//snowflake check to only take "made" bombs

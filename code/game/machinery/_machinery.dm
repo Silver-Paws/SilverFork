@@ -587,7 +587,7 @@ Class Procs:
 	else
 		user.DelayNextAction(CLICK_CD_MELEE)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-		user.visible_message("<span class='danger'>[user.name] бьёт \the [src.name] своими лапами.</span>", null, null, COMBAT_MESSAGE_RANGE)
+		user.visible_message("<span class='danger'>[user.name] бьёт [src.name] своими лапами.</span>", null, null, COMBAT_MESSAGE_RANGE)
 		take_damage(4, BRUTE, MELEE, 1)
 
 /obj/machinery/attack_robot(mob/user)
@@ -810,7 +810,7 @@ Class Procs:
 	. = list()
 	. += span_notice("Содержит следующие детали:")
 	for(var/obj/item/C in component_parts)
-		. += span_notice("[icon2html(C, user)] \A [C].")
+		. += span_notice("[icon2html(C, user)] [C].")
 	. = jointext(., "")
 
 /obj/machinery/examine(mob/user)
@@ -842,7 +842,7 @@ Class Procs:
 		return null
 	if(is_blind(user))
 		return span_warning("Вы ничего не можете разглядеть!")
-	if(!isobserver(user) && (!isAI(user) || !iscyborg(user)) && !in_range(user, src))
+	if(!isobserver(user) && (!isAI(user) && !iscyborg(user)) && !in_range(user, src))
 		return span_warning("Издалека видно небольшой дисплей.")
 	if(!isobserver(user) && !is_operational())
 		return span_warning("Статус-дисплей потух чёрным экраном.")
@@ -857,8 +857,10 @@ Class Procs:
 
 /obj/machinery/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return .
 	if(href_list["display_stats"])
-		if(!isobserver(usr) && (!isAI(usr) || !iscyborg(usr)) && !in_range(usr, src)) // Да, здесь понадобится usr - это по сути верб-вызов гиперссылки из чата.
+		if(!isobserver(usr) && (!isAI(usr) && !iscyborg(usr)) && !in_range(usr, src) && !is_blind(usr)) // Да, здесь понадобится usr - это по сути верб-вызов гиперссылки из чата.
 			to_chat(usr, span_warning("Вы не можете разглядеть статус-дисплей у [src] с этого расстояния!"))
 			return TRUE
 		if(!isobserver(usr) && !is_operational()) // И я не хочу, чтобы описание дёргалось по предварительно экзамайнатой машине

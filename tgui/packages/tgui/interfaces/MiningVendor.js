@@ -7,7 +7,7 @@ import { Window } from '../layouts';
 
 export const MiningVendor = (props) => {
   const { act, data } = useBackend();
-  const [selectedCategory, setCategory] = useState('Mining Gear');
+  const [selectedCategory, setCategory] = useState('Общее снаряжение');
 
   const allProducts = data?.product_records || [];
   const dataCategories = data?.categories || [];

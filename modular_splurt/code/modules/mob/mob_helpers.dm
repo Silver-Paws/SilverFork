@@ -1,6 +1,6 @@
 // Modular-friendly way of adding new quirk-based inspect text
 // Hijacks the function used for abductor examine
-/mob/common_trait_examine(name_is_obscured)
+/mob/common_trait_examine()
 	// The ever-important funny BYOND dots
 	. = ..()
 	// Pronoun stuff
@@ -19,7 +19,7 @@
 	// BLUEMOON ADDITION END
 
 	// BLUEMOON ADD START
-	if(!name_is_obscured && HAS_TRAIT_FROM(src, TRAIT_MUTE, ORGAN_TRAIT))
+	if(HAS_TRAIT_FROM(src, TRAIT_MUTE, ORGAN_TRAIT))
 		. += span_warning("[ru_who()] рот варварски зашит! Выглядит жутко...")
 	// BLUEMOON ADD END
 

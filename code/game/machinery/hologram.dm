@@ -204,11 +204,14 @@ Possible to do for anyone motivated enough:
 		holograph_range += 1 * B.rating
 	holo_range = holograph_range
 
+/obj/machinery/holopad/examine(mob/user)
+	. = ..()
+	if(isAI(user))
+		. += span_notice("– Максимальная дальность проекции: <b>[holo_range]</b> метров. Используйте :h для общения через проекцию. Кликните правой кнопкой мыши для начала проекции или её отмены. \
+		Alt-клик, чтобы повесить все входящие вызовы. Ctrl-клик, чтобы закончить проецирование без прыжка в вашу последнюю локацию.")
+
 /obj/machinery/holopad/examine_display_content(mob/user)
 	. += "– Максимальная дальность проекции: <b>[holo_range]</b> метров."
-	if(isAI(user))
-		. += "\n– Максимальная дальность проекции: <b>[holo_range]</b> метров. Используйте :h для общения через проекцию. Кликните правой кнопкой мыши для начала проекции или её отмены. \
-		Alt-клик, чтобы повесить все входящие вызовы. Ctrl-клик, чтобы закончить проецировение без прыжка в вашу последнюю локацию."
 
 /obj/machinery/holopad/attackby(obj/item/P, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "holopad_open", "holopad0", P))
@@ -671,7 +674,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	if(!record_mode)
 		return
 	//make this command so you can have multiple languages in single record
-	if((!disk.record.caller_name || disk.record.caller_name == "неизвестный") && istype(speaker))
+	if((!disk.record.caller_name || disk.record.caller_name == "Unknown") && istype(speaker))
 		disk.record.caller_name = speaker.name
 	if(!disk.record.language)
 		disk.record.language = language

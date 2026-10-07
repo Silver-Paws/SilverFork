@@ -86,7 +86,7 @@ God bless America.
 /obj/machinery/deepfryer/examine(mob/user)
 	. = ..()
 	if(frying)
-		. += "Вы можете разглядеть \a [frying] в масле."
+		. += "Вы можете разглядеть [frying] в масле."
 
 /obj/machinery/deepfryer/examine_display_content(mob/user)
 	. += "– Фритюр работает на скорости <b>[fry_speed*100]%</b>.\n\
@@ -95,7 +95,7 @@ God bless America.
 /obj/machinery/deepfryer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/pill))
 		if(!reagents.total_volume)
-			to_chat(user, span_warning("Внутри [I] нечего нет, чтобы растворить!"))
+			to_chat(user, span_warning("Внутри [I] ничего нет, чтобы растворить!"))
 			return
 		user.visible_message(span_notice("[user] опускает [I] внутрь [src]."), span_notice("Вы растворяете [I] внутри [src]."))
 		I.reagents.trans_to(src, I.reagents.total_volume, log = "pill into deep fryer")

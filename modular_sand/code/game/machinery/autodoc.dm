@@ -45,16 +45,19 @@
 	surgery_time -= surgery_time*(speed_up_percent / 100)
 	surgery_time = max(round(surgery_time), 1 SECONDS)
 
+/obj/machinery/autodoc/examine(mob/user)
+	. = ..()
+	if(processing && !obj_flags & EMAGGED)
+		. += span_notice("В процессе имплантации [icon2html(stored_organ, usr)] [stored_organ.name] в [occupant].")
+	else if(stored_organ)
+		. += span_notice("Внутрь загружен и подготовлен к установке [icon2html(stored_organ, usr)] [stored_organ.name].")
+		. += "Alt-click для извлечения органа или имплантата."
+
 /obj/machinery/autodoc/examine_display_content(mob/user)
 	. += span_notice("\
 	– Время операции: [DisplayTimeText(surgery_time)].\n")
 	if(speed_up_percent)
 		. += "– Машина работает на [span_nicegreen("[speed_up_percent]%")] быстрее.\n"
-	if(processing)
-		. += "– В процессе имплантации [icon2html(stored_organ, usr)] [stored_organ.name] в [occupant].\n"
-	else if(stored_organ)
-		. += "– Внутрь загружен и подготовлен к установке [icon2html(stored_organ, usr)] [stored_organ.name].\n"
-		. += "Alt-click для извлечения органа/имплантата.\n"
 	if((obj_flags & EMAGGED) && panel_open)
 		. += span_boldwarning("Протоколы работы повреждены, выставлен режим РАСЧЛЕНЕНИЕ!")
 

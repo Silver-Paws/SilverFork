@@ -55,7 +55,7 @@
 /obj/machinery/power/tesla_coil/examine_display_content(mob/user)
 	. += "\
 	– Энергоэффективность: <b>[input_power_multiplier*100]%</b>.\n\
-	– Интервалы между разрядами: <b>[zap_cooldown*0.1]</b> сек."
+	– Интервалы между разрядами: <b>[zap_cooldown / (1 SECONDS)]</b> сек."
 
 /obj/machinery/power/tesla_coil/on_construction()
 	if(anchored)

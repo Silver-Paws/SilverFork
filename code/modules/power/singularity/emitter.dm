@@ -77,7 +77,7 @@
 
 /obj/machinery/power/emitter/examine_display_content(mob/user)
 	. += "\
-	– Излучается один луч каждые <b>[fire_delay*0.1]</b> сек.\n\
+	– Излучается один луч каждые  <b>[fire_delay / (1 SECONDS)]</b> сек.\n\
 	– Затраты электроэнергии: <b>[active_power_usage]W</b>."
 
 /obj/machinery/power/emitter/ComponentInitialize()

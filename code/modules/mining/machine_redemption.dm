@@ -224,12 +224,22 @@
 			var/amount = mat_container.materials[M]
 			var/sheet_amount = amount / MINERAL_MATERIAL_AMOUNT
 			var/ref = REF(M)
-			data["materials"] += list(list("name" = capitalize(vocabulary_to_ru(GLOB.mat_ru_nominative, M.name)), "id" = ref, "amount" = sheet_amount, "value" = ore_values[M.type]))
+			var/base_points = ore_values[M.type]
+			var/upgraded_points = isnull(base_points) ? null : base_points * point_upgrade
+			data["materials"] += list(list(
+				"name" = capitalize(vocabulary_to_ru(GLOB.mat_ru_nominative, M.name)),
+				"id" = ref,
+				"amount" = sheet_amount,
+				"value" = upgraded_points
+			))
 
 		data["alloys"] = list()
 		for(var/v in stored_research.researched_designs)
 			var/datum/design/D = SSresearch.techweb_design_by_id(v)
-			data["alloys"] += list(list("name" = vocabulary_to_ru(GLOB.alloys_ru_nominative, D.name), "id" = D.id, "amount" = can_smelt_alloy(D)))
+			data["alloys"] += list(list(
+				"name" = vocabulary_to_ru(GLOB.alloys_ru_nominative, D.name),
+				"id" = D.id,
+				"amount" = can_smelt_alloy(D)))
 
 	if (!mat_container)
 		data["disconnected"] = "локальное хранилище сырье недоступно"
@@ -246,7 +256,10 @@
 			var/index = 1
 			for (var/datum/design/thisdesign in inserted_disk.blueprints)
 				if(thisdesign)
-					data["diskDesigns"] += list(list("name" = thisdesign.name, "index" = index, "canupload" = thisdesign.build_type&SMELTER))
+					data["diskDesigns"] += list(list(
+						"name" = thisdesign.name,
+						"index" = index,
+						"canupload" = thisdesign.build_type&SMELTER))
 				index++
 	return data
 
