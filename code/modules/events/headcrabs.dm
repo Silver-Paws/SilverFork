@@ -16,8 +16,8 @@
 	description = "Насылает кучу Мозгососов на Космическую Станцию."
 
 /datum/round_event/headcrabs
-	announce_when = 10
-	end_when = 11
+	announce_when = 2
+	end_when = 3
 	var/headcrab_type
 	/// Что рандомится внутри капсул: типы мобов (или гнёзд), которые из неё высыплются
 	var/list/spawn_types = list()
@@ -130,7 +130,10 @@
 		CHECK_TICK
 
 /datum/round_event/headcrabs/announce()
-	priority_announce("Биосканеры фиксируют размножение хедкрабов на борту станции. Избавьтесь от них, прежде чем это начнет влиять на продуктивность станции", "ВНИМАНИЕ: НЕОПОЗНАННЫЕ ФОРМЫ ЖИЗНИ.")
+	if(prob(90))
+		priority_announce("Биосканеры фиксируют размножение хедкрабов на борту станции. Избавьтесь от них, прежде чем это начнет влиять на продуктивность станции", "ВНИМАНИЕ: НЕОПОЗНАННЫЕ ФОРМЫ ЖИЗНИ.")
+	else
+		priority_announce("ХЕДКРАБЫ!!!", "ВНИМАНИЕ: НЕОПОЗНАННЫЕ ФОРМЫ ЖИЗНИ.", sound = 'sound/misc/headcrabs01.wav')
 
 #undef HEADCRAB_NORMAL
 #undef HEADCRAB_FASTMIX
