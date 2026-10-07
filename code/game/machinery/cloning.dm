@@ -81,7 +81,7 @@
 	. = ..()
 	var/mob/living/mob_occupant = occupant
 	. += span_notice("<i>Связующее</i> устройство может быть <i>отсканировано</i> мультитулом.</span>")
-	if(mess && !isobserver(usr) && !in_range(user, src))
+	if(mess && in_range(user, src))
 		. += "Наполнено кровю и потрохами. Вы покляться можете, что оно двинулось..."
 	if(is_operational() && mob_occupant)
 		if(mob_occupant.stat != DEAD)

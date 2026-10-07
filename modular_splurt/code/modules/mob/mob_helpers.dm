@@ -20,7 +20,7 @@
 
 	// BLUEMOON ADD START
 	if(HAS_TRAIT_FROM(src, TRAIT_MUTE, ORGAN_TRAIT))
-		. += span_warning("[ru_who()] рот варварски зашит! Выглядит жутко...")
+		. += span_warning("[ru_ego(TRUE)] рот варварски зашит! Выглядит жутко...")
 	// BLUEMOON ADD END
 
 	// Empathy abilities escape clause

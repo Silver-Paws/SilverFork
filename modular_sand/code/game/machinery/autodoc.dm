@@ -47,9 +47,9 @@
 
 /obj/machinery/autodoc/examine(mob/user)
 	. = ..()
-	if(processing && !(obj_flags & EMAGGED))
+	if(processing && in_range(user, src) && !(obj_flags & EMAGGED))
 		. += span_notice("В процессе имплантации [icon2html(stored_organ, usr)] [stored_organ.name] в [occupant].")
-	else if(stored_organ)
+	else if(stored_organ && in_range(user, src))
 		. += span_notice("Внутрь загружен и подготовлен к установке [icon2html(stored_organ, usr)] [stored_organ.name].")
 		. += "Alt-click для извлечения органа или имплантата."
 
