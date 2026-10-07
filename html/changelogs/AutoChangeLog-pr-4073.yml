@@ -1,0 +1,5 @@
+author: DuLL-FoX
+delete-after: true
+changes:
+  - code_imp: Исправлены ошибки линтеров CI на мастере.
+  - sounddel: Удалён звук-дубль выстрела Экзорциста, используется тот же звук winchester1897_shot.
