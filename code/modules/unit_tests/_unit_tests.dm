@@ -45,6 +45,8 @@
 #define UNIT_TEST_PASSED 0
 #define UNIT_TEST_FAILED 1
 #define UNIT_TEST_SKIPPED 2
+/// Shard weight of a test with no recorded wall time, in seconds
+#define UNIT_TEST_DEFAULT_WALL 0.1
 
 #define TEST_PRE 0
 #define TEST_DEFAULT 1
@@ -286,6 +288,7 @@
 #include "shuttle_move_atmos_exposure.dm"
 #include "signal_teardown.dm"
 // #include "siunit.dm"
+#include "slippery_worn_items.dm"
 #include "sort_tim.dm"
 #include "space_cleaner_gentle.dm"
 #include "spatial_grid.dm"
