@@ -1,5 +1,0 @@
-author: FelixRuin
-delete-after: true
-changes:
-  - bugfix: cover повязки при нанесении их на очки с покраской меняли свой цвет на
-      цвет очков при попадании под душ
