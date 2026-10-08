@@ -1,5 +1,0 @@
-author: Silver-Paws
-delete-after: true
-changes:
-  - code_imp: Добавлена санитайз-проверка на то, действительно ли сикей владеет sprite_accessory,
-      для создания списков в преференс-меню.
