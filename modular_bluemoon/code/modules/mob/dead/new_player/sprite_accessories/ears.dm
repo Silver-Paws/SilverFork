@@ -63,3 +63,10 @@
 /datum/sprite_accessory/ears/mam_ears/bm_ears/vevisian/short
 	name = "Vevisian (Short)"
 	icon_state = "vevisianshort"
+
+/datum/sprite_accessory/ears/mam_ears/bm_ears/vevisian_lynx
+	name = "Lynx Large"
+	icon = 'modular_bluemoon/icons/mob/ears32x64.dmi' //32x64
+	icon_state = "lynxlarge"
+	matrixed_sections = MATRIX_ALL
+	ckeys_allowed = list("lindaastereih", "silverfoxpaws")
