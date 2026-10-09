@@ -296,7 +296,7 @@
 	id = "a308_r"
 	build_type = AUTOLATHE | NO_PUBLIC_LATHE
 	materials = list(/datum/material/iron = 3100)
-	build_path = /obj/item/ammo_box/a308
+	build_path = /obj/item/ammo_box/a308/rubber
 	category = list("hacked", "Security")
 
 /datum/design/g4570
