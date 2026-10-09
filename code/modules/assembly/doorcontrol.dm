@@ -46,6 +46,7 @@
 			if(openclose == null || !sync_doors)
 				openclose = M.density
 			INVOKE_ASYNC(M, openclose ? TYPE_PROC_REF(/obj/machinery/door/poddoor, open) : TYPE_PROC_REF(/obj/machinery/door/poddoor, close))
+			M.log_remote_use(usr, openclose ? "opened" : "closed", name)
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
 
 /obj/item/assembly/control/airlock
@@ -73,22 +74,27 @@
 					doors_need_closing = TRUE
 			if(specialfunctions & IDSCAN)
 				D.aiDisabledIdScanner = !D.aiDisabledIdScanner
+				D.log_remote_use(usr, D.aiDisabledIdScanner ? "disabled the ID scanner of" : "enabled the ID scanner of", name)
 			if(specialfunctions & BOLTS)
 				if(!D.wires.is_cut(WIRE_BOLTS) && D.hasPower())
 					D.locked = !D.locked
 					D.update_icon()
+					D.log_remote_use(usr, D.locked ? "bolted" : "unbolted", name)
 			if(specialfunctions & SHOCK)
 				if(D.secondsElectrified)
 					D.secondsElectrified = -1
 					LAZYADD(D.shockedby, "\[[TIME_STAMP("hh:mm:ss", FALSE)]\] [key_name(usr)]")
 					log_combat(usr, D, "electrified")
+					D.log_remote_use(usr, "electrified", name)
 				else
 					D.secondsElectrified = 0
 			if(specialfunctions & SAFE)
 				D.safe = !D.safe
+				D.log_remote_use(usr, D.safe ? "enabled the safety of" : "disabled the safety of", name)
 
-	for(var/D in open_or_close)
-		INVOKE_ASYNC(D, doors_need_closing ? TYPE_PROC_REF(/obj/machinery/door/airlock, close) : TYPE_PROC_REF(/obj/machinery/door/airlock, open))
+	for(var/obj/machinery/door/airlock/door_to_toggle in open_or_close)
+		INVOKE_ASYNC(door_to_toggle, doors_need_closing ? TYPE_PROC_REF(/obj/machinery/door/airlock, close) : TYPE_PROC_REF(/obj/machinery/door/airlock, open))
+		door_to_toggle.log_remote_use(usr, doors_need_closing ? "closed" : "opened", name)
 
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
 

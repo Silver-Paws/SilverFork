@@ -1720,15 +1720,25 @@
 /obj/machinery/door/airlock/ui_act(action, params)
 	if(..())
 		return
+	// usr у интегралки пустой: оператора и тип устройства берём из params,
+	// которые advactivator подкладывает перед вызовом.
+	var/mob/remote_operator = usr
+	var/remote_device = "airlock interface"
 	if(params["ic_advactivator"])
 		advactivator_action = TRUE
+		remote_device = "integrated circuit"
+		var/circuit_operator = params["ic_advactivator_user"]
+		if(ismob(circuit_operator))
+			remote_operator = circuit_operator
 	if(!user_allowed(usr))
 		return
+	var/action_text
 	switch(action)
 		if("disrupt-main")
 			if(!secondsMainPowerLost)
 				loseMainPower()
 				update_icon()
+				action_text = "cut the main power of"
 			else
 				to_chat(usr, "<span class='warning'>Main power is already offline.</span>")
 			. = TRUE
@@ -1736,41 +1746,61 @@
 			if(!secondsBackupPowerLost)
 				loseBackupPower()
 				update_icon()
+				action_text = "cut the backup power of"
 			else
 				to_chat(usr, "<span class='warning'>Backup power is already offline.</span>")
 			. = TRUE
 		if("shock-restore")
+			if(isElectrified() && !wires.is_cut(WIRE_SHOCK))
+				action_text = "removed electrification from"
 			shock_restore(usr)
 			. = TRUE
 		if("shock-temp")
+			if(!wires.is_cut(WIRE_SHOCK))
+				action_text = "electrified"
 			shock_temp(usr)
 			. = TRUE
 		if("shock-perm")
+			if(!wires.is_cut(WIRE_SHOCK))
+				action_text = "electrified"
 			shock_perm(usr)
 			. = TRUE
 		if("idscan-toggle")
 			aiDisabledIdScanner = !aiDisabledIdScanner
+			action_text = aiDisabledIdScanner ? "disabled the ID scanner of" : "enabled the ID scanner of"
 			. = TRUE
 		if("emergency-toggle")
 			toggle_emergency(usr)
+			action_text = emergency ? "enabled emergency access on" : "disabled emergency access on"
 			. = TRUE
 		if("bolt-toggle")
+			var/was_locked = locked
 			toggle_bolt(usr)
+			if(locked != was_locked)
+				action_text = locked ? "bolted" : "unbolted"
 			. = TRUE
 		if("light-toggle")
 			lights = !lights
 			update_icon()
+			action_text = lights ? "enabled the lights of" : "disabled the lights of"
 			. = TRUE
 		if("safe-toggle")
 			safe = !safe
+			action_text = safe ? "enabled the safety of" : "disabled the safety of"
 			. = TRUE
 		if("speed-toggle")
 			normalspeed = !normalspeed
+			action_text = "changed the closing speed of"
 			. = TRUE
 		if("open-close")
+			var/was_closed = density
 			user_toggle_open(usr)
+			if(density != was_closed)
+				action_text = was_closed ? "opened" : "closed"
 			. = TRUE
 	advactivator_action = FALSE
+	if(action_text)
+		log_remote_use(remote_operator, action_text, remote_device)
 
 /obj/machinery/door/airlock/proc/user_allowed(mob/user)
 	return (hasSiliconAccessInArea(user) && canAIControl(user)) || IsAdminGhost(user) || advactivator_action

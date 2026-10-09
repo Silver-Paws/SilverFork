@@ -167,6 +167,13 @@
 	if(density)
 		do_animate("deny")
 
+/// Пишет дистанционное управление этой дверью во все серверы сообщений — вкладка
+/// "Remote Logs" в Message Monitor Console. device — чем управляли (пульт,
+/// интерфейс шлюза, программа и т.п.), action — что сделали ("opened" и т.п.).
+/obj/machinery/door/proc/log_remote_use(mob/user, action, device)
+	for(var/obj/machinery/telecomms/message_server/server in GLOB.telecomms_list)
+		server.log_remote_door(user, src, action, device)
+
 /obj/machinery/door/allowed(mob/M)
 	if(emergency)
 		return TRUE
