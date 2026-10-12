@@ -392,8 +392,8 @@ GLOBAL_DATUM_INIT(spare_id_safe, /obj/structure/safe/spare_id, null)
 
 /// C4/X4 (EXPLODE_HEAVY/DEVASTATE, target == src) — взлом с одного заряда (эквив. BROKEN_THRESHOLD в safe.dm)
 /obj/structure/safe/spare_id/ex_act(severity, target, origin)
-	if(!open && explosion_count < 3 && target == src && (severity == EXPLODE_HEAVY || severity == EXPLODE_DEVASTATE))
-		explosion_count = 3
+	if(!open && explosion_count < BROKEN_THRESHOLD && target == src && (severity == EXPLODE_HEAVY || severity == EXPLODE_DEVASTATE))
+		explosion_count = BROKEN_THRESHOLD
 		desc += "\nЗамок выломан!"
 		locked = FALSE
 		open = TRUE
