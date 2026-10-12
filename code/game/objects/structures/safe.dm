@@ -177,22 +177,20 @@ FLOOR SAFES
 	if(check_broken())
 		to_chat(user, span_warning("Замок [src] уже разрушен!"))
 		return FALSE // FALSE нужен для прерывания while у меха
+	if(drill_process)
+		return FALSE
 
-	drill_process = TRUE
 	if(drillable)
 		lock_integrity -= 2
 		if(check_broken())
 			locked = 0
-			drill_process = FALSE
 			visible_message(span_danger("Замок [src] разрушен под натиском [drill.name]!"))
 			return FALSE
 		Shake(1, 1, DRILL_TICK_TIME)
-		drill_process = FALSE
 		return TRUE
 	else if(prob(2))
 		to_chat(user, span_danger("Вам что-то подсказывает, что материал стенок [src] слишком вязкий..."))
 
-	drill_process = FALSE
 	return TRUE
 
 /obj/structure/safe/blob_act(obj/structure/blob/B)
