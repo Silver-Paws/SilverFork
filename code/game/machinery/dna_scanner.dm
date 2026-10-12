@@ -53,7 +53,7 @@
 	- Точность импульса увеличена в <b>[precision_coeff**2]</b> раз(а). \n\
 	- Объём облучения уменьшен в <b>[damage_coeff**2]</b> раз(а)."
 	if(scan_level >= 3)
-		. += "– Сканер улучшен и поддерживает автообработку."
+		. += "\n– Сканер улучшен и поддерживает автообработку."
 
 /obj/machinery/dna_scannernew/update_icon_state()
 	//no power or maintenance

@@ -739,7 +739,7 @@ Class Procs:
 		var/prev_anchored = anchored
 		//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
 		if(I.use_tool(src, user, time, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
-			to_chat(user, span_notice("Вы [anchored ? "открутили" : "вкрутили"] [src] к поверхности пола."))
+			to_chat(user, span_notice("Вы [anchored ? "открутили [src] от" : "вкрутили [src] к"] поверхности пола."))
 			setAnchored(!anchored)
 			check_on_table()
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
@@ -856,9 +856,6 @@ Class Procs:
 	return FALSE
 
 /obj/machinery/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return .
 	if(href_list["display_stats"])
 		if(!isobserver(usr) && (!isAI(usr) && !iscyborg(usr)) && !in_range(usr, src) && !is_blind(usr)) // Да, здесь понадобится usr - это по сути верб-вызов гиперссылки из чата.
 			to_chat(usr, span_warning("Вы не можете разглядеть статус-дисплей у [src] с этого расстояния!"))
@@ -872,6 +869,9 @@ Class Procs:
 		if(readout)
 			to_chat(usr, examine_block(readout))
 		return TRUE
+	. = ..()
+	if(.)
+		return .
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()

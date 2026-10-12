@@ -129,7 +129,7 @@
 	. += "– Скорость варки кофе: <b>[speed*100]%</b>."
 	if(coffeepot)
 		for(var/datum/reagent/consumable/cawfee as anything in coffeepot.reagents.reagent_list)
-			. += "\n– В кофейнике [cawfee.volume] ед. кофе."
+			. += "\n– В кофейнике [cawfee.volume]u жидкости."
 	if(cartridge)
 		if(cartridge.charges < 1)
 			. += "\n– Картридж с молотым кофе пуст."

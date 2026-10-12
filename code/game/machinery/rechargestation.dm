@@ -58,7 +58,7 @@
 /obj/machinery/recharge_station/examine_display_content()
 	. += "– Заряжается <b>[recharge_speed]J</b> заряда за цикл."
 	if(repairs)
-		. += "[src] имеет улучшения, поддеривающие авторемонт."
+		. += "\n[src] имеет улучшения, поддеривающие авторемонт."
 
 /obj/machinery/recharge_station/process()
 	if(!is_operational())
