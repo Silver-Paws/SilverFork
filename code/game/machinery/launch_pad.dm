@@ -45,7 +45,7 @@
 	return ..()
 
 /obj/machinery/launchpad/examine_display_content()
-	. += "– Максимальная дальность: <b>[range]</b> метров.</span>"
+	. += "– Максимальная дальность: <b>[range]</b> метров."
 
 /obj/machinery/launchpad/attackby(obj/item/I, mob/user, params)
 	if(stationary)

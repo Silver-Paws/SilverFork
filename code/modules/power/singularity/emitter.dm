@@ -350,7 +350,7 @@
 				locked = !locked
 				to_chat(user, span_notice("Вы [src.locked ? "за" : "раз"]блокировали управление."))
 			else
-				to_chat(user, span_warning("Управление может быть заблкировано только во время работы [src]!"))
+				to_chat(user, span_warning("Управление может быть заблокировано только во время работы [src]!"))
 		else
 			to_chat(user, span_danger("Доступ запрещён."))
 		return
@@ -404,7 +404,7 @@
 	log_admin("[key_name(usr)] emagged [src] at [AREACOORD(src)]")
 	locked = FALSE
 	obj_flags |= EMAGGED
-	user?.visible_message("[user.name] провёл е-магом по[src].", span_notice("Вы сожгли электронный замок."))
+	user?.visible_message("[user.name] провёл е-магом по [src].", span_notice("Вы сожгли электронный замок."))
 	return TRUE
 
 
