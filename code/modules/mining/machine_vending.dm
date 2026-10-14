@@ -253,7 +253,7 @@
 /obj/machinery/mineral/equipment_vendor/proc/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
 	var/items = list(	"Survival Capsule and Explorer's Webbing" = image(icon = 'icons/obj/storage.dmi', icon_state = "explorerpack"),
 						"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
-						"Шахтобот Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
+						"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 						"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
 						"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "crusher"),
 						"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"))
@@ -268,7 +268,7 @@
 		if("Resonator Kit")
 			new /obj/item/extinguisher/mini(drop_location)
 			new /obj/item/resonator(drop_location)
-		if("Шахтобот Kit")
+		if("Minebot Kit")
 			new /mob/living/simple_animal/hostile/mining_drone(drop_location)
 			new /obj/item/weldingtool/hugetank(drop_location)
 			new /obj/item/clothing/head/welding(drop_location)
