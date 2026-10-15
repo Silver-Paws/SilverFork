@@ -80,7 +80,7 @@
 	if(isnull(init_processing_time))
 		init_processing_time = initial(processing_time)
 	if(init_processing_time > processing_time)
-		. += span_notice("– Машина работает на [span_nicegreen("[100-(processing_time/init_processing_time*100)]%")] быстрее.")
+		. += span_notice("\n– Машина работает на [span_nicegreen("[100-(processing_time/init_processing_time*100)]%")] быстрее.")
 
 /obj/machinery/self_actualization_device/open_machine(mob/user)
 	playsound(src, 'sound/machines/click.ogg', 50)
