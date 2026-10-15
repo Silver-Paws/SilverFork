@@ -12,58 +12,51 @@
 	var/list/prize_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces. Добавляйте категорию к новым предметам, если подходит по списку в static_ui.
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										10),
 		new /datum/data/mining_equipment("50 Point Transfer Card",		/obj/item/card/mining_point_card/fifty,								50),
-		new /datum/data/mining_equipment("Explorer Stripper Outfit", 	/obj/item/clothing/under/rank/cargo/miner/lavaland/stripper, 		50,				"Общее снаряжение"),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									100),
 		new /datum/data/mining_equipment("30 Marker Beacons",			/obj/item/stack/marker_beacon/thirty,								300),
-		new /datum/data/mining_equipment("Whiskey",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100,			"Рекреация"),
-		new /datum/data/mining_equipment("Absinthe",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100,			"Рекреация"),
-		new /datum/data/mining_equipment("Cigar",						/obj/item/clothing/mask/cigarette/cigar/havana,						150,			"Рекреация"),
-		new /datum/data/mining_equipment("Soap",						/obj/item/soap/nanotrasen,											200,			"Рекреация"),
 		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/laser_pointer,											300),
 		new /datum/data/mining_equipment("Alien Toy",					/obj/item/clothing/mask/facehugger/toy,								300),
-		new /datum/data/mining_equipment("Stabilizing Serum",			/obj/item/hivelordstabilizer,										400,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("Fulton Beacon",				/obj/item/fulton_core,												400,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("Shelter Capsule",				/obj/item/survivalcapsule,											400,	 		"Капсулы"),
-		new /datum/data/mining_equipment("Survival Knife",				/obj/item/kitchen/knife/combat/survival,							450,			"Оружие ближнего боя"),
+		new /datum/data/mining_equipment("500 Point Transfer Card", 	/obj/item/card/mining_point_card,									500),
+		new /datum/data/mining_equipment("Mini Extinguisher",			/obj/item/extinguisher/mini,										1000),
+		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,										2000),
+		new /datum/data/mining_equipment("Space Cash",					/obj/item/stack/spacecash/c1000,									2000),
+		new /datum/data/mining_equipment("5000 Point Transfer Card",	/obj/item/card/mining_point_card/fivethousand,						5000),
+		new /datum/data/mining_equipment("1 Metadollar",				/obj/item/stack/metadollar,											50000),
+		new /datum/data/mining_equipment("Illegal technology disk",		/obj/item/disk/tech_disk/illegal,									100000),
+
+		new /datum/data/mining_equipment("Explorer Stripper Outfit", 	/obj/item/clothing/under/rank/cargo/miner/lavaland/stripper, 		50,				"Общее снаряжение"),
 		new /datum/data/mining_equipment("GAR Meson Scanners",			/obj/item/clothing/glasses/meson/gar,								500,			"Общее снаряжение"),
 		new /datum/data/mining_equipment("Explorer's Webbing",			/obj/item/storage/belt/mining,										500,			"Общее снаряжение"),
 		new /datum/data/mining_equipment("Larger Ore Bag",				/obj/item/storage/bag/ore/large,									500,			"Общее снаряжение"),
-		new /datum/data/mining_equipment("500 Point Transfer Card", 	/obj/item/card/mining_point_card,									500),
-		new /datum/data/mining_equipment("Tracking Implant Kit", 		/obj/item/storage/box/minertracker,									600,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("Jaunter",						/obj/item/wormhole_jaunter,											750,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/kinetic_crusher,											750,			"Оружие ближнего боя"),
-		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/gun/energy/kinetic_accelerator,							750,			"Кинет. ускорители"),
-		new /datum/data/mining_equipment("Survival Medipen",			/obj/item/reagent_containers/hypospray/medipen/survival,			750,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("Brute First-Aid Kit",			/obj/item/storage/firstaid/brute,									800,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("Burn First-Aid Kit",			/obj/item/storage/firstaid/fire,									800,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("First-Aid Kit",				/obj/item/storage/firstaid/regular,									800,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("Advanced Scanner",			/obj/item/t_scanner/adv_mining_scanner,								800,			"Инструменты"),
-		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												800,			"Инструменты"),
-		new /datum/data/mining_equipment("Mini Extinguisher",			/obj/item/extinguisher/mini,										1000),
-		new /datum/data/mining_equipment("Fulton Pack",					/obj/item/extraction_pack,											1000,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("Lazarus Injector",			/obj/item/lazarus_injector,											1000,			"Медицина & Спасение"),
-		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/pickaxe/silver,											1000,			"Инструменты"),
 		new /datum/data/mining_equipment("Mining Conscription Kit",		/obj/item/storage/backpack/duffelbag/mining/conscript,				1000,			"Общее снаряжение"),
-		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,										2000),
-		new /datum/data/mining_equipment("Space Cash",					/obj/item/stack/spacecash/c1000,									2000),
-		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,											2000,			"Инструменты"),
 		new /datum/data/mining_equipment("Spare Suit Voucher",			/obj/item/suit_voucher,												2000,			"Общее снаряжение"),
-		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500,			"Инструменты"),
+		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,						2000,			"Общее снаряжение"),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										2500,			"Общее снаряжение"),
 		new /datum/data/mining_equipment("Ice hiking boots",            /obj/item/clothing/shoes/winterboots/ice_boots,				        2500,			"Общее снаряжение"),
-		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,						2000,			"Общее снаряжение"),
+		new /datum/data/mining_equipment("Miner Full Replacement",		/obj/item/storage/backpack/duffelbag/mining/cloned,					3000,			"Общее снаряжение"),
 		new /datum/data/mining_equipment("Improved Miner Suit",			/obj/item/clothing/suit/hooded/explorer/standard/improved,			15000,			"Общее снаряжение"),
-		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/survivalcapsule/luxury,									3000,			"Капсулы"),
-		new /datum/data/mining_equipment("Luxury Bar Capsule",			/obj/item/survivalcapsule/luxury/elitebar,							10000,			"Капсулы"),
-		new /datum/data/mining_equipment("Luxurious Penthouse Capsule",	/obj/item/survivalcapsule/luxury/elutepenthouse,					15000,			"Капсулы"),  //BLUEMOON CHANGE: New, robust version of Penthouse capsule.
-		new /datum/data/mining_equipment("Empty Capsule",				/obj/item/survivalcapsule/luxury/empty,								5000,			"Капсулы"),
-		new /datum/data/mining_equipment("Penthouse Capsule",			/obj/item/survivalcapsule/luxury/penthouse,							7500,			"Капсулы"),
-		new /datum/data/mining_equipment("Garden & Kitchen Capsule",	/obj/item/survivalcapsule/luxury/garden,							7500,			"Капсулы"),
-		new /datum/data/mining_equipment("Nanotrasen Шахтобот",			/mob/living/simple_animal/hostile/mining_drone,						800,			"Шахтобот"),
-		new /datum/data/mining_equipment("Шахтобот Melee Upgrade",		/obj/item/mine_bot_upgrade,											400,			"Шахтобот"),
-		new /datum/data/mining_equipment("Шахтобот Armor Upgrade",		/obj/item/mine_bot_upgrade/health,									400,			"Шахтобот"),
-		new /datum/data/mining_equipment("Шахтобот Cooldown Upgrade",	/obj/item/borg/upgrade/modkit/cooldown/minebot,						600,			"Шахтобот"),
-		new /datum/data/mining_equipment("Шахтобот AI Upgrade",			/obj/item/slimepotion/slime/sentience/mining,						1000,			"Шахтобот"),
+
+		new /datum/data/mining_equipment("Advanced Scanner",			/obj/item/t_scanner/adv_mining_scanner,								800,			"Инструменты"),
+		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												800,			"Инструменты"),
+		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/pickaxe/silver,											1000,			"Инструменты"),
+		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,											2000,			"Инструменты"),
+		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500,			"Инструменты"),
+		new /datum/data/mining_equipment("Sonic Jackhammer",			/obj/item/pickaxe/drill/jackhammer,									4000,			"Инструменты"),
+
+		new /datum/data/mining_equipment("Survival Knife",				/obj/item/kitchen/knife/combat/survival,							450,			"Оружие ближнего боя"),
+		new /datum/data/mining_equipment("Survival Dagger",				/obj/item/kitchen/knife/combat/survival/knuckledagger,				550,			"Оружие ближнего боя"),
+		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/kinetic_crusher,											750,			"Оружие ближнего боя"),
+		new /datum/data/mining_equipment("Premium Kinetic Melee Kit",	/obj/item/storage/backpack/duffelbag/mining/glaivekit,				2250,			"Оружие ближнего боя"),
+		new /datum/data/mining_equipment("Kinetic Destroyer",			/obj/item/kinetic_crusher/premiumcrusher,							12000,			"Оружие ближнего боя"), //boop
+
+		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/gun/energy/kinetic_accelerator,							750,			"Кинет. ускорители"),
+		new /datum/data/mining_equipment("Premium Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka,					8000,			"Кинет. ускорители"),
+		new /datum/data/mining_equipment("Precise Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka/precise,			10000,			"Кинет. ускорители"),
+		new /datum/data/mining_equipment("Rapid Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka/rapid,			10000,			"Кинет. ускорители"),
+		new /datum/data/mining_equipment("Heavy Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka/heavy,			10000,			"Кинет. ускорители"),
+		new /datum/data/mining_equipment("Modular Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka/modular,			15000,			"Кинет. ускорители"),
+		new /datum/data/mining_equipment("Build-your-own-KA kit",		/obj/item/gun/energy/kinetic_accelerator/premiumka/byoka,			30000,			"Кинет. ускорители"),
+
 		new /datum/data/mining_equipment("KA Шахтобот Passthrough",		/obj/item/borg/upgrade/modkit/minebot_passthrough,					100,			"Улучшения КУ"),
 		new /datum/data/mining_equipment("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,								100,			"Улучшения КУ"),
 		new /datum/data/mining_equipment("KA Adjustable Tracer Rounds",	/obj/item/borg/upgrade/modkit/tracer/adjustable,					150,			"Улучшения КУ"),
@@ -73,12 +66,45 @@
 		new /datum/data/mining_equipment("KA Damage Increase",			/obj/item/borg/upgrade/modkit/damage,								1000,			"Улучшения КУ"),
 		new /datum/data/mining_equipment("KA Cooldown Decrease",		/obj/item/borg/upgrade/modkit/cooldown,								1000,			"Улучшения КУ"),
 		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000,			"Улучшения КУ"),
-		new /datum/data/mining_equipment("Miner Full Replacement",		/obj/item/storage/backpack/duffelbag/mining/cloned,					3000,			"Общее снаряжение"),
-		new /datum/data/mining_equipment("Premium Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka,					8000,			"Кинет. ускорители"),
-		new /datum/data/mining_equipment("Premium Kinetic Melee Kit",	/obj/item/storage/backpack/duffelbag/mining/glaivekit,				2250,			"Оружие ближнего боя"),
-		new /datum/data/mining_equipment("Survival Dagger",				/obj/item/kitchen/knife/combat/survival/knuckledagger,				550,			"Оружие ближнего боя"),
 		new /datum/data/mining_equipment("Premium KA borg Upgrade",		/obj/item/borg/upgrade/premiumka,									8000,			"Улучшения КУ"),
-		new /datum/data/mining_equipment("Kinetic Destroyer",			/obj/item/kinetic_crusher/premiumcrusher,							12000,			"Оружие ближнего боя"), //boop
+
+		new /datum/data/mining_equipment("Stabilizing Serum",			/obj/item/hivelordstabilizer,										400,			"Медицина & Спасение"),
+		new /datum/data/mining_equipment("Fulton Beacon",				/obj/item/fulton_core,												400,			"Медицина & Спасение"),
+		new /datum/data/mining_equipment("Tracking Implant Kit", 		/obj/item/storage/box/minertracker,									600,			"Медицина & Спасение"),
+		new /datum/data/mining_equipment("Jaunter",						/obj/item/wormhole_jaunter,											750,			"Медицина & Спасение"),
+		new /datum/data/mining_equipment("Survival Medipen",			/obj/item/reagent_containers/hypospray/medipen/survival,			750,			"Медицина & Спасение"),
+		new /datum/data/mining_equipment("Brute First-Aid Kit",			/obj/item/storage/firstaid/brute,									800,			"Медицина & Спасение"),
+		new /datum/data/mining_equipment("Burn First-Aid Kit",			/obj/item/storage/firstaid/fire,									800,			"Медицина & Спасение"),
+		new /datum/data/mining_equipment("First-Aid Kit",				/obj/item/storage/firstaid/regular,									800,			"Медицина & Спасение"),
+		new /datum/data/mining_equipment("Fulton Pack",					/obj/item/extraction_pack,											1000,			"Медицина & Спасение"),
+		new /datum/data/mining_equipment("Lazarus Injector",			/obj/item/lazarus_injector,											1000,			"Медицина & Спасение"),
+
+		new /datum/data/mining_equipment("Nanotrasen Шахтобот",			/mob/living/simple_animal/hostile/mining_drone,						800,			"Шахтобот"),
+		new /datum/data/mining_equipment("Шахтобот Melee Upgrade",		/obj/item/mine_bot_upgrade,											400,			"Шахтобот"),
+		new /datum/data/mining_equipment("Шахтобот Armor Upgrade",		/obj/item/mine_bot_upgrade/health,									400,			"Шахтобот"),
+		new /datum/data/mining_equipment("Шахтобот Cooldown Upgrade",	/obj/item/borg/upgrade/modkit/cooldown/minebot,						600,			"Шахтобот"),
+		new /datum/data/mining_equipment("Шахтобот AI Upgrade",			/obj/item/slimepotion/slime/sentience/mining,						1000,			"Шахтобот"),
+
+		new /datum/data/mining_equipment("Shelter Capsule",				/obj/item/survivalcapsule,											400,	 		"Капсулы"),
+		new /datum/data/mining_equipment("Pill Shelter",				/obj/item/survivalcapsule/luxury/pill,								400, 			"Капсулы"), //The smallest of them all! Same as usual capsule to prevent abusing them
+		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/survivalcapsule/luxury,									3000,			"Капсулы"),
+		new /datum/data/mining_equipment("Empty Capsule",				/obj/item/survivalcapsule/luxury/empty,								5000,			"Капсулы"),
+		new /datum/data/mining_equipment("Penthouse Capsule",			/obj/item/survivalcapsule/luxury/penthouse,							7500,			"Капсулы"),
+		new /datum/data/mining_equipment("Garden & Kitchen Capsule",	/obj/item/survivalcapsule/luxury/garden,							7500,			"Капсулы"),
+		new /datum/data/mining_equipment("Arena Shelter",				/obj/item/survivalcapsule/luxury/arena,								10000,			"Капсулы"), //What do you expect in the first place?
+		new /datum/data/mining_equipment("Luxury Bar Capsule",			/obj/item/survivalcapsule/luxury/elitebar,							10000,			"Капсулы"),
+		new /datum/data/mining_equipment("Luxurious Penthouse Capsule",	/obj/item/survivalcapsule/luxury/elutepenthouse,					15000,			"Капсулы"),  //BLUEMOON CHANGE: New, robust version of Penthouse capsule.
+		new /datum/data/mining_equipment("Supreme Shelter",				/obj/item/survivalcapsule/luxury/greatest,							100000,			"Капсулы"), //https://youtu.be/97lKspTB3u0?si=bsdh-3VRzvV7wkIG | Yes it will cost a lot, but look at the design!(it sucks lmao)
+
+		new /datum/data/mining_equipment("Whiskey",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100,			"Рекреация"),
+		new /datum/data/mining_equipment("Absinthe",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100,			"Рекреация"),
+		new /datum/data/mining_equipment("Cigar",						/obj/item/clothing/mask/cigarette/cigar/havana,						150,			"Рекреация"),
+		new /datum/data/mining_equipment("Soap",						/obj/item/soap/nanotrasen,											200,			"Рекреация"),
+		new /datum/data/mining_equipment("NT MRE Ration Kit Menu 1",	/obj/item/storage/box/mre/menu1,									999,			"Рекреация"), //On other forks miners at least can buy themselves some food, at affordable price.
+		new /datum/data/mining_equipment("NT MRE Ration Kit Menu 2",	/obj/item/storage/box/mre/menu2,									999,			"Рекреация"),
+		new /datum/data/mining_equipment("NT MRE Ration Kit Menu 3",	/obj/item/storage/box/mre/menu3,									999,			"Рекреация"),
+		new /datum/data/mining_equipment("NT MRE Ration Kit Menu 4",	/obj/item/storage/box/mre/menu4,									999,			"Рекреация"),
+		new /datum/data/mining_equipment("KinkMate Refill Stock",		/obj/item/vending_refill/kink,										1200,			"Рекреация"), //Kinkmate restock for ghostroles/lone miners. Circuit can be found in circuit printer.
 		)
 
 /datum/data/mining_equipment
@@ -385,6 +411,9 @@
 
 /obj/item/card/mining_point_card/fifty
 	points = 50
+
+/obj/item/card/mining_point_card/fivethousand
+	points = 5000
 
 /obj/item/card/mining_point_card/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/card/id))
