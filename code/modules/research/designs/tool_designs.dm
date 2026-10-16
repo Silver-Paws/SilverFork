@@ -346,7 +346,7 @@
 	id = "alien_combi_scalpel"
 	build_path = /obj/item/scalpel/advanced/alien
 	build_type = PROTOLATHE
-Ы	materials = list(/datum/material/iron = 18000, /datum/material/silver = 9500, /datum/material/plasma = 5000, /datum/material/titanium = 10500, /datum/material/diamond = 4000)
+	materials = list(/datum/material/iron = 18000, /datum/material/silver = 9500, /datum/material/plasma = 5000, /datum/material/titanium = 10500, /datum/material/diamond = 4000)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
