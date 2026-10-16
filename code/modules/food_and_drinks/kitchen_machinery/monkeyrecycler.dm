@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 
 /obj/machinery/monkey_recycler
 	name = "monkey recycler"
-	desc = "Машина для переработки мёртвых мартышек в кубы." // except it literally never does
+	desc = "Мясорубка для переработки мёртвых мартышек в кубы." // except it literally never does
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grinder"
 	layer = BELOW_OBJ_LAYER

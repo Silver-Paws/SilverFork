@@ -18,7 +18,7 @@ export const OreRedemptionMachine = (props) => {
     <Window
       title="Рудоплавильная печь"
       width={440}
-      height={625}>
+      height={630}>
       <Window.Content overflow="auto">
         <Section>
           <BlockQuote mb={1}>

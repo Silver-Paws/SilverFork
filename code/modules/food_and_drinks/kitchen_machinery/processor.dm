@@ -1,7 +1,7 @@
 
 /obj/machinery/processor
 	name = "food processor"
-	desc = "Промышленный измельчитель для переработки мяса и прочей еды. Во время работы держите руки подальше от загрузочной зоны."
+	desc = "Промышленный измельчитель для переработки мяса и прочей пищи. Во время работы держите руки подальше от загрузочной зоны."
 	icon = 'icons/obj/machines/kitchen.dmi'
 	base_icon_state = "processor"
 	icon_state = "processor"

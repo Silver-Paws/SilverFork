@@ -44,7 +44,7 @@ GLOBAL_VAR_INIT(bsminers_lock, FALSE)
 
 /obj/machinery/mineral/bluespace_miner
 	name = "bluespace mining machine"
-	desc = "Машина, использующая блюспейс-технологии для медленной добычи ресурсов из других миров и помещения их в привязанное хранилище материалов."
+	desc = "Ресурсный добытчик, использующий блюспейс-технологии для медленной добычи сырья из других миров и помещения их в привязанное хранилище материалов."
 	icon = 'modular_sand/icons/obj/machines/mining_machines.dmi'
 	icon_state = "bsminer"
 	density = TRUE
@@ -144,7 +144,7 @@ GLOBAL_VAR_INIT(bsminers_lock, FALSE)
 			percent_core_integrity_text = "<span style='color:[inst_pattern[INSTABILITY_SETTINGS_EXAMINE_COLOR]]'>[percent_core_integrity_text]</span>"
 		else
 			percent_core_integrity_text = span_green(percent_core_integrity_text)
-		display_list += "Состояние ядра: [percent_core_integrity_text]"
+		display_list += "Состояние ядра: [percent_core_integrity_text]."
 
 	display_list += "Термостат машины горит <b>[get_bs_core_temp_damage_multiplier() > 1 ? span_danger("красным") : span_notice("синим")]</b> цветом."
 	display_list += "Барометр машины горит <b>[get_bs_core_pressure_damage_multiplier() > 1 ? span_red("красным") : span_green("зелёным")]</b> цветом."

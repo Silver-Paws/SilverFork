@@ -11,17 +11,12 @@
 	var/obj/item/card/id/inserted_id
 	var/list/prize_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces. Добавляйте категорию к новым предметам, если подходит по списку в static_ui.
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										10),
-		new /datum/data/mining_equipment("50 Point Transfer Card",		/obj/item/card/mining_point_card/fifty,								50),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									100),
 		new /datum/data/mining_equipment("30 Marker Beacons",			/obj/item/stack/marker_beacon/thirty,								300),
 		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/laser_pointer,											300),
 		new /datum/data/mining_equipment("Alien Toy",					/obj/item/clothing/mask/facehugger/toy,								300),
-		new /datum/data/mining_equipment("500 Point Transfer Card", 	/obj/item/card/mining_point_card,									500),
 		new /datum/data/mining_equipment("Mini Extinguisher",			/obj/item/extinguisher/mini,										1000),
 		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,										2000),
-		new /datum/data/mining_equipment("Space Cash",					/obj/item/stack/spacecash/c1000,									2000),
-		new /datum/data/mining_equipment("5000 Point Transfer Card",	/obj/item/card/mining_point_card/fivethousand,						5000),
-		new /datum/data/mining_equipment("1 Metadollar",				/obj/item/stack/metadollar,											50000),
 		new /datum/data/mining_equipment("Illegal technology disk",		/obj/item/disk/tech_disk/illegal,									100000),
 
 		new /datum/data/mining_equipment("Explorer Stripper Outfit", 	/obj/item/clothing/under/rank/cargo/miner/lavaland/stripper, 		50,				"Общее снаряжение"),
@@ -57,7 +52,7 @@
 		new /datum/data/mining_equipment("Modular Accelerator",			/obj/item/gun/energy/kinetic_accelerator/premiumka/modular,			15000,			"Кинет. ускорители"),
 		new /datum/data/mining_equipment("Build-your-own-KA kit",		/obj/item/gun/energy/kinetic_accelerator/premiumka/byoka,			30000,			"Кинет. ускорители"),
 
-		new /datum/data/mining_equipment("KA Шахтобот Passthrough",		/obj/item/borg/upgrade/modkit/minebot_passthrough,					100,			"Улучшения КУ"),
+		new /datum/data/mining_equipment("KA Minebot Passthrough",		/obj/item/borg/upgrade/modkit/minebot_passthrough,					100,			"Улучшения КУ"),
 		new /datum/data/mining_equipment("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,								100,			"Улучшения КУ"),
 		new /datum/data/mining_equipment("KA Adjustable Tracer Rounds",	/obj/item/borg/upgrade/modkit/tracer/adjustable,					150,			"Улучшения КУ"),
 		new /datum/data/mining_equipment("KA Super Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod,							250,			"Улучшения КУ"),
@@ -79,11 +74,11 @@
 		new /datum/data/mining_equipment("Fulton Pack",					/obj/item/extraction_pack,											1000,			"Медицина & Спасение"),
 		new /datum/data/mining_equipment("Lazarus Injector",			/obj/item/lazarus_injector,											1000,			"Медицина & Спасение"),
 
-		new /datum/data/mining_equipment("Nanotrasen Шахтобот",			/mob/living/simple_animal/hostile/mining_drone,						800,			"Шахтобот"),
-		new /datum/data/mining_equipment("Шахтобот Melee Upgrade",		/obj/item/mine_bot_upgrade,											400,			"Шахтобот"),
-		new /datum/data/mining_equipment("Шахтобот Armor Upgrade",		/obj/item/mine_bot_upgrade/health,									400,			"Шахтобот"),
-		new /datum/data/mining_equipment("Шахтобот Cooldown Upgrade",	/obj/item/borg/upgrade/modkit/cooldown/minebot,						600,			"Шахтобот"),
-		new /datum/data/mining_equipment("Шахтобот AI Upgrade",			/obj/item/slimepotion/slime/sentience/mining,						1000,			"Шахтобот"),
+		new /datum/data/mining_equipment("Nanotrasen Minebot",			/mob/living/simple_animal/hostile/mining_drone,						800,			"Шахтобот"),
+		new /datum/data/mining_equipment("Minebot Melee Upgrade",		/obj/item/mine_bot_upgrade,											400,			"Шахтобот"),
+		new /datum/data/mining_equipment("Minebot Armor Upgrade",		/obj/item/mine_bot_upgrade/health,									400,			"Шахтобот"),
+		new /datum/data/mining_equipment("Minebot Cooldown Upgrade",	/obj/item/borg/upgrade/modkit/cooldown/minebot,						600,			"Шахтобот"),
+		new /datum/data/mining_equipment("Minebot AI Upgrade",			/obj/item/slimepotion/slime/sentience/mining,						1000,			"Шахтобот"),
 
 		new /datum/data/mining_equipment("Shelter Capsule",				/obj/item/survivalcapsule,											400,	 		"Капсулы"),
 		new /datum/data/mining_equipment("Pill Shelter",				/obj/item/survivalcapsule/luxury/pill,								400, 			"Капсулы"), //The smallest of them all! Same as usual capsule to prevent abusing them
@@ -95,6 +90,12 @@
 		new /datum/data/mining_equipment("Luxury Bar Capsule",			/obj/item/survivalcapsule/luxury/elitebar,							10000,			"Капсулы"),
 		new /datum/data/mining_equipment("Luxurious Penthouse Capsule",	/obj/item/survivalcapsule/luxury/elutepenthouse,					15000,			"Капсулы"),  //BLUEMOON CHANGE: New, robust version of Penthouse capsule.
 		new /datum/data/mining_equipment("Supreme Shelter",				/obj/item/survivalcapsule/luxury/greatest,							100000,			"Капсулы"), //https://youtu.be/97lKspTB3u0?si=bsdh-3VRzvV7wkIG | Yes it will cost a lot, but look at the design!(it sucks lmao)
+
+		new /datum/data/mining_equipment("50 Point Transfer Card",		/obj/item/card/mining_point_card/fifty,								50,				"Заработок"),
+		new /datum/data/mining_equipment("500 Point Transfer Card", 	/obj/item/card/mining_point_card,									500,			"Заработок"),
+		new /datum/data/mining_equipment("Space Cash",					/obj/item/stack/spacecash/c1000,									2000,			"Заработок"),
+		new /datum/data/mining_equipment("5000 Point Transfer Card",	/obj/item/card/mining_point_card/fivethousand,						5000,			"Заработок"),
+		new /datum/data/mining_equipment("1 Metadollar",				/obj/item/stack/metadollar,											50000,			"Заработок"),
 
 		new /datum/data/mining_equipment("Whiskey",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100,			"Рекреация"),
 		new /datum/data/mining_equipment("Absinthe",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100,			"Рекреация"),
@@ -194,6 +195,7 @@
 		"Медицина & Спасение",
 		"Капсулы",
 		"Рекреация",
+		"Заработок",
 		"Шахтобот",
 		"Либератор",
 		"Прочее"
