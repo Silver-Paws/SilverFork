@@ -449,7 +449,7 @@
 
 /obj/machinery/autolathe/secure
 	name = "secured autolathe"
-	desc = "Производит вещи, используя запасы железа, стекла и других материалов. Этот образец перепрограммирован без чертежей более \"опасных \" вещей."
+	desc = "Производит вещи, используя запасы железа, стекла и других материалов. Этот образец перепрограммирован без чертежей более \"опасных\" вещей."
 	circuit = /obj/item/circuitboard/machine/autolathe/secure
 
 /obj/machinery/autolathe/secure/Initialize(mapload)

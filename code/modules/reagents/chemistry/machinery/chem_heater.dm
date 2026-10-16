@@ -54,7 +54,7 @@
 
 /obj/machinery/chem_heater/examine_display_content(mob/user)
 	. += "\
-	– Вещества нагреваются со скоростью в <b>[heater_coefficient*1000]%</b>."
+	– Эффективность нагрева содержимого: <b>[heater_coefficient*1000]%</b>."
 
 /obj/machinery/chem_heater/process()
 	..()

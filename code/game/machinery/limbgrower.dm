@@ -2,7 +2,7 @@
 /// See [limbgrower_designs.dm] for everything we can make.
 /obj/machinery/limbgrower
 	name = "limb grower"
-	desc = "It grows new limbs using Synthflesh."
+	desc = "Биорепликатор, способный выращивать органы и конечности, используя синтплоть в качестве сырья."
 	icon = 'icons/obj/machines/limbgrower.dmi'
 	icon_state = "limbgrower_idleoff"
 	density = TRUE
