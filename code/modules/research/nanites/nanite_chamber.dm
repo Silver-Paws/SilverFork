@@ -135,7 +135,7 @@
 
 /obj/machinery/nanite_chamber/proc/toggle_open(mob/user)
 	if(panel_open)
-		to_chat(user, span_notice("Для начала закройте люк техобслуживания."))
+		to_chat(user, span_notice("Для начала закройте панель техобслуживания."))
 		return
 
 	if(state_open)

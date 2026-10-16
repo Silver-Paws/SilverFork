@@ -129,7 +129,7 @@
 			return
 
 		if(!panel_open) //is the panel open ?
-			to_chat(user, span_warning("Для начала нужно открыть люк техобслуживания!"))
+			to_chat(user, span_warning("Для начала нужно открыть панель техобслуживания!"))
 			return
 
 		var/turf/T = get_turf(user)

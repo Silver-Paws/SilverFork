@@ -816,7 +816,7 @@
 
 /obj/machinery/mecha_part_fabricator/proc/is_insertion_ready(mob/user)
 	if(panel_open)
-		to_chat(user, span_warning("Вы не можете ничего загрузить [src], пока люк техобслуживания открыт!"))
+		to_chat(user, span_warning("Вы не можете ничего загрузить [src], пока панель техобслуживания открыт!"))
 		return FALSE
 	if(being_built)
 		to_chat(user, span_warning("\The [src] сейчас в процессе производства! Подождите завершения."))

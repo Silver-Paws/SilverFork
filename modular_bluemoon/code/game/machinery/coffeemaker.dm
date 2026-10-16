@@ -94,7 +94,7 @@
 		return
 
 	if(panel_open)
-		. += span_notice("Люк техобслуживания [src] открыт!")
+		. += span_notice("Панель техобслуживания [src] открыт!")
 		return
 
 	if(coffeepot || cartridge)

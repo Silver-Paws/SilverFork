@@ -130,7 +130,7 @@
 	if(istype(I, /obj/item/reagent_containers) && !(I.item_flags & ABSTRACT) && I.is_open_container() || is_type_in_list(I, CLOSED_CONTAINERS_OPERABLE))
 		. = TRUE // no afterattack
 		if(panel_open)
-			to_chat(user, "<span class='warning'>Вы не можете работать с [src.name], пока открыт люк техобслуживания!</span>")
+			to_chat(user, "<span class='warning'>Вы не можете работать с [src.name], пока открыт панель техобслуживания!</span>")
 			return
 		var/obj/item/reagent_containers/B = I
 		if(!user.transferItemToLoc(B, src))
@@ -142,7 +142,7 @@
 	else if(!condi && istype(I, /obj/item/storage/pill_bottle))
 		. = TRUE // no afterattack
 		if(panel_open)
-			to_chat(user, "<span class='warning'>Вы не можете работать с [src.name], пока открыт люк техобслуживания!</span>")
+			to_chat(user, "<span class='warning'>Вы не можете работать с [src.name], пока открыт панель техобслуживания!</span>")
 			return
 		if(!user.transferItemToLoc(I, src))
 			return

@@ -118,7 +118,7 @@
 			to_chat(user, span_warning("Внутри уже вставлен газовый бак!"))
 			return TRUE
 		if(panel_open)
-			to_chat(user, span_warning("Для начала закройте люк техобслуживания!"))
+			to_chat(user, span_warning("Для начала закройте панель техобслуживания!"))
 			return TRUE
 		if(!user.transferItemToLoc(W, src))
 			return

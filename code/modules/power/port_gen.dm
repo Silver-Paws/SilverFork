@@ -206,9 +206,9 @@
 	panel_open = !panel_open
 	tool.play_tool_sound(src)
 	if(panel_open)
-		to_chat(user, span_notice("Вы открыли люк техобслуживания."))
+		to_chat(user, span_notice("Вы открыли панель техобслуживания."))
 	else
-		to_chat(user, span_notice("Вы закрыли люк техобслуживания."))
+		to_chat(user, span_notice("Вы закрыли панель техобслуживания."))
 	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/power/port_gen/pacman/crowbar_act(mob/living/user, obj/item/tool)

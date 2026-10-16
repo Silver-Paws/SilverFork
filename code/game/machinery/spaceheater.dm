@@ -168,7 +168,7 @@
 			user.visible_message("\The [user] вставляет батарею в разъём \the [src].", span_notice("Вы вставляете батарею в \the [src]."))
 			SStgui.update_uis(src)
 		else
-			to_chat(user, span_warning("Люк техобслуживания должен быть открыт для того, чтобы вставить батарею!"))
+			to_chat(user, span_warning("Панель техобслуживания должен быть открыт для того, чтобы вставить батарею!"))
 			return
 	else if(default_deconstruction_crowbar(I))
 		return
@@ -178,7 +178,7 @@
 /obj/machinery/space_heater/screwdriver_act(mob/living/user, obj/item/tool)
 	..()
 	panel_open = !panel_open
-	user.visible_message("\The [user] [panel_open ? "открывает" : "закрывает"] люк техобслуживания \the [src].", span_notice("Вы [panel_open ? "открываете" : "закрываете"] люк техобслуживания \the [src]."))
+	user.visible_message("\The [user] [panel_open ? "открывает" : "закрывает"] панель техобслуживания \the [src].", span_notice("Вы [panel_open ? "открываете" : "закрываете"] панель техобслуживания \the [src]."))
 	update_icon()
 	if(panel_open)
 		interact(user)
