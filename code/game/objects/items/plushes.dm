@@ -183,10 +183,9 @@
 /obj/item/toy/plush/handle_atom_del(atom/A)
 	if(A == stored_weapon)
 		stored_weapon = null
-	return ..()
 	if(A == grenade)
 		grenade = null
-	..()
+	return ..()
 
 
 /obj/item/toy/plush/attack(mob/living/M, mob/living/carbon/user)
