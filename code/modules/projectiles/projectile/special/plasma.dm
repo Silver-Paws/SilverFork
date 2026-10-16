@@ -40,9 +40,10 @@
 			range++
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
-	if(!target.mind && isanimal(target))
-		var/mob/living/simple_animal/S = target
-		S.apply_damage(round((damage * simplemob_damage_bonus) * (ismegafauna(S) ? 0.5 : 1)), BRUTE)
+	if(isanimal(target))
+		var/mob/living/simple_animal/animal_target = target
+		if(!animal_target.mind)
+			animal_target.apply_damage(round((damage * simplemob_damage_bonus) * (ismegafauna(animal_target) ? 0.5 : 1)), BRUTE)
 
 /obj/item/projectile/plasma/adv
 	damage = 19
