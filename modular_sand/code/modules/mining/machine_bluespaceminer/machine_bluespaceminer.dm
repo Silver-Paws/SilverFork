@@ -146,7 +146,7 @@ GLOBAL_VAR_INIT(bsminers_lock, FALSE)
 			percent_core_integrity_text = span_green(percent_core_integrity_text)
 		display_list += "Состояние ядра: [percent_core_integrity_text]."
 
-	display_list += "Термостат машины горит <b>[get_bs_core_temp_damage_multiplier() > 1 ? span_danger("красным") : span_notice("синим")]</b> цветом."
+	display_list += "Термометр машины горит <b>[get_bs_core_temp_damage_multiplier() > 1 ? span_danger("красным") : span_notice("синим")]</b> цветом."
 	display_list += "Барометр машины горит <b>[get_bs_core_pressure_damage_multiplier() > 1 ? span_red("красным") : span_green("зелёным")]</b> цветом."
 
 	. += "– [jointext(display_list, "\n– ")]"
