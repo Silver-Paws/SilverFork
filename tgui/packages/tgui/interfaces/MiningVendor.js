@@ -26,7 +26,7 @@ export const MiningVendor = (props) => {
 
   return (
     <Window
-      width={620}
+      width={640}
       height={510}>
       <Window.Content>
         <Stack fill vertical>
