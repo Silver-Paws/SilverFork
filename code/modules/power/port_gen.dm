@@ -69,7 +69,7 @@
 
 /obj/machinery/power/port_gen/examine(mob/user)
 	. = ..()
-	. += "Он[!active? " не " :""]работает."
+	. += "[src] [!active? "не " :""]работает."
 
 /////////////////
 // P.A.C.M.A.N //
@@ -89,12 +89,12 @@
 	. = ..()
 	if(anchored)
 		connect_to_network()
+	var/obj/item/sheet = sheet_path
+	generate_sheet_name(sheet)
 
-/obj/machinery/power/port_gen/pacman/Initialize(mapload)
-	. = ..()
-
-	var/obj/S = sheet_path
-	sheet_name = initial(S.name)
+/obj/machinery/power/port_gen/pacman/proc/generate_sheet_name(obj/item/sheet)
+	var/ru_sheet_name = vocabulary_to_ru(GLOB.mat_ru_genitive, sheet.name)
+	sheet_name = lowertext(ru_sheet_name)
 
 /obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
@@ -115,9 +115,9 @@
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()
-	. += span_notice("В генераторе есть [sheets] u  [sheet_name] остатка топлива, производя [DisplayPower(power_gen)] в цикл.")
+	. += span_notice("В генераторе есть [sheets] шт. [sheet_name] остатком. Генератор может произвести [DisplayPower(power_gen)] за цикл времени.")
 	if(anchored)
-		. += span_notice("Оно прикреплено к поверхности пола.")
+		. += span_notice("Генератор прикреплён к поверхности пола.")
 
 /obj/machinery/power/port_gen/pacman/examine_display_content(mob/user)
 	. += "– Эффективность использования топлива увеличена на <b>[(consumption*100)-100]%</b>."
@@ -175,36 +175,46 @@
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
-			to_chat(user, "<span class='notice'>The [src.name] is full!</span>")
+			to_chat(user, span_notice("Хранилище [src.name] заполнено доверху!"))
 			return
-		to_chat(user, "<span class='notice'>You add [amount] sheets to the [src.name].</span>")
+		to_chat(user, span_notice("Вы добавили [amount] шт. [sheet_name] в хранилище [src.name]."))
 		sheets += amount
 		addstack.use(amount)
-		return
-	else if(!active)
-		if(O.tool_behaviour == TOOL_WRENCH)
-			if(!anchored && !isinspace())
-				anchored = TRUE
-				connect_to_network()
-				to_chat(user, "<span class='notice'>You secure the generator to the floor.</span>")
-			else if(anchored)
-				anchored = FALSE
-				disconnect_from_network()
-				to_chat(user, "<span class='notice'>You unsecure the generator from the floor.</span>")
+		return TRUE
 
-			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-			return
-		else if(O.tool_behaviour == TOOL_SCREWDRIVER)
-			panel_open = !panel_open
-			O.play_tool_sound(src)
-			if(panel_open)
-				to_chat(user, "<span class='notice'>You open the access panel.</span>")
-			else
-				to_chat(user, "<span class='notice'>You close the access panel.</span>")
-			return
-		else if(default_deconstruction_crowbar(O))
-			return
 	return ..()
+
+/obj/machinery/power/port_gen/pacman/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(!active)
+		to_chat(user, span_danger("Для начало нужно выключить [src]!"))
+		return FALSE
+	if(!anchored && !isinspace())
+		anchored = TRUE
+		connect_to_network()
+		to_chat(user, span_notice("Вы прикрутили генератор к поверхности пола."))
+		return TOOL_ACT_TOOLTYPE_SUCCESS
+	else if(anchored)
+		anchored = FALSE
+		disconnect_from_network()
+		to_chat(user, span_notice("Вы открепили генератор от пола."))
+	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
+	return TOOL_ACT_TOOLTYPE_SUCCESS
+
+/obj/machinery/power/port_gen/pacman/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	panel_open = !panel_open
+	tool.play_tool_sound(src)
+	if(panel_open)
+		to_chat(user, span_notice("Вы открыли люк техобслуживания."))
+	else
+		to_chat(user, span_notice("Вы закрыли люк техобслуживания."))
+	return TOOL_ACT_TOOLTYPE_SUCCESS
+
+/obj/machinery/power/port_gen/pacman/crowbar_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(default_deconstruction_crowbar(tool))
+		return STOP_ATTACK_PROC_CHAIN
 
 /obj/machinery/power/port_gen/pacman/emag_act(mob/user)
 	if(obj_flags & EMAGGED)

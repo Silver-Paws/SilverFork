@@ -26,7 +26,7 @@
 		rating_speed = M.rating
 
 /obj/machinery/processor/examine_display_content(mob/user)
-	. += "– Выдаёт <b>[rating_amount]</b> шт. сырья на скорости <b>[rating_speed*100]%</b>."
+	. += "– Производится <b>[rating_amount]</b> шт. сырья на скорости <b>[rating_speed*100]%</b>."
 
 /obj/machinery/processor/proc/process_food(datum/food_processor_process/recipe, atom/movable/what)
 	if (recipe.output && loc && !QDELETED(src))
