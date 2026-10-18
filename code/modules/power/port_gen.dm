@@ -116,7 +116,7 @@
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	. = ..()
-	. += span_notice("В генераторе есть [sheets] шт. [sheet_name] остатком. Генератор может произвести [DisplayPower(power_gen)] за цикл времени.")
+	. += span_notice("В генераторе есть [sheets] шт. [sheet_name] остатка. Генератор может произвести [DisplayPower(power_gen)] за цикл работы.")
 	if(anchored)
 		. += span_notice("Генератор прикреплён к поверхности пола.")
 

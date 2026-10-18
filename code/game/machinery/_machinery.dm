@@ -830,7 +830,7 @@ Class Procs:
 	var/status_display = examine_display(user)
 	if(status_display)
 		. += status_display
-	if(user.research_scanner && component_parts)
+	if(HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER) && component_parts)
 		. += display_parts(user, TRUE)
 
 /**
@@ -841,7 +841,12 @@ Class Procs:
 		return null
 	if(is_blind(user))
 		return span_warning("Вы ничего не можете разглядеть!")
-	if(!isobserver(user) && (!isAI(user) && !iscyborg(user)) && !in_range(user, src))
+	var/is_close = isobserver(user) \
+		|| isAI(user) \
+		|| iscyborg(user) \
+		|| in_range(user, src) \
+		|| (HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER) && can_see(user, src))
+	if(!is_close)
 		return span_warning("Издалека видно небольшой дисплей.")
 	if(!isobserver(user) && !is_operational())
 		return span_warning("Статус-дисплей потух чёрным экраном.")
@@ -856,10 +861,9 @@ Class Procs:
 
 /obj/machinery/Topic(href, href_list)
 	if(href_list["display_stats"])
-		if(!isobserver(usr) && (!isAI(usr) && !iscyborg(usr)) && !in_range(usr, src) && !is_blind(usr)) // Да, здесь понадобится usr - это по сути верб-вызов гиперссылки из чата.
-			to_chat(usr, span_warning("Вы не можете разглядеть статус-дисплей у [src] с этого расстояния!"))
-			return TRUE
-		if(!isobserver(usr) && !is_operational()) // И я не хочу, чтобы описание дёргалось по предварительно экзамайнатой машине
+		if(!check_read_stats(usr)) // Да, здесь понадобится usr - это по сути верб-вызов гиперссылки из чата.
+			return TRUE // И я не хочу, чтобы описание дёргалось по предварительно экзамайнатой машине
+		if(!isobserver(usr) && !is_operational())
 			to_chat(usr, span_warning("Статус-дисплей у [src] потух!"))
 			return TRUE
 
@@ -871,6 +875,22 @@ Class Procs:
 	. = ..()
 	if(.)
 		return .
+
+/**
+ * Булевый прок-проверка.
+ *
+ * Проверяет является ли юзер: гостом, ИИ/киборгом, слепым; в радиусе ли 1 тайла он; имеет ли трейт научсканера и в радиусе видимости ли src
+ */
+/obj/machinery/proc/check_read_stats(mob/user)
+	if(isobserver(user) || isAI(user) || iscyborg(user))
+		return TRUE
+	if(is_blind(user))
+		to_chat(user, span_warning("Вы слепы и ничего не можете рассмотреть!"))
+		return FALSE
+	if(in_range(user, src) || (HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER) && can_see(user, src)))
+		return TRUE
+	to_chat(user, span_warning("Вы не можете разглядеть статус-дисплей у [src] с этого расстояния!"))
+	return FALSE
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()
