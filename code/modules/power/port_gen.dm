@@ -186,7 +186,7 @@
 
 /obj/machinery/power/port_gen/pacman/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
-	if(!active)
+	if(active)
 		to_chat(user, span_danger("Для начала нужно выключить [src]!"))
 		return FALSE
 	if(!anchored && !isinspace())
