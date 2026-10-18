@@ -26,9 +26,8 @@
 	return ..()
 
 /obj/machinery/power/port_gen/connect_to_network()
-	if(!anchored)
-		return FALSE
-	. = ..()
+	if(anchored)
+		return . = ..()
 
 /obj/machinery/power/port_gen/proc/HasFuel() //Placeholder for fuel check.
 	return TRUE
@@ -87,10 +86,12 @@
 
 /obj/machinery/power/port_gen/pacman/Initialize(mapload)
 	. = ..()
-	if(anchored)
-		connect_to_network()
 	var/obj/item/sheet = sheet_path
 	generate_sheet_name(sheet)
+
+/obj/machinery/power/port_gen/pacman/on_construction()
+	. = ..()
+	connect_to_network()
 
 /obj/machinery/power/port_gen/pacman/proc/generate_sheet_name(obj/item/sheet)
 	var/ru_sheet_name = vocabulary_to_ru(GLOB.mat_ru_genitive, sheet.name)
@@ -185,24 +186,27 @@
 	return ..()
 
 /obj/machinery/power/port_gen/pacman/wrench_act(mob/living/user, obj/item/tool)
-	. = ..()
 	if(active)
-		to_chat(user, span_danger("Для начала нужно выключить [src]!"))
+		to_chat(user, span_danger("Для начала [src] нужно выключить!"))
 		return FALSE
-	if(!anchored && !isinspace())
-		anchored = TRUE
+	if(!anchored)
+		if(isinspace())
+			to_chat(user, span_danger("[src] нельзя закрепить в космосе!"))
+			return FALSE
+		set_anchored(TRUE)
 		connect_to_network()
-		to_chat(user, span_notice("Вы прикрутили генератор к поверхности пола."))
-		return TOOL_ACT_TOOLTYPE_SUCCESS
-	else if(anchored)
-		anchored = FALSE
+		to_chat(user, span_notice("Вы прикрепили [src] к поверхности пола."))
+	else
+		set_anchored(TRUE)
 		disconnect_from_network()
-		to_chat(user, span_notice("Вы открепили генератор от пола."))
+		to_chat(user, span_notice("Вы открепили [src] от пола."))
+	tool.play_tool_sound(src, 50)
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/power/port_gen/pacman/screwdriver_act(mob/living/user, obj/item/tool)
-	. = ..()
+	if(flags_1 & NODECONSTRUCT_1)
+		return FALSE
 	panel_open = !panel_open
 	tool.play_tool_sound(src)
 	if(panel_open)

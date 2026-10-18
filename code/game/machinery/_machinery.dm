@@ -723,7 +723,7 @@ Class Procs:
 /obj/proc/can_be_unfasten_wrench(mob/user, silent) //if we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
 	if(!(isfloorturf(loc) || istype(loc, /turf/open/indestructible)) && !anchored)
 		if(!silent)
-			to_chat(user, span_warning("[src] должен находится на полу, чтобы закрутить!"))
+			to_chat(user, span_warning("[src] не выйдет прикрутить к поверхности, которой нет!"))
 		return FAILED_UNFASTEN
 	return SUCCESSFUL_UNFASTEN
 
@@ -733,12 +733,12 @@ Class Procs:
 		if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
 			return can_be_unfasten
 		if(time)
-			to_chat(user, span_notice("Вы начинаете [anchored ? "откручивать" : "вкручивать"] [src]..."))
+			to_chat(user, span_notice("Вы начинаете [anchored ? "откручивать" : "прикручивать"] [src]..."))
 		I.play_tool_sound(src, 50)
 		var/prev_anchored = anchored
 		//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
 		if(I.use_tool(src, user, time, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
-			to_chat(user, span_notice("Вы [anchored ? "открутили [src] от" : "вкрутили [src] к"] поверхности пола."))
+			to_chat(user, span_notice("Вы [anchored ? "открутили [src] от" : "прикрутили [src] к"] поверхности пола."))
 			setAnchored(!anchored)
 			check_on_table()
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
