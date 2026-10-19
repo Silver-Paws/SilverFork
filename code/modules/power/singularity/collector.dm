@@ -206,7 +206,7 @@
 		else
 			. += "\
 			– Производится <b>[(last_push*RAD_COLLECTOR_MINING_CONVERSION_RATE)*((60 SECONDS)/SSmachines.wait)]</b> научных очков в минуту.\n\
-			– b>Тритий</b> и <b>кислород</b> внутри бака сжигаются в <b>углекислый газ</b>."
+			– <b>Тритий</b> и <b>кислород</b> внутри бака сжигаются в <b>углекислый газ</b>."
 
 /obj/machinery/power/rad_collector/obj_break(damage_flag)
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))

@@ -94,7 +94,7 @@
 		return
 
 	if(panel_open)
-		. += span_notice("Панель техобслуживания [src] открыт!")
+		. += span_notice("Панель техобслуживания [src] открыта!")
 		return
 
 	if(coffeepot || cartridge)
@@ -129,7 +129,7 @@
 	. += "– Скорость варки кофе: <b>[speed*100]%</b>."
 	if(coffeepot)
 		for(var/datum/reagent/consumable/cawfee as anything in coffeepot.reagents.reagent_list)
-			. += "\n– В кофейнике [cawfee.volume]u жидкости."
+			. += "\n– В кофейнике [round(coffeepot.reagents.total_volume, 0.1)]u жидкости."
 	if(cartridge)
 		if(cartridge.charges < 1)
 			. += "\n– Картридж с молотым кофе пуст."

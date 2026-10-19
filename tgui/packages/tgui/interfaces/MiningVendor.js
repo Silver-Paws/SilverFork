@@ -41,7 +41,7 @@ export const MiningVendor = (props) => {
                   Ваш баланс: <b>{data.user.points} шахтёрских очков</b>.
                   <br />
                   <Box color="good">
-                    Текущая скидка: <b>{data.discount * 100}%</b>
+                    Текущая скидка: <b>{Math.round(data.discount * 1000) / 10}%</b>
                     {data.discount === 0 && ' Какая жалость...'}
                   </Box>
                 </Box>

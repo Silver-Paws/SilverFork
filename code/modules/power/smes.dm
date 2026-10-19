@@ -112,7 +112,7 @@
 				to_chat(user, span_notice("Терминал был найден."))
 				break
 		if(!terminal)
-			to_chat(user, span_alert("Не было найдено энергтерминала."))
+			to_chat(user, span_alert("Не было найдено энерготерминала."))
 			return
 		set_machine_stat(machine_stat & ~BROKEN)
 		update_icon()
@@ -488,7 +488,7 @@
 
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"
-	desc = "Свермагический маностатический накопитель, также называемый SMES."
+	desc = "Сверхмагический маностатический накопитель, также называемый SMES."
 
 /obj/machinery/power/smes/magical/process()
 	capacity = INFINITY

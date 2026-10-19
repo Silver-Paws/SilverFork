@@ -848,7 +848,10 @@ Class Procs:
 		|| (HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER) && can_see(user, src))
 	if(!is_close)
 		return span_warning("Издалека видно небольшой дисплей.")
-	if(!isobserver(user) && !is_operational())
+	var/isnt_working = !isobserver(user) \
+		&& ((machine_stat & (BROKEN|MAINT)) \
+		|| ((machine_stat & NOPOWER) && use_power != NO_POWER_USE))
+	if(isnt_working)
 		return span_warning("Статус-дисплей потух чёрным экраном.")
 
 	return span_notice("Вы видите работающий <a href='?src=[REF(src)];display_stats=1'>статус-дисплей</a>.")
@@ -863,7 +866,7 @@ Class Procs:
 	if(href_list["display_stats"])
 		if(!check_read_stats(usr)) // Да, здесь понадобится usr - это по сути верб-вызов гиперссылки из чата.
 			return TRUE // И я не хочу, чтобы описание дёргалось по предварительно экзамайнатой машине
-		if(!isobserver(usr) && !is_operational())
+		if(!isobserver(usr) && ((machine_stat & (BROKEN|MAINT)) || ((machine_stat & NOPOWER) && use_power != NO_POWER_USE)))
 			to_chat(usr, span_warning("Статус-дисплей у [src] потух!"))
 			return TRUE
 

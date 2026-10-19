@@ -538,7 +538,7 @@
 /obj/machinery/chem_dispenser/examine(mob/user)
 	. = ..()
 	if(panel_open)
-		. += span_notice("Панель техобслуживания [src] открыт!")
+		. += span_notice("Панель техобслуживания [src] открыта!")
 
 /obj/machinery/chem_dispenser/examine_display_content(mob/user)
 	. += "\

@@ -168,7 +168,7 @@
 			user.visible_message("\The [user] вставляет батарею в разъём \the [src].", span_notice("Вы вставляете батарею в \the [src]."))
 			SStgui.update_uis(src)
 		else
-			to_chat(user, span_warning("Панель техобслуживания должен быть открыт для того, чтобы вставить батарею!"))
+			to_chat(user, span_warning("Панель техобслуживания должна быть открытой для того, чтобы вставить батарею!"))
 			return
 	else if(default_deconstruction_crowbar(I))
 		return

@@ -86,8 +86,7 @@
 
 /obj/machinery/power/port_gen/pacman/Initialize(mapload)
 	. = ..()
-	var/obj/item/sheet = sheet_path
-	generate_sheet_name(sheet)
+	generate_sheet_name(sheet_path)
 
 /obj/machinery/power/port_gen/pacman/on_construction()
 	. = ..()
@@ -197,7 +196,7 @@
 		connect_to_network()
 		to_chat(user, span_notice("Вы прикрепили [src] к поверхности пола."))
 	else
-		set_anchored(TRUE)
+		set_anchored(FALSE)
 		disconnect_from_network()
 		to_chat(user, span_notice("Вы открепили [src] от пола."))
 	tool.play_tool_sound(src, 50)

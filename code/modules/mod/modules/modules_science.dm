@@ -32,6 +32,10 @@
 	removable = FALSE
 	var/explosion_detection_dist = 21
 
+/obj/item/mod/module/reagent_scanner/advanced/on_unequip()
+	if(active)
+		on_deactivation()
+
 /obj/item/mod/module/reagent_scanner/advanced/on_activation()
 	. = ..()
 	if(!.)
