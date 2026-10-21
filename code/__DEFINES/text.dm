@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(mat_ru_nominative, list(
 	"bamboo" = "бамбук",
 	"rigid material" = "твёрдый материал",
 	"durathread" = "дюраткань",
-	"goliath hide plates" = "пластины голифа",
+	"goliath hide plates" = "пластины голиафа",
 	"plasteel" = "пласталь",
 	"plastitanium" = "пластитан",
 	"plastitanium glass" = "пластитановое стекло",

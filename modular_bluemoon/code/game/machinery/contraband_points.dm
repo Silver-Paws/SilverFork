@@ -627,7 +627,7 @@
 		var/obj/item/card/id/id_card = I
 		to_chat(user, span_info("Вы проводите [id_card] по [src]  и начинаете процесс передачи."))
 		var/choice = alert(user, "Вы желаете перенести очки на или со счёта карты?", "Передача очков награды", "Со счёта карточки", "На счёт карточки", "Отменить")
-		if(choice != "Cancel")
+		if(choice != "Отменить")
 			var/amount = input(user, "Сколько очков вы желаете перенести? Баланс ID-карты: [id_card.contraband_points], баланс карточки: [points]", "Перенос очков") as num|null
 			if(!amount || amount <= 0)
 				return

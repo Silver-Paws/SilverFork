@@ -92,7 +92,7 @@ export const MiningVendor = (props) => {
                               onClick={() => act('purchase', {
                                 ref: product.ref,
                               })} >
-                              {product.price} {pointsWord(data.user.points)}
+                              {product.price} {pointsWord(product.price)}
                             </Button>
                           </Table.Cell>
                         </Table.Row>

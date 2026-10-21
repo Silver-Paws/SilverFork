@@ -81,8 +81,8 @@
 	icon_state = "combined"
 	item_state = "combined"
 	can_flashlight = 0
-	toggle_message = "Вы опустили визор шлема"
-	alt_toggle_message = "Вы подняли визор шлема"
+	toggle_message = "Вы опустили визор"
+	alt_toggle_message = "Вы подняли визор"
 	can_toggle = 1
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR
 	strip_delay = 80

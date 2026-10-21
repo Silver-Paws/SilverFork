@@ -14,6 +14,9 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
+import { plural } from 'common/ru/plural';
+const plurallists = (n) => plural(n, 'лист', 'листа', 'листов');
+
 export const AmmoWorkbench = () => {
   const [tab, setTab] = useState(1);
   return (
@@ -245,7 +248,7 @@ const MaterialRow = (props) => {
       <Table.Cell>{toTitleCase(material.name)}</Table.Cell>
       <Table.Cell collapsing textAlign="right">
         <Box mr={2} color="label" inline>
-          {amountAvailable} шт. листов
+          {amountAvailable} {plurallists(amountAvailable)}
         </Box>
       </Table.Cell>
       <Table.Cell collapsing>

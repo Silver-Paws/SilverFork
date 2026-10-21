@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 
 /obj/machinery/gateway
 	name = "gateway"
-	desc = "Мистический гейтвей, технология неизвестых лиц, позволяющая сверхсветовые путешествия к особо отдалённым местам."
+	desc = "Мистический гейтвей, технология неизвестных лиц, позволяющая сверхсветовые путешествия к особо отдалённым местам."
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "portal_frame"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

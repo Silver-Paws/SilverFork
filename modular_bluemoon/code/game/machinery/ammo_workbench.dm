@@ -602,7 +602,7 @@
 
 /obj/machinery/ammo_workbench/proc/is_insertion_ready(mob/user, obj/item/O)
 	if(panel_open)
-		to_chat(user, span_warning("Нельзя пополнить [src], пока открыта панель!"))
+		to_chat(user, span_warning("Нельзя вставить что-либо в [src], пока открыта панель!"))
 		return FALSE
 	if(disabled)
 		to_chat(user, span_warning("Загрузочные ленты [src] не включаются!"))

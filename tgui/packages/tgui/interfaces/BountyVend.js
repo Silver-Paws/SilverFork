@@ -34,7 +34,7 @@ export const BountyVend = (props) => {
               {data.user ? (
                 <Box>
                   Добро пожаловать, <b>{data.user.name || "Неизвестный"}</b>,{' '}
-                  <b>{data.user.job || "БЕЗ РАБОТЫ"}</b>!
+                  <b>{data.user.job || "БЕЗРАБОТНЫЙ"}</b>!
                   <br />
                   Ваш баланс: <b>{data.user.points} {pointsWord(data.user.points)} награды</b>.
                   <br />

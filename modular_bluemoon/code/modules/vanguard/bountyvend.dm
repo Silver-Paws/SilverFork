@@ -38,7 +38,7 @@
 	. = ..()
 	. += span_boldnotice("<hr><center>Выберите себе набор защиты!</center>")
 	. += "<div style='margin-top:4px;'>• <b>[span_notice("EVA")]</b> – бронированная EVA, способная защитить не только от космоса, но и его угроз!</div>"
-	. += "<div style='margin-top:4px;'>• <b>[span_notice("Комбенизон")]</b> – .</div>"
+	. += "<div style='margin-top:4px;'>• <b>[span_notice("Комбинезон")]</b> – бронированный шлем и бронежилет с покрытием всего тела для надёжной защиты!</div>"
 
 // ============================================
 // BOUNTY VEND
@@ -236,8 +236,8 @@
 			.["user"]["name"] = C.registered_account.account_holder || "неизвестный пользователь"
 			.["user"]["job"] = C.registered_account.account_job?.title || "БЕЗРАБОТНЫЙ"
 		else
-			.["user"]["name"] = "Unknown"
-			.["user"]["job"] = "No ID"
+			.["user"]["name"] = "неизвестный пользователь"
+			.["user"]["job"] = "ДОЛЖНОСТЬ НЕИЗВЕСТНА"
 
 /obj/machinery/bountyvend/ui_act(action, params)
 	if(..())
@@ -287,7 +287,7 @@
 
 /obj/machinery/bountyvend/proc/RedeemVoucher(obj/item/vanguard_voucher_class/voucher, mob/redeemer)
 	var/items = list(
-		"Подрывник" = image(icon = 'modular_bluemoon/icons/obj/guns/energy.dmi', icon_state = "flashgun"),
+		"Гренадёр" = image(icon = 'modular_bluemoon/icons/obj/guns/energy.dmi', icon_state = "flashgun"),
 		"Фельдшер" = image(icon = 'icons/obj/stack_objects.dmi', icon_state = "cms"),
 		"Штурмовик" = image(icon = 'modular_bluemoon/icons/obj/guns/projectile.dmi', icon_state = "sauer")
 	)
@@ -296,7 +296,7 @@
 		return
 	var/drop_location = drop_location()
 	switch(selection)
-		if("Эксперт по проникновению")
+		if("Гренадёр")
 			new /obj/item/storage/secure/briefcase/vanguard/lasgun(drop_location)
 			new /obj/item/storage/belt/military/assault/demolition(drop_location)
 			new /obj/item/extinguisher/mini(drop_location)
@@ -326,7 +326,7 @@
 /obj/machinery/bountyvend/proc/RedeemSVoucher(obj/item/vanguard_voucher_suit/voucher, mob/redeemer)
 	var/items = list(
 		"EVA" = image(icon = 'modular_bluemoon/Ren/Icons/Obj/cloth.dmi', icon_state = "hardsuit0-explorer"),
-		"Комбенизон" = image(icon = 'modular_bluemoon/icons/obj/clothing/suit.dmi', icon_state = "combined")
+		"Комбинезон" = image(icon = 'modular_bluemoon/icons/obj/clothing/suit.dmi', icon_state = "combined")
 	)
 	var/selection = show_radial_menu(redeemer, src, items, require_near = TRUE, tooltips = TRUE)
 	if(!selection || !Adjacent(redeemer) || QDELETED(voucher) || voucher.loc != redeemer)
@@ -336,7 +336,7 @@
 		if("EVA")
 			new /obj/item/clothing/suit/space/vanguard(drop_location)
 			new /obj/item/clothing/head/helmet/space/vanguard(drop_location)
-		if("Комбенизон")
+		if("Комбинезон")
 			new /obj/item/clothing/suit/armor/vanguard(drop_location)
 			new /obj/item/clothing/head/helmet/vanguard(drop_location)
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)

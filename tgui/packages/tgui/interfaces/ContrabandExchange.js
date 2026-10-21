@@ -56,7 +56,7 @@ export const ContrabandExchange = (props, context) => {
                 <LabeledList.Item label="Ваша ID-карта">
                   {user_has_id ? (
                     <Box color="good">
-                      обнаружена. Ваш счёт: {user_points} {plural(total_value, 'очко', 'очка', 'очков')}
+                      обнаружена. Ваш счёт: {user_points} {plural(user_points, 'очко', 'очка', 'очков')}
                     </Box>
                   ) : (
                     <Box color="bad">ID-карты не обнаружено</Box>
@@ -87,6 +87,7 @@ export const ContrabandExchange = (props, context) => {
                           <Table.Cell collapsing textAlign="right">Суммарно</Table.Cell>
                         </Table.Row>
                         {grouped.map(item => {
+                          const isMission = item.adjusted_value === 'Mission';
                           const hasAdjusted = item.adjusted_value !== undefined
                             && item.adjusted_value !== null;
                           const unit = hasAdjusted
@@ -99,7 +100,9 @@ export const ContrabandExchange = (props, context) => {
                                 {item.count}
                               </Table.Cell>
                               <Table.Cell collapsing textAlign="right">
-                                {hasAdjusted ? (
+                                {isMission ? (
+                                  <Box as="span" color="good">Предмет задания</Box>
+                                ) : hasAdjusted ? (
                                   <Tooltip
                                     content={`Базовая цена: ${item.base_value}`}
                                     position="left">
@@ -121,7 +124,7 @@ export const ContrabandExchange = (props, context) => {
                                 collapsing
                                 textAlign="right"
                                 color="good">
-                                {unit * item.count}
+                                {isMission ? '—' : unit * item.count}
                               </Table.Cell>
                             </Table.Row>
                           );
