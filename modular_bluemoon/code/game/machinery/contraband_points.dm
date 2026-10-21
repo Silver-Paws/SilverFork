@@ -442,7 +442,7 @@
 		status_report = "чёрный ящик был обнаружен. Данные самописца готовы к передаче"
 		playsound(loc, 'sound/machines/synth_yes.ogg', 30, TRUE)
 	else if(total_value > 0)
-		status_report = "контрабанда обнаружена. Общая ценность: [total_value] [ru_plural(amount, "очко", "очка", "очков")]"
+		status_report = "контрабанда обнаружена. Общая ценность: [total_value] [ru_plural(total_value, "очко", "очка", "очков")]"
 		playsound(loc, 'sound/machines/synth_yes.ogg', 30, TRUE)
 	else
 		status_report = "не обнаружено подходящей контрабанды"
