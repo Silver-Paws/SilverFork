@@ -57,7 +57,7 @@
 	var/icon_deny = "syndicate-marine-deny"
 
 	var/list/prize_list = list(
-		// ============ ОРУЖИЕ ДАЛЬНЕГО БОЯ ============
+				// ============ ОРУЖИЕ ДАЛЬНЕГО БОЯ ============
 		new /datum/data/bounty_equipment("Supressor",               	/obj/item/suppressor,                                   			500, 	"Оружие дальнего боя"),
 		new /datum/data/bounty_equipment("Spare P320",					/obj/item/gun/ballistic/automatic/pistol/sigsauer,					1000,	"Оружие дальнего боя"),
 		new /datum/data/bounty_equipment("Spare Laspistol",				/obj/item/gun/ballistic/automatic/laser/vanguard,					1000,	"Оружие дальнего боя"),
@@ -96,8 +96,9 @@
 
 		// ============ МЕДИКАМЕНТЫ ============
 		new /datum/data/bounty_equipment("First-Aid Kit",					/obj/item/storage/firstaid/regular,								100,	"Медикаменты"),
-		new /datum/data/bounty_equipment("Brute First-Aid Kit",				/obj/item/storage/firstaid/brute,								150,	"Медикаменты"),
-		new /datum/data/bounty_equipment("Burn First-Aid Kit",				/obj/item/storage/firstaid/fire,								150,	"Медикаменты"),
+		new /datum/data/bounty_equipment("Brute First-Aid Kit",				/obj/item/storage/firstaid/brute,								250,	"Медикаменты"),
+		new /datum/data/bounty_equipment("Burn First-Aid Kit",				/obj/item/storage/firstaid/fire,								250,	"Медикаменты"),
+		new /datum/data/bounty_equipment("Toxin treatment kit",				/obj/item/storage/firstaid/toxin,								350,	"Медикаменты"),
 		new /datum/data/bounty_equipment("Survival Medipen",				/obj/item/reagent_containers/hypospray/medipen/survival,		500,	"Медикаменты"),
 		new /datum/data/bounty_equipment("Ferrocortex Medipen",				/obj/item/reagent_containers/hypospray/medipen/ferrocortex,		500,	"Медикаменты"),
 		new /datum/data/bounty_equipment("CMS",								/obj/item/stack/medical/fracture_kit/cms,						750,	"Медикаменты"),
@@ -136,8 +137,8 @@
 
 		// ============ ЭЛИТНОЕ СНАРЯЖЕНИЕ =========
 		new /datum/data/bounty_equipment("ACR-5m26 spare mag (empty)",		/obj/item/ammo_box/magazine/acr5m30/empty,						2500,		"Элитное снаряжение"),
-		new /datum/data/bounty_equipment("Budget tactical first aid",		/obj/item/storage/firstaid/tactical/vanguard,					5000,		"Элитное снаряжение"),
 		new /datum/data/bounty_equipment("С-02 Permit",						/obj/item/clothing/accessory/permit/special/c_02,				5000,		"Элитное снаряжение"),
+		new /datum/data/bounty_equipment("Budget tactical first aid",		/obj/item/storage/firstaid/tactical/vanguard,					10000,		"Элитное снаряжение"),
 		new /datum/data/bounty_equipment("ACR-5m26",						/obj/item/gun/ballistic/automatic/acr5m30/pinvanguard,			20000,		"Элитное снаряжение"),
 		new /datum/data/bounty_equipment("Department Prototlathe beacon",	/obj/item/choice_beacon/departmental_protholate,				20000,		"Элитное снаряжение"),
 		new /datum/data/bounty_equipment("Hoshi modular laser",				/obj/item/gun/energy/modular_laser_rifle/carbine/pinvanguard,	25000,		"Элитное снаряжение"),
@@ -300,7 +301,7 @@
 			new /obj/item/storage/belt/military/assault/demolition(drop_location)
 			new /obj/item/extinguisher/mini(drop_location)
 			new /obj/item/storage/box/demolition(drop_location)
-			new /obj/item/clothing/glasses/meson/night(drop_location)
+			new /obj/item/clothing/glasses/meson(drop_location)
 			new /obj/item/clothing/gloves/combat(drop_location)
 		if("Фельдшер")
 			new /obj/item/stack/medical/fracture_kit/cms(drop_location)
@@ -309,7 +310,7 @@
 			new /obj/item/storage/firstaid/vanguard(drop_location)
 			new /obj/item/shield/riot/pointman(drop_location)
 			new /obj/item/defibrillator/compact/loaded(drop_location)
-			new /obj/item/clothing/glasses/hud/health/night(drop_location)
+			new /obj/item/clothing/glasses/hud/health(drop_location)
 			new /obj/item/clothing/gloves/color/latex/nitrile(drop_location)
 		if("Штурмовик")
 			new /obj/item/storage/secure/briefcase/vanguard/p320(drop_location)
