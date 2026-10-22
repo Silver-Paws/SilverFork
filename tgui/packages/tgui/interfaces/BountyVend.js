@@ -1,6 +1,6 @@
 import { classes } from 'common/react';
-import { useState } from 'react';
 import { plural } from 'common/ru/plural';
+import { useState } from 'react';
 
 import { useBackend } from '../backend';
 import { Box, Button, Section, Stack, Table } from '../components';

@@ -1,3 +1,4 @@
+import { plural } from 'common/ru/plural';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
@@ -13,8 +14,6 @@ import {
   Tabs,
 } from '../components';
 import { Window } from '../layouts';
-
-import { plural } from 'common/ru/plural';
 const plurallists = (n) => plural(n, 'лист', 'листа', 'листов');
 
 export const AmmoWorkbench = () => {
@@ -68,8 +67,7 @@ const AmmunitionsTab = () => {
       <Section
         title="Параметры станка"
         buttons={
-          <>
-            <Button.Checkbox
+          <Button.Checkbox
               textAlign="right"
               content="Турбо-режим"
               tooltip="Повышает скорость работы станка за счёт повышения трат сырья"
@@ -77,7 +75,6 @@ const AmmunitionsTab = () => {
               checked={turboBoost}
               onClick={() => act('turboBoost')}
             />
-          </>
         }
         >
         <Box inline mr={4}>
@@ -218,7 +215,8 @@ const DatadiskTab = () => {
           <Box>
             Вставленный диск данных: {datadisk_name}
             <Box textAlign="right">
-              Описание: {datadisk_desc}</Box>
+              Описание: {datadisk_desc}
+            </Box>
           </Box>
         )}
       </Section>
