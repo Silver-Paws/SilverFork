@@ -518,13 +518,13 @@
 		if(items_sent > 0)
 			user_id.contraband_points += total_value
 			to_chat(last_user, span_notice("[total_value] [ru_plural(total_value, "очко", "очка", "очков")] было начислено на вашу ID-карту."))
-		status_report = "данные чёрного ящика были извлечёны! Данные самописца пересланы NanoTrasen"
+		status_report = "данные чёрного ящика были извлечены! Данные самописца пересланы NanoTrasen"
 		pad.visible_message(span_notice("[pad] активируется и испаряет извлечённый чёрный ящик!"))
 		playsound(loc, 'sound/machines/synth_yes.ogg', 30, TRUE)
 		blackbox_recovery.initiate_recovery()
 	else if(items_sent > 0)
 		user_id.contraband_points += total_value
-		to_chat(last_user, span_notice("[total_value] очков было начислено на вашу ID-карту."))
+		to_chat(last_user, span_notice("[total_value] [ru_plural(total_value, "очко", "очка", "очков")] было начислено на вашу ID-карту."))
 		status_report = "контрабанда обработана! [total_value] [ru_plural(total_value, "очко", "очка", "очков")] выдано"
 		pad.visible_message(span_notice("[pad] активируется и испаряет контрабанду!"))
 		playsound(loc, 'sound/machines/synth_yes.ogg', 30, TRUE)
@@ -646,7 +646,7 @@
 
 /obj/item/card/contraband_point_card/examine(mob/user)
 	. = ..()
-	. += "На счету карты находится [points] очов."
+	. += "На счету карты находится [points] очков."
 
 //диски награды авангарда на сдачу
 
