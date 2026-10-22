@@ -144,6 +144,17 @@
 	if(/datum/quirk/paraplegic in blacklisted_quirks)
 		spawned.regenerate_limbs() //if you can't be a paraplegic, attempt to regenerate limbs to stop amputated limb selection
 		spawned.set_resting(FALSE, TRUE) //they probably shouldn't be on the floor because they had no legs then suddenly had legs
+	var/static/list/perdunya_ckey = list(
+		"pingvas",
+	)
+	if(ishuman(H) && (ckey(M?.client?.ckey) in perdunya_ckey) && !findtext(H.real_name, "Пердунец"))
+		var/space = findtext(H.real_name, " ")
+		var/new_name
+		if(space)
+			new_name = "[copytext(H.real_name, 1, space)] Пердунец[copytext(H.real_name, space)]"
+		else
+			new_name = "[H.real_name] Пердунец"
+		H.fully_replace_character_name(H.real_name, new_name)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
