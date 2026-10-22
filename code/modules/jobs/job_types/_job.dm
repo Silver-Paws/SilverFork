@@ -147,14 +147,14 @@
 	var/static/list/perdunya_ckey = list(
 		"pingvas",
 	)
-	if(ishuman(H) && (ckey(M?.client?.ckey) in perdunya_ckey) && !findtext(H.real_name, "Пердунец"))
-		var/space = findtext(H.real_name, " ")
+	if(ishuman(spawned) && (ckey(spawned?.client?.ckey) in perdunya_ckey) && !findtext(spawned.real_name, "Пердунец"))
+		var/space = findtext(spawned.real_name, " ")
 		var/new_name
 		if(space)
-			new_name = "[copytext(H.real_name, 1, space)] Пердунец[copytext(H.real_name, space)]"
+			new_name = "[copytext(spawned.real_name, 1, space)] Пердунец[copytext(spawned.real_name, space)]"
 		else
-			new_name = "[H.real_name] Пердунец"
-		H.fully_replace_character_name(H.real_name, new_name)
+			new_name = "[spawned.real_name] Пердунец"
+		spawned.fully_replace_character_name(spawned.real_name, new_name)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
