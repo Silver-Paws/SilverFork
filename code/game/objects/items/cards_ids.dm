@@ -97,7 +97,7 @@
 	if(istype(A, /obj/item/storage) && !(istype(A, /obj/item/storage/lockbox) || istype(A, /obj/item/storage/pod) || istype(A, /obj/item/storage/pod_luxury)))
 		return
 	if(!uses)
-		user.visible_message("<span class='warning'>[src] вспыхивает с небольшой искрой. Карта сожжена!</span>")
+		user.visible_message(span_warning("[src] вспыхивает с небольшой искрой. Карта сожжена!"))
 		playsound(src, 'sound/effects/light_flicker.ogg', 100, 1)
 		return
 	else if(uses <= 3)
@@ -106,42 +106,69 @@
 		return
 	uses = max(uses - 1, 0)
 	if(!uses)
-		user.visible_message("<span class='warning'>[src] шипит и искрится. Похоже, зарядов не осталось.</span>")
+		user.visible_message(span_warning("[src] шипит и искрится. Похоже, зарядов не осталось."))
 		playsound(src, 'sound/effects/light_flicker.ogg', 100, 1)
 
 /obj/item/card/emag/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Зарядов осталось: <b>[uses ? uses : "0"]</b>.</span>"
+	. += span_notice("Осталось <b>[uses ? uses : "0"]</b> [ru_plural(uses, "заряд", "заряда", "зарядов")].")
+
+/obj/item/card/id/examine(mob/user)
+	. = ..()
+	. += examine_basic_info(user)
 
 /obj/item/card/id/examine_more(mob/user)
 	. = ..()
-	if(mining_points)
-		. += "У карты в наличии [mining_points]  шахтёрской квоты."
-	if(contraband_points)
-		. += "У карты в наличии [contraband_points] ед. очков награды"
+	. += examine_banking_info(user)
+
+/obj/item/card/id/proc/examine_basic_info(mob/user)
+	. = list()
+	if(!bank_support || (bank_support == ID_LOCKED_BANK_ACCOUNT && !registered_account))
+		. += span_info("Эта ID-карта не имеет банковского счёта. Должно быть, устаревшая модель...")
+		return TRUE
 	if(registered_account)
-		. += "Привязанный к ID-карте аккаунт записан на имя \"[registered_account.account_holder]\" и сообщает о балансе [registered_account.account_balance] кр."
-		if(registered_account.account_job)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
-			if(D)
-				. += "На балансе [vocabulary_to_ru(GLOB.budget_ru_genitive, D.account_holder)] находится [D.account_balance] кр."
-		. += "<span class='info'>Alt-Click по ID, чтобы достать деньги из аккаунта в форме голочипов.</span>"
-		. += "<span class='info'>Вы может добавить кредиты на аккаунт, прижимая голочипы, наличные или монеты к ID.</span>"
-		if(registered_account.account_holder == user.real_name)
-			. += "<span class='boldnotice'>Если вы потеряете эту ID-карту, вы можете переподключить свой аккаунт путём Alt-Click по пустой карте, держа её и введя свой ID-номер.</span>"
+		. += span_info("Привязанный к ID-карте аккаунт записан на имя \"[registered_account.account_holder]\". На счету находится \
+		[registered_account.account_balance] [ru_plural(registered_account.account_balance, "кредит", "кредита", "кредитов")] \
+		[span_tooltip_fast("Кредиты в форме голочипов можно извлечь из ID через alt-клик. Вы можете пополнить счёт, прижимая голочипы, наличные или монеты к ID.")].")
+		. += span_boldnotice("Можно осмотреть получше.")
 	else
-		. += "<span class='info'>У данной карты нет зарегистрированного акканта. Alt-Click, чтобы добавить.</span>"
+		. += span_info("У данной карты нет зарегистрированного акканта. Alt-клик, чтобы добавить.")
+
+/obj/item/card/id/proc/examine_banking_info(mob/user)
+	. = list()
+	. += "<hr>"
+	if(mining_points || contraband_points)
+		var/list/points_text = list()
+		if(mining_points)
+			points_text += "[span_tooltip_warning("Всего было заработано [mining_points_total] очков", mining_points)] шахтёрских [ru_plural(mining_points, "очко", "очка", "очков")]"
+		if(contraband_points)
+			points_text += "[contraband_points] [ru_plural(contraband_points, "очко", "очка", "очков")] награды Авангарда"
+		. += "У карты на счету [english_list(points_text)]."
+	if(registered_account?.account_job)
+		var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
+		if(D)
+			. += "На балансе [vocabulary_to_ru(GLOB.budget_ru_genitive, D.account_holder)] находится [D.account_balance] [ru_plural(D.account_balance, "кредит", "кредита", "кредитов")]."
+		if(registered_account.account_holder == user.real_name)
+			. += span_notice("В случае утери этой ID-карты, вы можете привязать свой аккаунт через <b>alt-клик</b> по карте без аккаунта.")
+		if(registered_account.civilian_bounty)
+			. += span_info("<hr><b>Есть активное гражданское баунти:</b>\n")
+			. += "<i>[registered_account.bounty_text()]</i>"
+			. += "Количество: [registered_account.bounty_num()]"
+			var/bounty_reward = registered_account.bounty_value()
+			. += "Награда: [bounty_reward] [ru_plural(bounty_reward, "кредит", "кредита", "кредитов")]"
+	else
+		. += span_notice("К карте не привязан аккаунт.")
 
 /obj/item/card/emag/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/emagrecharge))
 		var/obj/item/emagrecharge/ER = W
 		if(ER.uses)
 			uses += ER.uses
-			to_chat(user, "<span class='notice'>Вы добавили [ER.uses] ед. зарядов к [src]. Теперь осталось [uses] использований.</span>")
+			to_chat(user, span_notice("Вы добавили [ER.uses] [ru_plural(ER.uses, "заряд", "заряда", "зарядов")] к [src]. Теперь осталось [uses] использований."))
 			playsound(src, "sparks", 100, 1)
 			ER.uses = 0
 		else
-			to_chat(user, "<span class='warning'>У [ER] не осталось зарядов.</span>")
+			to_chat(user, span_warning("У [ER] не осталось зарядов."))
 		return
 	. = ..()
 
@@ -162,9 +189,10 @@
 /obj/item/emagrecharge/examine(mob/user)
 	. = ..()
 	if(uses)
-		. += "<span class='notice'>Вы можете добавить до [uses] ед. зарядов к подходящим устройствам.</span>"
+		var/current_uses = uses
+		. += span_warning("Вы можете добавить [current_uses] [ru_plural(current_uses, "заряд", "заряда", "зарядов")] к подходящим устройствам.")
 	else
-		. += "<span class='warning'>Видна маленький, красный, мигающий свет изнутри. Израсходовано.</span>"
+		. += span_warning("Видно маленький, красный, мигающий свет изнутри. Израсходован.")
 
 /obj/item/card/emagfake
 	desc = "Это карта с какими-то магнитными полосами на её схемах."
@@ -253,8 +281,8 @@
 
 /obj/item/card/id/attack_self(mob/user)
 	if(Adjacent(user))
-		user.visible_message("<span class='notice'>[user] показывает вам: [icon2html(src, viewers(user))] [src.name].</span>", \
-					"<span class='notice'>Вы показали \the [src.name].</span>")
+		user.visible_message(span_notice("[user] показывает вам: [icon2html(src, viewers(user))] [src.name]."), \
+					span_notice("Вы показали \the [src.name]."))
 		add_fingerprint(user)
 
 /obj/item/card/id/attackby(obj/item/W, mob/user, params)
@@ -281,23 +309,25 @@
 		var/list/money_contained = money_bag.contents
 		var/money_added = mass_insert_money(money_contained, user)
 		if (money_added)
-			to_chat(user, "<span class='notice'>Вы приставляете содержимое к карте! Оно исчезает в облаке блюспейса, добавляя [money_added] кр. на связанный счёт.</span>")
+			to_chat(user, span_notice("Вы приставляете содержимое к карте! Оно исчезает в облаке блюспейса, добавляя [money_added] \
+			[ru_plural(money_added, "кредит", "кредита", "кредитов")] на связанный счёт."))
 	else
 		return ..()
 
 /obj/item/card/id/proc/insert_money(obj/item/I, mob/user)
 	if(!bank_support || !registered_account) // BLUEMOON EDIT
-		to_chat(user, "<span class='warning'>К [src] нет привязанного аккаунт для зачисления [I]!</span>")
+		to_chat(user, span_warning("К [src] нет привязанного аккаунт для зачисления [I]!"))
 		return
 	var/cash_money = I.get_item_credit_value()
 	if(!cash_money)
-		to_chat(user, "<span class='warning'>[I] не кажется стоящим что-либо!</span>")
+		to_chat(user, span_warning("[I] не кажется стоящим что-либо!"))
 		return
 	registered_account.adjust_money(cash_money)
 	if(istype(I, /obj/item/stack/spacecash) || istype(I, /obj/item/coin))
-		to_chat(user, "<span class='notice'>Вы приставляете [I] в [src]. Они исчезают в облаке блюспейса, добавляя [cash_money] кр. на связанный счёт.</span>")
+		to_chat(user, span_notice("Вы приставляете [I] в [src]. Они исчезают в облаке блюспейса, добавляя [cash_money] \
+		[ru_plural(cash_money, "кредит", "кредита", "кредитов")] на связанный счёт."))
 	else
-		to_chat(user, "<span class='notice'>Вы вставляете [I] в [src], добавляя [cash_money] кр. на связанный счёт.</span>")
+		to_chat(user, span_notice("Вы вставляете [I] в [src], добавляя [cash_money] [ru_plural(cash_money, "кредит", "кредита", "кредитов")] на связанный счёт."))
 	// после успешного зачисления:
 	if(registered_account)
 		registered_account.makeTransactionLog(
@@ -308,12 +338,13 @@
 			FALSE
 		)
 
-	to_chat(user, "<span class='notice'>Привязанный аккаунт докладывает о балансе в [registered_account.account_balance] кр.</span>")
+	var/account_current_balance = registered_account.account_balance
+	to_chat(user, span_notice("Привязанный аккаунт докладывает о балансе в [account_current_balance] [ru_plural(account_current_balance, "кредит", "кредита", "кредитов")]"))
 	qdel(I)
 
 /obj/item/card/id/proc/mass_insert_money(list/money, mob/user)
 	if(!bank_support || !registered_account)
-		to_chat(user, "<span class='warning'>У [src] нет привязанного аккаунта для зачисления!</span>")
+		to_chat(user, span_warning("У [src] нет привязанного аккаунта для зачисления!"))
 		return FALSE
 
 	if (!money || !money.len)
@@ -436,7 +467,7 @@
 				return
 
 	if (world.time < registered_account.withdrawDelay)
-		registered_account.bank_card_talk("<span class='warning'>ОШИБКА: НЕВОЗМОЖНО ВОЙТИ ВВИДУ ЗАПЛАНИРОВАННОГО ТЕХОБСЛУЖИВАНИЯ. РАБОТЫ ЗАПЛАНИРОВАНЫ К ЗАВЕРШЕНИЮ В ТЕЧЕНИЕ [(registered_account.withdrawDelay - world.time)/10] СЕКУНД.</span>", TRUE)
+		registered_account.bank_card_talk(span_warning("ОШИБКА: НЕВОЗМОЖНО ВОЙТИ ВВИДУ ЗАПЛАНИРОВАННОГО ТЕХОБСЛУЖИВАНИЯ. РАБОТЫ ЗАПЛАНИРОВАНЫ К ЗАВЕРШЕНИЮ В ТЕЧЕНИЕ [(registered_account.withdrawDelay - world.time)/10] СЕКУНД."), TRUE)
 		return
 
 	var/amount_to_remove =  tgui_input_number(user, "Как много кредитов вы хотите снять? Текущий баланс: [registered_account.account_balance]", "Снятие средств", 1, min_value = 1, round_value = TRUE)
@@ -449,7 +480,7 @@
 	if(amount_to_remove && registered_account.adjust_money(-amount_to_remove))
 		var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
 		user.put_in_hands(holochip)
-		to_chat(user, "<span class='notice'>Вы сняли [amount_to_remove] кр. в форме голочипа.</span>")
+		to_chat(user, span_notice("Вы сняли [amount_to_remove] [ru_plural(amount_to_remove, "кредит", "кредита", "кредитов")] в форме голочипа."))
 
 		// 🧾 Добавляем запись о снятии в историю транзакций
 		registered_account.makeTransactionLog(
@@ -460,37 +491,7 @@
 			FALSE
 		)
 		return
-	registered_account.bank_card_talk("<span class='warning'>ОШИБКА: У привязанного аккаунта недостаточно средств для выполнения этой операции.</span>", TRUE)
-
-/obj/item/card/id/examine(mob/user)
-	. = ..()
-	if(mining_points)
-		. += "У этой карты [mining_points] рудокопных очков карго; всего было заработано [mining_points_total] очков."
-	if(contraband_points)
-		. += "<span class='info'>У этой карты [contraband_points] очков Авангарда.</span>"
-	. += bank_examine(user)
-
-/obj/item/card/id/proc/bank_examine(mob/user)
-	. = list()
-	if(!bank_support || (bank_support == ID_LOCKED_BANK_ACCOUNT && !registered_account))
-		. += "<span class='info'>Эта ID-карта не имеет банковского счёта. Должно быть, устаревшая модель...</span>"
-	else if(registered_account)
-		. += "Привязанный к ID-карте аккаунт записан на имя \"[registered_account.account_holder]\" и сообщает о балансе [registered_account.account_balance] кр."
-		if(registered_account.account_job)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
-			if(D)
-				. += "На балансе [vocabulary_to_ru(GLOB.budget_ru_genitive, D.account_holder)] находится [D.account_balance] кр."
-		. += "<span class='info'>Alt-Click по ID-карте, чтобы снять деньги с аккаунта в форме голочипов.</span>"
-		. += "<span class='info'>Вы можете внести кредиты на аккаунт, приложив голочипы, наличные или монеты к ID-карте.</span>"
-		if(registered_account.civilian_bounty)
-			. += "<span class='info'><b>Есть активное гражданское баунти:</b>"
-			. += "<span class='info'><i>[registered_account.bounty_text()]</i></span>"
-			. += "<span class='info'>Количество: [registered_account.bounty_num()]</span>"
-			. += "<span class='info'>Награда: [registered_account.bounty_value()]</span>"
-		if(registered_account.account_holder == user.real_name)
-			. += "<span class='boldnotice'>Если вы потеряете эту ID-карту, вы можете восстановить свой аккаунт, нажав Alt-Click по пустой ID-карту, держа её в руках, и введя номер своего банковского счёта.</span>"
-	else
-		. += "<span class='info'>Нет зарегистрированного аккаунта. Alt-Click, чтобы добавить.</span>"
+	registered_account.bank_card_talk(span_warning("ОШИБКА: У привязанного аккаунта недостаточно средств для выполнения этой операции.", TRUE))
 
 /obj/item/card/id/GetAccess()
 	return access
@@ -503,6 +504,10 @@
 
 /obj/item/card/id/update_overlays()
 	. = ..()
+	for(var/obj/item/card_sticker/card_sticker in get_stickers())
+		var/mutable_appearance/sticker_look = card_sticker.get_sticker_overlay()
+		if(sticker_look)
+			. += sticker_look
 	if(!uses_overlays)
 		return
 	cached_flat_icon = null

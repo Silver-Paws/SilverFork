@@ -112,7 +112,6 @@
 			return TRUE
 	return FALSE
 
-/// Хелпер: есть ли слово в названии как отдельное слово
 /obj/item/card_sticker/proc/assignment_has_word(assignment, word)
 	var/regex/word_regex = regex("(^|\[^A-Za-zА-Яа-я0-9\])[word](\[^A-Za-zА-Яа-я0-9\]|$)", "i")
 	return word_regex.Find(assignment) ? TRUE : FALSE
@@ -124,10 +123,9 @@
 		var/mob/living/carbon/human/holder = card.loc
 		holder.sec_hud_set_ID()
 
-/// Почему наклейку нельзя наклеить на эту карту прямо сейчас. null, если можно
 /obj/item/card_sticker/proc/get_wrap_block_reason(obj/item/card/id/card)
 	if(card.get_sticker(sticker_slot))
-		return "Слот занят"
+		return "Карта уже обёрнута"
 	// Скин подменит иконку карты целиком, и два скина сразу корректно снять нельзя
 	if(!sticker_state)
 		for(var/obj/item/card_sticker/other in card.get_stickers())
@@ -158,11 +156,7 @@
 		return
 	card.set_sticker(sticker_slot, src)
 
-	if(sticker_state)
-		// Режим «оверлей»: основу карты не трогаем
-		card.add_overlay(get_sticker_overlay())
-	else
-		// Режим «скин»: запоминаем оригинал и подменяем
+	if(!sticker_state)
 		previous_icon = card.icon
 		previous_icon_state = card.icon_state
 		card.icon = icon
@@ -171,7 +165,6 @@
 	refresh_card(card)
 	return TRUE
 
-/// Прок снятия стикера с айди карты
 /obj/item/card_sticker/proc/unwrap(obj/item/card/id/card, mob/user, silent = FALSE, force = FALSE)
 	. = FALSE
 	if(!istype(card) || card.get_sticker(sticker_slot) != src || (user && INTERACTING_WITH(user, card)))
@@ -191,9 +184,7 @@
 
 	card.set_sticker(sticker_slot, null)
 
-	if(sticker_state)
-		card.cut_overlay(get_sticker_overlay())
-	else
+	if(!sticker_state)
 		card.icon = previous_icon
 		card.icon_state = previous_icon_state
 		previous_icon = null
@@ -331,5 +322,3 @@
 	aftername_suffix = "Shocktrooper"
 	special_assignment = "hudvanguardshocktrooper"
 	prefix_not_allowed_with = list("Grenadier", "Feldscherer")
-
-#undef SYNDI_NT_PREFIX_LIST
