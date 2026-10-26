@@ -1,4 +1,4 @@
-/obj/item/clothing
+obj/item/clothing
 	name = "clothing"
 	resistance_flags = FLAMMABLE
 	max_integrity = 200

@@ -116,9 +116,9 @@
 /obj/item/card/id/examine_more(mob/user)
 	. = ..()
 	if(mining_points)
-		. += "У карты в наличии [mining_points] ед. очков шахтёрского оборудования."
+		. += "У карты в наличии [mining_points]  шахтёрской квоты."
 	if(contraband_points)
-		. += "У карты в наличии [contraband_points] ед. очков Авангарда"
+		. += "У карты в наличии [contraband_points] ед. очков награды"
 	if(registered_account)
 		. += "Привязанный к ID-карте аккаунт записан на имя \"[registered_account.account_holder]\" и сообщает о балансе [registered_account.account_balance] кр."
 		if(registered_account.account_job)
@@ -210,7 +210,9 @@
 	var/icon/cached_flat_icon
 	/// Asset of cached_flat_icon: registering it hashes the whole icon, so it is done once per look of the card
 	var/cached_flat_icon_asset
-	var/obj/item/card_sticker/sticker //BLUEMOON ADD Стикеры на карточку
+	/// Стикеры на карточку, сделано как объекты-слоты префикса и суффикса (STICKER_SLOT_*), гляньте get_sticker()
+	var/obj/item/card_sticker/sticker_prefix
+	var/obj/item/card_sticker/sticker_suffix
 	var/special_assignment = null // BLUEMOOD ADD для особых карт и их HUD, техническое
 
 /obj/item/card/id/Initialize(mapload)
@@ -238,14 +240,15 @@
 	cached_flat_icon = null
 	cached_flat_icon_asset = null
 	access = null
-	sticker = null
+	sticker_prefix = null
+	sticker_suffix = null
 	return ..()
 
 /obj/item/card/id/vv_edit_var(var_name, var_value)
 	. = ..()
 	if(.)
 		switch(var_name)
-			if(NAMEOF(src, assignment),NAMEOF(src, registered_name),NAMEOF(src, sticker),NAMEOF(src, custom_job)) //,NAMEOF(src, registered_age))
+			if(NAMEOF(src, assignment),NAMEOF(src, registered_name),NAMEOF(src, sticker_prefix),NAMEOF(src, sticker_suffix),NAMEOF(src, custom_job))
 				update_label()
 
 /obj/item/card/id/attack_self(mob/user)
@@ -384,12 +387,23 @@
 /obj/item/card/id/AltClick(mob/living/user)
 	. = ..()
 	//BLUEMOON ADD стикеры на карту
-	if(sticker)
-		var/response = tgui_alert(user, "Что вы хотите сделать?", src.name, list("Снять наличные", "Убрать наклейку"), autofocus = TRUE)
+	if(sticker_prefix || sticker_suffix)
+		var/list/buttons = list("Снять наличные")
+		if(sticker_prefix)
+			buttons += "Убрать префикс-стикер"
+		if(sticker_suffix)
+			buttons += "Убрать суффикс-стикер"
+		var/response = tgui_alert(user, "Что вы хотите сделать?", src.name, buttons, autofocus = TRUE)
 		if(!response)
 			return
-		else if(response == "Убрать наклейку")
-			sticker.unwrap(src, user)
+		// Пока висело окно, наклейку могли снять, поэтому слот проверяем заново
+		if(response == "Убрать префикс-стикер")
+			if(sticker_prefix)
+				sticker_prefix.unwrap(src, user)
+			return
+		if(response == "Убрать суффикс-стикер")
+			if(sticker_suffix)
+				sticker_suffix.unwrap(src, user)
 			return
 	//BLUEMOON ADD END
 
@@ -555,21 +569,35 @@
 	if(!effective_job)
 		return
 
-	. = effective_job
+	// Префикс и суффикс добавляют наклейки в своих слотах, логика названия лежит в самих наклейках
+	var/prefix_part = sticker_prefix ? sticker_prefix.get_name_part(effective_job) : ""
+	var/suffix_part = sticker_suffix ? sticker_suffix.get_name_part(effective_job) : ""
+	. = "[prefix_part][effective_job][suffix_part]"
 
-	if(!sticker)
-		return
+/obj/item/card/id/proc/get_sticker(slot)
+	switch(slot)
+		if(STICKER_SLOT_PREFIX)
+			return sticker_prefix
+		if(STICKER_SLOT_SUFFIX)
+			return sticker_suffix
 
-	// Ищем префикс и запрещенные слова в работе
-	if(sticker.prefix)
-		var/list/temp = sticker.prefix_not_allowed_with.Copy()
-		temp |= sticker.prefix
-		for(var/forbidden in temp)
-			var/regex/R = regex("(^|\[^A-Za-zА-Яа-я0-9\])[forbidden](\[^A-Za-zА-Яа-я0-9\]|$)", "i")
-			if(R.Find(effective_job))
-				return // есть совпадение — возвращаем без префикса
+/obj/item/card/id/proc/set_sticker(slot, obj/item/card_sticker/new_sticker)
+	switch(slot)
+		if(STICKER_SLOT_PREFIX)
+			sticker_prefix = new_sticker
+		if(STICKER_SLOT_SUFFIX)
+			sticker_suffix = new_sticker
 
-	. = "[sticker.prefix] [effective_job]"
+/obj/item/card/id/proc/get_stickers()
+	. = list()
+	if(sticker_prefix)
+		. += sticker_prefix
+	if(sticker_suffix)
+		. += sticker_suffix
+
+/// Наклейка, чей special_assignment задаёт иконку худа. Суффиксная приоритетнее: она уточняет роль
+/obj/item/card/id/proc/get_hud_sticker()
+	return sticker_suffix || sticker_prefix
 
 /obj/item/card/id/proc/update_manifest()
 	GLOB.data_core.manifest_modify(registered_name, get_assignment_name(), assignment)
@@ -604,6 +632,7 @@
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
+	var/uses = 10 // Сколько раз карта может скопировать доступ с другой ID-карты
 
 /obj/item/card/id/syndicate/advanced
 	name = "Agent Card"
@@ -737,6 +766,210 @@
 	assignment = "Trader"
 	access = list(ACCESS_SYNDICATE)
 
+/obj/item/card/id/syndicate/one_access_copy
+	name = "Civilian Syndicate Card"
+	uses = 1 // Даём гражданской Синди-Карте одно использование вместо десяти
+
+/obj/item/card/id/syndicate/one_access_copy/loadout
+	access = list()
+	var/registred = FALSE
+
+// Используется именно такая функция, т.к. при выдаче через лодаут карта помещается в рюкзак
+/obj/item/card/id/syndicate/one_access_copy/loadout/on_enter_storage(datum/component/storage/concrete/S)
+
+	if(!registred)
+		registred = TRUE
+		var/mob/living/carbon/human/my_owner = null
+
+		// Проверяем инветарь куклы, ее сумки и возможной коробки в сумке
+		var/atom/movable/cur = loc
+		for(var/i = 1, i <= 3, i++)
+			if(!cur)
+				break
+
+			if(ishuman(cur))
+				my_owner = cur
+				break
+
+			// дальше поднимаемся только если следующий loc тоже movable
+			if(!istype(cur.loc, /atom/movable))
+				break
+
+			cur = cur.loc
+
+		if(my_owner) // копирование свойств старой карты и её замена
+			var/obj/item/card/id/id_card = my_owner.get_item_by_slot(ITEM_SLOT_ID)
+			if(!istype(id_card))
+				return ..()
+
+			// Если взять эту карту из лодаута и зайти на авейку, она может удалить старую карту у персонажа, что приведёт к нежелательным последствиям
+			if(istype(id_card, /obj/item/card/id/inteq) || istype(id_card, /obj/item/card/id/syndicate))
+				to_chat(my_owner, span_warning("Ваша карта уже обладает свойствами, доступными гражданской карте синдиката! Лишняя была удалена."))
+				qdel(src)
+				return
+
+			// Зэкам эта карта не положена
+			if(istype(id_card, /obj/item/card/id/prisoner))
+				to_chat(my_owner, span_warning("Ваша основная карта является картой заключенного! Лишняя была удалена."))
+				qdel(src)
+				return
+
+			//if(id_card?.access.len)
+			// Переносим наклейки на новую карту. Снимаем без рук (user = null), чтобы они не пропали вместе со старой картой
+			var/list/card_stickers = id_card.get_stickers()
+			for(var/obj/item/card_sticker/card_sticker in card_stickers)
+				card_sticker.unwrap(id_card, null, silent = TRUE, force = TRUE)
+
+			assignment = id_card.assignment
+			special_assignment = id_card.special_assignment
+			custom_job = id_card.custom_job
+
+			access |= id_card.access
+			registered_account = id_card.registered_account
+			registered_name = id_card.registered_name
+			name = id_card.name
+
+			for(var/obj/item/card_sticker/card_sticker in card_stickers)
+				card_sticker.wrap(src, my_owner, silent = TRUE, force = TRUE)
+
+			update_label()
+
+			qdel(id_card)
+			my_owner.equip_to_slot_if_possible(src, ITEM_SLOT_ID, disable_warning = TRUE, bypass_equip_delay_self = TRUE)
+
+		if(src != my_owner?.get_item_by_slot(ITEM_SLOT_ID)) // Если в будущем что-то переделают и карта будет спавниться в отдельной коробке или вроде того
+			visible_message(span_warning("ID карта из лодаута не нашла цель для копирования доступа, сообщите в службу поддержки."))
+
+	return ..()
+
+/obj/item/card/id/callsign
+	name = "callsign id card"
+	desc = "A card used to provide ID and determine access across various facilities. This one belongs to NanoTrasen and has a small graved in label, marking it as \"Callsing Changing ID\"."
+	icon_state = "card_black"
+	assignment = "All-Callsigns-Check-In"
+	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
+	var/callsign = ""
+
+/obj/item/card/id/callsign/Initialize(mapload)
+	. = ..()
+	var/datum/action/item_action/chameleon/change/chameleon_action = new(src)
+	chameleon_action.chameleon_type = /obj/item/card/id
+	chameleon_action.chameleon_name = "ID Card"
+	chameleon_action.initialize_disguises()
+
+/obj/item/card/id/callsign/attack_self(mob/user)
+	if(isliving(user) && user.mind)
+
+		var/popup_input
+		popup_input = alert(user, "Choose Action", "Callsign ID", "Show", "Forge/Reset")
+		if(!user.canUseTopic(src, BE_CLOSE, FALSE))
+			return
+		if(popup_input == "Forge/Reset" && !forged)
+			var/desired_callsign = stripped_input(user, "What callsign would you like to put on this card? Leave blank to remove.", "Callsign card", callsign, MAX_NAME_LEN)
+			desired_callsign = reject_bad_name(desired_callsign)
+			if(!desired_callsign)
+				desired_callsign = ""
+
+			callsign = desired_callsign
+
+			update_label()
+			forged = TRUE
+			to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
+			return
+		else if (popup_input == "Forge/Reset" && forged)
+			callsign = ""
+
+			update_label()
+			forged = FALSE
+			to_chat(user, "<span class='notice'>You successfully reset the ID card.</span>")
+			return
+	return ..()
+
+/obj/item/card/id/callsign/update_label(newname, newjob)
+	if(newname || newjob)
+		name = "[(!newname)	? "identification card"	: "[newname] - ID Card"][(!newjob) ? "" : " ([newjob])"]"
+		update_icon()
+		return
+
+	name = "[(!registered_name)	? "identification card"	: "[registered_name] [callsign ? "'[callsign]'" : ""] - ID Card"][(!assignment) ? "" : " ([assignment])"]"
+
+	update_icon()
+
+/obj/item/card/id/callsign/loadout
+	var/registred = FALSE
+
+// Используется именно такая функция, т.к. при выдаче через лодаут карта помещается в рюкзак
+/obj/item/card/id/callsign/loadout/on_enter_storage()
+	if(!registred)
+		var/mob/living/carbon/human/my_owner = null
+
+		if(ishuman(loc.loc)) // Если карта появляется в сумке
+			my_owner = loc.loc
+		if(ishuman(loc)) // Если карта в кармане или где угодно, но на персонаже
+			my_owner = loc
+
+		if(my_owner) // копирование свойств старой карты и её замена
+			var/obj/item/card/id/id_card = my_owner.get_item_by_slot(ITEM_SLOT_ID)
+			if(!istype(id_card))
+				return
+
+			// Если взять эту карту из лодаута и зайти на авейку, она может удалить старую карту у персонажа, что приведёт к нежелательным последствиям
+			if(istype(id_card, /obj/item/card/id/inteq) || istype(id_card, /obj/item/card/id/syndicate))
+				to_chat(my_owner, span_warning("Ваша карта уже обладает свойствами, доступными гражданской карте синдиката! Лишняя была удалена."))
+				qdel(src)
+				return
+
+			// Зэкам эта карта не положена
+			if(istype(id_card, /obj/item/card/id/prisoner))
+				to_chat(my_owner, span_warning("Ваша основная карта принадлежит заключенному! Лишняя была удалена."))
+				qdel(src)
+				return
+
+			if(id_card?.access.len)
+				access |= id_card.access
+				assignment = id_card.assignment
+				registered_account = id_card.registered_account
+				registered_name = id_card.registered_name
+				name = id_card.name
+				update_icon()
+
+				qdel(id_card)
+				my_owner.equip_to_slot_if_possible(src, ITEM_SLOT_ID, disable_warning = TRUE, bypass_equip_delay_self = TRUE)
+
+		registred = TRUE
+
+		if(src != my_owner?.get_item_by_slot(ITEM_SLOT_ID)) // Если в будущем что-то переделают и карта будет спавниться в отдельной коробке или вроде того
+			visible_message(span_warning("ID карта из лодаута не нашла цель для копирования доступа, сообщите разработчикам."))
+	return ..()
+
+//////////////////////////////////////////////////////
+
+/obj/item/card/id/nri
+	name = "\improper NRI Military ID"
+	desc = "ID-карта спецназа Новой Российской Империи."
+	icon_state = "nri"
+	registered_name = "NRI"
+	assignment = "NRI"
+	uses_overlays = FALSE
+	special_assignment = "nri"
+
+/obj/item/card/id/nri/Initialize(mapload)
+	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
+	. = ..()
+
+/obj/item/card/id/sol
+	name = "\improper SolFed Military ID"
+	desc = "ID-карта Вооружённых Сил Солнечной Федерации. Оснащена специальными сенсорами, позволяющими открывать все необходимые шлюзы для боевиков, слегка напоминая функции EMAG."
+	icon_state = "sol"
+	registered_name = "Sol"
+	assignment = "Sol"
+	uses_overlays = FALSE
+	special_assignment = "sol"
+
+/obj/item/card/id/sol/Initialize(mapload)
+	access = get_all_accesses()+get_ert_access("commander")+get_all_inteq_access()-ACCESS_CHANGE_IDS
+	. = ..()
+
 /obj/item/card/id/captains_spare
 	name = "captain's spare ID"
 	desc = "Запасная ID-карта самого властителя станции."
@@ -847,7 +1080,7 @@
 
 /obj/item/card/id/prisoner
 	name = "prisoner ID card"
-	desc = "Теперь вы - номер, вы - не свободный человек."
+	desc = "Теперь вы - номер, а не свободный человек."
 	icon_state = "orange"
 	item_state = "orange-id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
