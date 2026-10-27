@@ -1082,7 +1082,8 @@
 
 /obj/item/card/id/ert/hsc/update_overlays()
 	. = ..()
-	. += mutable_appearance(icon, overlay_state)
+	if(!stickers_replace_job_overlay())
+		. += mutable_appearance(icon, overlay_state)
 
 /obj/item/card/id/ert/hsc/medic
 	name = "\improper HSC Medical ID"
