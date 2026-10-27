@@ -18,8 +18,8 @@
 	 * - не null: "оверлей" - основа карты не трогается, поверх неё рисуется этот icon_state
 	 */
 	var/sticker_state = null
-	/// Кеш внешнего вида оверлея, см. get_sticker_overlay()
-	var/mutable_appearance/sticker_overlay
+	/// Заменяет ли оверлей наклейки оверлей должности (id[job]) на карте
+	var/replaces_job_overlay = FALSE
 
 	var/auto_equip = FALSE // for loadout
 	var/permit = null // only for auto_equip
@@ -91,9 +91,7 @@
 /obj/item/card_sticker/proc/get_sticker_overlay()
 	if(!sticker_state)
 		return null
-	if(!sticker_overlay)
-		sticker_overlay = mutable_appearance(icon, sticker_state)
-	return sticker_overlay
+	return mutable_appearance(icon, sticker_state)
 
 /// Что эта наклейка добавляет к названию должности, вместе с пробелом со стороны должности.
 /// Вся логика названия лежит здесь, карта только склеивает части из своих слотов
@@ -295,6 +293,7 @@
 /// Стикеры авангарда: оверлей поверх обычной карты, без префикса, но с суффиксом
 /obj/item/card_sticker/vanguard
 	sticker_slot = STICKER_SLOT_SUFFIX
+	replaces_job_overlay = TRUE
 
 /obj/item/card_sticker/vanguard/grenadier
 	name = "vanguard grenadier sticker"

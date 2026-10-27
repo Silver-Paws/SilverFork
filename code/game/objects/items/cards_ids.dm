@@ -125,14 +125,14 @@
 	. = list()
 	if(!bank_support || (bank_support == ID_LOCKED_BANK_ACCOUNT && !registered_account))
 		. += span_info("Эта ID-карта не имеет банковского счёта. Должно быть, устаревшая модель...")
-		return TRUE
+		return
 	if(registered_account)
 		. += span_info("Привязанный к ID-карте аккаунт записан на имя \"[registered_account.account_holder]\". На счету находится \
 		[registered_account.account_balance] [ru_plural(registered_account.account_balance, "кредит", "кредита", "кредитов")] \
 		[span_tooltip_fast("Кредиты в форме голочипов можно извлечь из ID через alt-клик. Вы можете пополнить счёт, прижимая голочипы, наличные или монеты к ID.")].")
 		. += span_boldnotice("Можно осмотреть получше.")
 	else
-		. += span_info("У данной карты нет зарегистрированного акканта. Alt-клик, чтобы добавить.")
+		. += span_info("У данной карты нет зарегистрированного аккаунта. Alt-клик, чтобы добавить.")
 
 /obj/item/card/id/proc/examine_banking_info(mob/user)
 	. = list()
@@ -144,7 +144,10 @@
 		if(contraband_points)
 			points_text += "[contraband_points] [ru_plural(contraband_points, "очко", "очка", "очков")] награды Авангарда"
 		. += "У карты на счету [english_list(points_text)]."
-	if(registered_account?.account_job)
+	if(!registered_account)
+		. += span_notice("К карте не привязан аккаунт.")
+		return
+	if(registered_account.account_job)
 		var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 		if(D)
 			. += "На балансе [vocabulary_to_ru(GLOB.budget_ru_genitive, D.account_holder)] находится [D.account_balance] [ru_plural(D.account_balance, "кредит", "кредита", "кредитов")]."
@@ -156,8 +159,6 @@
 			. += "Количество: [registered_account.bounty_num()]"
 			var/bounty_reward = registered_account.bounty_value()
 			. += "Награда: [bounty_reward] [ru_plural(bounty_reward, "кредит", "кредита", "кредитов")]"
-	else
-		. += span_notice("К карте не привязан аккаунт.")
 
 /obj/item/card/emag/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/emagrecharge))
@@ -316,7 +317,7 @@
 
 /obj/item/card/id/proc/insert_money(obj/item/I, mob/user)
 	if(!bank_support || !registered_account) // BLUEMOON EDIT
-		to_chat(user, span_warning("К [src] нет привязанного аккаунт для зачисления [I]!"))
+		to_chat(user, span_warning("К [src] нет привязанного аккаунта для зачисления [I]!"))
 		return
 	var/cash_money = I.get_item_credit_value()
 	if(!cash_money)
@@ -491,7 +492,7 @@
 			FALSE
 		)
 		return
-	registered_account.bank_card_talk(span_warning("ОШИБКА: У привязанного аккаунта недостаточно средств для выполнения этой операции.", TRUE))
+	registered_account.bank_card_talk(span_warning("ОШИБКА: У привязанного аккаунта недостаточно средств для выполнения этой операции."), TRUE)
 
 /obj/item/card/id/GetAccess()
 	return access
@@ -504,11 +505,9 @@
 
 /obj/item/card/id/update_overlays()
 	. = ..()
-	for(var/obj/item/card_sticker/card_sticker in get_stickers())
-		var/mutable_appearance/sticker_look = card_sticker.get_sticker_overlay()
-		if(sticker_look)
-			. += sticker_look
+	var/list/sticker_overlays = get_sticker_overlays()
 	if(!uses_overlays)
+		. += sticker_overlays
 		return
 	cached_flat_icon = null
 	cached_flat_icon_asset = null
@@ -519,8 +518,22 @@
 	job = lowertext(job)
 	if(registered_name && registered_name != "Captain" && !is_type_in_list(src, specialjobs))
 		. += mutable_appearance(icon, "assigned")
-	if(job)
+	if(job && !stickers_replace_job_overlay())
 		. += mutable_appearance(icon, "id[job]")
+	. += sticker_overlays
+
+/obj/item/card/id/proc/get_sticker_overlays()
+	. = list()
+	for(var/obj/item/card_sticker/card_sticker in get_stickers())
+		var/mutable_appearance/sticker_look = card_sticker.get_sticker_overlay()
+		if(sticker_look)
+			. += sticker_look
+
+/obj/item/card/id/proc/stickers_replace_job_overlay()
+	for(var/obj/item/card_sticker/card_sticker in get_stickers())
+		if(card_sticker.replaces_job_overlay)
+			return TRUE
+	return FALSE
 
 /obj/item/card/id/proc/get_cached_flat_icon()
 	if(!cached_flat_icon)
