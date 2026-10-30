@@ -2,7 +2,7 @@
 	name = "ERT Commander - MOPP"
 
 	mask = /obj/item/clothing/mask/gas/sechailer/mopp/advance
-	suit = /obj/item/clothing/suit/cbrn/mopp/advance/commander
+	suit = /obj/item/clothing/suit/hooded/cbrn/mopp/advance/commander
 	shoes = /obj/item/clothing/shoes/jackboots/cbrn/mopp/advance
 	gloves = /obj/item/clothing/gloves/cbrn/mopp/advance
 	suit_store = /obj/item/tank/internals/doubleoxygen
@@ -18,7 +18,7 @@
 	name = "ERT Security - MOPP"
 
 	mask = /obj/item/clothing/mask/gas/sechailer/mopp/advance
-	suit = /obj/item/clothing/suit/cbrn/mopp/advance/security
+	suit = /obj/item/clothing/suit/hooded/cbrn/mopp/advance/security
 	shoes = /obj/item/clothing/shoes/jackboots/cbrn/mopp/advance
 	gloves = /obj/item/clothing/gloves/cbrn/mopp/advance
 	suit_store = /obj/item/tank/internals/doubleoxygen
@@ -34,7 +34,7 @@
 	name = "ERT Medical - MOPP"
 
 	mask = /obj/item/clothing/mask/gas/sechailer/mopp/advance
-	suit = /obj/item/clothing/suit/cbrn/mopp/advance/medical
+	suit = /obj/item/clothing/suit/hooded/cbrn/mopp/advance/medical
 	shoes = /obj/item/clothing/shoes/jackboots/cbrn/mopp/advance
 	gloves = /obj/item/clothing/gloves/cbrn/mopp/advance
 	suit_store = /obj/item/tank/internals/doubleoxygen
@@ -50,7 +50,7 @@
 	name = "ERT Engineer - MOPP"
 
 	mask = /obj/item/clothing/mask/gas/sechailer/mopp/advance
-	suit = /obj/item/clothing/suit/cbrn/mopp/advance/engi
+	suit = /obj/item/clothing/suit/hooded/cbrn/mopp/advance/engi
 	shoes = /obj/item/clothing/shoes/jackboots/cbrn/mopp/advance
 	gloves = /obj/item/clothing/gloves/cbrn/mopp/advance
 	suit_store = /obj/item/tank/internals/doubleoxygen

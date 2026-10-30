@@ -184,19 +184,19 @@
 
 	if(job.title in GLOB.command_positions)
 		var/command_advance = FALSE
-		var/obj/item/clothing/suit/suit_path = /obj/item/clothing/suit/cbrn/mopp
+		var/obj/item/clothing/suit/suit_path = /obj/item/clothing/suit/hooded/cbrn/mopp
 		switch(job.title)
 			if("Captain", "NanoTrasen Representative", "Blueshield", "Bridge Officer")
-				suit_path = /obj/item/clothing/suit/cbrn/mopp/advance/commander
+				suit_path = /obj/item/clothing/suit/hooded/cbrn/mopp/advance/commander
 				command_advance = TRUE
 			if("Head of Security")
-				suit_path = /obj/item/clothing/suit/cbrn/mopp/advance/security
+				suit_path = /obj/item/clothing/suit/hooded/cbrn/mopp/advance/security
 				command_advance = TRUE
 			if("Chief Medical Officer")
-				suit_path = /obj/item/clothing/suit/cbrn/mopp/advance/medical
+				suit_path = /obj/item/clothing/suit/hooded/cbrn/mopp/advance/medical
 				command_advance = TRUE
 			if("Chief Engineer")
-				suit_path = /obj/item/clothing/suit/cbrn/mopp/advance/engi
+				suit_path = /obj/item/clothing/suit/hooded/cbrn/mopp/advance/engi
 				command_advance = TRUE
 
 		if(command_advance)
@@ -214,30 +214,30 @@
 		.["tank"] = new chosen_tank_path
 		return
 
-	var/suit_type = /obj/item/clothing/suit/cbrn
+	var/suit_type = /obj/item/clothing/suit/hooded/cbrn
 	var/hood_type = /obj/item/clothing/head/helmet/cbrn
 	var/gloves_type = /obj/item/clothing/gloves/cbrn
 
 	if(job.departments & DEPARTMENT_BITFLAG_SECURITY)
-		suit_type = /obj/item/clothing/suit/cbrn/security
+		suit_type = /obj/item/clothing/suit/hooded/cbrn/security
 		hood_type = /obj/item/clothing/head/helmet/cbrn/sec
 		gloves_type = /obj/item/clothing/gloves/cbrn/mopp
 	else if(job.departments & DEPARTMENT_BITFLAG_ENGINEERING)
-		suit_type = /obj/item/clothing/suit/cbrn/engineering
+		suit_type = /obj/item/clothing/suit/hooded/cbrn/engineering
 		hood_type = /obj/item/clothing/head/helmet/cbrn/eng
 		gloves_type = /obj/item/clothing/gloves/cbrn/engineer
 	else if(job.departments & DEPARTMENT_BITFLAG_MEDICAL)
-		suit_type = /obj/item/clothing/suit/cbrn/medical
+		suit_type = /obj/item/clothing/suit/hooded/cbrn/medical
 		hood_type = /obj/item/clothing/head/helmet/cbrn/med
 		gloves_type = /obj/item/clothing/gloves/cbrn/medical
 	else if(job.departments & DEPARTMENT_BITFLAG_SCIENCE)
-		suit_type = /obj/item/clothing/suit/cbrn/science
+		suit_type = /obj/item/clothing/suit/hooded/cbrn/science
 		hood_type = /obj/item/clothing/head/helmet/cbrn/sci
 	else if(job.departments & DEPARTMENT_BITFLAG_SUPPLY)
-		suit_type = /obj/item/clothing/suit/cbrn/cargo
+		suit_type = /obj/item/clothing/suit/hooded/cbrn/cargo
 		hood_type = /obj/item/clothing/head/helmet/cbrn/cargo
 	else if(job.departments & DEPARTMENT_BITFLAG_SERVICE)
-		suit_type = /obj/item/clothing/suit/cbrn/service
+		suit_type = /obj/item/clothing/suit/hooded/cbrn/service
 		hood_type = /obj/item/clothing/head/helmet/cbrn/serv
 
 	.["suit"] = new suit_type
