@@ -35,8 +35,8 @@
 	item_state = "secmed_armor"
 	brc_mitigation_bonus = 10  // BLUEMOON ADD
 	unique_reskin = list(
-		"Alt" = list("icon_state" = "secmed_armor_alt"),
-		"Normal" = list("icon_state" = "secmed_armor")
+		"Альтернатива" = list("icon_state" = "secmed_armor_alt"),
+		"Стандарт" = list("icon_state" = "secmed_armor")
 	)
 
 /obj/item/clothing/suit/armor/brigdoc/labcoat
@@ -45,8 +45,8 @@
 	icon_state = "secmed_labcoat"
 	item_state = "secmed_labcoat"
 	unique_reskin = list(
-		"Old" = list("icon_state" = "old_brigphysicianvest"),
-		"Normal" = list("icon_state" = "secmed_labcoat")
+		"Устаревший" = list("icon_state" = "old_brigphysicianvest"),
+		"Стандарт" = list("icon_state" = "secmed_labcoat")
 	)
 
 /obj/item/clothing/suit/armor/vest/blueshield

@@ -99,7 +99,7 @@
 /obj/item/clothing/underwear/shirt/adjustable/toggle/examine(mob/user)
 	. = ..()
 	if(togglename)
-		. += "Alt-клик, чтобы изменить [src] на [togglename]."
+		. += "Alt-клик, чтобы изменить [togglename] на [src]."
 
 //-----------------------------------------------------------//
 
