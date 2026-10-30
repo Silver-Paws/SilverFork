@@ -121,6 +121,7 @@
 /obj/item/clothing/suit/armor/reactive/fire
 	name = "reactive incendiary armor"
 	desc = "Экспериментальный комплект брони с реактивной сенсорной матрицей, подключённой к эмиттеру пламени. Для пироманьяков со стилем."
+	reactivearmor_cooldown_duration = 15
 
 /obj/item/clothing/suit/armor/reactive/fire/block_action(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	if(prob(hit_reaction_chance))
