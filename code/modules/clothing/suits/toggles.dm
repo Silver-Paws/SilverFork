@@ -2,7 +2,7 @@
 
 /obj/item/clothing/suit/hooded
 	actions_types = list(/datum/action/item_action/toggle_hood)
-	var/obj/item/clothing/head/hooded/hood
+	var/obj/item/clothing/head/hood
 	var/hoodtype = /obj/item/clothing/head/hooded/winterhood //so the chaplain hoodie or other hoodies can override this
 	///Alternative mode for hiding the hood, instead of storing the hood in the suit it qdels it, useful for when you deal with hooded suit with storage.
 	var/alternative_mode = FALSE
@@ -10,6 +10,8 @@
 
 /obj/item/clothing/suit/hooded/Initialize(mapload)
 	. = ..()
+	if(!ispath(hoodtype, /obj/item/clothing/head))
+		stack_trace("[type]: hoodtype [hoodtype] не является предметом головы")
 	hood = MakeHelmet()
 
 /obj/item/clothing/suit/hooded/Destroy()
@@ -21,10 +23,10 @@
 	SEND_SIGNAL(src, COMSIG_SUIT_MADE_HELMET, H)
 	return H
 
-/obj/item/clothing/suit/hooded/MakeHelmet(obj/item/clothing/head/hooded/H)
+/obj/item/clothing/suit/hooded/MakeHelmet(obj/item/clothing/head/H)
 	if(!hood)
 		H = new hoodtype(src)
-		H.suit = src
+		H.AddComponent(/datum/component/suit_hood, src)
 		return ..()
 
 /obj/item/clothing/suit/hooded/ui_action_click()
@@ -90,25 +92,7 @@
 		RemoveHood()
 
 /obj/item/clothing/head/hooded
-	var/obj/item/clothing/suit/hooded/suit
 	dynamic_hair_suffix = ""
-
-/obj/item/clothing/head/hooded/Destroy()
-	suit = null
-	return ..()
-
-/obj/item/clothing/head/hooded/dropped(mob/user)
-	..()
-	if(suit)
-		suit.RemoveHood()
-
-/obj/item/clothing/head/hooded/equipped(mob/user, slot)
-	..()
-	if(slot != ITEM_SLOT_HEAD)
-		if(suit)
-			suit.RemoveHood()
-		else
-			qdel(src)
 
 //Toggle exosuits for different aesthetic styles (hoodies, suit jacket buttons, etc)
 

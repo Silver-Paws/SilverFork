@@ -852,6 +852,7 @@
 #include "code\datums\components\fullauto.dm"
 #include "code\datums\components\gps.dm"
 #include "code\datums\components\honkspam.dm"
+#include "code\datums\components\hooded.dm"
 #include "code\datums\components\hostile_attack_telegraph.dm"
 #include "code\datums\components\hostile_machine_registry.dm"
 #include "code\datums\components\identification.dm"
