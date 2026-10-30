@@ -1,5 +1,0 @@
-author: Pingvas
-delete-after: true
-changes:
-  - rscadd: Хэдшоты персонажа при осмотре.
-  - rscadd: Разделение вкладки внешности на три подменю.
