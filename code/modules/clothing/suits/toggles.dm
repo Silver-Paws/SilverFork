@@ -13,9 +13,9 @@
 	hood = MakeHelmet()
 
 /obj/item/clothing/suit/hooded/Destroy()
-	. = ..()
-	qdel(hood)
-	hood = null
+	if(hood)
+		QDEL_NULL(hood)
+	return ..()
 
 /obj/item/clothing/suit/proc/MakeHelmet(obj/item/clothing/head/H)
 	SEND_SIGNAL(src, COMSIG_SUIT_MADE_HELMET, H)
@@ -40,6 +40,8 @@
 	..()
 
 /obj/item/clothing/suit/hooded/proc/RemoveHood()
+	if(!hood)
+		return
 	suittoggled = FALSE
 	if(ishuman(hood.loc))
 		var/mob/living/carbon/H = hood.loc
@@ -48,7 +50,8 @@
 	else
 		if(alternative_mode)
 			QDEL_NULL(hood)
-		hood.forceMove(src)
+		else
+			hood.forceMove(src)
 	update_icon()
 
 /obj/item/clothing/suit/hooded/update_icon_state()
