@@ -134,7 +134,6 @@
 		return
 
 	var/obj/item/clothing/suit/suit = slots["suit"]
-	var/obj/item/clothing/head/hood = slots["head"]
 	var/obj/item/clothing/mask/mask = slots["mask"]
 	var/obj/item/clothing/gloves/gloves = slots["gloves"]
 	var/obj/item/clothing/shoes/shoes = slots["shoes"]
@@ -144,8 +143,11 @@
 	H.equip_to_slot_or_del(shoes, ITEM_SLOT_FEET)
 	H.equip_to_slot_or_del(suit, ITEM_SLOT_OCLOTHING)
 	H.equip_to_slot_or_del(mask, ITEM_SLOT_MASK)
-	H.equip_to_slot_or_del(hood, ITEM_SLOT_HEAD)
 	H.equip_to_slot_or_del(tank, ITEM_SLOT_SUITSTORE)
+
+	var/obj/item/clothing/suit/hooded/hooded_suit = H.wear_suit
+	if(istype(hooded_suit))
+		hooded_suit.ToggleHood()
 
 	var/obj/item/broom/liquidator/broom = new(H)
 	if(!H.put_in_hands(broom))
@@ -174,7 +176,7 @@
 				H.put_in_hands(storage, FALSE, forced = TRUE)
 		SEND_SIGNAL(storage, COMSIG_TRY_STORAGE_INSERT, I, null, TRUE, TRUE)
 
-/// Returns suit, head, mask, gloves, shoes, tank types for new().
+/// Returns suit, mask, gloves, shoes, tank types for new().
 /datum/station_trait/radiation_contamination/proc/get_response_outfit_slots(datum/job/job, mob/living/carbon/human/H)
 	. = list()
 	if((job.title == "AI") || (job.title == "Cyborg"))
@@ -201,13 +203,11 @@
 
 		if(command_advance)
 			.["suit"] = new suit_path
-			.["head"] = new /obj/item/clothing/head/helmet/cbrn/mopp/advance
 			.["mask"] = new /obj/item/clothing/mask/gas/sechailer/mopp/advance
 			.["gloves"] = new /obj/item/clothing/gloves/cbrn/mopp/advance
 			.["shoes"] = new /obj/item/clothing/shoes/jackboots/cbrn/mopp/advance
 		else
 			.["suit"] = new suit_path
-			.["head"] = new /obj/item/clothing/head/helmet/cbrn/mopp
 			.["mask"] = new /obj/item/clothing/mask/gas/sechailer/mopp
 			.["gloves"] = new /obj/item/clothing/gloves/cbrn/mopp
 			.["shoes"] = new /obj/item/clothing/shoes/jackboots/cbrn/mopp
@@ -215,33 +215,25 @@
 		return
 
 	var/suit_type = /obj/item/clothing/suit/hooded/cbrn
-	var/hood_type = /obj/item/clothing/head/helmet/cbrn
 	var/gloves_type = /obj/item/clothing/gloves/cbrn
 
 	if(job.departments & DEPARTMENT_BITFLAG_SECURITY)
 		suit_type = /obj/item/clothing/suit/hooded/cbrn/security
-		hood_type = /obj/item/clothing/head/helmet/cbrn/sec
 		gloves_type = /obj/item/clothing/gloves/cbrn/mopp
 	else if(job.departments & DEPARTMENT_BITFLAG_ENGINEERING)
 		suit_type = /obj/item/clothing/suit/hooded/cbrn/engineering
-		hood_type = /obj/item/clothing/head/helmet/cbrn/eng
 		gloves_type = /obj/item/clothing/gloves/cbrn/engineer
 	else if(job.departments & DEPARTMENT_BITFLAG_MEDICAL)
 		suit_type = /obj/item/clothing/suit/hooded/cbrn/medical
-		hood_type = /obj/item/clothing/head/helmet/cbrn/med
 		gloves_type = /obj/item/clothing/gloves/cbrn/medical
 	else if(job.departments & DEPARTMENT_BITFLAG_SCIENCE)
 		suit_type = /obj/item/clothing/suit/hooded/cbrn/science
-		hood_type = /obj/item/clothing/head/helmet/cbrn/sci
 	else if(job.departments & DEPARTMENT_BITFLAG_SUPPLY)
 		suit_type = /obj/item/clothing/suit/hooded/cbrn/cargo
-		hood_type = /obj/item/clothing/head/helmet/cbrn/cargo
 	else if(job.departments & DEPARTMENT_BITFLAG_SERVICE)
 		suit_type = /obj/item/clothing/suit/hooded/cbrn/service
-		hood_type = /obj/item/clothing/head/helmet/cbrn/serv
 
 	.["suit"] = new suit_type
-	.["head"] = new hood_type
 	.["mask"] = new /obj/item/clothing/mask/gas/cbrn
 	.["gloves"] = new gloves_type
 	.["shoes"] = new /obj/item/clothing/shoes/jackboots/cbrn
